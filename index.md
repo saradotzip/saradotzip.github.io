@@ -4,7 +4,7 @@ layout: default
 
 Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
-[Link to another page]([./another-page.html](https://github.com/saradotzip/C-Projects)).
+[Link to another page]((https://github.com/saradotzip/C-Projects)).
 
 There should be whitespace between paragraphs.
 
