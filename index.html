@@ -3,138 +3,122 @@
 <head>
   <title>Sara Goodie | Cybersecurity</title>
 
-  <!-- Fonts -->
+  <!-- FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&family=VT323&family=Baloo+2:wght@500&display=swap" rel="stylesheet">
 
   <style>
     body {
-      background: linear-gradient(135deg, #ffffff, #ffe6f5);
+      background: radial-gradient(circle at top, #000000, #120012);
       font-family: 'Share Tech Mono', monospace;
-      color: #cc3399;
+      color: #ff99dd;
       padding: 20px;
       overflow-x: hidden;
     }
 
-    /* WINDOWS */
+    /* subtle floating sparkles */
+    .sparkle {
+      position: fixed;
+      color: #ff66cc;
+      font-size: 10px;
+      opacity: 0.4;
+      animation: floatUp 8s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
     .window {
-      background: rgba(255,255,255,0.9);
+      background: rgba(20, 0, 30, 0.7);
       border: 1.5px solid #ff66cc;
       margin: 20px auto;
       width: 90%;
-      box-shadow: 0 0 20px #ffb3e6;
+      box-shadow: 0 0 25px #ff66cc;
+      backdrop-filter: blur(10px);
       border-radius: 14px;
-      transition: 0.2s;
-      position: relative;
-      z-index: 2;
-    }
-
-    .window:hover {
-      box-shadow: 0 0 30px #ff66cc;
-      transform: scale(1.01);
     }
 
     .title-bar {
       background: linear-gradient(to right, #ff66cc, #cc66ff);
       color: white;
       padding: 6px;
+      font-weight: bold;
+      border-radius: 12px 12px 0 0;
       font-family: 'VT323', monospace;
       font-size: 18px;
-      border-radius: 12px 12px 0 0;
+      letter-spacing: 1px;
     }
 
     .content {
       padding: 15px;
     }
 
-    /* TEXT */
+    .btn {
+      display: inline-block;
+      border: 1px solid #ff99dd;
+      padding: 6px 14px;
+      margin-top: 6px;
+      text-decoration: none;
+      color: #ff99dd;
+      border-radius: 20px;
+      font-family: 'Baloo 2', cursive;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #ff66cc;
+      color: black;
+      box-shadow: 0 0 15px #ff66cc;
+    }
+
+    #terminal {
+      background: black;
+      color: #ff99dd;
+      padding: 10px;
+      height: 120px;
+      overflow: hidden;
+      font-size: 14px;
+      border-radius: 10px;
+    }
+
     .name {
       font-family: 'Baloo 2', cursive;
-      font-size: 42px;
-      color: #99004d;
-      text-shadow: 0 0 10px #ff99dd;
+      font-size: 40px;
+      color: white;
+      text-shadow: 0 0 15px #ff66cc, 0 0 30px #cc66ff;
     }
 
     .subtitle {
       font-family: 'Orbitron', sans-serif;
       font-size: 14px;
-      color: #99004d;
+      letter-spacing: 1px;
     }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      border: 1px solid #ff66cc;
-      padding: 6px 14px;
-      margin-top: 6px;
-      text-decoration: none;
-      color: #cc3399;
-      border-radius: 20px;
-      font-family: 'Baloo 2', cursive;
-    }
-
-    .btn:hover {
-      background: #ff66cc;
-      color: white;
-      box-shadow: 0 0 10px #ff66cc;
-    }
-
-    /* TERMINAL */
-    #terminal {
-      background: #fff0f7;
-      color: #cc3399;
-      padding: 10px;
-      height: 120px;
-      overflow: hidden;
-      border-radius: 10px;
-      border: 1px solid #ffb3e6;
-    }
-
-    /* SIGILS */
+    /* cybersigilism accent */
     .sigil {
       text-align: center;
+      font-size: 18px;
       margin-top: 10px;
       letter-spacing: 6px;
-      opacity: 0.3;
+      opacity: 0.7;
     }
 
-    /* FLOATING SMALL SIGILS */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
+    /* cute Y3K emojis */
+    .cute {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 18px;
     }
 
-    .particle {
+    /* tiny floating symbols */
+    .symbol {
       position: fixed;
       font-size: 12px;
-      color: #ff99dd;
-      opacity: 0.1;
-      pointer-events: none;
-      animation: float 12s linear infinite;
-      z-index: 1;
-    }
-
-    /* ASCII BACKGROUND */
-    .ascii-bg {
-      position: fixed;
-      bottom: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: monospace;
-      font-size: 6px;
-      line-height: 6px;
-      color: black;
-      opacity: 0.06;
-      white-space: pre;
-      pointer-events: none;
-      z-index: 0;
-      animation: floatAscii 20s ease-in-out infinite;
-    }
-
-    @keyframes floatAscii {
-      0% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -30px); }
-      100% { transform: translate(-50%, 0); }
+      color: #cc66ff;
+      opacity: 0.3;
+      animation: floatUp 10s linear infinite;
     }
 
   </style>
@@ -142,38 +126,27 @@
 
 <body>
 
-<!-- ASCII CYBERSIGIL BACKGROUND -->
-<div class="ascii-bg">
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⡇⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢀⡀⠀⢀⣀⣀⣀⣀⣠⣿⣿⣿⣿⣿⣇⣀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀
-⠈⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⢿⡿⠿⠿⠿⠟⠟⠻⠛⠛⠛⠛⠋⠋⠙⠉⢉⣉⣉⣉⠈⠉⠁
-⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡿⡿⠿⡿⡿⠿⡿⡟⠿⠛⠛⠛⠛⠋⠛⠉⠋⠉⠏⠋⠍⡏⠏⠍⠄⠄⠀⠀⠀⠀⠀⠠⠀⠀⠐⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠉⠈⠁⠈⠀⠀⠀
-⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠋⠉⠟⠟⠇⠄⠄⠀⠀⠀⠀⠀⠀⠁⠀⠁⠁⠃⠁⠁⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢀⣾⣿⣿⣿⠿⠉⠉⠿⣿⣿⣿⡇⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢠⣿⡿⠟⠁⠀⠀⠀⠀⠀⠙⢿⣿⡇⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠠⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠇⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-</div>
-
-<!-- FLOATING SMALL SIGILS -->
+<!-- floating sparkles -->
 <script>
-const sigils = ["✦","⟡","✧"];
 for (let i = 0; i < 20; i++) {
-  let el = document.createElement("div");
-  el.className = "particle";
-  el.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
-  el.style.left = Math.random() * 100 + "vw";
-  el.style.top = Math.random() * 100 + "vh";
-  el.style.animationDuration = (10 + Math.random() * 10) + "s";
-  document.body.appendChild(el);
+  let s = document.createElement("div");
+  s.className = "sparkle";
+  s.innerHTML = "✦";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(s);
+}
+
+for (let i = 0; i < 10; i++) {
+  let sym = document.createElement("div");
+  sym.className = "symbol";
+  sym.innerHTML = "⟡";
+  sym.style.left = Math.random() * 100 + "vw";
+  sym.style.animationDuration = (6 + Math.random() * 6) + "s";
+  document.body.appendChild(sym);
 }
 </script>
 
-<!-- TERMINAL -->
 <div class="window">
   <div class="title-bar">boot_sequence.exe</div>
   <div class="content">
@@ -181,17 +154,22 @@ for (let i = 0; i < 20; i++) {
   </div>
 </div>
 
-<!-- HEADER -->
 <div class="window">
   <div class="title-bar">SaraGoodie.exe</div>
   <div class="content">
     <div class="name">Sara Goodie</div>
     <p class="subtitle">Cybersecurity • SOC Analyst • SIEM • Threat Detection</p>
-    <div class="sigil">⟡ ✧ ⟡ ✦ ⟡ ✧ ⟡</div>
+
+    <div class="cute">
+      💖 ✦ 🦋 ✧ 💾 🎀
+    </div>
+
+    <div class="sigil">
+      ⟡ ✧ ⟡ ✦ ⟡ ✧ ⟡
+    </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div class="window">
   <div class="title-bar">Projects.exe</div>
   <div class="content">
@@ -209,7 +187,6 @@ for (let i = 0; i < 20; i++) {
   </div>
 </div>
 
-<!-- CURRENT -->
 <div class="window">
   <div class="title-bar">Currently.log</div>
   <div class="content">
@@ -219,7 +196,6 @@ for (let i = 0; i < 20; i++) {
   </div>
 </div>
 
-<!-- TERMINAL SCRIPT -->
 <script>
 const text = [
 "> initializing system...",
@@ -234,6 +210,7 @@ let i = 0, j = 0, current = "";
 
 function type() {
   let term = document.getElementById("terminal");
+
   if (i < text.length) {
     if (j < text[i].length) {
       current += text[i][j];
@@ -248,6 +225,7 @@ function type() {
     }
   }
 }
+
 type();
 </script>
 
