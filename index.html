@@ -14,7 +14,23 @@
       padding: 20px;
       overflow-x: hidden;
     }
-
+@keyframes blobMorph {
+  0% {
+    border-radius: 30px 40px 25px 35px / 35px 25px 40px 30px;
+  }
+  25% {
+    border-radius: 40px 25px 35px 30px / 25px 40px 30px 35px;
+  }
+  50% {
+    border-radius: 25px 35px 40px 30px / 30px 35px 25px 40px;
+  }
+  75% {
+    border-radius: 35px 30px 25px 40px / 40px 30px 35px 25px;
+  }
+  100% {
+    border-radius: 30px 40px 25px 35px / 35px 25px 40px 30px;
+  }
+}
     /* subtle floating sparkles */
     .sparkle {
       position: fixed;
@@ -31,14 +47,18 @@
     }
 
     .window {
-      background: rgba(20, 0, 30, 0.7);
-      border: 1.5px solid #ff66cc;
-      margin: 20px auto;
-      width: 90%;
-      box-shadow: 0 0 25px #ff66cc;
-      backdrop-filter: blur(10px);
-      border-radius: 14px;
-    }
+      background: rgba(255,255,255,0.9);
+  border: 2px solid #ff66cc;
+  margin: 20px auto;
+  width: 90%;
+  box-shadow: 0 0 20px #ffb3e6;
+  border-radius: 30px 40px 25px 35px / 35px 25px 40px 30px;
+  transition: 0.2s;
+  position: relative;
+  z-index: 2;
+
+  animation: blobMorph 8s ease-in-out infinite;
+}
 
     .title-bar {
       background: linear-gradient(to right, #ff66cc, #cc66ff);
