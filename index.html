@@ -3,7 +3,7 @@
 <head>
   <title>Sara Goodie | Cybersecurity</title>
 
-  <!-- FONTS -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&family=VT323&family=Baloo+2:wght@500&display=swap" rel="stylesheet">
 
   <style>
@@ -15,21 +15,7 @@
       overflow-x: hidden;
     }
 
-    /* subtle floating sparkles */
-    .sparkle {
-      position: fixed;
-      color: #ff66cc;
-      font-size: 10px;
-      opacity: 0.4;
-      animation: floatUp 8s linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(100vh); opacity: 0; }
-      50% { opacity: 0.6; }
-      100% { transform: translateY(-10vh); opacity: 0; }
-    }
-
+    /* WINDOWS */
     .window {
       background: rgba(20, 0, 30, 0.7);
       border: 1.5px solid #ff66cc;
@@ -38,23 +24,41 @@
       box-shadow: 0 0 25px #ff66cc;
       backdrop-filter: blur(10px);
       border-radius: 14px;
+      transition: 0.2s;
+    }
+
+    .window:hover {
+      box-shadow: 0 0 40px #ff66cc;
+      transform: scale(1.01);
     }
 
     .title-bar {
       background: linear-gradient(to right, #ff66cc, #cc66ff);
       color: white;
       padding: 6px;
-      font-weight: bold;
-      border-radius: 12px 12px 0 0;
       font-family: 'VT323', monospace;
       font-size: 18px;
-      letter-spacing: 1px;
+      border-radius: 12px 12px 0 0;
     }
 
     .content {
       padding: 15px;
     }
 
+    /* TEXT */
+    .name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 42px;
+      color: white;
+      text-shadow: 0 0 15px #ff66cc, 0 0 30px #cc66ff;
+    }
+
+    .subtitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+    }
+
+    /* BUTTONS */
     .btn {
       display: inline-block;
       border: 1px solid #ff99dd;
@@ -64,7 +68,6 @@
       color: #ff99dd;
       border-radius: 20px;
       font-family: 'Baloo 2', cursive;
-      transition: 0.2s;
     }
 
     .btn:hover {
@@ -73,52 +76,22 @@
       box-shadow: 0 0 15px #ff66cc;
     }
 
+    /* TERMINAL */
     #terminal {
       background: black;
       color: #ff99dd;
       padding: 10px;
       height: 120px;
       overflow: hidden;
-      font-size: 14px;
       border-radius: 10px;
     }
 
-    .name {
-      font-family: 'Baloo 2', cursive;
-      font-size: 40px;
-      color: white;
-      text-shadow: 0 0 15px #ff66cc, 0 0 30px #cc66ff;
-    }
-
-    .subtitle {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-
-    /* cybersigilism accent */
+    /* SIGILS */
     .sigil {
       text-align: center;
-      font-size: 18px;
       margin-top: 10px;
       letter-spacing: 6px;
-      opacity: 0.7;
-    }
-
-    /* cute Y3K emojis */
-    .cute {
-      text-align: center;
-      margin-top: 8px;
-      font-size: 18px;
-    }
-
-    /* tiny floating symbols */
-    .symbol {
-      position: fixed;
-      font-size: 12px;
-      color: #cc66ff;
-      opacity: 0.3;
-      animation: floatUp 10s linear infinite;
+      opacity: 0.6;
     }
 
   </style>
@@ -126,27 +99,79 @@
 
 <body>
 
-<!-- floating sparkles -->
+<!-- FLOATING SIGILS -->
 <script>
-for (let i = 0; i < 20; i++) {
-  let s = document.createElement("div");
-  s.className = "sparkle";
-  s.innerHTML = "✦";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.animationDuration = (5 + Math.random() * 5) + "s";
-  document.body.appendChild(s);
-}
+const sigils = ["✦","⟡","✧","✶","✹","✵"];
 
-for (let i = 0; i < 10; i++) {
-  let sym = document.createElement("div");
-  sym.className = "symbol";
-  sym.innerHTML = "⟡";
-  sym.style.left = Math.random() * 100 + "vw";
-  sym.style.animationDuration = (6 + Math.random() * 6) + "s";
-  document.body.appendChild(sym);
+for (let i = 0; i < 30; i++) {
+  let el = document.createElement("div");
+  el.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
+  el.style.position = "fixed";
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.top = Math.random() * 100 + "vh";
+  el.style.color = i % 2 === 0 ? "#ff66cc" : "#cc66ff";
+  el.style.opacity = 0.15;
+  el.style.fontSize = (10 + Math.random() * 20) + "px";
+  el.style.pointerEvents = "none";
+  el.style.animation = "float 10s linear infinite";
+  document.body.appendChild(el);
 }
 </script>
 
+<style>
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+
+<!-- MOUSE GLOW -->
+<script>
+const glow = document.createElement("div");
+glow.style.position = "fixed";
+glow.style.width = "120px";
+glow.style.height = "120px";
+glow.style.borderRadius = "50%";
+glow.style.background = "radial-gradient(circle, rgba(255,102,204,0.3), transparent)";
+glow.style.pointerEvents = "none";
+glow.style.zIndex = "999";
+document.body.appendChild(glow);
+
+document.addEventListener("mousemove", e => {
+  glow.style.left = e.clientX - 60 + "px";
+  glow.style.top = e.clientY - 60 + "px";
+});
+</script>
+
+<!-- CLICK RIPPLE -->
+<script>
+document.addEventListener("click", function(e) {
+  let ripple = document.createElement("div");
+  ripple.style.position = "fixed";
+  ripple.style.left = e.clientX + "px";
+  ripple.style.top = e.clientY + "px";
+  ripple.style.width = "10px";
+  ripple.style.height = "10px";
+  ripple.style.border = "2px solid #ff66cc";
+  ripple.style.borderRadius = "50%";
+  ripple.style.pointerEvents = "none";
+  ripple.style.animation = "ripple 0.6s ease-out";
+  document.body.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 600);
+});
+</script>
+
+<style>
+@keyframes ripple {
+  to {
+    transform: scale(15);
+    opacity: 0;
+  }
+}
+</style>
+
+<!-- TERMINAL -->
 <div class="window">
   <div class="title-bar">boot_sequence.exe</div>
   <div class="content">
@@ -154,22 +179,18 @@ for (let i = 0; i < 10; i++) {
   </div>
 </div>
 
+<!-- HEADER -->
 <div class="window">
   <div class="title-bar">SaraGoodie.exe</div>
   <div class="content">
     <div class="name">Sara Goodie</div>
     <p class="subtitle">Cybersecurity • SOC Analyst • SIEM • Threat Detection</p>
 
-    <div class="cute">
-      
-    </div>
-
-    <div class="sigil">
-      ✮ ⋆ ˚｡𖦹 ⋆｡°✩
-    </div>
+    <div class="sigil">⟡ ✧ ⟡ ✦ ⟡ ✧ ⟡</div>
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div class="window">
   <div class="title-bar">Projects.exe</div>
   <div class="content">
@@ -187,6 +208,7 @@ for (let i = 0; i < 10; i++) {
   </div>
 </div>
 
+<!-- CURRENT -->
 <div class="window">
   <div class="title-bar">Currently.log</div>
   <div class="content">
@@ -203,14 +225,13 @@ const text = [
 "> connecting to SIEM...",
 "> monitoring logs...",
 "> threat detection active 💖",
-"> welcome..."
+"> welcome sara..."
 ];
 
 let i = 0, j = 0, current = "";
 
 function type() {
   let term = document.getElementById("terminal");
-
   if (i < text.length) {
     if (j < text[i].length) {
       current += text[i][j];
