@@ -8,27 +8,27 @@
 
   <style>
     body {
-      background: radial-gradient(circle at top, #000000, #120012);
+      background: linear-gradient(135deg, #ffffff, #ffe6f5);
       font-family: 'Share Tech Mono', monospace;
-      color: #ff99dd;
+      color: #cc3399;
       padding: 20px;
       overflow-x: hidden;
     }
 
     /* WINDOWS */
     .window {
-      background: rgba(20, 0, 30, 0.7);
+      background: rgba(255, 255, 255, 0.9);
       border: 1.5px solid #ff66cc;
       margin: 20px auto;
       width: 90%;
-      box-shadow: 0 0 25px #ff66cc;
-      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px #ffb3e6;
+      backdrop-filter: blur(6px);
       border-radius: 14px;
       transition: 0.2s;
     }
 
     .window:hover {
-      box-shadow: 0 0 40px #ff66cc;
+      box-shadow: 0 0 30px #ff66cc;
       transform: scale(1.01);
     }
 
@@ -49,49 +49,51 @@
     .name {
       font-family: 'Baloo 2', cursive;
       font-size: 42px;
-      color: white;
-      text-shadow: 0 0 15px #ff66cc, 0 0 30px #cc66ff;
+      color: #99004d;
+      text-shadow: 0 0 10px #ff99dd;
     }
 
     .subtitle {
       font-family: 'Orbitron', sans-serif;
       font-size: 14px;
+      color: #99004d;
     }
 
     /* BUTTONS */
     .btn {
       display: inline-block;
-      border: 1px solid #ff99dd;
+      border: 1px solid #ff66cc;
       padding: 6px 14px;
       margin-top: 6px;
       text-decoration: none;
-      color: #ff99dd;
+      color: #cc3399;
       border-radius: 20px;
       font-family: 'Baloo 2', cursive;
     }
 
     .btn:hover {
       background: #ff66cc;
-      color: black;
-      box-shadow: 0 0 15px #ff66cc;
+      color: white;
+      box-shadow: 0 0 10px #ff66cc;
     }
 
     /* TERMINAL */
     #terminal {
-      background: black;
-      color: #ff99dd;
+      background: #fff0f7;
+      color: #cc3399;
       padding: 10px;
       height: 120px;
       overflow: hidden;
       border-radius: 10px;
+      border: 1px solid #ffb3e6;
     }
 
-    /* SIGILS */
+    /* SIGILS (lighter now) */
     .sigil {
       text-align: center;
       margin-top: 10px;
       letter-spacing: 6px;
-      opacity: 0.6;
+      opacity: 0.3;
     }
 
   </style>
@@ -99,21 +101,21 @@
 
 <body>
 
-<!-- FLOATING SIGILS -->
+<!-- FLOATING SIGILS (lighter + softer) -->
 <script>
-const sigils = ["✦","⟡","✧","✶","✹","✵"];
+const sigils = ["✦","⟡","✧"];
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 20; i++) {
   let el = document.createElement("div");
   el.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
   el.style.position = "fixed";
   el.style.left = Math.random() * 100 + "vw";
   el.style.top = Math.random() * 100 + "vh";
-  el.style.color = i % 2 === 0 ? "#ff66cc" : "#cc66ff";
-  el.style.opacity = 0.15;
-  el.style.fontSize = (10 + Math.random() * 20) + "px";
+  el.style.color = "#ff99dd";
+  el.style.opacity = 0.1;
+  el.style.fontSize = (10 + Math.random() * 15) + "px";
   el.style.pointerEvents = "none";
-  el.style.animation = "float 10s linear infinite";
+  el.style.animation = "float 12s linear infinite";
   document.body.appendChild(el);
 }
 </script>
@@ -121,53 +123,8 @@ for (let i = 0; i < 30; i++) {
 <style>
 @keyframes float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-15px); }
   100% { transform: translateY(0px); }
-}
-</style>
-
-<!-- MOUSE GLOW -->
-<script>
-const glow = document.createElement("div");
-glow.style.position = "fixed";
-glow.style.width = "120px";
-glow.style.height = "120px";
-glow.style.borderRadius = "50%";
-glow.style.background = "radial-gradient(circle, rgba(255,102,204,0.3), transparent)";
-glow.style.pointerEvents = "none";
-glow.style.zIndex = "999";
-document.body.appendChild(glow);
-
-document.addEventListener("mousemove", e => {
-  glow.style.left = e.clientX - 60 + "px";
-  glow.style.top = e.clientY - 60 + "px";
-});
-</script>
-
-<!-- CLICK RIPPLE -->
-<script>
-document.addEventListener("click", function(e) {
-  let ripple = document.createElement("div");
-  ripple.style.position = "fixed";
-  ripple.style.left = e.clientX + "px";
-  ripple.style.top = e.clientY + "px";
-  ripple.style.width = "10px";
-  ripple.style.height = "10px";
-  ripple.style.border = "2px solid #ff66cc";
-  ripple.style.borderRadius = "50%";
-  ripple.style.pointerEvents = "none";
-  ripple.style.animation = "ripple 0.6s ease-out";
-  document.body.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
-});
-</script>
-
-<style>
-@keyframes ripple {
-  to {
-    transform: scale(15);
-    opacity: 0;
-  }
 }
 </style>
 
