@@ -30,10 +30,6 @@
       padding: 15px;
     }
 
-    h1 {
-      font-size: 28px;
-    }
-
     .btn {
       display: inline-block;
       border: 2px solid black;
@@ -48,10 +44,25 @@
       background: #b0b0b0;
     }
 
+    #terminal {
+      background: black;
+      color: lime;
+      padding: 10px;
+      font-size: 14px;
+      height: 120px;
+      overflow: hidden;
+    }
   </style>
 </head>
 
 <body>
+
+<div class="window">
+  <div class="title-bar">boot_sequence.exe</div>
+  <div class="content">
+    <div id="terminal"></div>
+  </div>
+</div>
 
 <div class="window">
   <div class="title-bar">SaraGoodie.exe</div>
@@ -62,27 +73,20 @@
 </div>
 
 <div class="window">
-  <div class="title-bar">Focus_Areas.txt</div>
-  <div class="content">
-    <p>SIEM • Threat Detection • Active Directory • Azure • Incident Response</p>
-  </div>
-</div>
-
-<div class="window">
   <div class="title-bar">Projects.exe</div>
   <div class="content">
 
     <p><b>SOC Lab (Azure Sentinel)</b></p>
-    <p>Built SIEM, ingested logs, created detections</p>
-    <a class="btn" href="#">View Project</a>
+    <p>> Built SIEM in Azure</p>
+    <p>> Ingested logs using Sysmon</p>
+    <p>> Created detection rules</p>
+    <a class="btn" href="https://github.com/saradotzip/SOC-Lab-Azure-Sentinel">View Project</a>
 
     <p><b>Threat Detection Lab (Splunk)</b></p>
-    <p>Simulated attacks + log analysis</p>
-    <a class="btn" href="#">View Project</a>
-
-    <p><b>Active Directory Lab</b></p>
-    <p>Domain controller + user management</p>
-    <a class="btn" href="#">View Project</a>
+    <p>> Simulated attacks</p>
+    <p>> Analyzed logs</p>
+    <p>> Detected suspicious activity</p>
+    <a class="btn" href="https://github.com/saradotzip/Threat-Detection-Lab-Splunk">View Project</a>
 
   </div>
 </div>
@@ -96,14 +100,41 @@
   </div>
 </div>
 
-<div class="window">
-  <div class="title-bar">Contact.ini</div>
-  <div class="content">
-    <p>Email: sara@proton.me</p>
-    <a class="btn" href="#">LinkedIn</a>
-    <a class="btn" href="#">GitHub</a>
-  </div>
-</div>
+<script>
+const text = [
+"> Initializing system...",
+"> Loading security modules...",
+"> Connecting to SIEM...",
+"> Monitoring logs...",
+"> Threat detection active.",
+"> Welcome, Sara."
+];
+
+let i = 0;
+let j = 0;
+let currentText = "";
+let isDeleting = false;
+
+function type() {
+  let terminal = document.getElementById("terminal");
+
+  if (i < text.length) {
+    if (j < text[i].length) {
+      currentText += text[i][j];
+      terminal.innerHTML = currentText;
+      j++;
+      setTimeout(type, 40);
+    } else {
+      currentText += "<br>";
+      i++;
+      j = 0;
+      setTimeout(type, 500);
+    }
+  }
+}
+
+type();
+</script>
 
 </body>
 </html>
