@@ -5,23 +5,44 @@
 
   <style>
     body {
-      background-color: #c0c0c0;
+      background-color: #000;
       font-family: "Courier New", monospace;
-      color: black;
+      color: #00ffcc;
       padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* CRT scanlines */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
     }
 
     .window {
-      background: #e0e0e0;
-      border: 2px solid black;
-      box-shadow: 4px 4px black;
+      background: #111;
+      border: 2px solid #00ffcc;
+      box-shadow: 0 0 10px #00ffcc;
       margin: 20px auto;
       width: 90%;
+      position: relative;
+      cursor: move;
     }
 
     .title-bar {
-      background: navy;
-      color: white;
+      background: #003333;
+      color: #00ffcc;
       padding: 5px;
       font-weight: bold;
     }
@@ -32,108 +53,179 @@
 
     .btn {
       display: inline-block;
-      border: 2px solid black;
+      border: 1px solid #00ffcc;
       padding: 5px 10px;
-      background: #dcdcdc;
       margin: 5px;
       text-decoration: none;
-      color: black;
+      color: #00ffcc;
     }
 
     .btn:hover {
-      background: #b0b0b0;
+      background: #00ffcc;
+      color: black;
     }
 
     #terminal {
       background: black;
       color: lime;
       padding: 10px;
-      font-size: 14px;
       height: 120px;
       overflow: hidden;
     }
+
+    /* Popup */
+    #popup {
+      position: fixed;
+      top: 30%;
+      left: 35%;
+      background: black;
+      border: 2px solid red;
+      color: red;
+      padding: 20px;
+      display: none;
+      z-index: 999;
+    }
+
+    /* Glitch */
+    .glitch {
+      position: relative;
+      font-size: 40px;
+      color: white;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: "SARA GOODIE";
+      position: absolute;
+      left: 0;
+    }
+
+    .glitch::before {
+      color: red;
+      animation: glitch 1s infinite;
+    }
+
+    .glitch::after {
+      color: blue;
+      animation: glitch 1s infinite reverse;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(1px, 0); }
+      50% { transform: translate(-1px, 0); }
+      100% { transform: translate(1px, 0); }
+    }
+
   </style>
 </head>
 
 <body>
 
-<div class="window">
+<div id="popup">⚠ ACCESS GRANTED ⚠</div>
+
+<div class="window" id="win1">
   <div class="title-bar">boot_sequence.exe</div>
   <div class="content">
     <div id="terminal"></div>
   </div>
 </div>
 
-<div class="window">
+<div class="window" id="win2">
   <div class="title-bar">SaraGoodie.exe</div>
   <div class="content">
-    <h1>SARA GOODIE</h1>
+    <div class="glitch">SARA GOODIE</div>
     <p>Cybersecurity | SOC Analyst | SIEM | Threat Detection</p>
   </div>
 </div>
 
-<div class="window">
+<div class="window" id="win3">
   <div class="title-bar">Projects.exe</div>
   <div class="content">
-
-    <p><b>SOC Lab (Azure Sentinel)</b></p>
+    <p><b>SOC Lab</b></p>
     <p>> Built SIEM in Azure</p>
-    <p>> Ingested logs using Sysmon</p>
-    <p>> Created detection rules</p>
-    <a class="btn" href="https://github.com/saradotzip/SOC-Lab-Azure-Sentinel">View Project</a>
-
-    <p><b>Threat Detection Lab (Splunk)</b></p>
-    <p>> Simulated attacks</p>
-    <p>> Analyzed logs</p>
-    <p>> Detected suspicious activity</p>
-    <a class="btn" href="https://github.com/saradotzip/Threat-Detection-Lab-Splunk">View Project</a>
-
+    <a class="btn" href="#">View</a>
   </div>
 </div>
 
-<div class="window">
+<div class="window" id="win4">
   <div class="title-bar">Currently.log</div>
   <div class="content">
-    <p>> Building: Detection rules (Splunk + Sentinel)</p>
-    <p>> Learning: Threat analysis</p>
-    <p>> Goal: SOC Analyst role</p>
+    <p>> Learning threat detection</p>
+    <p>> Building labs</p>
   </div>
 </div>
 
 <script>
+/* typing effect */
 const text = [
 "> Initializing system...",
-"> Loading security modules...",
 "> Connecting to SIEM...",
 "> Monitoring logs...",
-"> Threat detection active.",
-"> Welcome, Sara."
+"> Threat detection active..."
 ];
 
-let i = 0;
-let j = 0;
-let currentText = "";
-let isDeleting = false;
+let i = 0, j = 0, current = "";
 
 function type() {
-  let terminal = document.getElementById("terminal");
-
+  let term = document.getElementById("terminal");
   if (i < text.length) {
     if (j < text[i].length) {
-      currentText += text[i][j];
-      terminal.innerHTML = currentText;
+      current += text[i][j];
+      term.innerHTML = current;
       j++;
       setTimeout(type, 40);
     } else {
-      currentText += "<br>";
+      current += "<br>";
       i++;
       j = 0;
-      setTimeout(type, 500);
+      setTimeout(type, 400);
     }
   }
 }
-
 type();
+
+/* popup */
+setTimeout(() => {
+  document.getElementById("popup").style.display = "block";
+}, 2000);
+
+/* drag windows */
+document.querySelectorAll(".window").forEach(win => {
+  let isDragging = false, offsetX, offsetY;
+
+  win.addEventListener("mousedown", e => {
+    isDragging = true;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+  });
+
+  document.addEventListener("mousemove", e => {
+    if (isDragging) {
+      win.style.left = e.pageX - offsetX + "px";
+      win.style.top = e.pageY - offsetY + "px";
+      win.style.position = "absolute";
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+});
+
+/* sparkle cursor */
+document.addEventListener("mousemove", e => {
+  let spark = document.createElement("div");
+  spark.style.position = "absolute";
+  spark.style.left = e.pageX + "px";
+  spark.style.top = e.pageY + "px";
+  spark.style.width = "5px";
+  spark.style.height = "5px";
+  spark.style.background = "#00ffcc";
+  spark.style.borderRadius = "50%";
+  document.body.appendChild(spark);
+
+  setTimeout(() => spark.remove(), 500);
+});
 </script>
 
 </body>
