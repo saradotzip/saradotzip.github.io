@@ -5,24 +5,28 @@
 
   <style>
     body {
-      background-color: #0a0a0a;
+      background: linear-gradient(135deg, #1a001a, #0a001f);
       font-family: "Courier New", monospace;
-      color: #00ffcc;
+      color: #ff66cc;
       padding: 20px;
     }
 
     .window {
-      background: #111;
-      border: 2px solid #00ffcc;
+      background: rgba(20, 0, 40, 0.8);
+      border: 2px solid #ff66cc;
       margin: 20px auto;
       width: 90%;
-      box-shadow: 0 0 10px #00ffcc;
+      box-shadow: 0 0 15px #cc66ff;
+      backdrop-filter: blur(6px);
+      border-radius: 10px;
     }
 
     .title-bar {
-      background: #002222;
-      padding: 5px;
+      background: linear-gradient(to right, #ff66cc, #cc66ff);
+      color: white;
+      padding: 6px;
       font-weight: bold;
+      border-radius: 8px 8px 0 0;
     }
 
     .content {
@@ -31,42 +35,46 @@
 
     .btn {
       display: inline-block;
-      border: 1px solid #00ffcc;
-      padding: 5px 10px;
+      border: 1px solid #ff66cc;
+      padding: 6px 12px;
       margin-top: 5px;
       text-decoration: none;
-      color: #00ffcc;
+      color: #ff66cc;
+      border-radius: 6px;
     }
 
     .btn:hover {
-      background: #00ffcc;
+      background: #ff66cc;
       color: black;
     }
 
     #terminal {
       background: black;
-      color: lime;
+      color: #ff66cc;
       padding: 10px;
       height: 120px;
       overflow: hidden;
       font-size: 14px;
+      border-radius: 6px;
     }
 
-    /* subtle glitch (not crazy) */
     .name {
-      font-size: 32px;
+      font-size: 34px;
       color: white;
-      position: relative;
+      text-shadow: 0 0 10px #ff66cc, 0 0 20px #cc66ff;
     }
 
-    .name::after {
-      content: "SARA GOODIE";
-      position: absolute;
-      left: 2px;
-      top: 0;
-      color: red;
-      opacity: 0.3;
+    .cute {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 10px;
     }
+
+    img {
+      width: 60px;
+      margin: 5px;
+    }
+
   </style>
 </head>
 
@@ -84,6 +92,10 @@
   <div class="content">
     <div class="name">SARA GOODIE</div>
     <p>Cybersecurity | SOC Analyst | SIEM | Threat Detection</p>
+
+    <div class="cute">
+      💖 💻 ✨ 🦋 💾 💜
+    </div>
   </div>
 </div>
 
@@ -110,16 +122,23 @@
     <p>> Building detection rules</p>
     <p>> Learning threat analysis</p>
     <p>> Goal: SOC Analyst</p>
+
+    <div class="cute">
+      <img src="https://i.imgur.com/8Km9tLL.gif">
+      <img src="https://i.imgur.com/2RMzZ3F.gif">
+      <img src="https://i.imgur.com/W5bXx1K.gif">
+    </div>
   </div>
 </div>
 
 <script>
 const text = [
-"> Initializing system...",
-"> Connecting to SIEM...",
-"> Monitoring logs...",
-"> Threat detection active.",
-"> Welcome, Sara."
+"> initializing system...",
+"> loading security modules...",
+"> connecting to SIEM...",
+"> monitoring logs...",
+"> threat detection active 💖",
+"> welcome sara..."
 ];
 
 let i = 0, j = 0, current = "";
@@ -132,7 +151,7 @@ function type() {
       current += text[i][j];
       term.innerHTML = current;
       j++;
-      setTimeout(type, 35);
+      setTimeout(type, 30);
     } else {
       current += "<br>";
       i++;
