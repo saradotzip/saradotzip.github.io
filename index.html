@@ -17,14 +17,15 @@
 
     /* WINDOWS */
     .window {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255,255,255,0.9);
       border: 1.5px solid #ff66cc;
       margin: 20px auto;
       width: 90%;
       box-shadow: 0 0 20px #ffb3e6;
-      backdrop-filter: blur(6px);
       border-radius: 14px;
       transition: 0.2s;
+      position: relative;
+      z-index: 2;
     }
 
     .window:hover {
@@ -88,7 +89,7 @@
       border: 1px solid #ffb3e6;
     }
 
-    /* SIGILS (lighter now) */
+    /* SIGILS */
     .sigil {
       text-align: center;
       margin-top: 10px;
@@ -96,37 +97,81 @@
       opacity: 0.3;
     }
 
+    /* FLOATING SMALL SIGILS */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .particle {
+      position: fixed;
+      font-size: 12px;
+      color: #ff99dd;
+      opacity: 0.1;
+      pointer-events: none;
+      animation: float 12s linear infinite;
+      z-index: 1;
+    }
+
+    /* ASCII BACKGROUND */
+    .ascii-bg {
+      position: fixed;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: monospace;
+      font-size: 6px;
+      line-height: 6px;
+      color: black;
+      opacity: 0.06;
+      white-space: pre;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatAscii 20s ease-in-out infinite;
+    }
+
+    @keyframes floatAscii {
+      0% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -30px); }
+      100% { transform: translate(-50%, 0); }
+    }
+
   </style>
 </head>
 
 <body>
 
-<!-- FLOATING SIGILS (lighter + softer) -->
+<!-- ASCII CYBERSIGIL BACKGROUND -->
+<div class="ascii-bg">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⡇⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⡀⠀⢀⣀⣀⣀⣀⣠⣿⣿⣿⣿⣿⣇⣀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀
+⠈⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⢿⡿⠿⠿⠿⠟⠟⠻⠛⠛⠛⠛⠋⠋⠙⠉⢉⣉⣉⣉⠈⠉⠁
+⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡿⡿⠿⡿⡿⠿⡿⡟⠿⠛⠛⠛⠛⠋⠛⠉⠋⠉⠏⠋⠍⡏⠏⠍⠄⠄⠀⠀⠀⠀⠀⠠⠀⠀⠐⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠉⠈⠁⠈⠀⠀⠀
+⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠋⠉⠟⠟⠇⠄⠄⠀⠀⠀⠀⠀⠀⠁⠀⠁⠁⠃⠁⠁⠁⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⣏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣾⣿⣿⣿⠿⠉⠉⠿⣿⣿⣿⡇⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢠⣿⡿⠟⠁⠀⠀⠀⠀⠀⠙⢿⣿⡇⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠠⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠇⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+</div>
+
+<!-- FLOATING SMALL SIGILS -->
 <script>
 const sigils = ["✦","⟡","✧"];
-
 for (let i = 0; i < 20; i++) {
   let el = document.createElement("div");
+  el.className = "particle";
   el.innerHTML = sigils[Math.floor(Math.random() * sigils.length)];
-  el.style.position = "fixed";
   el.style.left = Math.random() * 100 + "vw";
   el.style.top = Math.random() * 100 + "vh";
-  el.style.color = "#ff99dd";
-  el.style.opacity = 0.1;
-  el.style.fontSize = (10 + Math.random() * 15) + "px";
-  el.style.pointerEvents = "none";
-  el.style.animation = "float 12s linear infinite";
+  el.style.animationDuration = (10 + Math.random() * 10) + "s";
   document.body.appendChild(el);
 }
 </script>
-
-<style>
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-</style>
 
 <!-- TERMINAL -->
 <div class="window">
@@ -142,7 +187,6 @@ for (let i = 0; i < 20; i++) {
   <div class="content">
     <div class="name">Sara Goodie</div>
     <p class="subtitle">Cybersecurity • SOC Analyst • SIEM • Threat Detection</p>
-
     <div class="sigil">⟡ ✧ ⟡ ✦ ⟡ ✧ ⟡</div>
   </div>
 </div>
@@ -175,6 +219,7 @@ for (let i = 0; i < 20; i++) {
   </div>
 </div>
 
+<!-- TERMINAL SCRIPT -->
 <script>
 const text = [
 "> initializing system...",
@@ -203,7 +248,6 @@ function type() {
     }
   }
 }
-
 type();
 </script>
 
