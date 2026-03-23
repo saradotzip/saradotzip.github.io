@@ -1,61 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">>
+<head>
   <meta charset="UTF-8">
   <title>Sara Goodie</title>
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="bubbles"></div>
-<canvas id="sparkle"></canvas>
-
 <header>
   <nav>
-    <ul>
-      <li class="active">HOME</li>
-      <li>ABOUT</li>
-      <li>EXPERIENCE</li>
-      <li>SKILLS</li>
-      <li>PROJECTS</li>
-      <li>CONTACT</li>
-    </ul>
+    <div class="nav-container">
+      <div class="logo">SG</div>
+      <ul>
+        <li class="active">Home</li>
+        <li>About</li>
+        <li>Experience</li>
+        <li>Projects</li>
+        <li>Contact</li>
+      </ul>
+    </div>
   </nav>
 </header>
 
 <section class="hero">
-  <p class="subtitle">CYBERSECURITY & INFORMATION ASSURANCE</p>
+  <div class="container">
 
-  <h1 class="name">
-    SARA<br>
-    <span>GOODIE</span>
-  </h1>
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <p class="subtitle">CYBERSECURITY & INFORMATION ASSURANCE</p>
 
-  <p class="tags">
-    IAM • SECURITY OPERATIONS • FEDRAMP • ISO 27001
-  </p>
+      <h1 class="name">
+        SARA<br>
+        <span>GOODIE</span>
+      </h1>
 
-  <div class="quote glass">
-    ★ Access granted to authorized users only ★
-  </div>
+      <p class="tags">
+        IAM • SECURITY OPERATIONS • FEDRAMP • ISO 27001
+      </p>
 
-  <div class="buttons">
-    <button>SIEM</button>
-    <button>RED TEAMING</button>
-    <button>PURPLE TEAM</button>
-    <button>MICROSOFT SENTINEL</button>
-  </div>
+      <div class="buttons">
+        <button>SIEM</button>
+        <button>RED TEAMING</button>
+        <button>PURPLE TEAM</button>
+        <button>SENTINEL</button>
+      </div>
+    </div>
 
-  <div class="current glass float">
-    <h3>★ CURRENT STATUS ★</h3>
-    <ul>
-      <li>IAM Automation (Python + Graph API)</li>
-      <li>Honeypot logging attacks</li>
-      <li>Studying CySA+</li>
-    </ul>
+    <!-- RIGHT SIDE -->
+    <div class="right">
+      <div class="card glass">
+        <h3>Current Focus</h3>
+        <ul>
+          <li>IAM Automation (Python + Graph API)</li>
+          <li>Honeypot logging real attacks</li>
+          <li>Threat detection & SIEM tuning</li>
+        </ul>
+      </div>
+
+      <div class="card glass small">
+        <p>Building real-world cybersecurity projects & labs.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<script src="script.js"></script>
 </body>
 </html>
