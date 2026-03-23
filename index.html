@@ -147,31 +147,70 @@
     /* ── KEYBOARD KEY ── */
     .key-tag {
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
-      border: 1.5px solid #111;
+      background: linear-gradient(180deg, #2a2a2a, #111111);
+      border: 1.5px solid #1a1a1a;
       border-radius: 5px;
-      box-shadow: 0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5);
-      color: var(--key-text); font-family: 'Press Start 2P', monospace;
+      box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7);
+      color: #888888; font-family: 'Press Start 2P', monospace;
       font-size: 0.52rem; letter-spacing: 0.06em;
       padding: 4px 9px; cursor: default;
       transition: transform 0.1s, box-shadow 0.1s;
+      animation: keyShimmerTop 3s ease-in-out infinite, keyGlowTop 3s ease-in-out infinite;
     }
     .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 var(--key-shadow); }
 
     /* ── ANIMATED KEY (typewriter) ── */
+    /* TOP strip keys — black with dark shimmer */
+    @keyframes keyShimmerTop {
+      0%   { border-color: #1a1a1a; box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7); }
+      50%  { border-color: #444444; box-shadow: 0 3px 0 #0a0a0a, 0 4px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.07); }
+      100% { border-color: #1a1a1a; box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7); }
+    }
+    @keyframes keyGlowTop {
+      0%, 100% { background: linear-gradient(180deg, #2a2a2a, #111111); color: #888888; }
+      50%       { background: linear-gradient(180deg, #383838, #1e1e1e); color: #bbbbbb; }
+    }
+
+    /* HOME box keys — pastel blue-white with soft glow */
+    @keyframes keyShimmerHome {
+      0%   { border-color: #6ab0cc; box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4); }
+      50%  { border-color: #c8eaf8; box-shadow: 0 3px 0 #2a5a70, 0 4px 10px rgba(0,0,0,0.3), 0 0 16px rgba(180,230,255,0.5); }
+      100% { border-color: #6ab0cc; box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4); }
+    }
+    @keyframes keyGlowHome {
+      0%, 100% { background: linear-gradient(180deg, #1a3a50, #0e2030); color: #88ccee; }
+      50%       { background: linear-gradient(180deg, #244860, #163040); color: #c8eaf8; }
+    }
     .key-anim {
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
-      border: 1.5px solid #111;
+      background: linear-gradient(180deg, #2a2a2a, #111111);
+      border: 1.5px solid #1a1a1a;
       border-radius: 5px;
-      box-shadow: 0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5);
-      color: var(--key-text); font-family: 'Press Start 2P', monospace;
+      box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7);
+      color: #888888; font-family: 'Press Start 2P', monospace;
       font-size: 0.65rem; letter-spacing: 0.06em;
       width: 2rem; height: 2rem;
       cursor: default;
       opacity: 0;
+      animation: keyShimmerTop 3s ease-in-out infinite, keyGlowTop 3s ease-in-out infinite;
+      animation-play-state: paused;
     }
-    .key-anim.space-key { background: none; border: none; box-shadow: none; width: 0.7rem; }
+    .key-anim.visible {
+      animation-play-state: running;
+    }
+    /* home box variant — pastel blue-white */
+    .key-anim.key-home {
+      background: linear-gradient(180deg, #1a3a50, #0e2030);
+      border-color: #6ab0cc;
+      box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4);
+      color: #88ccee;
+      animation: keyShimmerHome 3s ease-in-out infinite, keyGlowHome 3s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+    .key-anim.space-key {
+      background: none; border: none; box-shadow: none; width: 0.7rem;
+      animation: none;
+    }
 
     .cyan-tag {
       display: inline-flex; align-items: center;
@@ -571,7 +610,7 @@
             <span class="lbl">LOCATION</span>📍 Detroit, MI<br/>
             <span class="lbl">GRAD DATE</span>🎓 Jan 2026<br/>
             <span class="lbl">EMAIL</span>
-            <a href="mailto:segoodie12@gmail.com" style="color:var(--cobalt2);font-size:0.68rem;">segoodie12<br/>@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#344751535b5b505d510506745359555d581a575b59" style="color:var(--cobalt2);font-size:0.68rem;">segoodie12<br/>@gmail.com</a>
           </div>
         </div>
 
@@ -716,9 +755,7 @@
         <div class="view" id="page-projects">
           <div class="content-inner">
             <div class="sec-title">PROJECTS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.78rem;color:var(--cobalt2);margin-bottom:12px;">
-              ◆ Replace the # links with your real GitHub / project URLs !!
-            </div>
+
             <div class="proj-grid">
 
               <div class="window">
@@ -836,14 +873,14 @@
               Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ★
             </div>
             <div class="contact-grid">
-              <a class="window contact-win" href="mailto:segoodie12@gmail.com">
+              <a class="window contact-win" href="/cdn-cgi/l/email-protection#2c5f494b43434845491d1e6c4b414d4540024f4341">
                 <div class="title-bar">
                   <div class="title-bar-text"><span class="title-icon">📧</span> Email</div>
                   <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
                 </div>
                 <div class="contact-body">
                   <span class="contact-icon">📧</span>
-                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val">segoodie12@gmail.com</div></div>
+                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val"><span class="__cf_email__" data-cfemail="700315171f1f141915414230171d11191c5e131f1d">[email&#160;protected]</span></div></div>
                 </div>
               </a>
               <a class="window contact-win" href="https://linkedin.com" target="_blank">
@@ -906,20 +943,20 @@
   <div class="taskbar-clock" id="taskbar-clock">--:--</div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* ── TYPEWRITER KEY ANIMATION ── */
   const NAME    = 'SARA GOODIE'.split('');
   const DELAY   = 350;   // ms before typing starts
   const STEP    = 100;   // ms between each key
   const PRESS   = 80;    // ms the key stays pressed down
 
-  function buildKeys(container) {
+  function buildKeys(container, isHome) {
     NAME.forEach(ch => {
       const el = document.createElement('span');
       if (ch === ' ') {
         el.className = 'key-anim space-key';
       } else {
-        el.className = 'key-anim';
+        el.className = isHome ? 'key-anim key-home' : 'key-anim';
         el.textContent = ch;
       }
       container.appendChild(el);
@@ -938,6 +975,9 @@
         // Pop into view
         el.style.transition = 'opacity 0.05s';
         el.style.opacity    = '1';
+        el.classList.add('visible');
+        // stagger the shimmer phase per key
+        el.style.animationDelay = (i * 0.28) + 's, ' + (i * 0.28) + 's';
 
         // Press down
         setTimeout(() => {
@@ -957,9 +997,9 @@
   }
 
   // Build and animate both name containers
-  ['name-top', 'name-home'].forEach(id => {
+  [['name-top', false], ['name-home', true]].forEach(([id, isHome]) => {
     const el = document.getElementById(id);
-    if (el) { buildKeys(el); animateKeys(el); }
+    if (el) { buildKeys(el, isHome); animateKeys(el); }
   });
 
   /* ── NAV ── */
@@ -980,13 +1020,4 @@
     const now = new Date();
     const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
     const ampm = h >= 12 ? 'PM' : 'AM';
-    const str = ((h % 12) || 12) + ':' + m + ' ' + ampm;
-    const e1 = document.getElementById('clock');
-    const e2 = document.getElementById('taskbar-clock');
-    if (e1) e1.textContent = str;
-    if (e2) e2.textContent = str;
-  }
-  updateClock(); setInterval(updateClock, 1000);
-</script>
-</body>
-</html>
+    const str = ((h %
