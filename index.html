@@ -3,678 +3,719 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sara Goodie — Cybersecurity Portfolio</title>
+  <title>✿ Sara Goodie ✿ Cyber Portfolio ✿</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Yuji+Syuku&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink-hot:    #ff2d78;
-      --pink-rose:   #ff6eb4;
-      --pink-blush:  #ffb3d1;
-      --pink-deep:   #c2185b;
-      --pink-magenta:#e91e8c;
-      --pink-soft:   #f48fb1;
-      --blue-team:   #00c8ff;
-      --blue-soft:   #7dd3fc;
-      --black:       #080010;
-      --black-card:  rgba(255,20,100,0.04);
-      --text:        #fff0f6;
-      --text-mid:    #d4a0b8;
-      --text-dim:    #7a4060;
-      --max:         1160px;
-      --r-card:      16px;
-      --r-btn:       999px;
+      --lav:     #c8b4f0;
+      --lav2:    #ddd0ff;
+      --lav3:    #ede8ff;
+      --pink:    #ffb3d9;
+      --pink2:   #ff80c0;
+      --pink3:   #ffd6ec;
+      --mint:    #b0f0e0;
+      --mint2:   #d0fff4;
+      --sky:     #b3dcff;
+      --sky2:    #dff0ff;
+      --yellow:  #fff3a0;
+      --peach:   #ffd8b0;
+      --white:   #fefeff;
+      --ink:     #3a2060;
+      --ink2:    #5a3a8a;
+      --ink3:    #7a5aaa;
+      --bg:      #e8d8ff;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--black);
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      background: var(--bg);
       min-height: 100vh;
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      color: var(--ink);
       overflow-x: hidden;
     }
 
-    /* ── Background ──────────────────────────────────────── */
-    .bg-mesh { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-    .bg-mesh::before {
-      content: ''; position: absolute; width: 800px; height: 800px; top: -250px; right: -150px;
-      background: radial-gradient(circle, rgba(233,30,140,0.18) 0%, transparent 65%);
-      animation: drift1 14s ease-in-out infinite alternate;
-    }
-    .bg-mesh::after {
-      content: ''; position: absolute; width: 600px; height: 600px; bottom: -150px; left: -100px;
-      background: radial-gradient(circle, rgba(194,24,91,0.14) 0%, transparent 65%);
-      animation: drift2 18s ease-in-out infinite alternate;
-    }
-    .blob-mid {
-      position: fixed; width: 500px; height: 500px; top: 35%; left: 25%;
-      background: radial-gradient(circle, rgba(255,45,120,0.07) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none; z-index: 0;
-      animation: drift3 22s ease-in-out infinite alternate;
-    }
-    @keyframes drift1 { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px,70px) scale(1.12); } }
-    @keyframes drift2 { from { transform: translate(0,0) scale(1); } to { transform: translate(70px,-50px) scale(1.18); } }
-    @keyframes drift3 { from { transform: translate(0,0); } to { transform: translate(-60px,50px); } }
-
-    .scanlines {
+    body::before {
+      content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+      background:
+        radial-gradient(ellipse at 10% 20%, rgba(200,180,240,0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 10%, rgba(176,240,224,0.4) 0%, transparent 45%),
+        radial-gradient(ellipse at 90% 80%, rgba(255,179,217,0.45) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 90%, rgba(179,220,255,0.4) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 50%, rgba(255,243,160,0.2) 0%, transparent 60%);
+      animation: shimmer 12s ease-in-out infinite alternate;
     }
-    .grid-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: linear-gradient(rgba(255,45,120,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,45,120,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
+    @keyframes shimmer {
+      0%   { filter: hue-rotate(0deg) brightness(1); }
+      50%  { filter: hue-rotate(15deg) brightness(1.05); }
+      100% { filter: hue-rotate(-10deg) brightness(0.98); }
     }
 
-    /* ── Nav ─────────────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      backdrop-filter: blur(20px) saturate(1.6);
-      -webkit-backdrop-filter: blur(20px) saturate(1.6);
-      background: rgba(8,0,16,0.80);
-      border-bottom: 1px solid rgba(255,45,120,0.18);
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 12px 40px;
     }
-    nav::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--pink-hot), var(--pink-deep), var(--pink-magenta), var(--pink-rose), var(--pink-blush), var(--pink-hot));
-      background-size: 200% 100%; animation: pinkSlide 5s linear infinite;
-    }
-    @keyframes pinkSlide { from { background-position: 0%; } to { background-position: 200%; } }
 
-    .nav-inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 40px; height: 64px;
+    /* WIN98 panel */
+    .panel-title-bar {
+      background: linear-gradient(90deg, var(--ink2), var(--lav));
+      color: white;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 4px 8px;
       display: flex; align-items: center; justify-content: space-between;
+      letter-spacing: 0.05em;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
-      font-style: italic; letter-spacing: 0.04em; text-decoration: none; cursor: pointer;
-      background: linear-gradient(90deg, var(--pink-hot), var(--pink-rose));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      text-decoration: none; font-size: 0.82rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid);
-      transition: color 0.2s ease; position: relative; cursor: pointer;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1.5px;
-      background: linear-gradient(90deg, var(--pink-hot), var(--pink-magenta));
-      transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
-    /* ── Page System ─────────────────────────────────────── */
-    .page { position: relative; z-index: 1; }
-    .view { display: none; animation: fadeIn 0.35s ease; }
-    .view.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* ── Shared Layout ───────────────────────────────────── */
-    .section-wrap { max-width: var(--max); margin: 0 auto; padding: 100px 40px 80px; }
-    .section-title {
-      font-family: 'Orbitron', sans-serif; font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 32px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,45,120,0.2), transparent); }
-
-    .page-heading {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700; font-style: italic; margin-bottom: 10px; line-height: 1.1;
-    }
-    .page-sub { font-size: 0.9rem; color: var(--text-mid); margin-bottom: 48px; line-height: 1.6; max-width: 560px; }
-
-    .st-hot    { color: var(--pink-hot); }
-    .st-rose   { color: var(--pink-rose); }
-    .st-magenta{ color: var(--pink-magenta); }
-    .st-deep   { color: var(--pink-deep); }
-    .st-blush  { color: var(--pink-blush); }
-    .st-blue   { color: var(--blue-team); }
-
-    /* ── HOME ────────────────────────────────────────────── */
-    .hero {
-      max-width: var(--max); margin: 0 auto; padding: 140px 40px 80px;
-      display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center;
-    }
-    .hero-left { display: flex; flex-direction: column; gap: 26px; }
-
-    .hero-subtitle {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--pink-rose); display: flex; align-items: center; gap: 10px;
-    }
-    .hero-subtitle::before {
-      content: ''; display: inline-block; width: 24px; height: 1.5px;
-      background: var(--pink-rose); box-shadow: 0 0 8px var(--pink-rose);
+    .win-btns { display: flex; gap: 3px; }
+    .win-btn {
+      width: 12px; height: 12px;
+      background: var(--lav2);
+      border: 1px solid var(--ink3);
+      border-right-color: var(--ink);
+      border-bottom-color: var(--ink);
+      font-size: 0.35rem; display: flex; align-items: center; justify-content: center;
+      color: var(--ink); font-family: 'Press Start 2P', monospace;
     }
 
-    .hero-name { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
-    .name-first {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.2rem, 7vw, 5.8rem);
-      font-weight: 700; font-style: italic;
-      color: var(--text);
-      text-shadow: 0 0 60px rgba(255,110,180,0.15);
+    /* MARQUEE */
+    .marquee-bar {
+      background: linear-gradient(90deg, var(--pink3), var(--lav3), var(--mint2), var(--sky2), var(--pink3));
+      background-size: 400% 100%;
+      animation: gradMove 6s linear infinite;
+      padding: 5px 0;
+      border-top: 2px solid var(--white);
+      border-bottom: 2px solid var(--ink3);
+      overflow: hidden;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.48rem;
+      color: var(--ink2);
+      white-space: nowrap;
     }
-    .name-last {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.2rem, 7vw, 5.8rem);
-      font-weight: 700; font-style: italic;
-      background: linear-gradient(90deg, var(--pink-hot) 0%, var(--pink-magenta) 50%, var(--pink-rose) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      filter: drop-shadow(0 0 24px rgba(255,45,120,0.45));
+    @keyframes gradMove { from { background-position: 0% 0; } to { background-position: 400% 0; } }
+    .marquee-inner {
+      display: inline-block;
+      animation: marqueeAnim 22s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes marqueeAnim { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+    /* HEADER */
+    .site-header {
+      background: linear-gradient(135deg, var(--lav2) 0%, var(--pink3) 40%, var(--mint2) 80%, var(--sky2) 100%);
+      border: 2px solid var(--white);
+      border-right-color: var(--ink3);
+      border-bottom-color: var(--ink3);
+      box-shadow: inset 1px 1px 0 white, 3px 3px 0 rgba(90,58,138,0.25);
+      padding: 16px 18px 12px;
+      margin-bottom: 8px;
+      position: relative; overflow: hidden;
+    }
+    .site-header::after {
+      content: '★ ☆ ✿ ❀ ✿ ☆ ★ ☆ ✿ ❀ ✿ ☆ ★ ☆ ✿';
+      position: absolute; bottom: 5px; right: 8px;
+      font-size: 0.5rem; color: rgba(122,90,170,0.35); letter-spacing: 3px;
     }
 
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 10px; }
-    .pill {
-      display: inline-flex; align-items: center; padding: 8px 18px; border-radius: var(--r-btn);
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      cursor: default; transition: transform 0.2s ease, box-shadow 0.2s ease; border: 1.5px solid transparent;
+    .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .name-block { display: flex; flex-direction: column; gap: 3px; }
+    .name-en {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(0.85rem, 3vw, 1.5rem);
+      color: var(--ink);
+      text-shadow: 2px 2px 0 var(--white), 3px 3px 0 var(--pink2);
+      letter-spacing: 0.04em; line-height: 1.4;
     }
-    .pill:hover { transform: translateY(-3px) scale(1.04); }
-    .pill-1 { background: rgba(255,45,120,0.12);  border-color: rgba(255,45,120,0.5);  color: var(--pink-hot); }
-    .pill-1:hover { box-shadow: 0 0 22px rgba(255,45,120,0.35); }
-    .pill-2 { background: rgba(233,30,140,0.10);  border-color: rgba(233,30,140,0.45); color: var(--pink-magenta); }
-    .pill-2:hover { box-shadow: 0 0 22px rgba(233,30,140,0.3); }
-    .pill-3 { background: rgba(255,110,180,0.10); border-color: rgba(255,110,180,0.4); color: var(--pink-rose); }
-    .pill-3:hover { box-shadow: 0 0 22px rgba(255,110,180,0.28); }
-    .pill-4 { background: rgba(194,24,91,0.10);   border-color: rgba(194,24,91,0.4);   color: var(--pink-deep); }
-    .pill-4:hover { box-shadow: 0 0 22px rgba(194,24,91,0.28); }
-    .pill-5 { background: rgba(0,200,255,0.08);   border-color: rgba(0,200,255,0.35);  color: var(--blue-team); }
-    .pill-5:hover { box-shadow: 0 0 22px rgba(0,200,255,0.28); }
-    .pill-6 { background: rgba(125,211,252,0.08); border-color: rgba(125,211,252,0.32);color: var(--blue-soft); }
-    .pill-6:hover { box-shadow: 0 0 22px rgba(125,211,252,0.22); }
+    .name-jp {
+      font-family: 'Yuji Syuku', serif;
+      font-size: 0.95rem; color: var(--ink2);
+      letter-spacing: 0.15em; opacity: 0.7;
+    }
+    .title-badge {
+      display: inline-flex; align-items: center; gap: 5px; margin-top: 5px;
+      background: var(--pink);
+      border: 1.5px solid var(--white);
+      border-right-color: var(--pink2);
+      border-bottom-color: var(--pink2);
+      padding: 3px 10px;
+      font-family: 'DotGothic16', monospace;
+      font-size: 0.7rem; color: var(--ink);
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .pill-y2k {
+      font-family: 'DotGothic16', monospace; font-size: 0.66rem;
+      padding: 2px 9px; border: 1.5px solid; cursor: default;
+      transition: transform 0.15s ease;
+    }
+    .pill-y2k:hover { transform: translateY(-2px); }
+    .pill-p { background: var(--lav3); border-color: var(--lav); color: var(--ink2); }
+    .pill-k { background: var(--pink3); border-color: var(--pink); color: var(--ink2); }
+    .pill-m { background: var(--mint2); border-color: var(--mint); color: var(--ink2); }
+    .pill-s { background: var(--sky2); border-color: var(--sky); color: var(--ink2); }
+    .pill-y { background: var(--yellow); border-color: var(--peach); color: var(--ink2); }
 
-    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px; padding: 13px 30px;
-      border-radius: var(--r-btn); background: linear-gradient(135deg, var(--pink-hot), var(--pink-deep));
-      color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border: none;
-      cursor: pointer; position: relative; overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 24px rgba(255,45,120,0.4);
+    .header-deco { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .status-box {
+      background: rgba(255,255,255,0.72);
+      border: 1.5px solid var(--lav);
+      padding: 7px 11px; min-width: 175px;
+      font-family: 'DotGothic16', monospace;
+      font-size: 0.7rem; color: var(--ink2); line-height: 1.7;
     }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--pink-magenta), var(--pink-rose)); opacity: 0; transition: opacity 0.3s ease;
+    .status-online {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: #44ee88; box-shadow: 0 0 6px #44ee88;
+      margin-right: 4px; animation: blinkDot 1.5s ease-in-out infinite;
     }
-    .btn-primary span { position: relative; z-index: 1; }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(255,45,120,0.55); }
-    .btn-primary:hover::before { opacity: 1; }
+    @keyframes blinkDot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .deco-row { font-size: 1rem; letter-spacing: 6px; opacity: 0.8; }
 
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
-      border-radius: var(--r-btn); background: transparent; color: var(--pink-rose);
-      font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-      border: 1.5px solid rgba(255,110,180,0.4); cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn-secondary:hover { transform: translateY(-3px); background: rgba(255,110,180,0.08); box-shadow: 0 0 28px rgba(255,110,180,0.22); }
+    /* MAIN LAYOUT */
+    .main-layout { display: grid; grid-template-columns: 138px 1fr; gap: 8px; }
 
-    /* Hero right cards */
-    .hero-right { display: flex; flex-direction: column; gap: 16px; }
-    .card-glass {
-      background: rgba(255,45,120,0.04); backdrop-filter: blur(24px) saturate(1.5);
-      -webkit-backdrop-filter: blur(24px) saturate(1.5); border-radius: var(--r-card);
-      padding: 28px; position: relative; overflow: hidden; animation: floatY 7s ease-in-out infinite;
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 6px; }
+    .nav-panel {
+      background: linear-gradient(180deg, var(--lav2), var(--lav3));
+      border: 2px solid var(--white);
+      border-right-color: var(--ink3);
+      border-bottom-color: var(--ink3);
+      overflow: hidden;
     }
-    .card-glass::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--r-card); padding: 1.5px;
-      background: linear-gradient(135deg, var(--pink-hot), var(--pink-magenta), var(--pink-deep), var(--pink-rose));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    .nav-panel-title {
+      background: linear-gradient(90deg, var(--pink2), var(--lav));
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem; color: white;
+      padding: 5px 8px; letter-spacing: 0.08em;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
     }
-    .card-glass-sm {
-      background: rgba(255,45,120,0.03); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-      border-radius: var(--r-card); padding: 20px 24px; position: relative; overflow: hidden;
+    .nav-links-list { list-style: none; }
+    .nav-links-list li a {
+      display: block; padding: 7px 10px;
+      font-family: 'DotGothic16', monospace;
+      font-size: 0.7rem; color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,180,240,0.4);
+      cursor: pointer; transition: background 0.1s ease;
     }
-    .card-glass-sm::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--r-card); padding: 1.5px;
-      background: linear-gradient(135deg, var(--pink-rose), var(--pink-blush), var(--pink-magenta));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
-    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-    .card-label {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
-      background: linear-gradient(90deg, var(--pink-hot), var(--pink-magenta));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .card-label-dot {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--pink-hot); flex-shrink: 0;
-      box-shadow: 0 0 8px var(--pink-hot), 0 0 16px rgba(255,45,120,0.4);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 8px var(--pink-hot), 0 0 16px rgba(255,45,120,0.4); }
-      50%       { box-shadow: 0 0 16px var(--pink-hot), 0 0 32px rgba(255,45,120,0.6); }
-    }
-    .focus-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .focus-list li {
-      display: flex; align-items: center; gap: 12px; font-size: 0.875rem; font-weight: 500;
-      color: var(--text-mid); padding: 10px 14px; border-radius: 10px;
-      background: rgba(255,45,120,0.04); border: 1px solid rgba(255,45,120,0.1);
-      transition: background 0.2s ease, transform 0.2s ease; position: relative; z-index: 1;
-    }
-    .focus-list li:hover { background: rgba(255,45,120,0.09); transform: translateX(5px); color: var(--text); }
-    .focus-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
-    .fi-1 { background: rgba(255,45,120,0.18); border: 1px solid rgba(255,45,120,0.35); }
-    .fi-2 { background: rgba(233,30,140,0.14); border: 1px solid rgba(233,30,140,0.3); }
-    .fi-3 { background: rgba(255,110,180,0.14); border: 1px solid rgba(255,110,180,0.3); }
-    .fi-4 { background: rgba(0,200,255,0.10); border: 1px solid rgba(0,200,255,0.28); }
-
-    .card-sm-text { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; position: relative; z-index: 1; }
-    .card-sm-text strong {
-      background: linear-gradient(90deg, var(--pink-rose), var(--pink-blush));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
+    .nav-links-list li a::before { content: '▶ '; font-size: 0.45rem; color: var(--pink2); }
+    .nav-links-list li a:hover, .nav-links-list li a.active {
+      background: linear-gradient(90deg, var(--pink3), var(--lav3));
+      color: var(--ink2);
     }
 
-    /* Stats */
-    .stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-      max-width: var(--max); margin: 0 auto; padding: 0 40px 80px;
+    .stat-widget {
+      background: linear-gradient(180deg, var(--mint2), var(--sky2));
+      border: 2px solid var(--white);
+      border-right-color: var(--ink3);
+      border-bottom-color: var(--ink3);
+      overflow: hidden;
     }
-    .stat-card {
-      background: rgba(255,45,120,0.04); border-radius: 14px; padding: 24px 20px;
-      text-align: center; position: relative; overflow: hidden; transition: transform 0.2s ease;
+    .stat-widget-title {
+      background: linear-gradient(90deg, var(--sky), var(--mint));
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.36rem; color: var(--ink);
+      padding: 5px 8px; letter-spacing: 0.06em;
     }
-    .stat-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: 14px; padding: 1px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
+    .stat-item {
+      padding: 6px 10px; border-bottom: 1px dashed rgba(0,0,0,0.09);
+      font-family: 'DotGothic16', monospace;
+      font-size: 0.66rem; color: var(--ink2);
+      display: flex; justify-content: space-between;
     }
-    .stat-card:nth-child(1)::before { background: linear-gradient(135deg, var(--pink-hot), var(--pink-magenta)); }
-    .stat-card:nth-child(2)::before { background: linear-gradient(135deg, var(--pink-rose), var(--pink-deep)); }
-    .stat-card:nth-child(3)::before { background: linear-gradient(135deg, var(--pink-deep), var(--pink-hot)); }
-    .stat-card:hover { transform: translateY(-5px); }
-    .stat-num { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
-    .stat-card:nth-child(1) .stat-num { color: var(--pink-hot);     text-shadow: 0 0 20px rgba(255,45,120,0.55); }
-    .stat-card:nth-child(2) .stat-num { color: var(--pink-rose);    text-shadow: 0 0 20px rgba(255,110,180,0.5); }
-    .stat-card:nth-child(3) .stat-num { color: var(--pink-magenta); text-shadow: 0 0 20px rgba(233,30,140,0.5); }
-    .stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-dim); text-transform: uppercase; }
+    .stat-val { font-family: 'Press Start 2P', monospace; font-size: 0.46rem; color: var(--pink2); }
 
-    /* ── EXPERIENCE ──────────────────────────────────────── */
-    .exp-grid { display: flex; flex-direction: column; gap: 20px; }
-    .exp-card {
-      background: rgba(255,45,120,0.03); border-radius: var(--r-card); padding: 28px;
-      position: relative; overflow: hidden; transition: transform 0.2s ease;
+    .pixel-deco {
+      background: linear-gradient(180deg, var(--pink3), var(--lav3));
+      border: 2px solid var(--white);
+      border-right-color: var(--ink3);
+      border-bottom-color: var(--ink3);
+      padding: 10px; text-align: center;
+      font-size: 1.3rem; line-height: 1.6;
     }
-    .exp-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--r-card); padding: 1.5px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
-    .exp-card:nth-child(1)::before { background: linear-gradient(135deg, var(--pink-hot), var(--pink-magenta)); }
-    .exp-card:nth-child(2)::before { background: linear-gradient(135deg, var(--pink-rose), var(--pink-deep)); }
-    .exp-card:hover { transform: translateY(-3px); }
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
-    .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--text); }
-    .exp-date { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--text-dim); }
-    .exp-company { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 16px; font-style: italic; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .exp-list li { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; padding-left: 18px; position: relative; }
-    .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--pink-hot); font-size: 0.7rem; top: 4px; }
 
-    /* ── PROJECTS ────────────────────────────────────────── */
-    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    /* CONTENT */
+    .content-area { display: flex; flex-direction: column; gap: 8px; }
+    .view { display: none; animation: winOpen 0.22s ease; }
+    .view.active { display: flex; flex-direction: column; gap: 8px; }
+    @keyframes winOpen {
+      from { opacity: 0; transform: scale(0.97) translateY(5px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .content-panel {
+      background: rgba(255,255,255,0.65);
+      border: 2px solid var(--white);
+      border-right-color: var(--ink3);
+      border-bottom-color: var(--ink3);
+      box-shadow: inset 1px 1px 0 white, 2px 2px 0 rgba(90,58,138,0.18);
+      overflow: hidden;
+    }
+    .content-body { padding: 14px 16px; }
+
+    .sec-heading {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.58rem; color: var(--ink2);
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+      text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+    }
+    .sec-heading::before { content: '✿'; color: var(--pink2); }
+    .sec-heading::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--lav), transparent); margin-left: 6px; }
+
+    /* HOME */
+    .welcome-grid { display: grid; grid-template-columns: 1fr 165px; gap: 14px; align-items: start; }
+    .welcome-text { font-family: 'DotGothic16', monospace; font-size: 0.78rem; color: var(--ink); line-height: 1.85; }
+    .welcome-text p + p { margin-top: 8px; }
+    em.kawaii { font-style: normal; color: var(--pink2); font-weight: 700; }
+
+    .focus-box {
+      background: linear-gradient(180deg, var(--pink3), var(--lav3));
+      border: 2px solid var(--white);
+      border-right-color: var(--pink);
+      border-bottom-color: var(--pink);
+      padding: 10px 11px;
+    }
+    .focus-box-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem; color: var(--ink2); margin-bottom: 8px;
+      text-align: center; letter-spacing: 0.08em;
+    }
+    .focus-item {
+      font-family: 'DotGothic16', monospace;
+      font-size: 0.66rem; color: var(--ink);
+      padding: 4px 0; border-bottom: 1px dashed rgba(200,150,200,0.3);
+      display: flex; align-items: flex-start; gap: 5px; line-height: 1.4;
+    }
+    .focus-item::before { content: '♦'; color: var(--pink2); font-size: 0.55rem; flex-shrink: 0; padding-top: 2px; }
+
+    /* EXPERIENCE */
+    .exp-entry { margin-bottom: 16px; }
+    .exp-entry:last-child { margin-bottom: 0; }
+    .exp-hrow { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
+    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--ink2); }
+    .exp-date { font-family: 'DotGothic16', monospace; font-size: 0.64rem; color: var(--ink3); }
+    .exp-co   { font-family: 'DotGothic16', monospace; font-size: 0.7rem; color: var(--pink2); margin-bottom: 8px; }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .exp-list li { font-family: 'DotGothic16', monospace; font-size: 0.72rem; color: var(--ink); line-height: 1.65; padding-left: 14px; position: relative; }
+    .exp-list li::before { content: '✦'; position: absolute; left: 0; color: var(--lav); font-size: 0.5rem; top: 4px; }
+    .exp-div { border: none; border-top: 2px dashed var(--lav); margin: 14px 0; }
+
+    /* PROJECTS */
+    .proj-grid { display: flex; flex-direction: column; gap: 10px; }
     .proj-card {
-      background: rgba(255,45,120,0.03); border-radius: var(--r-card); padding: 28px;
-      position: relative; overflow: hidden; transition: transform 0.2s ease;
+      background: linear-gradient(135deg, var(--lav3), var(--pink3));
+      border: 2px solid var(--white);
+      border-right-color: var(--lav);
+      border-bottom-color: var(--lav);
+      padding: 12px 14px; position: relative; overflow: hidden;
+      transition: transform 0.15s ease;
     }
-    .proj-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--r-card); padding: 1.5px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
-    .proj-card:nth-child(1)::before { background: linear-gradient(135deg, var(--pink-hot),     var(--pink-deep)); }
-    .proj-card:nth-child(2)::before { background: linear-gradient(135deg, var(--pink-magenta), var(--pink-rose)); }
-    .proj-card:nth-child(3)::before { background: linear-gradient(135deg, var(--pink-rose),    var(--pink-blush)); }
-    .proj-card:hover { transform: translateY(-5px); }
-    .proj-icon { font-size: 1.8rem; margin-bottom: 14px; }
-    .proj-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.3; }
-    .proj-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.7; }
+    .proj-card:hover { transform: translateX(3px); }
+    .proj-card:nth-child(2) { background: linear-gradient(135deg, var(--mint2), var(--lav3)); }
+    .proj-card:nth-child(3) { background: linear-gradient(135deg, var(--sky2), var(--pink3)); }
+    .proj-trow { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .proj-icon { font-size: 1rem; }
+    .proj-title { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--ink2); line-height: 1.5; letter-spacing: 0.03em; }
+    .proj-desc { font-family: 'DotGothic16', monospace; font-size: 0.72rem; color: var(--ink); line-height: 1.68; }
+    .proj-stamp { position: absolute; bottom: 4px; right: 9px; font-family: 'Yuji Syuku', serif; font-size: 1.7rem; color: rgba(122,90,170,0.07); pointer-events: none; }
 
-    /* ── CERTS ───────────────────────────────────────────── */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-    .cert-card {
-      background: rgba(255,45,120,0.03); border-radius: 12px; padding: 18px 22px;
-      display: flex; justify-content: space-between; align-items: center; gap: 8px;
-      position: relative; overflow: hidden; transition: transform 0.2s ease;
+    /* CERTS */
+    .cert-grid-y2k { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 7px; }
+    .cert-badge {
+      background: linear-gradient(135deg, var(--lav3), var(--pink3));
+      border: 2px solid var(--white);
+      border-right-color: var(--lav); border-bottom-color: var(--lav);
+      padding: 8px 11px;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: transform 0.15s ease;
     }
-    .cert-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
-    .cert-card:nth-child(1)::before { background: linear-gradient(135deg, var(--pink-hot),     var(--pink-magenta)); }
-    .cert-card:nth-child(2)::before { background: linear-gradient(135deg, var(--pink-magenta), var(--pink-rose)); }
-    .cert-card:nth-child(3)::before { background: linear-gradient(135deg, var(--pink-rose),    var(--pink-deep)); }
-    .cert-card:nth-child(4)::before { background: linear-gradient(135deg, var(--pink-deep),    var(--pink-hot)); }
-    .cert-card:nth-child(5)::before { background: linear-gradient(135deg, var(--pink-hot),     var(--pink-rose)); }
-    .cert-card:nth-child(6)::before { background: linear-gradient(135deg, var(--pink-magenta), var(--pink-blush)); }
-    .cert-card:nth-child(7)::before { background: linear-gradient(135deg, var(--pink-blush),   var(--pink-hot)); }
-    .cert-card:nth-child(8)::before { background: linear-gradient(135deg, var(--pink-deep),    var(--pink-magenta)); }
-    .cert-card:hover { transform: translateY(-3px); }
-    .cert-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
-    .cert-date { font-size: 0.72rem; color: var(--text-dim); white-space: nowrap; }
+    .cert-badge:nth-child(2n) { background: linear-gradient(135deg, var(--mint2), var(--lav3)); }
+    .cert-badge:nth-child(3n) { background: linear-gradient(135deg, var(--sky2), var(--pink3)); }
+    .cert-badge:nth-child(4n) { background: linear-gradient(135deg, var(--yellow), var(--lav3)); }
+    .cert-badge:hover { transform: translateY(-2px); }
+    .cert-badge-name { font-family: 'DotGothic16', monospace; font-size: 0.7rem; color: var(--ink); }
+    .cert-badge-date { font-family: 'Press Start 2P', monospace; font-size: 0.35rem; color: var(--ink3); text-align: right; white-space: nowrap; }
 
-    /* ── SKILLS ──────────────────────────────────────────── */
-    .skills-grid { display: flex; flex-direction: column; gap: 14px; }
-    .skill-row {
-      background: rgba(255,45,120,0.03); border-radius: 12px; padding: 18px 22px;
-      display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap;
-      position: relative; overflow: hidden; transition: transform 0.2s ease;
+    /* SKILLS */
+    .skill-block { margin-bottom: 11px; }
+    .skill-block:last-child { margin-bottom: 0; }
+    .skill-cat-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem; color: var(--ink2); margin-bottom: 5px;
+      display: flex; align-items: center; gap: 6px; letter-spacing: 0.07em;
     }
-    .skill-row::before {
-      content: ''; position: absolute; inset: 0; border-radius: 12px; padding: 1px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    .skill-cat-label::before { content: '◆'; color: var(--pink2); font-size: 0.46rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .skill-tag {
+      background: var(--lav3); border: 1.5px solid var(--lav);
+      font-family: 'DotGothic16', monospace; font-size: 0.68rem; color: var(--ink);
+      padding: 2px 8px;
     }
-    .skill-row:nth-child(1)::before { background: linear-gradient(90deg, var(--pink-hot),     var(--pink-magenta)); }
-    .skill-row:nth-child(2)::before { background: linear-gradient(90deg, var(--pink-magenta), var(--pink-rose)); }
-    .skill-row:nth-child(3)::before { background: linear-gradient(90deg, var(--pink-rose),    var(--pink-deep)); }
-    .skill-row:nth-child(4)::before { background: linear-gradient(90deg, var(--pink-deep),    var(--pink-hot)); }
-    .skill-row:nth-child(5)::before { background: linear-gradient(90deg, var(--pink-hot),     var(--pink-blush)); }
-    .skill-row:nth-child(6)::before { background: linear-gradient(90deg, var(--pink-blush),   var(--pink-magenta)); }
-    .skill-row:hover { transform: translateX(5px); }
-    .skill-cat {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      white-space: nowrap; min-width: 170px;
-    }
-    .skill-row:nth-child(1) .skill-cat { color: var(--pink-hot); }
-    .skill-row:nth-child(2) .skill-cat { color: var(--pink-magenta); }
-    .skill-row:nth-child(3) .skill-cat { color: var(--pink-rose); }
-    .skill-row:nth-child(4) .skill-cat { color: var(--pink-deep); }
-    .skill-row:nth-child(5) .skill-cat { color: var(--pink-blush); }
-    .skill-row:nth-child(6) .skill-cat { color: var(--pink-magenta); }
-    .skill-vals { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; }
+    .sk-m .skill-tag { background: var(--mint2); border-color: var(--mint); }
+    .sk-s .skill-tag { background: var(--sky2);  border-color: var(--sky); }
+    .sk-p .skill-tag { background: var(--pink3); border-color: var(--pink); }
+    .sk-y .skill-tag { background: var(--yellow); border-color: var(--peach); }
 
-    /* ── CONTACT ─────────────────────────────────────────── */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; }
-    .contact-card {
-      background: rgba(255,45,120,0.04); border-radius: var(--r-card); padding: 28px;
-      position: relative; overflow: hidden; transition: transform 0.2s ease; text-decoration: none;
-      display: flex; align-items: center; gap: 18px;
+    /* CONTACT */
+    .contact-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-card-y2k {
+      flex: 1; min-width: 175px;
+      background: linear-gradient(135deg, var(--pink3), var(--lav3));
+      border: 2px solid var(--white);
+      border-right-color: var(--pink); border-bottom-color: var(--pink);
+      padding: 14px 15px; text-decoration: none;
+      display: flex; align-items: center; gap: 12px;
+      transition: transform 0.15s ease;
     }
-    .contact-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: var(--r-card); padding: 1.5px;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-    }
-    .contact-card:nth-child(1)::before { background: linear-gradient(135deg, var(--pink-hot), var(--pink-magenta)); }
-    .contact-card:nth-child(2)::before { background: linear-gradient(135deg, var(--pink-rose), var(--pink-deep)); }
-    .contact-card:hover { transform: translateY(-4px); }
-    .contact-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .contact-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
-    .contact-val { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .contact-card-y2k:nth-child(2) { background: linear-gradient(135deg, var(--sky2), var(--mint2)); border-right-color: var(--sky); border-bottom-color: var(--sky); }
+    .contact-card-y2k:hover { transform: translateY(-3px); }
+    .contact-icon-y2k { font-size: 1.4rem; }
+    .contact-label-y2k { font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--ink3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-val-y2k { font-family: 'DotGothic16', monospace; font-size: 0.74rem; color: var(--ink); }
 
-    /* ── Footer ──────────────────────────────────────────── */
-    footer {
-      max-width: var(--max); margin: 0 auto; padding: 0 40px 48px;
-      text-align: center; font-size: 0.76rem; color: var(--text-dim);
+    /* FOOTER */
+    .bottom-bar {
+      text-align: center; font-family: 'DotGothic16', monospace;
+      font-size: 0.64rem; color: var(--ink2); padding: 10px 0 4px;
     }
+    .bottom-deco { font-size: 0.7rem; letter-spacing: 7px; color: var(--pink2); }
 
-    /* ── Mobile Nav ──────────────────────────────────────── */
-    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; border-radius: 2px; }
-    .nav-toggle span:nth-child(1) { background: var(--pink-hot); }
-    .nav-toggle span:nth-child(2) { background: var(--pink-magenta); }
-    .nav-toggle span:nth-child(3) { background: var(--pink-rose); }
+    /* MOBILE */
+    .nav-toggle { display: none; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--lav3); }
+    ::-webkit-scrollbar-thumb { background: var(--lav); border: 1px solid var(--white); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--pink); }
 
-    /* ── Responsive ──────────────────────────────────────── */
-    @media (max-width: 920px) {
-      .hero { grid-template-columns: 1fr; padding: 120px 28px 60px; gap: 48px; }
-      .hero-right { max-width: 500px; }
-      .stats-row { grid-template-columns: repeat(3,1fr); padding: 0 28px 60px; }
-      .section-wrap { padding: 100px 28px 60px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      footer { padding: 0 28px 40px; }
-    }
-    @media (max-width: 600px) {
-      .nav-inner { padding: 0 20px; }
-      .nav-links {
-        display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0;
-        background: rgba(8,0,16,0.97); backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255,45,120,0.15); padding: 20px; gap: 18px;
+    @media (max-width: 660px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .sidebar.open { display: flex; }
+      .nav-toggle {
+        display: block; width: 100%;
+        background: linear-gradient(90deg, var(--pink2), var(--lav));
+        border: 2px solid var(--white); border-right-color: var(--ink3); border-bottom-color: var(--ink3);
+        padding: 8px; font-family: 'Press Start 2P', monospace;
+        font-size: 0.46rem; color: white; cursor: pointer; margin-bottom: 6px; letter-spacing: 0.08em;
       }
-      .nav-links.open { display: flex; }
-      .nav-toggle { display: flex; }
-      .hero { padding: 100px 20px 48px; gap: 36px; }
-      .name-first, .name-last { font-size: clamp(2.8rem, 11vw, 4rem); }
-      .stats-row { grid-template-columns: 1fr 1fr 1fr; padding: 0 20px 48px; gap: 10px; }
-      .section-wrap { padding: 90px 20px 48px; }
-      .hero-cta { flex-direction: column; align-items: flex-start; }
-      .skill-cat { min-width: 100%; }
-      .proj-grid { grid-template-columns: 1fr; }
-      .cert-grid { grid-template-columns: 1fr; }
-      footer { padding: 0 20px 32px; }
+      .welcome-grid { grid-template-columns: 1fr; }
+      .name-en { font-size: 0.78rem; }
+      .cert-grid-y2k { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+<div class="page-wrap">
 
-  <div class="bg-mesh"></div>
-  <div class="blob-mid"></div>
-  <div class="grid-bg"></div>
-  <div class="scanlines"></div>
-
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <span class="nav-logo" onclick="showPage('home')">Sara Goodie</span>
-      <ul class="nav-links" id="navLinks">
-        <li><a onclick="showPage('experience')" data-page="experience">Experience</a></li>
-        <li><a onclick="showPage('projects')"   data-page="projects">Projects</a></li>
-        <li><a onclick="showPage('certs')"      data-page="certs">Certs</a></li>
-        <li><a onclick="showPage('skills')"     data-page="skills">Skills</a></li>
-        <li><a onclick="showPage('contact')"    data-page="contact">Contact</a></li>
-      </ul>
-      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  <!-- MARQUEE -->
+  <div class="marquee-bar">
+    <div class="marquee-inner">
+      ✿ WELCOME TO SARA GOODIE'S CYBER PORTFOLIO ✿ &nbsp;&nbsp; ☆ CYBERSECURITY & INFORMATION ASSURANCE ☆ &nbsp;&nbsp; ♡ BLUE TEAM ♡ SIEM ♡ THREAT DETECTION ♡ &nbsp;&nbsp; ✦ WGU GRADUATE JAN 2026 ✦ &nbsp;&nbsp; ❀ サイバーヒーロー ❀ &nbsp;&nbsp; ★ OPEN TO OPPORTUNITIES ★ &nbsp;&nbsp; ✿ Detroit Pistons IT Alumni ✿ &nbsp;&nbsp;
     </div>
-  </nav>
-
-  <div class="page">
-
-    <!-- ════ HOME ════ -->
-    <div class="view active" id="page-home">
-      <section class="hero">
-        <div class="hero-left">
-          <p class="hero-subtitle">Cybersecurity &amp; Information Assurance</p>
-          <div class="hero-name">
-            <span class="name-first">Sara</span>
-            <span class="name-last">Goodie</span>
-          </div>
-          <div class="skill-pills">
-            <span class="pill pill-1">SIEM</span>
-            <span class="pill pill-2">Azure Sentinel</span>
-            <span class="pill pill-3">Splunk</span>
-            <span class="pill pill-4">Active Directory</span>
-            <span class="pill pill-5">Blue Team</span>
-            <span class="pill pill-6">Threat Detection</span>
-          </div>
-          <div class="hero-cta">
-            <button class="btn-primary" onclick="showPage('projects')"><span>View Projects →</span></button>
-            <button class="btn-secondary" onclick="showPage('contact')">Contact Me</button>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="card-glass">
-            <div class="card-label"><div class="card-label-dot"></div>Current Focus</div>
-            <ul class="focus-list">
-              <li><div class="focus-icon fi-1">🐍</div>IAM Automation (Python + Graph API)</li>
-              <li><div class="focus-icon fi-2">🍯</div>Honeypot logging real attacks</li>
-              <li><div class="focus-icon fi-3">🎯</div>Threat detection &amp; SIEM tuning</li>
-              <li><div class="focus-icon fi-4">🎓</div>B.S. Cybersecurity — WGU, Jan 2026</li>
-            </ul>
-          </div>
-          <div class="card-glass-sm">
-            <p class="card-sm-text">
-              <strong>Building real-world cybersecurity labs and tools</strong> —
-              from SIEM deployments to honeypots, bridging theory and hands-on defense.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div class="stats-row">
-        <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Certifications</div></div>
-        <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Lab Projects</div></div>
-        <div class="stat-card"><div class="stat-num">2+</div><div class="stat-label">Years in Tech</div></div>
-      </div>
-    </div>
-
-    <!-- ════ EXPERIENCE ════ -->
-    <div class="view" id="page-experience">
-      <div class="section-wrap">
-        <div class="section-title st-hot">Work Experience</div>
-        <div class="page-heading" style="background: linear-gradient(90deg, var(--pink-hot), var(--pink-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Where I've Been</div>
-        <p class="page-sub">Hands-on roles across enterprise IT operations and customer-facing tech, with a focus on security and infrastructure.</p>
-        <div class="exp-grid">
-          <div class="exp-card">
-            <div class="exp-header">
-              <span class="exp-role">IT Intern</span>
-              <span class="exp-date">April – June 2025</span>
-            </div>
-            <div class="exp-company">Detroit Pistons IT Operations Team</div>
-            <ul class="exp-list">
-              <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
-              <li>Assisted with identity and access management using Active Directory, including user provisioning and permission updates.</li>
-              <li>Deployed endpoint cybersecurity tools and supported monitoring efforts to enhance security posture.</li>
-              <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to simulate and detect attacks.</li>
-              <li>Collaborated with IT and security teams to document workflows and improve incident response readiness.</li>
-            </ul>
-          </div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <span class="exp-role">Advisor</span>
-              <span class="exp-date">Oct – Dec 2022</span>
-            </div>
-            <div class="exp-company">Best Buy | Customer Solutions Team</div>
-            <ul class="exp-list">
-              <li>Advised customers on technology solutions based on their needs and current trends.</li>
-              <li>Developed interpersonal skills through customer service and problem resolution.</li>
-              <li>Stayed updated on the latest technologies, enhancing products and technical knowledge.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════ PROJECTS ════ -->
-    <div class="view" id="page-projects">
-      <div class="section-wrap">
-        <div class="section-title st-rose">Projects</div>
-        <div class="page-heading" style="background: linear-gradient(90deg, var(--pink-rose), var(--pink-magenta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">What I've Built</div>
-        <p class="page-sub">Real-world cybersecurity labs and deployments — built to simulate enterprise environments and sharpen detection skills.</p>
-        <div class="proj-grid">
-          <div class="proj-card">
-            <div class="proj-icon">🛡️</div>
-            <div class="proj-title">SOC Deployment &amp; SIEM with Microsoft Azure &amp; Sentinel</div>
-            <div class="proj-desc">Deployed a SIEM system using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence feeds with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection, incident correlation, and automated response workflows.</div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-icon">🏠</div>
-            <div class="proj-title">Active Directory Home Lab Setup &amp; Configuration</div>
-            <div class="proj-desc">Built an Active Directory home lab to simulate an enterprise-level network environment, providing hands-on experience with core IT infrastructure and network administration. Configured DNS, DHCP, Group Policies, and managed user and group accounts for efficient resource management and security.</div>
-          </div>
-          <div class="proj-card">
-            <div class="proj-icon">⚔️</div>
-            <div class="proj-title">Attack Detection Lab — VirtualBox, Splunk &amp; Sysmon</div>
-            <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection effectiveness. Deployed an attacker VM and a vulnerable VM to simulate real-world threats. Installed Sysmon and configured Splunk to collect and analyze Windows event logs. Demonstrated endpoint compromise and threat detection to the IT department during internship.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════ CERTS ════ -->
-    <div class="view" id="page-certs">
-      <div class="section-wrap">
-        <div class="section-title st-magenta">Certifications</div>
-        <div class="page-heading" style="background: linear-gradient(90deg, var(--pink-magenta), var(--pink-deep)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Earned &amp; Counting</div>
-        <p class="page-sub">8 industry certifications across networking, security, cloud, and IT service management — all earned within 14 months.</p>
-        <div class="cert-grid">
-          <div class="cert-card"><span class="cert-name">CompTIA A+</span><span class="cert-date">Nov 2023</span></div>
-          <div class="cert-card"><span class="cert-name">CompTIA Network+</span><span class="cert-date">Jan 2024</span></div>
-          <div class="cert-card"><span class="cert-name">CompTIA Security+</span><span class="cert-date">Mar 2024</span></div>
-          <div class="cert-card"><span class="cert-name">ITIL 4 Foundation</span><span class="cert-date">Mar 2024</span></div>
-          <div class="cert-card"><span class="cert-name">LPI Linux Essentials</span><span class="cert-date">Jun 2024</span></div>
-          <div class="cert-card"><span class="cert-name">Associate of (ISC)²</span><span class="cert-date">Aug 2024</span></div>
-          <div class="cert-card"><span class="cert-name">CompTIA Project+</span><span class="cert-date">Oct 2024</span></div>
-          <div class="cert-card"><span class="cert-name">CompTIA CySA+</span><span class="cert-date">Dec 2024</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════ SKILLS ════ -->
-    <div class="view" id="page-skills">
-      <div class="section-wrap">
-        <div class="section-title st-deep">Technical Skills</div>
-        <div class="page-heading" style="background: linear-gradient(90deg, var(--pink-deep), var(--pink-hot)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">The Toolkit</div>
-        <p class="page-sub">A broad technical foundation spanning networking, security tooling, cloud platforms, scripting, and compliance frameworks.</p>
-        <div class="skills-grid">
-          <div class="skill-row"><span class="skill-cat">Networking &amp; Systems</span><span class="skill-vals">L2/L3 networking, DNS, DHCP, SMTP, Active Directory, Windows Server, Ubuntu Server, Kali Linux</span></div>
-          <div class="skill-row"><span class="skill-cat">Security Tools</span><span class="skill-vals">Wireshark, Zenmap, Nmap, Metasploit, Censys, KnowBe4, CrowdStrike</span></div>
-          <div class="skill-row"><span class="skill-cat">Ticketing Systems</span><span class="skill-vals">Vivantio</span></div>
-          <div class="skill-row"><span class="skill-cat">Cloud &amp; Virtualization</span><span class="skill-vals">Microsoft Azure, Microsoft Endpoint Manager (Intune), Hyper-V, VMware</span></div>
-          <div class="skill-row"><span class="skill-cat">Scripting &amp; Programming</span><span class="skill-vals">Python, PowerShell, SQL, C++</span></div>
-          <div class="skill-row"><span class="skill-cat">Compliance Frameworks</span><span class="skill-vals">NIST 800-171, HIPAA, SOX, ISO/IEC 27001</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ════ CONTACT ════ -->
-    <div class="view" id="page-contact">
-      <div class="section-wrap">
-        <div class="section-title st-blush">Contact</div>
-        <div class="page-heading" style="background: linear-gradient(90deg, var(--pink-rose), var(--pink-blush)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Get In Touch</div>
-        <p class="page-sub">Open to cybersecurity roles, internships, and collaborations. Feel free to reach out — I'd love to connect.</p>
-        <div class="contact-grid">
-          <a class="contact-card" href="mailto:segoodie12@gmail.com">
-            <div class="contact-icon">📧</div>
-            <div>
-              <div class="contact-label">Email</div>
-              <div class="contact-val">segoodie12@gmail.com</div>
-            </div>
-          </a>
-          <a class="contact-card" href="https://linkedin.com" target="_blank">
-            <div class="contact-icon">💼</div>
-            <div>
-              <div class="contact-label">LinkedIn</div>
-              <div class="contact-val">Connect with me</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <footer>© 2026 Sara Goodie — Cybersecurity &amp; Information Assurance</footer>
+  <!-- HEADER -->
+  <div class="site-header">
+    <div class="header-top">
+      <div class="name-block">
+        <div class="name-en">SARA GOODIE</div>
+        <div class="name-jp">サラ・グッディ</div>
+        <div class="title-badge">♡ Cybersecurity & Information Assurance ♡</div>
+        <div class="pill-row">
+          <span class="pill-y2k pill-p">SIEM</span>
+          <span class="pill-y2k pill-k">Azure Sentinel</span>
+          <span class="pill-y2k pill-m">Blue Team</span>
+          <span class="pill-y2k pill-s">Splunk</span>
+          <span class="pill-y2k pill-y">Active Directory</span>
+          <span class="pill-y2k pill-p">Threat Detection</span>
+        </div>
+      </div>
+      <div class="header-deco">
+        <div class="status-box">
+          <div><span class="status-online"></span><strong>ONLINE !</strong></div>
+          <div>📍 Detroit, MI</div>
+          <div>🎓 B.S. Cyber — Jan 2026</div>
+          <div>🔐 8 Certifications</div>
+          <div>💻 3 Lab Projects</div>
+        </div>
+        <div class="deco-row">✿ ♡ ★ ♡ ✿</div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    function showPage(id) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById('page-' + id).classList.add('active');
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.dataset.page === id);
-      });
-      document.getElementById('navLinks').classList.remove('open');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
+  <!-- MOBILE NAV TOGGLE -->
+  <button class="nav-toggle" id="navToggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+    ☰ &nbsp; MENU &nbsp; ☰
+  </button>
+
+  <!-- MAIN -->
+  <div class="main-layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="nav-panel">
+        <div class="nav-panel-title">✿ NAVIGATE ✿</div>
+        <ul class="nav-links-list">
+          <li><a onclick="showPage('home')"       data-page="home"       class="active">Home</a></li>
+          <li><a onclick="showPage('experience')" data-page="experience">Experience</a></li>
+          <li><a onclick="showPage('projects')"   data-page="projects">Projects</a></li>
+          <li><a onclick="showPage('certs')"      data-page="certs">Certs</a></li>
+          <li><a onclick="showPage('skills')"     data-page="skills">Skills</a></li>
+          <li><a onclick="showPage('contact')"    data-page="contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="stat-widget">
+        <div class="stat-widget-title">♡ SITE STATS ♡</div>
+        <div class="stat-item"><span>CERTS</span><span class="stat-val">8</span></div>
+        <div class="stat-item"><span>LABS</span><span class="stat-val">3</span></div>
+        <div class="stat-item"><span>YRS</span><span class="stat-val">2+</span></div>
+        <div class="stat-item"><span>VIBES</span><span class="stat-val">MAX</span></div>
+      </div>
+
+      <div class="pixel-deco">
+        🌸🔐🌸<br/>💜🛡️💜<br/>🌸⚔️🌸
+        <div style="font-family:'DotGothic16',monospace;font-size:0.58rem;margin-top:6px;color:var(--ink2);">サイバーセキュリティ</div>
+      </div>
+
+      <div class="pixel-deco" style="background:linear-gradient(180deg,var(--sky2),var(--mint2));">
+        <div style="font-family:'Yuji Syuku',serif;font-size:1.5rem;color:var(--ink2);line-height:1.4;">守護<br/>防衛</div>
+        <div style="font-family:'DotGothic16',monospace;font-size:0.52rem;color:var(--ink3);margin-top:4px;">protect &amp; defend</div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+
+      <!-- HOME -->
+      <div class="view active" id="page-home">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>✿ welcome.txt — Notepad</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">WELCOME !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</div>
+            <div class="welcome-grid">
+              <div class="welcome-text">
+                <p>Hi hi !! ✿ I'm <strong>Sara Goodie</strong>, a <em class="kawaii">cybersecurity nerd</em> based in Detroit, Michigan.</p>
+                <p>I graduated with a <strong>B.S. in Cybersecurity & Information Assurance</strong> from Western Governors University in <strong>January 2026</strong> ✦</p>
+                <p>I love <em class="kawaii">blue team ops</em>, building home labs, setting honeypots, and making threats very unhappy ⚔️</p>
+                <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab 💻</p>
+                <p style="margin-top:10px;font-size:0.65rem;color:var(--ink2);">Currently open to cybersecurity roles and internships !! Feel free to explore ✿</p>
+              </div>
+              <div>
+                <div class="focus-box">
+                  <div class="focus-box-title">★ CURRENT FOCUS ★</div>
+                  <div class="focus-item">IAM Automation (Python + Graph API)</div>
+                  <div class="focus-item">Honeypot logging real attacks</div>
+                  <div class="focus-item">SIEM tuning & threat detection</div>
+                  <div class="focus-item">Blue team operations</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="view" id="page-experience">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>✦ experience.txt — Work History</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">WORK EXPERIENCE</div>
+            <div class="exp-entry">
+              <div class="exp-hrow"><span class="exp-role">IT INTERN</span><span class="exp-date">April – June 2025</span></div>
+              <div class="exp-co">♡ Detroit Pistons IT Operations Team</div>
+              <ul class="exp-list">
+                <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
+                <li>Assisted with identity and access management using Active Directory, including user provisioning and permission updates.</li>
+                <li>Deployed endpoint cybersecurity tools and supported monitoring efforts to enhance security posture.</li>
+                <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to simulate and detect attacks.</li>
+                <li>Collaborated with IT and security teams to document workflows and improve incident response readiness.</li>
+              </ul>
+            </div>
+            <hr class="exp-div" />
+            <div class="exp-entry">
+              <div class="exp-hrow"><span class="exp-role">ADVISOR</span><span class="exp-date">Oct – Dec 2022</span></div>
+              <div class="exp-co">♡ Best Buy | Customer Solutions Team</div>
+              <ul class="exp-list">
+                <li>Advised customers on technology solutions based on their needs and current trends.</li>
+                <li>Developed interpersonal skills through customer service and problem resolution.</li>
+                <li>Stayed updated on the latest technologies, enhancing products and technical knowledge.</li>
+              </ul>
+            </div>
+            <hr class="exp-div" />
+            <div class="sec-heading" style="margin-top:2px;">EDUCATION</div>
+            <div class="exp-entry">
+              <div class="exp-hrow">
+                <span class="exp-role" style="font-size:0.38rem;">B.S. CYBERSECURITY & INFORMATION ASSURANCE</span>
+                <span class="exp-date">Jan 2026</span>
+              </div>
+              <div class="exp-co">♡ Western Governors University</div>
+            </div>
+            <div class="exp-entry" style="margin-bottom:0;">
+              <div class="exp-hrow">
+                <span class="exp-role" style="font-size:0.38rem;">ASSOCIATE IN LIBERAL ARTS</span>
+                <span class="exp-date">June 2021</span>
+              </div>
+              <div class="exp-co">♡ Henry Ford Community College</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="view" id="page-projects">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>⚔️ projects.exe — Lab Portfolio</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">MY PROJECTS (ﾉ｀ДΩ)</div>
+            <div class="proj-grid">
+              <div class="proj-card">
+                <div class="proj-trow"><span class="proj-icon">🛡️</span><div class="proj-title">SOC DEPLOYMENT & SIEM<br/>with Azure & Sentinel</div></div>
+                <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
+                <div class="proj-stamp">盾</div>
+              </div>
+              <div class="proj-card">
+                <div class="proj-trow"><span class="proj-icon">🏠</span><div class="proj-title">ACTIVE DIRECTORY<br/>HOME LAB</div></div>
+                <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, and managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
+                <div class="proj-stamp">式</div>
+              </div>
+              <div class="proj-card">
+                <div class="proj-trow"><span class="proj-icon">⚔️</span><div class="proj-title">ATTACK DETECTION LAB<br/>VirtualBox + Splunk + Sysmon</div></div>
+                <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM for real-world threat simulation. Configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated endpoint compromise and threat detection to the IT department during internship.</div>
+                <div class="proj-stamp">斬</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERTS -->
+      <div class="view" id="page-certs">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>★ certifications.dat — Badges Earned</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">CERTIFICATIONS ✦ ALL EARNED ✦</div>
+            <div style="font-family:'DotGothic16',monospace;font-size:0.7rem;color:var(--ink2);margin-bottom:12px;">8 certs earned within 14 months !! (●ˇ∀ˇ●)</div>
+            <div class="cert-grid-y2k">
+              <div class="cert-badge"><span class="cert-badge-name">CompTIA A+</span><span class="cert-badge-date">NOV<br/>2023</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">CompTIA Network+</span><span class="cert-badge-date">JAN<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">CompTIA Security+</span><span class="cert-badge-date">MAR<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">ITIL 4 Foundation</span><span class="cert-badge-date">MAR<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">LPI Linux Essentials</span><span class="cert-badge-date">JUN<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">Associate of (ISC)²</span><span class="cert-badge-date">AUG<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">CompTIA Project+</span><span class="cert-badge-date">OCT<br/>2024</span></div>
+              <div class="cert-badge"><span class="cert-badge-name">CompTIA CySA+</span><span class="cert-badge-date">DEC<br/>2024</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="view" id="page-skills">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>💻 skills.sys — Technical Toolkit</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">TECHNICAL SKILLS ٩(˘◡˘)۶</div>
+            <div class="skill-block">
+              <div class="skill-cat-label">NETWORKING &amp; SYSTEMS</div>
+              <div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div>
+            </div>
+            <div class="skill-block sk-m">
+              <div class="skill-cat-label">SECURITY TOOLS</div>
+              <div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div>
+            </div>
+            <div class="skill-block sk-s">
+              <div class="skill-cat-label">CLOUD &amp; VIRTUALIZATION</div>
+              <div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div>
+            </div>
+            <div class="skill-block sk-p">
+              <div class="skill-cat-label">SCRIPTING &amp; PROGRAMMING</div>
+              <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div>
+            </div>
+            <div class="skill-block sk-y">
+              <div class="skill-cat-label">COMPLIANCE FRAMEWORKS</div>
+              <div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div>
+            </div>
+            <div class="skill-block">
+              <div class="skill-cat-label">TICKETING</div>
+              <div class="skill-tags"><span class="skill-tag">Vivantio</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="view" id="page-contact">
+        <div class="content-panel">
+          <div class="panel-title-bar">
+            <span>♡ contact.html — Get In Touch</span>
+            <div class="win-btns"><div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div></div>
+          </div>
+          <div class="content-body">
+            <div class="sec-heading">GET IN TOUCH ✉️</div>
+            <div style="font-family:'DotGothic16',monospace;font-size:0.75rem;color:var(--ink);margin-bottom:14px;line-height:1.75;">
+              Open to cybersecurity roles, internships, and collabs !! <br/>Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+            </div>
+            <div class="contact-cards">
+              <a class="contact-card-y2k" href="mailto:segoodie12@gmail.com">
+                <span class="contact-icon-y2k">📧</span>
+                <div><div class="contact-label-y2k">Email</div><div class="contact-val-y2k">segoodie12@gmail.com</div></div>
+              </a>
+              <a class="contact-card-y2k" href="https://linkedin.com" target="_blank">
+                <span class="contact-icon-y2k">💼</span>
+                <div><div class="contact-label-y2k">LinkedIn</div><div class="contact-val-y2k">Connect with me !</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="bottom-bar">
+    <div class="bottom-deco">✿ ♡ ★ ♡ ✿ ♡ ★ ♡ ✿</div>
+    <div style="margin-top:6px;">© 2026 Sara Goodie ✦ サラ・グッディ ✦ Cybersecurity & Information Assurance</div>
+    <div style="margin-top:4px;font-size:0.58rem;color:var(--ink3);">best viewed in 800×600 ♡ made with love and kawaii energy</div>
+    <div class="bottom-deco" style="margin-top:6px;">✿ ♡ ★ ♡ ✿ ♡ ★ ♡ ✿</div>
+  </div>
+
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links-list a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === id);
     });
-  </script>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
