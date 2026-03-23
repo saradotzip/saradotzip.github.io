@@ -24,10 +24,6 @@
       --win-dark:   #404040;
       --win-bg:     #c0c0c0;
       --win-white:  #ffffff;
-      --key-bg:     #1a1a1a;
-      --key-face:   #2a2a2a;
-      --key-text:   #ffffff;
-      --key-shadow: #000000;
       --text:       #000000;
       --text-mid:   #222222;
       --text-soft:  #444444;
@@ -38,13 +34,10 @@
     body {
       font-family: 'DotGothic16', monospace;
       background-color: #0a0a0a;
-      /* subtle tile pattern on black */
       background-image:
         linear-gradient(rgba(26,95,212,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26,95,212,0.07) 1px, transparent 1px),
-        radial-gradient(circle at 20% 30%, rgba(0,204,221,0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(26,95,212,0.06) 0%, transparent 50%);
-      background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
+        linear-gradient(90deg, rgba(26,95,212,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
       min-height: 100vh;
       color: var(--text);
       font-size: 14px;
@@ -61,7 +54,7 @@
       border-bottom: 2px solid var(--win-dark);
     }
 
-    /* ── WIN98 WINDOW ── */
+    /* ── WIN98 CHROME ── */
     .window {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite);
@@ -79,26 +72,24 @@
       background: var(--win-white);
     }
 
-    /* title bars */
     .title-bar {
       background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
       padding: 4px 5px 4px 7px;
       display: flex; align-items: center; justify-content: space-between;
       user-select: none;
     }
-    .title-bar.teal-bar  { background: linear-gradient(90deg, #006655, #009977); }
-    .title-bar.cyan-bar  { background: linear-gradient(90deg, #007799, var(--cyan)); }
-    .title-bar.dark-bar  { background: linear-gradient(90deg, #222233, #334466); }
-    .title-bar.pink-bar  { background: linear-gradient(90deg, #880044, #cc0066); }
+    .tb-teal  { background: linear-gradient(90deg, #006655, #009977); }
+    .tb-cyan  { background: linear-gradient(90deg, #007799, var(--cyan)); }
+    .tb-dark  { background: linear-gradient(90deg, #222233, #334466); }
 
     .title-bar-text {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.52rem; color: white;
+      font-size: 0.5rem; color: white;
       letter-spacing: 0.04em; display: flex; align-items: center; gap: 5px;
     }
-    .title-icon { font-size: 0.85rem; }
-    .title-bar-controls { display: flex; gap: 2px; }
-    .tb-btn {
+    .ticon { font-size: 0.85rem; }
+    .tbtns { display: flex; gap: 2px; }
+    .tbtn {
       width: 16px; height: 14px;
       background: var(--win-face);
       border-top: 1px solid var(--win-hilite);
@@ -111,36 +102,10 @@
 
     .menu-bar {
       background: var(--win-face); border-bottom: 1px solid var(--win-shadow);
-      padding: 3px 8px; font-size: 0.85rem; color: var(--text);
-      display: flex; gap: 16px;
+      padding: 3px 8px; font-size: 0.85rem; color: var(--text); display: flex; gap: 16px;
     }
     .menu-bar span { cursor: default; padding: 0 3px; }
     .menu-bar span:hover { background: var(--cobalt3); color: white; }
-
-    .inset {
-      border-top: 1px solid var(--win-shadow);
-      border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite);
-      border-bottom: 1px solid var(--win-hilite);
-      background: var(--win-white); padding: 6px 8px;
-    }
-
-    .win-btn-raised {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite);
-      border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark);
-      border-bottom: 2px solid var(--win-dark);
-      padding: 5px 16px; font-family: 'DotGothic16', monospace;
-      font-size: 0.88rem; color: var(--text);
-      cursor: pointer; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 5px; transition: filter 0.1s;
-    }
-    .win-btn-raised:hover { filter: brightness(0.93); }
-    .win-btn-raised:active {
-      border-top: 2px solid var(--win-dark); border-left: 2px solid var(--win-dark);
-      border-right: 2px solid var(--win-hilite); border-bottom: 2px solid var(--win-hilite);
-    }
 
     .win-rule {
       border: none;
@@ -149,31 +114,65 @@
       margin: 12px 0;
     }
 
-    /* ── KEYBOARD KEYS ── */
-    .key-tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
-      border: 1.5px solid #000;
-      border-radius: 5px;
-      box-shadow: 0 4px 0 var(--key-shadow), 0 5px 8px rgba(0,0,0,0.6);
-      color: var(--key-text); font-family: 'Press Start 2P', monospace;
-      font-size: 0.6rem; letter-spacing: 0.06em;
-      padding: 5px 10px; cursor: default;
-      transition: transform 0.1s, box-shadow 0.1s;
+    .win-btn {
+      background: var(--win-face);
+      border-top: 2px solid var(--win-hilite);
+      border-left: 2px solid var(--win-hilite);
+      border-right: 2px solid var(--win-dark);
+      border-bottom: 2px solid var(--win-dark);
+      padding: 5px 16px; font-family: 'DotGothic16', monospace;
+      font-size: 0.88rem; color: var(--text);
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 5px;
     }
-    .key-tag:hover { transform: translateY(3px); box-shadow: 0 1px 0 var(--key-shadow); }
+    .win-btn:hover { filter: brightness(0.93); }
+    .win-btn:active {
+      border-top: 2px solid var(--win-dark); border-left: 2px solid var(--win-dark);
+      border-right: 2px solid var(--win-hilite); border-bottom: 2px solid var(--win-hilite);
+    }
 
-    /* animated name key boxes */
-    .name-key {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, #2a2a2a, #0f0f0f);
-      border: 2px solid #111;
+    /* ── KEYCAPS ── */
+    /* Shared keycap surface style */
+    .keycap-face {
+      /* grey keycap — light grey face, medium grey sides */
+      background: linear-gradient(145deg, #c8c8c8 0%, #aaaaaa 40%, #909090 100%);
+      border-top:    2px solid #e0e0e0;
+      border-left:   2px solid #d4d4d4;
+      border-right:  2px solid #606060;
+      border-bottom: 2px solid #505050;
       border-radius: 6px;
-      box-shadow: 0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7);
-      color: #fff; font-family: 'Press Start 2P', monospace;
-      font-size: 0.8rem; letter-spacing: 0;
-      width: 2.4rem; height: 2.4rem;
+      box-shadow:
+        0 7px 0 #444444,
+        0 9px 12px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        inset 0 -2px 0 rgba(0,0,0,0.2);
+      color: #111111;
+      font-family: 'Press Start 2P', monospace;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: default;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .keycap-face:hover {
+      transform: translateY(5px);
+      box-shadow:
+        0 2px 0 #444444,
+        0 3px 5px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 -1px 0 rgba(0,0,0,0.15);
+    }
+
+    /* Large animated name keys */
+    .name-key {
+      width: 2.6rem; height: 2.6rem;
+      font-size: 0.76rem; letter-spacing: 0;
       opacity: 0;
+    }
+
+    /* Small sidebar / inline skill keys */
+    .key-tag {
+      font-size: 0.56rem; letter-spacing: 0.06em;
+      padding: 5px 11px;
     }
 
     /* cyan pill tag */
@@ -188,18 +187,17 @@
     .cyan-tag:hover { background: rgba(0,204,221,0.12); }
 
     /* address bar */
-    .address-bar {
+    .addr-bar {
       display: flex; align-items: center; gap: 5px;
       background: var(--win-face); padding: 3px 6px;
       border-bottom: 1px solid var(--win-shadow);
     }
-    .addr-nav-btn {
+    .addr-nav {
       background: var(--win-face);
       border-top: 1px solid var(--win-hilite); border-left: 1px solid var(--win-hilite);
       border-right: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-shadow);
-      width: 24px; height: 22px; font-size: 0.75rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: default; color: var(--text);
+      width: 24px; height: 22px; font-size: 0.78rem;
+      display: flex; align-items: center; justify-content: center; cursor: default;
     }
     .addr-field {
       flex: 1;
@@ -210,9 +208,8 @@
     }
     .addr-go {
       background: var(--cobalt2); color: white;
-      border: 1px solid var(--cobalt3);
-      font-size: 0.78rem; padding: 2px 8px; cursor: default;
-      font-family: 'Press Start 2P', monospace; font-size: 0.42rem;
+      border: 1px solid var(--cobalt3); padding: 2px 8px; cursor: default;
+      font-family: 'Press Start 2P', monospace; font-size: 0.44rem;
     }
 
     /* status bar */
@@ -228,7 +225,7 @@
     }
 
     /* marquee */
-    .marquee-strip {
+    .marquee-wrap {
       background: var(--cobalt3); overflow: hidden; height: 26px;
       display: flex; align-items: center;
       border-top: 1px solid var(--cobalt); border-bottom: 1px solid rgba(0,0,0,0.4);
@@ -247,25 +244,21 @@
       display: flex; flex-direction: column; gap: 10px;
     }
 
-    .top-strip {
-      max-width: 960px; margin: 0 auto; width: 100%;
-    }
-    .site-title-box {
+    /* top strip */
+    .top-strip { max-width: 960px; margin: 0 auto; width: 100%; }
+    .title-box {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 10px 18px; display: flex; flex-direction: column; gap: 7px;
+      padding: 10px 18px; display: flex; flex-direction: column; gap: 8px;
     }
-    .site-title-main {
-      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
-      min-height: 2.8rem;
-    }
-    .site-title-sub {
+    .title-name-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .title-sub {
       font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;
       color: var(--cobalt3); letter-spacing: 0.06em;
       display: flex; align-items: center; gap: 6px;
     }
-    .site-title-sub::before { content: '💾'; font-size: 0.9rem; }
+    .title-sub::before { content: '💾'; }
 
     /* taskbar */
     .taskbar {
@@ -283,7 +276,7 @@
     }
     .start-btn::before { content: '💾'; font-size: 1rem; }
     .tb-div { width: 2px; height: 24px; border-left: 1px solid var(--win-shadow); border-right: 1px solid var(--win-hilite); margin: 0 3px; }
-    .taskbar-btn {
+    .tb-page-btn {
       background: var(--win-face);
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
@@ -291,8 +284,8 @@
       font-size: 0.82rem; color: var(--text); cursor: pointer; height: 28px;
       display: flex; align-items: center; gap: 5px;
     }
-    .taskbar-btn.active { background: var(--win-bg); border-color: var(--win-shadow); }
-    .taskbar-clock {
+    .tb-page-btn.active { background: var(--win-bg); }
+    .tb-clock {
       margin-left: auto;
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
@@ -300,11 +293,11 @@
       font-size: 0.82rem; color: var(--text); height: 28px; display: flex; align-items: center;
     }
 
-    /* ── MAIN WINDOW ── */
+    /* main window */
     .main-window { max-width: 960px; margin: 0 auto; width: 100%; }
     .main-body { display: grid; grid-template-columns: 170px 1fr; gap: 0; padding: 4px; }
 
-    /* ── SIDEBAR ── */
+    /* sidebar */
     .sidebar { display: flex; flex-direction: column; gap: 6px; padding-right: 5px; }
 
     .nav-item {
@@ -313,7 +306,6 @@
       font-size: 0.9rem; color: var(--text);
       text-decoration: none; cursor: pointer;
       border-bottom: 1px solid var(--win-bg); background: var(--win-white);
-      transition: background 0.08s;
     }
     .nav-item::before { content: '▶'; font-size: 0.55rem; color: var(--cobalt2); }
     .nav-item:hover, .nav-item.active {
@@ -322,12 +314,12 @@
     }
     .nav-item:hover::before, .nav-item.active::before { color: var(--cyan); }
 
-    .sidebar-info {
+    .sb-info {
       background: var(--win-white); padding: 8px 10px;
       font-family: 'DotGothic16', monospace; font-size: 0.85rem;
       color: var(--text-mid); line-height: 1.85;
     }
-    .sidebar-info .lbl {
+    .sb-lbl {
       font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--cobalt2);
       display: block; margin-top: 7px; margin-bottom: 2px; letter-spacing: 0.08em;
     }
@@ -343,13 +335,11 @@
       font-family: 'DotGothic16', monospace; font-size: 0.85rem; color: var(--text-mid);
       background: var(--win-white); border-bottom: 1px dotted var(--win-bg);
     }
-    .stat-row .num {
-      font-family: 'Press Start 2P', monospace; font-size: 0.52rem; color: var(--cobalt2);
-    }
+    .stat-num { font-family: 'Press Start 2P', monospace; font-size: 0.52rem; color: var(--cobalt2); }
 
     .key-row { padding: 8px 7px; background: var(--win-face); display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
 
-    /* ── CONTENT ── */
+    /* content */
     .content-area { min-height: 480px; }
     .view { display: none; animation: fadeWin 0.15s ease; }
     .view.active { display: block; }
@@ -363,18 +353,14 @@
     }
     .sec-title::after { content: ''; flex: 1; height: 1px; border-top: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-hilite); }
 
-    /* HOME */
+    /* home page */
     .welcome-grid { display: grid; grid-template-columns: 1fr 210px; gap: 14px; align-items: start; }
 
     .name-header {
       background: linear-gradient(135deg, #e8f4ff, #eef8ff, #e8f4ff);
       border: 2px solid var(--win-shadow); padding: 12px 14px; margin-bottom: 14px;
     }
-    .name-title-row {
-      display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 7px;
-      min-height: 2.8rem;
-    }
-
+    .name-key-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; min-height: 2.8rem; }
     .name-jp  { font-family: 'Yuji Syuku', serif; font-size: 1.1rem; color: var(--cobalt2); letter-spacing: 0.2em; opacity: 0.8; }
     .name-sub { font-family: 'DotGothic16', monospace; font-size: 0.9rem; color: var(--text-mid); margin-top: 5px; }
     .tag-row  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
@@ -393,47 +379,40 @@
     }
     .focus-item::before { content: '●'; color: var(--cobalt2); font-size: 0.6rem; flex-shrink: 0; margin-top: 3px; }
 
-    /* EXPERIENCE */
+    /* experience */
     .exp-entry { margin-bottom: 20px; }
     .exp-entry:last-child { margin-bottom: 0; }
     .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
-    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.54rem; color: var(--cobalt3); letter-spacing: 0.04em; }
+    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.54rem; color: var(--cobalt3); }
     .exp-date { font-family: 'DotGothic16', monospace; font-size: 0.88rem; color: var(--text-soft); }
     .exp-co   { font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--cobalt2); margin-bottom: 10px; }
     .exp-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .exp-list li {
-      font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--text-mid);
-      line-height: 1.72; padding-left: 18px; position: relative;
-    }
+    .exp-list li { font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--text-mid); line-height: 1.72; padding-left: 18px; position: relative; }
     .exp-list li::before { content: '◆'; position: absolute; left: 0; color: var(--cobalt2); font-size: 0.55rem; top: 5px; }
 
-    /* PROJECTS */
+    /* projects */
     .proj-grid { display: flex; flex-direction: column; gap: 12px; }
     .proj-body { padding: 12px 15px; background: var(--win-white); }
     .proj-desc { font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--text-mid); line-height: 1.78; margin-bottom: 12px; }
-    .proj-link-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; }
 
-    /* CERTS */
-    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 7px; }
+    /* certs */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 7px; }
     .cert-item {
       background: var(--win-white);
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
       padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;
       font-family: 'DotGothic16', monospace; font-size: 0.9rem; color: var(--text-mid);
-      transition: background 0.1s;
     }
     .cert-item:hover { background: #e8f4ff; }
-    .cert-date-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
+    .cert-date { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
 
-    /* SKILLS */
+    /* skills */
     .skill-group { margin-bottom: 15px; }
     .skill-group:last-child { margin-bottom: 0; }
-    .skill-lbl {
-      font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--cobalt3);
-      margin-bottom: 7px; display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em;
-    }
-    .skill-lbl::before { content: '◆'; color: var(--cobalt2); font-size: 0.5rem; }
+    .skill-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--cobalt3); margin-bottom: 7px; display: flex; align-items: center; gap: 6px; }
+    .skill-lbl::before { content: '◆'; color: var(--cobalt2); }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .skill-tag {
       background: var(--win-face);
@@ -443,16 +422,16 @@
     }
     .skill-tag:hover { background: #e8f4ff; }
 
-    /* CONTACT */
+    /* contact */
     .contact-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-    .contact-win { flex: 1; min-width: 210px; text-decoration: none; transition: filter 0.1s; }
+    .contact-win { flex: 1; min-width: 210px; text-decoration: none; }
     .contact-win:hover { filter: brightness(0.97); }
     .contact-body { padding: 14px 16px; display: flex; align-items: center; gap: 14px; background: var(--win-white); }
     .contact-icon { font-size: 1.8rem; }
     .contact-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--cobalt2); letter-spacing: 0.1em; margin-bottom: 6px; }
     .contact-val { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text-mid); }
 
-    /* ── BANNER BAR ── */
+    /* banner */
     .banner-wrap { max-width: 960px; margin: 0 auto; width: 100%; }
     .banner-bar {
       background: var(--win-face);
@@ -460,19 +439,19 @@
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
       padding: 7px 10px; display: flex; gap: 7px; flex-wrap: wrap; align-items: center;
     }
-    .banner-item {
+    .ban {
       height: 30px; border: 1px solid var(--win-shadow); padding: 2px 9px;
       font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-      display: flex; align-items: center; gap: 4px; white-space: nowrap; line-height: 1.5;
+      display: flex; align-items: center; white-space: nowrap; line-height: 1.5;
     }
-    .bn-1 { background: var(--cobalt3); color: var(--cyan); }
-    .bn-2 { background: #005577; color: var(--cyan2); }
-    .bn-3 { background: #004455; color: #88eeff; }
-    .bn-4 { background: var(--teal); color: white; }
-    .bn-5 { background: #003355; color: var(--cyan-pale); }
-    .bn-6 { background: #007788; color: white; }
-    .bn-7 { background: #002244; color: var(--cyan2); }
-    .bn-8 { background: #006688; color: white; }
+    .b1 { background: var(--cobalt3); color: var(--cyan); }
+    .b2 { background: #005577; color: var(--cyan2); }
+    .b3 { background: #004455; color: #88eeff; }
+    .b4 { background: var(--teal); color: white; }
+    .b5 { background: #003355; color: var(--cyan-pale); }
+    .b6 { background: #007788; color: white; }
+    .b7 { background: #002244; color: var(--cyan2); }
+    .b8 { background: #006688; color: white; }
 
     .footer {
       text-align: center; font-family: 'Share Tech Mono', monospace;
@@ -480,22 +459,22 @@
       padding: 6px 0 50px; letter-spacing: 0.06em;
     }
 
-    /* POPUP */
-    .popup-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.4); align-items: center; justify-content: center; }
-    .popup-overlay.show { display: flex; }
-    .popup-box { width: 320px; }
-    .popup-body { padding: 16px 18px; background: var(--win-face); display: flex; gap: 12px; align-items: flex-start; }
+    /* popup */
+    .popup-bg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.4); align-items: center; justify-content: center; }
+    .popup-bg.show { display: flex; }
+    .popup-win { width: 320px; }
+    .popup-body { padding: 16px 18px; background: var(--win-face); display: flex; gap: 12px; }
     .popup-icon { font-size: 2rem; flex-shrink: 0; }
-    .popup-text { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text); line-height: 1.65; }
+    .popup-txt { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text); line-height: 1.65; }
     .popup-btns { padding: 10px; background: var(--win-face); display: flex; justify-content: center; gap: 10px; border-top: 1px solid var(--win-shadow); }
 
-    /* MOBILE */
-    .mob-toggle { display: none; }
+    /* mobile */
+    .mob-btn { display: none; }
     @media (max-width: 700px) {
       .main-body { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .sidebar.open { display: flex; }
-      .mob-toggle {
+      .mob-btn {
         display: block; width: 100%;
         background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
         color: white; border: none; padding: 7px;
@@ -503,7 +482,7 @@
         cursor: pointer; margin-bottom: 7px;
       }
       .welcome-grid { grid-template-columns: 1fr; }
-      .cert-list { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
       .desktop { padding: 8px 8px 54px; }
     }
   </style>
@@ -511,19 +490,19 @@
 <body>
 
 <!-- POPUP -->
-<div class="popup-overlay" id="popup">
-  <div class="window popup-box">
+<div class="popup-bg" id="popup">
+  <div class="window popup-win">
     <div class="title-bar">
-      <div class="title-bar-text"><span class="title-icon">⚠️</span> SYSTEM.EXE</div>
-      <div class="title-bar-controls"><div class="tb-btn" onclick="closePopup()">✕</div></div>
+      <div class="title-bar-text"><span class="ticon">⚠️</span> SYSTEM.EXE</div>
+      <div class="tbtns"><div class="tbtn" onclick="closePopup()">✕</div></div>
     </div>
     <div class="popup-body">
       <div class="popup-icon">💾</div>
-      <div class="popup-text">Should you hire Sara Goodie for your cybersecurity team?</div>
+      <div class="popup-txt">Should you hire Sara Goodie for your cybersecurity team?</div>
     </div>
     <div class="popup-btns">
-      <button class="win-btn-raised" onclick="closePopup()" style="color:var(--cobalt3);font-weight:bold;">Yes</button>
-      <button class="win-btn-raised" onclick="closePopup()">Also Yes</button>
+      <button class="win-btn" onclick="closePopup()" style="color:var(--cobalt3);font-weight:bold;">Yes</button>
+      <button class="win-btn" onclick="closePopup()">Also Yes</button>
     </div>
   </div>
 </div>
@@ -532,10 +511,10 @@
 
   <!-- TOP STRIP -->
   <div class="top-strip">
-    <div class="site-title-box">
-      <div class="site-title-main" id="name-top"></div>
-      <div class="site-title-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;">
+    <div class="title-box">
+      <div class="title-name-row" id="name-top"></div>
+      <div class="title-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
         <span class="cyan-tag">BLUE TEAM</span>
         <span class="cyan-tag">SIEM</span>
         <span class="cyan-tag">WGU 2026</span>
@@ -548,16 +527,12 @@
   <div class="window main-window">
 
     <div class="title-bar">
-      <div class="title-bar-text"><span class="title-icon">💾</span> Sara Goodie — Cyber Portfolio</div>
-      <div class="title-bar-controls">
-        <div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div>
-      </div>
+      <div class="title-bar-text"><span class="ticon">💾</span> Sara Goodie — Cyber Portfolio</div>
+      <div class="tbtns"><div class="tbtn">_</div><div class="tbtn">□</div><div class="tbtn">✕</div></div>
     </div>
 
-    <div class="address-bar">
-      <div class="addr-nav-btn">←</div>
-      <div class="addr-nav-btn">→</div>
-      <div class="addr-nav-btn">🏠</div>
+    <div class="addr-bar">
+      <div class="addr-nav">←</div><div class="addr-nav">→</div><div class="addr-nav">🏠</div>
       <div class="addr-field">HTTPS://SARAGOODIE.GITHUB.IO/PORTFOLIO</div>
       <div class="addr-go">GO</div>
     </div>
@@ -566,10 +541,8 @@
       <span>File</span><span>Edit</span><span>View</span><span>Actions</span><span>Tools</span><span>Help</span>
     </div>
 
-    <div class="marquee-strip">
-      <div class="marquee-txt">
-        &gt;&gt; WELCOME TO SARA GOODIE'S CYBER PORTFOLIO &gt;&gt; &nbsp;&nbsp; // WGU GRADUATE JAN 2026 // &nbsp;&nbsp; &gt;&gt; BLUE TEAM &gt;&gt; SIEM &gt;&gt; THREAT DETECTION &gt;&gt; AZURE SENTINEL &gt;&gt; &nbsp;&nbsp; // OPEN TO OPPORTUNITIES // &nbsp;&nbsp; &gt;&gt; 8 CERTIFICATIONS &gt;&gt; 3 LAB PROJECTS &gt;&gt; &nbsp;&nbsp; // サイバーセキュリティ // 守護 // 防衛 //
-      </div>
+    <div class="marquee-wrap">
+      <div class="marquee-txt">&gt;&gt; WELCOME TO SARA GOODIE'S CYBER PORTFOLIO &gt;&gt; &nbsp;&nbsp; // WGU GRADUATE JAN 2026 // &nbsp;&nbsp; &gt;&gt; BLUE TEAM &gt;&gt; SIEM &gt;&gt; THREAT DETECTION &gt;&gt; AZURE SENTINEL &gt;&gt; &nbsp;&nbsp; // OPEN TO OPPORTUNITIES // &nbsp;&nbsp; &gt;&gt; 8 CERTIFICATIONS &gt;&gt; 3 LAB PROJECTS &gt;&gt; &nbsp;&nbsp; // サイバーセキュリティ // 守護 // 防衛 //</div>
     </div>
 
     <div class="main-body">
@@ -578,10 +551,7 @@
       <div class="sidebar" id="sidebar">
 
         <div class="window">
-          <div class="title-bar">
-            <div class="title-bar-text"><span class="title-icon">🗂️</span> Navigate</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
+          <div class="title-bar"><div class="title-bar-text"><span class="ticon">🗂️</span> Navigate</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
           <a class="nav-item active" onclick="showPage('home')"       data-page="home">🏠 Home</a>
           <a class="nav-item"        onclick="showPage('experience')" data-page="experience">💼 Experience</a>
           <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">📁 Projects</a>
@@ -591,49 +561,38 @@
         </div>
 
         <div class="window">
-          <div class="title-bar teal-bar">
-            <div class="title-bar-text"><span class="title-icon">📋</span> Info</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <div class="sidebar-info">
-            <span class="lbl">STATUS</span><span class="online-dot"></span>online!<br/>
-            <span class="lbl">LOCATION</span>📍 Detroit, MI<br/>
-            <span class="lbl">GRAD DATE</span>🎓 Jan 2026<br/>
-            <span class="lbl">EMAIL</span>
+          <div class="title-bar tb-teal"><div class="title-bar-text"><span class="ticon">📋</span> Info</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
+          <div class="sb-info">
+            <span class="sb-lbl">STATUS</span><span class="online-dot"></span>online!<br/>
+            <span class="sb-lbl">LOCATION</span>📍 Detroit, MI<br/>
+            <span class="sb-lbl">GRAD DATE</span>🎓 Jan 2026<br/>
+            <span class="sb-lbl">EMAIL</span>
             <a href="mailto:segoodie12@gmail.com" style="color:var(--cobalt2);font-size:0.82rem;">segoodie12<br/>@gmail.com</a>
           </div>
         </div>
 
         <div class="window">
-          <div class="title-bar cyan-bar">
-            <div class="title-bar-text"><span class="title-icon">📊</span> Stats</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <div class="stat-row"><span>Certs</span><span class="num">8</span></div>
-          <div class="stat-row"><span>Labs</span><span class="num">3</span></div>
-          <div class="stat-row"><span>Yrs</span><span class="num">2+</span></div>
-          <div class="stat-row"><span>Vibes</span><span class="num">MAX</span></div>
+          <div class="title-bar tb-cyan"><div class="title-bar-text"><span class="ticon">📊</span> Stats</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
+          <div class="stat-row"><span>Certs</span><span class="stat-num">8</span></div>
+          <div class="stat-row"><span>Labs</span><span class="stat-num">3</span></div>
+          <div class="stat-row"><span>Yrs</span><span class="stat-num">2+</span></div>
+          <div class="stat-row"><span>Vibes</span><span class="stat-num">MAX</span></div>
         </div>
 
         <div class="window">
-          <div class="title-bar dark-bar">
-            <div class="title-bar-text"><span class="title-icon">⌨️</span> keys.exe</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
+          <div class="title-bar tb-dark"><div class="title-bar-text"><span class="ticon">⌨️</span> keys.exe</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
           <div class="key-row">
-            <span class="key-tag">SIEM</span>
-            <span class="key-tag">SOC</span>
-            <span class="key-tag">AZURE</span>
-            <span class="key-tag">KALI</span>
-            <span class="key-tag">AD</span>
-            <span class="key-tag">SPLUNK</span>
+            <span class="keycap-face key-tag">SIEM</span>
+            <span class="keycap-face key-tag">SOC</span>
+            <span class="keycap-face key-tag">AZURE</span>
+            <span class="keycap-face key-tag">KALI</span>
+            <span class="keycap-face key-tag">AD</span>
+            <span class="keycap-face key-tag">SPLUNK</span>
           </div>
         </div>
 
         <div class="window" style="padding:10px;background:var(--win-white);">
-          <div style="text-align:center;font-family:'Yuji Syuku',serif;font-size:1.9rem;color:var(--cobalt2);line-height:1.4;opacity:0.6;">
-            守護<br/>防衛
-          </div>
+          <div style="text-align:center;font-family:'Yuji Syuku',serif;font-size:1.9rem;color:var(--cobalt2);line-height:1.4;opacity:0.6;">守護<br/>防衛</div>
           <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--cobalt2);margin-top:5px;letter-spacing:0.12em;">CYBER_JUTSU</div>
         </div>
 
@@ -641,14 +600,13 @@
 
       <!-- CONTENT -->
       <div class="content-area window-inner">
-        <button class="mob-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">🗂️ MENU</button>
+        <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">🗂️ MENU</button>
 
         <!-- HOME -->
         <div class="view active" id="page-home">
           <div class="content-inner">
-
             <div class="name-header">
-              <div class="name-title-row" id="name-home"></div>
+              <div class="name-key-row" id="name-home"></div>
               <div class="name-jp">サラ・グッディ</div>
               <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
               <div class="tag-row">
@@ -665,18 +623,15 @@
 
             <div class="welcome-grid">
               <div class="welcome-box">
-                <p>Hello! ◆ I'm <strong>Sara Goodie</strong>, a <span class="kawaii">cybersecurity nerd</span> based in Dearborn Heights, Michigan.</p>
+                <p>Hi hi !! ◆ I'm <strong>Sara Goodie</strong>, a <span class="kawaii">cybersecurity nerd</span> based in Detroit, Michigan.</p>
                 <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
                 <p>I love <span class="kawaii">blue team ops</span>, building home labs, setting honeypots, and making threats very unhappy ⚔️</p>
                 <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab 💻</p>
-                <p style="margin-top:12px;font-size:0.88rem;color:var(--cobalt2);">Currently open to cybersecurity roles and internships!</p>
+                <p style="margin-top:12px;font-size:0.88rem;color:var(--cobalt2);">Currently open to cybersecurity roles and internships !!</p>
               </div>
               <div>
                 <div class="window">
-                  <div class="title-bar teal-bar">
-                    <div class="title-bar-text"><span class="title-icon">📌</span> focus.txt</div>
-                    <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-                  </div>
+                  <div class="title-bar tb-teal"><div class="title-bar-text"><span class="ticon">📌</span> focus.txt</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
                   <div class="focus-panel">
                     <div class="focus-title">★ CURRENT FOCUS ★</div>
                     <div class="focus-item">IAM Automation (Python + Graph API)</div>
@@ -688,10 +643,8 @@
               </div>
             </div>
 
-            <hr class="win-rule" style="margin-top:16px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">
-              // 守護 · 防衛 · 術式 · サイバー //
-            </div>
+            <hr class="win-rule" style="margin-top:16px;"/>
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 守護 · 防衛 · 術式 · サイバー //</div>
           </div>
         </div>
 
@@ -710,7 +663,7 @@
                 <li>Collaborated with IT and security teams to document workflows and improve incident response readiness.</li>
               </ul>
             </div>
-            <hr class="win-rule" />
+            <hr class="win-rule"/>
             <div class="exp-entry">
               <div class="exp-hrow"><span class="exp-role">ADVISOR</span><span class="exp-date">Oct – Dec 2022</span></div>
               <div class="exp-co">◆ Best Buy | Customer Solutions Team</div>
@@ -720,23 +673,17 @@
                 <li>Stayed updated on the latest technologies, enhancing products and technical knowledge.</li>
               </ul>
             </div>
-            <hr class="win-rule" />
+            <hr class="win-rule"/>
             <div class="sec-title">EDUCATION</div>
             <div class="exp-entry">
-              <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.46rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</span>
-                <span class="exp-date">Jan 2026</span>
-              </div>
+              <div class="exp-hrow"><span class="exp-role" style="font-size:0.46rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</span><span class="exp-date">Jan 2026</span></div>
               <div class="exp-co">◆ Western Governors University</div>
             </div>
             <div class="exp-entry" style="margin-bottom:0;">
-              <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.46rem;">ASSOCIATE IN LIBERAL ARTS</span>
-                <span class="exp-date">June 2021</span>
-              </div>
+              <div class="exp-hrow"><span class="exp-role" style="font-size:0.46rem;">ASSOCIATE IN LIBERAL ARTS</span><span class="exp-date">June 2021</span></div>
               <div class="exp-co">◆ Henry Ford Community College</div>
             </div>
-            <hr class="win-rule" style="margin-top:16px;" />
+            <hr class="win-rule" style="margin-top:16px;"/>
             <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 術式 · 守護 · 防衛 //</div>
           </div>
         </div>
@@ -745,58 +692,34 @@
         <div class="view" id="page-projects">
           <div class="content-inner">
             <div class="sec-title">PROJECTS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.9rem;color:var(--cobalt2);margin-bottom:14px;">
-              ◆ Replace the # links with your real GitHub / project URLs !!
-            </div>
+            <div style="font-family:'DotGothic16',monospace;font-size:0.9rem;color:var(--cobalt2);margin-bottom:14px;">◆ Replace the # links with your real GitHub / project URLs !!</div>
             <div class="proj-grid">
-
               <div class="window">
-                <div class="title-bar">
-                  <div class="title-bar-text"><span class="title-icon">🛡️</span> SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
-                </div>
+                <div class="title-bar"><div class="title-bar-text"><span class="ticon">🛡️</span> SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div><div class="tbtns"><div class="tbtn">_</div><div class="tbtn">□</div><div class="tbtn">✕</div></div></div>
                 <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
                   <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
-                  <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
-                  </div>
+                  <div class="proj-links"><a class="win-btn" href="#" target="_blank">▶ View Project</a><a class="win-btn" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a></div>
                 </div>
               </div>
-
               <div class="window">
-                <div class="title-bar teal-bar">
-                  <div class="title-bar-text"><span class="title-icon">🏠</span> Active Directory Home Lab</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
-                </div>
+                <div class="title-bar tb-teal"><div class="title-bar-text"><span class="ticon">🏠</span> Active Directory Home Lab</div><div class="tbtns"><div class="tbtn">_</div><div class="tbtn">□</div><div class="tbtn">✕</div></div></div>
                 <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
                   <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, and managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
-                  <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
-                  </div>
+                  <div class="proj-links"><a class="win-btn" href="#" target="_blank">▶ View Project</a><a class="win-btn" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a></div>
                 </div>
               </div>
-
               <div class="window">
-                <div class="title-bar cyan-bar">
-                  <div class="title-bar-text"><span class="title-icon">⚔️</span> Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
-                </div>
+                <div class="title-bar tb-cyan"><div class="title-bar-text"><span class="ticon">⚔️</span> Attack Detection Lab — VirtualBox + Splunk + Sysmon</div><div class="tbtns"><div class="tbtn">_</div><div class="tbtn">□</div><div class="tbtn">✕</div></div></div>
                 <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
                   <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM for real-world threat simulation. Configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated endpoint compromise and threat detection to the IT department during internship.</div>
-                  <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
-                  </div>
+                  <div class="proj-links"><a class="win-btn" href="#" target="_blank">▶ View Project</a><a class="win-btn" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a></div>
                 </div>
               </div>
-
             </div>
-            <hr class="win-rule" style="margin-top:16px;" />
+            <hr class="win-rule" style="margin-top:16px;"/>
             <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 斬 · 式 · 盾 · 術 //</div>
           </div>
         </div>
@@ -805,20 +728,18 @@
         <div class="view" id="page-certs">
           <div class="content-inner">
             <div class="sec-title">CERTIFICATIONS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.92rem;color:var(--cobalt2);margin-bottom:14px;">
-              8 certs earned within 14 months !! (●ˇ∀ˇ●)
+            <div style="font-family:'DotGothic16',monospace;font-size:0.92rem;color:var(--cobalt2);margin-bottom:14px;">8 certs earned within 14 months !! (●ˇ∀ˇ●)</div>
+            <div class="cert-grid">
+              <div class="cert-item"><span>CompTIA A+</span><span class="cert-date">NOV<br/>2023</span></div>
+              <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date">JAN<br/>2024</span></div>
+              <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date">MAR<br/>2024</span></div>
+              <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date">MAR<br/>2024</span></div>
+              <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date">JUN<br/>2024</span></div>
+              <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date">AUG<br/>2024</span></div>
+              <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date">OCT<br/>2024</span></div>
+              <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date">DEC<br/>2024</span></div>
             </div>
-            <div class="cert-list">
-              <div class="cert-item"><span>CompTIA A+</span><span class="cert-date-lbl">NOV<br/>2023</span></div>
-              <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date-lbl">JAN<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date-lbl">MAR<br/>2024</span></div>
-              <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date-lbl">MAR<br/>2024</span></div>
-              <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date-lbl">JUN<br/>2024</span></div>
-              <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date-lbl">AUG<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date-lbl">OCT<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date-lbl">DEC<br/>2024</span></div>
-            </div>
-            <hr class="win-rule" style="margin-top:16px;" />
+            <hr class="win-rule" style="margin-top:16px;"/>
             <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 証明 · 認定 · 術式 //</div>
           </div>
         </div>
@@ -827,31 +748,13 @@
         <div class="view" id="page-skills">
           <div class="content-inner">
             <div class="sec-title">TECHNICAL SKILLS</div>
-            <div class="skill-group">
-              <div class="skill-lbl">NETWORKING &amp; SYSTEMS</div>
-              <div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div>
-            </div>
-            <div class="skill-group">
-              <div class="skill-lbl">SECURITY TOOLS</div>
-              <div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div>
-            </div>
-            <div class="skill-group">
-              <div class="skill-lbl">CLOUD &amp; VIRTUALIZATION</div>
-              <div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div>
-            </div>
-            <div class="skill-group">
-              <div class="skill-lbl">SCRIPTING &amp; PROGRAMMING</div>
-              <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div>
-            </div>
-            <div class="skill-group">
-              <div class="skill-lbl">COMPLIANCE FRAMEWORKS</div>
-              <div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div>
-            </div>
-            <div class="skill-group">
-              <div class="skill-lbl">TICKETING</div>
-              <div class="skill-tags"><span class="skill-tag">Vivantio</span></div>
-            </div>
-            <hr class="win-rule" style="margin-top:16px;" />
+            <div class="skill-group"><div class="skill-lbl">NETWORKING &amp; SYSTEMS</div><div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div></div>
+            <div class="skill-group"><div class="skill-lbl">SECURITY TOOLS</div><div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div></div>
+            <div class="skill-group"><div class="skill-lbl">CLOUD &amp; VIRTUALIZATION</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div></div>
+            <div class="skill-group"><div class="skill-lbl">SCRIPTING &amp; PROGRAMMING</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div></div>
+            <div class="skill-group"><div class="skill-lbl">COMPLIANCE FRAMEWORKS</div><div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div></div>
+            <div class="skill-group"><div class="skill-lbl">TICKETING</div><div class="skill-tags"><span class="skill-tag">Vivantio</span></div></div>
+            <hr class="win-rule" style="margin-top:16px;"/>
             <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 技術 · 術式 · 能力 //</div>
           </div>
         </div>
@@ -860,33 +763,18 @@
         <div class="view" id="page-contact">
           <div class="content-inner">
             <div class="sec-title">CONTACT</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.95rem;color:var(--text-mid);margin-bottom:16px;line-height:1.9;">
-              Open to cybersecurity roles, internships, and collabs !<br/>
-              Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ★
-            </div>
+            <div style="font-family:'DotGothic16',monospace;font-size:0.95rem;color:var(--text-mid);margin-bottom:16px;line-height:1.9;">Open to cybersecurity roles, internships, and collabs !<br/>Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ★</div>
             <div class="contact-grid">
               <a class="window contact-win" href="mailto:segoodie12@gmail.com">
-                <div class="title-bar">
-                  <div class="title-bar-text"><span class="title-icon">📧</span> Email</div>
-                  <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-                </div>
-                <div class="contact-body">
-                  <span class="contact-icon">📧</span>
-                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val">segoodie12@gmail.com</div></div>
-                </div>
+                <div class="title-bar"><div class="title-bar-text"><span class="ticon">📧</span> Email</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
+                <div class="contact-body"><span class="contact-icon">📧</span><div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val">segoodie12@gmail.com</div></div></div>
               </a>
               <a class="window contact-win" href="https://linkedin.com" target="_blank">
-                <div class="title-bar teal-bar">
-                  <div class="title-bar-text"><span class="title-icon">💼</span> LinkedIn</div>
-                  <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-                </div>
-                <div class="contact-body">
-                  <span class="contact-icon">💼</span>
-                  <div><div class="contact-lbl">LINKEDIN</div><div class="contact-val">Connect with me !</div></div>
-                </div>
+                <div class="title-bar tb-teal"><div class="title-bar-text"><span class="ticon">💼</span> LinkedIn</div><div class="tbtns"><div class="tbtn">✕</div></div></div>
+                <div class="contact-body"><span class="contact-icon">💼</span><div><div class="contact-lbl">LINKEDIN</div><div class="contact-val">Connect with me !</div></div></div>
               </a>
             </div>
-            <hr class="win-rule" style="margin-top:16px;" />
+            <hr class="win-rule" style="margin-top:16px;"/>
             <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 連絡 · 接続 · 術式 //</div>
           </div>
         </div>
@@ -900,20 +788,20 @@
       <div class="status-cell" style="max-width:140px;" id="clock">--:-- --</div>
     </div>
 
-  </div><!-- end main window -->
+  </div>
 
-  <!-- BANNER BAR -->
+  <!-- BANNER -->
   <div class="banner-wrap">
     <div class="window">
       <div class="banner-bar">
-        <div class="banner-item bn-1">💾 BEST<br/>VIEWED<br/>IE 6.0</div>
-        <div class="banner-item bn-2">⚡ CYBER<br/>SECURITY<br/>ROCKS</div>
-        <div class="banner-item bn-3">🔐 BLUE<br/>TEAM<br/>4EVER</div>
-        <div class="banner-item bn-4">サイバー<br/>術式<br/>守護</div>
-        <div class="banner-item bn-5">💾 WGU<br/>GRAD<br/>2026</div>
-        <div class="banner-item bn-6">◆ SIEM<br/>QUEEN<br/>◆</div>
-        <div class="banner-item bn-7">8 CERTS<br/>EARNED<br/>✓</div>
-        <div class="banner-item bn-8">⚔️ THREAT<br/>DETECT<br/>PRO</div>
+        <div class="ban b1">💾 BEST<br/>VIEWED<br/>IE 6.0</div>
+        <div class="ban b2">⚡ CYBER<br/>SECURITY<br/>ROCKS</div>
+        <div class="ban b3">🔐 BLUE<br/>TEAM<br/>4EVER</div>
+        <div class="ban b4">サイバー<br/>術式<br/>守護</div>
+        <div class="ban b5">💾 WGU<br/>GRAD<br/>2026</div>
+        <div class="ban b6">◆ SIEM<br/>QUEEN<br/>◆</div>
+        <div class="ban b7">8 CERTS<br/>EARNED<br/>✓</div>
+        <div class="ban b8">⚔️ THREAT<br/>DETECT<br/>PRO</div>
       </div>
     </div>
   </div>
@@ -923,68 +811,70 @@
     <span style="font-size:0.68rem;opacity:0.6;">BEST VIEWED IN 800×600 // MADE WITH COBALT BLUE AND KEYBOARD ENERGY</span>
   </div>
 
-</div><!-- end desktop -->
+</div>
 
 <!-- TASKBAR -->
 <div class="taskbar">
   <div class="start-btn">▶ START</div>
   <div class="tb-div"></div>
-  <div class="taskbar-btn active" onclick="showPage('home')">💾 Sara Goodie</div>
-  <div class="taskbar-btn" onclick="showPage('projects')">📁 Projects</div>
-  <div class="taskbar-btn" onclick="showPage('contact')">📧 Contact</div>
-  <div class="taskbar-clock" id="taskbar-clock">--:--</div>
+  <div class="tb-page-btn active" onclick="showPage('home')">💾 Sara Goodie</div>
+  <div class="tb-page-btn" onclick="showPage('projects')">📁 Projects</div>
+  <div class="tb-page-btn" onclick="showPage('contact')">📧 Contact</div>
+  <div class="tb-clock" id="taskbar-clock">--:--</div>
 </div>
 
 <script>
-  /* ── ANIMATED TYPING NAME ── */
-  const NAME   = 'SARA GOODIE'.split('');
-  const DELAY  = 300;   // ms before start
-  const SPEED  = 100;   // ms per key
+  /* ── KEYCAP TYPING ANIMATION ── */
+  const NAME = 'SARA GOODIE'.split('');
 
-  function buildNameRow(containerId) {
-    const container = document.getElementById(containerId);
+  function buildKeys(containerId) {
+    const el = document.getElementById(containerId);
     NAME.forEach((ch, i) => {
       if (ch === ' ') {
         const sp = document.createElement('span');
-        sp.style.display = 'inline-block';
-        sp.style.width = '10px';
-        container.appendChild(sp);
+        sp.style.cssText = 'display:inline-block;width:12px;';
+        el.appendChild(sp);
         return;
       }
       const k = document.createElement('span');
-      k.className = 'name-key';
+      k.className = 'keycap-face name-key';
       k.textContent = ch;
-      container.appendChild(k);
+      el.appendChild(k);
 
       setTimeout(() => {
-        // appear
-        k.style.transition = 'opacity 0.04s';
+        // pop into view
         k.style.opacity = '1';
-        k.style.background = 'linear-gradient(180deg, #444, #222)';
-        k.style.borderColor = '#555';
-        k.style.boxShadow = '0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7)';
 
         // press down
         setTimeout(() => {
-          k.style.transition = 'transform 0.06s, box-shadow 0.06s';
-          k.style.transform = 'translateY(4px)';
-          k.style.boxShadow = '0 1px 0 #000, 0 2px 4px rgba(0,0,0,0.6)';
-        }, 50);
+          k.style.transition = 'transform 0.07s ease, box-shadow 0.07s ease';
+          k.style.transform = 'translateY(6px)';
+          k.style.boxShadow = [
+            '0 1px 0 #444444',
+            '0 2px 4px rgba(0,0,0,0.4)',
+            'inset 0 1px 0 rgba(255,255,255,0.4)',
+            'inset 0 -1px 0 rgba(0,0,0,0.15)'
+          ].join(',');
+        }, 55);
 
         // release
         setTimeout(() => {
           k.style.transition = 'all 0.12s ease';
           k.style.transform = 'translateY(0)';
-          k.style.background = 'linear-gradient(180deg, #2a2a2a, #0f0f0f)';
-          k.style.borderColor = '#111';
-          k.style.boxShadow = '0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7)';
-        }, 150);
-      }, DELAY + i * SPEED);
+          k.style.boxShadow = [
+            '0 7px 0 #444444',
+            '0 9px 12px rgba(0,0,0,0.5)',
+            'inset 0 1px 0 rgba(255,255,255,0.6)',
+            'inset 0 -2px 0 rgba(0,0,0,0.2)'
+          ].join(',');
+        }, 160);
+
+      }, 300 + i * 110);
     });
   }
 
-  buildNameRow('name-top');
-  buildNameRow('name-home');
+  buildKeys('name-top');
+  buildKeys('name-home');
 
   /* ── NAV ── */
   function showPage(id) {
@@ -993,22 +883,17 @@
     document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.page === id));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
   function showPopup()  { document.getElementById('popup').classList.add('show'); }
   function closePopup() { document.getElementById('popup').classList.remove('show'); }
 
   /* ── CLOCK ── */
-  function updateClock() {
-    const now = new Date();
-    const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const str = ((h % 12) || 12) + ':' + m + ' ' + ampm;
-    const e1 = document.getElementById('clock');
-    const e2 = document.getElementById('taskbar-clock');
-    if (e1) e1.textContent = str;
-    if (e2) e2.textContent = str;
+  function tick() {
+    const n = new Date(), h = n.getHours(), m = String(n.getMinutes()).padStart(2,'0');
+    const s = ((h%12)||12)+':'+m+' '+(h>=12?'PM':'AM');
+    document.getElementById('clock').textContent = s;
+    document.getElementById('taskbar-clock').textContent = s;
   }
-  updateClock(); setInterval(updateClock, 1000);
+  tick(); setInterval(tick, 1000);
 </script>
 </body>
 </html>
