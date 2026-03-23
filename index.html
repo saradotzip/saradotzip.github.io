@@ -11,50 +11,48 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cobalt:      #1a5fd4;
-      --cobalt2:     #2470e8;
-      --cobalt3:     #0d4ab8;
-      --cyan:        #00ccdd;
-      --cyan2:       #44ddee;
-      --cyan-pale:   #b0f0f8;
-      --teal:        #009988;
-      --win-face:    #d4d0c8;
-      --win-hilite:  #ffffff;
-      --win-shadow:  #808080;
-      --win-dark:    #404040;
-      --win-bg:      #c0c0c0;
-      --win-white:   #ffffff;
-      --win-inset:   #f0f0f0;
-      --key-bg:      #2a2a2a;
-      --key-face:    #3a3a3a;
-      --key-text:    #ffffff;
-      --key-shadow:  #111111;
-      --text:        #000000;
-      --text-mid:    #333333;
-      --text-soft:   #555555;
+      --cobalt:     #1a5fd4;
+      --cobalt2:    #2470e8;
+      --cobalt3:    #0d4ab8;
+      --cyan:       #00ccdd;
+      --cyan2:      #44ddee;
+      --cyan-pale:  #b0f0f8;
+      --teal:       #009988;
+      --win-face:   #d4d0c8;
+      --win-hilite: #ffffff;
+      --win-shadow: #808080;
+      --win-dark:   #404040;
+      --win-bg:     #c0c0c0;
+      --win-white:  #ffffff;
+      --key-bg:     #1a1a1a;
+      --key-face:   #2a2a2a;
+      --key-text:   #ffffff;
+      --key-shadow: #000000;
+      --text:       #000000;
+      --text-mid:   #222222;
+      --text-soft:  #444444;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DotGothic16', monospace;
-      background-color: #080808;
+      background-color: #0a0a0a;
+      /* subtle tile pattern on black */
       background-image:
-        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
-      background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
+        linear-gradient(rgba(26,95,212,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,95,212,0.07) 1px, transparent 1px),
+        radial-gradient(circle at 20% 30%, rgba(0,204,221,0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(26,95,212,0.06) 0%, transparent 50%);
+      background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%;
       min-height: 100vh;
       color: var(--text);
-      font-size: 13px;
+      font-size: 14px;
       overflow-x: hidden;
     }
 
-
-
     ::-webkit-scrollbar { width: 17px; }
-    ::-webkit-scrollbar-track { background: #111111; }
+    ::-webkit-scrollbar-track { background: #111; }
     ::-webkit-scrollbar-thumb {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite);
@@ -70,7 +68,7 @@
       border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark);
       border-bottom: 2px solid var(--win-dark);
-      box-shadow: 2px 2px 0 var(--win-shadow), 0 0 0 1px rgba(0,0,0,0.1);
+      box-shadow: 2px 2px 0 var(--win-shadow);
     }
     .window-inner {
       border-top: 1px solid var(--win-shadow);
@@ -81,22 +79,24 @@
       background: var(--win-white);
     }
 
+    /* title bars */
     .title-bar {
       background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-      padding: 3px 5px 3px 6px;
+      padding: 4px 5px 4px 7px;
       display: flex; align-items: center; justify-content: space-between;
       user-select: none;
     }
-    .title-bar.teal-bar { background: linear-gradient(90deg, #006655, #009977); }
+    .title-bar.teal-bar  { background: linear-gradient(90deg, #006655, #009977); }
     .title-bar.cyan-bar  { background: linear-gradient(90deg, #007799, var(--cyan)); }
     .title-bar.dark-bar  { background: linear-gradient(90deg, #222233, #334466); }
+    .title-bar.pink-bar  { background: linear-gradient(90deg, #880044, #cc0066); }
 
     .title-bar-text {
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.48rem; color: white;
+      font-size: 0.52rem; color: white;
       letter-spacing: 0.04em; display: flex; align-items: center; gap: 5px;
     }
-    .title-icon { font-size: 0.8rem; }
+    .title-icon { font-size: 0.85rem; }
     .title-bar-controls { display: flex; gap: 2px; }
     .tb-btn {
       width: 16px; height: 14px;
@@ -108,29 +108,32 @@
       font-size: 0.5rem; display: flex; align-items: center; justify-content: center;
       cursor: default; color: var(--text); font-weight: bold; line-height: 1;
     }
-    .tb-btn:active {
-      border-top: 1px solid var(--win-dark); border-left: 1px solid var(--win-dark);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-    }
 
     .menu-bar {
       background: var(--win-face); border-bottom: 1px solid var(--win-shadow);
-      padding: 2px 6px; font-size: 0.78rem; color: var(--text); display: flex; gap: 14px;
+      padding: 3px 8px; font-size: 0.85rem; color: var(--text);
+      display: flex; gap: 16px;
     }
-    .menu-bar span:hover { background: var(--cobalt3); color: white; padding: 0 3px; cursor: default; }
+    .menu-bar span { cursor: default; padding: 0 3px; }
+    .menu-bar span:hover { background: var(--cobalt3); color: white; }
 
     .inset {
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
+      border-top: 1px solid var(--win-shadow);
+      border-left: 1px solid var(--win-shadow);
+      border-right: 1px solid var(--win-hilite);
+      border-bottom: 1px solid var(--win-hilite);
       background: var(--win-white); padding: 6px 8px;
     }
 
     .win-btn-raised {
       background: var(--win-face);
-      border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 4px 14px; font-family: 'DotGothic16', monospace;
-      font-size: 0.8rem; color: var(--text); cursor: pointer; text-decoration: none;
+      border-top: 2px solid var(--win-hilite);
+      border-left: 2px solid var(--win-hilite);
+      border-right: 2px solid var(--win-dark);
+      border-bottom: 2px solid var(--win-dark);
+      padding: 5px 16px; font-family: 'DotGothic16', monospace;
+      font-size: 0.88rem; color: var(--text);
+      cursor: pointer; text-decoration: none;
       display: inline-flex; align-items: center; gap: 5px; transition: filter 0.1s;
     }
     .win-btn-raised:hover { filter: brightness(0.93); }
@@ -140,89 +143,53 @@
     }
 
     .win-rule {
-      border: none; border-top: 1px solid var(--win-shadow);
-      border-bottom: 1px solid var(--win-hilite); margin: 10px 0;
+      border: none;
+      border-top: 1px solid var(--win-shadow);
+      border-bottom: 1px solid var(--win-hilite);
+      margin: 12px 0;
     }
 
-    /* ── KEYBOARD KEY ── */
+    /* ── KEYBOARD KEYS ── */
     .key-tag {
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, #2a2a2a, #111111);
-      border: 1.5px solid #1a1a1a;
+      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
+      border: 1.5px solid #000;
       border-radius: 5px;
-      box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7);
-      color: #888888; font-family: 'Press Start 2P', monospace;
-      font-size: 0.52rem; letter-spacing: 0.06em;
-      padding: 4px 9px; cursor: default;
+      box-shadow: 0 4px 0 var(--key-shadow), 0 5px 8px rgba(0,0,0,0.6);
+      color: var(--key-text); font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem; letter-spacing: 0.06em;
+      padding: 5px 10px; cursor: default;
       transition: transform 0.1s, box-shadow 0.1s;
-      animation: keyShimmerTop 3s ease-in-out infinite, keyGlowTop 3s ease-in-out infinite;
     }
-    .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 var(--key-shadow); }
+    .key-tag:hover { transform: translateY(3px); box-shadow: 0 1px 0 var(--key-shadow); }
 
-    /* ── ANIMATED KEY (typewriter) ── */
-    /* TOP strip keys — black with dark shimmer */
-    @keyframes keyShimmerTop {
-      0%   { border-color: #1a1a1a; box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7); }
-      50%  { border-color: #444444; box-shadow: 0 3px 0 #0a0a0a, 0 4px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.07); }
-      100% { border-color: #1a1a1a; box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7); }
-    }
-    @keyframes keyGlowTop {
-      0%, 100% { background: linear-gradient(180deg, #2a2a2a, #111111); color: #888888; }
-      50%       { background: linear-gradient(180deg, #383838, #1e1e1e); color: #bbbbbb; }
-    }
-
-    /* HOME box keys — pastel blue-white with soft glow */
-    @keyframes keyShimmerHome {
-      0%   { border-color: #6ab0cc; box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4); }
-      50%  { border-color: #c8eaf8; box-shadow: 0 3px 0 #2a5a70, 0 4px 10px rgba(0,0,0,0.3), 0 0 16px rgba(180,230,255,0.5); }
-      100% { border-color: #6ab0cc; box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4); }
-    }
-    @keyframes keyGlowHome {
-      0%, 100% { background: linear-gradient(180deg, #1a3a50, #0e2030); color: #88ccee; }
-      50%       { background: linear-gradient(180deg, #244860, #163040); color: #c8eaf8; }
-    }
-    .key-anim {
+    /* animated name key boxes */
+    .name-key {
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, #2a2a2a, #111111);
-      border: 1.5px solid #1a1a1a;
-      border-radius: 5px;
-      box-shadow: 0 3px 0 #0a0a0a, 0 4px 6px rgba(0,0,0,0.7);
-      color: #888888; font-family: 'Press Start 2P', monospace;
-      font-size: 0.65rem; letter-spacing: 0.06em;
-      width: 2rem; height: 2rem;
-      cursor: default;
+      background: linear-gradient(180deg, #2a2a2a, #0f0f0f);
+      border: 2px solid #111;
+      border-radius: 6px;
+      box-shadow: 0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7);
+      color: #fff; font-family: 'Press Start 2P', monospace;
+      font-size: 0.8rem; letter-spacing: 0;
+      width: 2.4rem; height: 2.4rem;
       opacity: 0;
-      animation: keyShimmerTop 3s ease-in-out infinite, keyGlowTop 3s ease-in-out infinite;
-      animation-play-state: paused;
-    }
-    .key-anim.visible {
-      animation-play-state: running;
-    }
-    /* home box variant — pastel blue-white */
-    .key-anim.key-home {
-      background: linear-gradient(180deg, #1a3a50, #0e2030);
-      border-color: #6ab0cc;
-      box-shadow: 0 3px 0 #2a5a70, 0 4px 6px rgba(0,0,0,0.4);
-      color: #88ccee;
-      animation: keyShimmerHome 3s ease-in-out infinite, keyGlowHome 3s ease-in-out infinite;
-      animation-play-state: paused;
-    }
-    .key-anim.space-key {
-      background: none; border: none; box-shadow: none; width: 0.7rem;
-      animation: none;
     }
 
+    /* cyan pill tag */
     .cyan-tag {
       display: inline-flex; align-items: center;
       background: transparent; border: 2px solid var(--cyan);
-      border-radius: 999px; padding: 2px 11px;
+      border-radius: 999px; padding: 3px 13px;
       color: var(--cyan); font-family: 'DotGothic16', monospace;
-      font-size: 0.76rem; cursor: default; transition: background 0.1s;
+      font-size: 0.85rem; cursor: default;
+      transition: background 0.1s;
     }
     .cyan-tag:hover { background: rgba(0,204,221,0.12); }
 
+    /* address bar */
     .address-bar {
-      display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 5px;
       background: var(--win-face); padding: 3px 6px;
       border-bottom: 1px solid var(--win-shadow);
     }
@@ -230,7 +197,7 @@
       background: var(--win-face);
       border-top: 1px solid var(--win-hilite); border-left: 1px solid var(--win-hilite);
       border-right: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-shadow);
-      width: 22px; height: 20px; font-size: 0.7rem;
+      width: 24px; height: 22px; font-size: 0.75rem;
       display: flex; align-items: center; justify-content: center;
       cursor: default; color: var(--text);
     }
@@ -238,242 +205,265 @@
       flex: 1;
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      background: var(--win-white); padding: 2px 6px;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; color: var(--cobalt3);
+      background: var(--win-white); padding: 2px 8px;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: var(--cobalt3);
     }
     .addr-go {
       background: var(--cobalt2); color: white;
-      border-top: 1px solid var(--cobalt); border-left: 1px solid var(--cobalt);
-      border-right: 1px solid var(--cobalt3); border-bottom: 1px solid var(--cobalt3);
-      font-size: 0.7rem; padding: 2px 7px; cursor: default;
-      font-family: 'DotGothic16', monospace;
+      border: 1px solid var(--cobalt3);
+      font-size: 0.78rem; padding: 2px 8px; cursor: default;
+      font-family: 'Press Start 2P', monospace; font-size: 0.42rem;
     }
 
+    /* status bar */
     .status-bar {
       border-top: 1px solid var(--win-shadow);
       display: flex; gap: 2px; padding: 2px 4px; background: var(--win-face);
     }
     .status-cell {
-      flex: 1; padding: 2px 6px;
+      flex: 1; padding: 2px 8px;
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      font-family: 'DotGothic16', monospace; font-size: 0.72rem; color: var(--text);
+      font-family: 'DotGothic16', monospace; font-size: 0.82rem; color: var(--text);
     }
+
+    /* marquee */
+    .marquee-strip {
+      background: var(--cobalt3); overflow: hidden; height: 26px;
+      display: flex; align-items: center;
+      border-top: 1px solid var(--cobalt); border-bottom: 1px solid rgba(0,0,0,0.4);
+    }
+    .marquee-txt {
+      display: inline-block; animation: marq 32s linear infinite; padding-left: 100%;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; color: var(--cyan);
+      white-space: nowrap; letter-spacing: 0.06em;
+    }
+    @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 
     /* ── LAYOUT ── */
     .desktop {
       position: relative; z-index: 1;
-      min-height: 100vh; padding: 10px 10px 52px;
-      display: flex; flex-direction: column; gap: 8px;
+      min-height: 100vh; padding: 12px 12px 54px;
+      display: flex; flex-direction: column; gap: 10px;
     }
 
     .top-strip {
-      max-width: 920px; margin: 0 auto; width: 100%;
-      display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap;
+      max-width: 960px; margin: 0 auto; width: 100%;
     }
     .site-title-box {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 10px 16px; flex: 1; min-width: 200px;
-      display: flex; flex-direction: column; gap: 7px;
+      padding: 10px 18px; display: flex; flex-direction: column; gap: 7px;
     }
-    .site-title-main { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
-    .site-title-sub { font-family: 'DotGothic16', monospace; font-size: 0.7rem; color: var(--cobalt3); letter-spacing: 0.04em; }
+    .site-title-main {
+      display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+      min-height: 2.8rem;
+    }
+    .site-title-sub {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;
+      color: var(--cobalt3); letter-spacing: 0.06em;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .site-title-sub::before { content: '💾'; font-size: 0.9rem; }
 
-    /* Taskbar */
+    /* taskbar */
     .taskbar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
       background: var(--win-face); border-top: 2px solid var(--win-hilite);
-      height: 36px; display: flex; align-items: center; gap: 4px; padding: 0 6px;
+      height: 38px; display: flex; align-items: center; gap: 5px; padding: 0 8px;
     }
     .start-btn {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 2px 12px; font-family: 'Press Start 2P', monospace;
-      font-size: 0.42rem; color: var(--text); cursor: pointer; font-weight: bold;
-      height: 26px; display: flex; align-items: center; gap: 5px;
+      padding: 2px 14px; font-family: 'Press Start 2P', monospace;
+      font-size: 0.48rem; color: var(--text); cursor: pointer; font-weight: bold;
+      height: 28px; display: flex; align-items: center; gap: 6px;
     }
-    .start-btn::before { content: '💾'; font-size: 0.9rem; }
-    .tb-div { width: 2px; height: 22px; border-left: 1px solid var(--win-shadow); border-right: 1px solid var(--win-hilite); margin: 0 2px; }
+    .start-btn::before { content: '💾'; font-size: 1rem; }
+    .tb-div { width: 2px; height: 24px; border-left: 1px solid var(--win-shadow); border-right: 1px solid var(--win-hilite); margin: 0 3px; }
     .taskbar-btn {
       background: var(--win-face);
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 2px 8px; font-family: 'DotGothic16', monospace;
-      font-size: 0.7rem; color: var(--text); cursor: pointer; height: 26px;
-      display: flex; align-items: center; gap: 4px;
+      padding: 2px 10px; font-family: 'DotGothic16', monospace;
+      font-size: 0.82rem; color: var(--text); cursor: pointer; height: 28px;
+      display: flex; align-items: center; gap: 5px;
     }
     .taskbar-btn.active { background: var(--win-bg); border-color: var(--win-shadow); }
     .taskbar-clock {
       margin-left: auto;
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 2px 10px; font-family: 'DotGothic16', monospace;
-      font-size: 0.72rem; color: var(--text); height: 26px; display: flex; align-items: center;
+      padding: 2px 12px; font-family: 'DotGothic16', monospace;
+      font-size: 0.82rem; color: var(--text); height: 28px; display: flex; align-items: center;
     }
 
-    .main-window { max-width: 920px; margin: 0 auto; width: 100%; }
-    .main-body { display: grid; grid-template-columns: 155px 1fr; gap: 0; padding: 3px; }
-
-    .marquee-strip {
-      background: var(--cobalt3); overflow: hidden; height: 24px;
-      display: flex; align-items: center;
-      border-top: 1px solid var(--cobalt); border-bottom: 1px solid rgba(0,0,0,0.3);
-    }
-    .marquee-txt {
-      display: inline-block; animation: marq 30s linear infinite; padding-left: 100%;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--cyan);
-      white-space: nowrap; letter-spacing: 0.06em;
-    }
-    @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    /* ── MAIN WINDOW ── */
+    .main-window { max-width: 960px; margin: 0 auto; width: 100%; }
+    .main-body { display: grid; grid-template-columns: 170px 1fr; gap: 0; padding: 4px; }
 
     /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; gap: 5px; padding-right: 4px; }
+    .sidebar { display: flex; flex-direction: column; gap: 6px; padding-right: 5px; }
 
     .nav-item {
-      display: flex; align-items: center; gap: 5px;
-      padding: 7px 10px; font-family: 'DotGothic16', monospace;
-      font-size: 0.82rem; color: var(--text); text-decoration: none; cursor: pointer;
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 12px; font-family: 'DotGothic16', monospace;
+      font-size: 0.9rem; color: var(--text);
+      text-decoration: none; cursor: pointer;
       border-bottom: 1px solid var(--win-bg); background: var(--win-white);
       transition: background 0.08s;
     }
-    .nav-item::before { content: '▶'; font-size: 0.5rem; color: var(--cobalt2); }
-    .nav-item:hover, .nav-item.active { background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2)); color: white; }
+    .nav-item::before { content: '▶'; font-size: 0.55rem; color: var(--cobalt2); }
+    .nav-item:hover, .nav-item.active {
+      background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
+      color: white;
+    }
     .nav-item:hover::before, .nav-item.active::before { color: var(--cyan); }
 
     .sidebar-info {
-      background: var(--win-white); padding: 7px 9px;
-      font-family: 'DotGothic16', monospace; font-size: 0.74rem; color: var(--text); line-height: 1.75;
+      background: var(--win-white); padding: 8px 10px;
+      font-family: 'DotGothic16', monospace; font-size: 0.85rem;
+      color: var(--text-mid); line-height: 1.85;
     }
     .sidebar-info .lbl {
-      font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--cobalt2);
-      display: block; margin-top: 6px; margin-bottom: 1px; letter-spacing: 0.08em;
+      font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--cobalt2);
+      display: block; margin-top: 7px; margin-bottom: 2px; letter-spacing: 0.08em;
     }
     .online-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      display: inline-block; width: 9px; height: 9px; border-radius: 50%;
       background: var(--cyan); box-shadow: 0 0 7px var(--cyan);
-      margin-right: 4px; animation: blink 1.5s infinite;
+      margin-right: 5px; animation: blink 1.5s infinite;
     }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
 
     .stat-row {
-      display: flex; justify-content: space-between; padding: 4px 9px;
-      font-family: 'DotGothic16', monospace; font-size: 0.74rem; color: var(--text);
+      display: flex; justify-content: space-between; padding: 5px 10px;
+      font-family: 'DotGothic16', monospace; font-size: 0.85rem; color: var(--text-mid);
       background: var(--win-white); border-bottom: 1px dotted var(--win-bg);
     }
-    .stat-row .num { font-family: 'Press Start 2P', monospace; font-size: 0.46rem; color: var(--cobalt2); }
+    .stat-row .num {
+      font-family: 'Press Start 2P', monospace; font-size: 0.52rem; color: var(--cobalt2);
+    }
 
-    .key-row { padding: 8px 6px; background: var(--win-face); display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+    .key-row { padding: 8px 7px; background: var(--win-face); display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
 
     /* ── CONTENT ── */
     .content-area { min-height: 480px; }
     .view { display: none; animation: fadeWin 0.15s ease; }
     .view.active { display: block; }
     @keyframes fadeWin { from { opacity: 0; } to { opacity: 1; } }
-    .content-inner { padding: 12px 14px; background: var(--win-white); min-height: 100%; }
+    .content-inner { padding: 14px 18px; background: var(--win-white); min-height: 100%; }
 
     .sec-title {
-      font-family: 'Press Start 2P', monospace; font-size: 0.58rem; color: var(--cobalt3);
-      margin-bottom: 13px; letter-spacing: 0.06em;
-      display: flex; align-items: center; gap: 8px;
+      font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: var(--cobalt3);
+      margin-bottom: 16px; letter-spacing: 0.06em;
+      display: flex; align-items: center; gap: 10px;
     }
     .sec-title::after { content: ''; flex: 1; height: 1px; border-top: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-hilite); }
 
     /* HOME */
-    .welcome-grid { display: grid; grid-template-columns: 1fr 190px; gap: 12px; align-items: start; }
+    .welcome-grid { display: grid; grid-template-columns: 1fr 210px; gap: 14px; align-items: start; }
 
     .name-header {
-      background: linear-gradient(135deg, #e8f4ff, #eefffc, #e8f0ff);
-      border: 2px solid var(--win-shadow); padding: 10px 12px; margin-bottom: 12px;
+      background: linear-gradient(135deg, #e8f4ff, #eef8ff, #e8f4ff);
+      border: 2px solid var(--win-shadow); padding: 12px 14px; margin-bottom: 14px;
     }
-    .name-title-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; min-height: 2.5rem; }
-    .name-sub { font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text-mid); margin-top: 4px; }
-    .name-jp  { font-family: 'Yuji Syuku', serif; font-size: 1rem; color: var(--cobalt2); letter-spacing: 0.18em; opacity: 0.75; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .name-title-row {
+      display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 7px;
+      min-height: 2.8rem;
+    }
 
-    .welcome-box { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); line-height: 1.88; }
-    .welcome-box p + p { margin-top: 9px; }
+    .name-jp  { font-family: 'Yuji Syuku', serif; font-size: 1.1rem; color: var(--cobalt2); letter-spacing: 0.2em; opacity: 0.8; }
+    .name-sub { font-family: 'DotGothic16', monospace; font-size: 0.9rem; color: var(--text-mid); margin-top: 5px; }
+    .tag-row  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+    .welcome-box { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text-mid); line-height: 1.95; }
+    .welcome-box p + p { margin-top: 11px; }
     .welcome-box strong { color: var(--cobalt3); }
     .kawaii { color: var(--cobalt2); font-weight: bold; }
 
-    .focus-panel { padding: 8px; background: var(--win-white); }
-    .focus-title { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--cobalt2); text-align: center; margin-bottom: 8px; letter-spacing: 0.1em; }
+    .focus-panel { padding: 9px; background: var(--win-white); }
+    .focus-title { font-family: 'Press Start 2P', monospace; font-size: 0.44rem; color: var(--cobalt2); text-align: center; margin-bottom: 9px; letter-spacing: 0.1em; }
     .focus-item {
-      display: flex; align-items: flex-start; gap: 6px;
-      font-family: 'DotGothic16', monospace; font-size: 0.78rem; color: var(--text);
-      padding: 5px 2px; border-bottom: 1px dotted var(--win-bg); line-height: 1.4;
+      display: flex; align-items: flex-start; gap: 7px;
+      font-family: 'DotGothic16', monospace; font-size: 0.88rem; color: var(--text-mid);
+      padding: 6px 2px; border-bottom: 1px dotted var(--win-bg); line-height: 1.5;
     }
-    .focus-item::before { content: '●'; color: var(--cobalt2); font-size: 0.55rem; flex-shrink: 0; margin-top: 2px; }
+    .focus-item::before { content: '●'; color: var(--cobalt2); font-size: 0.6rem; flex-shrink: 0; margin-top: 3px; }
 
     /* EXPERIENCE */
-    .exp-entry { margin-bottom: 18px; }
+    .exp-entry { margin-bottom: 20px; }
     .exp-entry:last-child { margin-bottom: 0; }
-    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
-    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--cobalt3); }
-    .exp-date { font-family: 'DotGothic16', monospace; font-size: 0.76rem; color: var(--text-soft); }
-    .exp-co   { font-family: 'DotGothic16', monospace; font-size: 0.82rem; color: var(--cobalt2); margin-bottom: 9px; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .exp-list li { font-family: 'DotGothic16', monospace; font-size: 0.84rem; color: var(--text); line-height: 1.68; padding-left: 16px; position: relative; }
-    .exp-list li::before { content: '◆'; position: absolute; left: 0; color: var(--cobalt2); font-size: 0.5rem; top: 4px; }
+    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
+    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.54rem; color: var(--cobalt3); letter-spacing: 0.04em; }
+    .exp-date { font-family: 'DotGothic16', monospace; font-size: 0.88rem; color: var(--text-soft); }
+    .exp-co   { font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--cobalt2); margin-bottom: 10px; }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .exp-list li {
+      font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--text-mid);
+      line-height: 1.72; padding-left: 18px; position: relative;
+    }
+    .exp-list li::before { content: '◆'; position: absolute; left: 0; color: var(--cobalt2); font-size: 0.55rem; top: 5px; }
 
     /* PROJECTS */
-    .proj-grid { display: flex; flex-direction: column; gap: 10px; }
-    .proj-body { padding: 10px 13px; background: var(--win-white); }
-    .proj-desc { font-family: 'DotGothic16', monospace; font-size: 0.83rem; color: var(--text); line-height: 1.74; margin-bottom: 10px; }
-    .proj-link-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-grid { display: flex; flex-direction: column; gap: 12px; }
+    .proj-body { padding: 12px 15px; background: var(--win-white); }
+    .proj-desc { font-family: 'DotGothic16', monospace; font-size: 0.92rem; color: var(--text-mid); line-height: 1.78; margin-bottom: 12px; }
+    .proj-link-row { display: flex; gap: 8px; flex-wrap: wrap; }
 
     /* CERTS */
-    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 7px; }
     .cert-item {
       background: var(--win-white);
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 7px 10px; display: flex; justify-content: space-between; align-items: center;
-      font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text); transition: background 0.1s;
+      padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'DotGothic16', monospace; font-size: 0.9rem; color: var(--text-mid);
+      transition: background 0.1s;
     }
     .cert-item:hover { background: #e8f4ff; }
-    .cert-date-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
+    .cert-date-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
 
     /* SKILLS */
-    .skill-group { margin-bottom: 13px; }
+    .skill-group { margin-bottom: 15px; }
     .skill-group:last-child { margin-bottom: 0; }
     .skill-lbl {
-      font-family: 'Press Start 2P', monospace; font-size: 0.44rem; color: var(--cobalt3);
-      margin-bottom: 6px; display: flex; align-items: center; gap: 5px; letter-spacing: 0.06em;
+      font-family: 'Press Start 2P', monospace; font-size: 0.48rem; color: var(--cobalt3);
+      margin-bottom: 7px; display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em;
     }
-    .skill-lbl::before { content: '◆'; color: var(--cobalt2); font-size: 0.46rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .skill-lbl::before { content: '◆'; color: var(--cobalt2); font-size: 0.5rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .skill-tag {
       background: var(--win-face);
       border-top: 1px solid var(--win-hilite); border-left: 1px solid var(--win-hilite);
       border-right: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-shadow);
-      padding: 2px 9px; font-family: 'DotGothic16', monospace; font-size: 0.78rem; color: var(--text);
+      padding: 3px 11px; font-family: 'DotGothic16', monospace; font-size: 0.88rem; color: var(--text-mid);
     }
     .skill-tag:hover { background: #e8f4ff; }
 
     /* CONTACT */
-    .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; }
-    .contact-win { flex: 1; min-width: 200px; text-decoration: none; transition: filter 0.1s; }
+    .contact-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+    .contact-win { flex: 1; min-width: 210px; text-decoration: none; transition: filter 0.1s; }
     .contact-win:hover { filter: brightness(0.97); }
-    .contact-body { padding: 12px 14px; display: flex; align-items: center; gap: 12px; background: var(--win-white); }
-    .contact-icon { font-size: 1.6rem; }
-    .contact-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--cobalt2); letter-spacing: 0.1em; margin-bottom: 5px; }
-    .contact-val  { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); }
+    .contact-body { padding: 14px 16px; display: flex; align-items: center; gap: 14px; background: var(--win-white); }
+    .contact-icon { font-size: 1.8rem; }
+    .contact-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--cobalt2); letter-spacing: 0.1em; margin-bottom: 6px; }
+    .contact-val { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text-mid); }
 
-    /* BANNER */
-    .banner-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
+    /* ── BANNER BAR ── */
+    .banner-wrap { max-width: 960px; margin: 0 auto; width: 100%; }
     .banner-bar {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 6px 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+      padding: 7px 10px; display: flex; gap: 7px; flex-wrap: wrap; align-items: center;
     }
     .banner-item {
-      height: 28px; border: 1px solid var(--win-shadow); padding: 2px 8px;
-      font-family: 'Press Start 2P', monospace; font-size: 0.36rem;
-      display: flex; align-items: center; gap: 3px; white-space: nowrap; line-height: 1.5;
+      height: 30px; border: 1px solid var(--win-shadow); padding: 2px 9px;
+      font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
+      display: flex; align-items: center; gap: 4px; white-space: nowrap; line-height: 1.5;
     }
     .bn-1 { background: var(--cobalt3); color: var(--cyan); }
     .bn-2 { background: #005577; color: var(--cyan2); }
@@ -486,35 +476,35 @@
 
     .footer {
       text-align: center; font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem; color: rgba(180,230,255,0.7);
-      padding: 6px 0 48px; text-shadow: 0 0 8px rgba(0,204,221,0.4); letter-spacing: 0.06em;
+      font-size: 0.78rem; color: rgba(180,230,255,0.6);
+      padding: 6px 0 50px; letter-spacing: 0.06em;
     }
 
     /* POPUP */
-    .popup-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.35); align-items: center; justify-content: center; }
+    .popup-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.4); align-items: center; justify-content: center; }
     .popup-overlay.show { display: flex; }
-    .popup-box { width: 300px; }
-    .popup-body { padding: 14px 16px; background: var(--win-face); display: flex; gap: 10px; align-items: flex-start; }
-    .popup-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .popup-text { font-family: 'DotGothic16', monospace; font-size: 0.84rem; color: var(--text); line-height: 1.6; }
-    .popup-btns { padding: 8px; background: var(--win-face); display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--win-shadow); }
+    .popup-box { width: 320px; }
+    .popup-body { padding: 16px 18px; background: var(--win-face); display: flex; gap: 12px; align-items: flex-start; }
+    .popup-icon { font-size: 2rem; flex-shrink: 0; }
+    .popup-text { font-family: 'DotGothic16', monospace; font-size: 0.95rem; color: var(--text); line-height: 1.65; }
+    .popup-btns { padding: 10px; background: var(--win-face); display: flex; justify-content: center; gap: 10px; border-top: 1px solid var(--win-shadow); }
 
     /* MOBILE */
     .mob-toggle { display: none; }
-    @media (max-width: 680px) {
+    @media (max-width: 700px) {
       .main-body { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .sidebar.open { display: flex; }
       .mob-toggle {
         display: block; width: 100%;
         background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-        color: white; border: none; padding: 6px;
-        font-family: 'Press Start 2P', monospace; font-size: 0.46rem; cursor: pointer; margin-bottom: 6px;
+        color: white; border: none; padding: 7px;
+        font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+        cursor: pointer; margin-bottom: 7px;
       }
       .welcome-grid { grid-template-columns: 1fr; }
       .cert-list { grid-template-columns: 1fr; }
-      .desktop { padding: 6px 6px 50px; }
-      .top-strip { flex-direction: column; }
+      .desktop { padding: 8px 8px 54px; }
     }
   </style>
 </head>
@@ -544,12 +534,12 @@
   <div class="top-strip">
     <div class="site-title-box">
       <div class="site-title-main" id="name-top"></div>
-      <div class="site-title-sub">💾 CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:2px;">
+      <div class="site-title-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;">
         <span class="cyan-tag">BLUE TEAM</span>
         <span class="cyan-tag">SIEM</span>
         <span class="cyan-tag">WGU 2026</span>
-        <span class="cyan-tag" onclick="showPopup()" style="cursor:pointer;background:rgba(0,204,221,0.15);">HIRE ME</span>
+        <span class="cyan-tag" onclick="showPopup()" style="cursor:pointer;background:rgba(0,204,221,0.12);">HIRE ME</span>
       </div>
     </div>
   </div>
@@ -589,7 +579,7 @@
 
         <div class="window">
           <div class="title-bar">
-            <div class="title-bar-text" style="font-size:0.42rem;"><span class="title-icon">🗂️</span> Navigate</div>
+            <div class="title-bar-text"><span class="title-icon">🗂️</span> Navigate</div>
             <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
           </div>
           <a class="nav-item active" onclick="showPage('home')"       data-page="home">🏠 Home</a>
@@ -602,7 +592,7 @@
 
         <div class="window">
           <div class="title-bar teal-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📋</span> Info</div>
+            <div class="title-bar-text"><span class="title-icon">📋</span> Info</div>
             <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
           </div>
           <div class="sidebar-info">
@@ -610,13 +600,13 @@
             <span class="lbl">LOCATION</span>📍 Detroit, MI<br/>
             <span class="lbl">GRAD DATE</span>🎓 Jan 2026<br/>
             <span class="lbl">EMAIL</span>
-            <a href="/cdn-cgi/l/email-protection#344751535b5b505d510506745359555d581a575b59" style="color:var(--cobalt2);font-size:0.68rem;">segoodie12<br/>@gmail.com</a>
+            <a href="mailto:segoodie12@gmail.com" style="color:var(--cobalt2);font-size:0.82rem;">segoodie12<br/>@gmail.com</a>
           </div>
         </div>
 
         <div class="window">
           <div class="title-bar cyan-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📊</span> Stats</div>
+            <div class="title-bar-text"><span class="title-icon">📊</span> Stats</div>
             <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
           </div>
           <div class="stat-row"><span>Certs</span><span class="num">8</span></div>
@@ -627,24 +617,24 @@
 
         <div class="window">
           <div class="title-bar dark-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">⌨️</span> keys.exe</div>
+            <div class="title-bar-text"><span class="title-icon">⌨️</span> keys.exe</div>
             <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
           </div>
           <div class="key-row">
-            <span class="key-tag" style="font-size:0.42rem;">SIEM</span>
-            <span class="key-tag" style="font-size:0.42rem;">SOC</span>
-            <span class="key-tag" style="font-size:0.42rem;">AZURE</span>
-            <span class="key-tag" style="font-size:0.42rem;">KALI</span>
-            <span class="key-tag" style="font-size:0.42rem;">AD</span>
-            <span class="key-tag" style="font-size:0.42rem;">SPLUNK</span>
+            <span class="key-tag">SIEM</span>
+            <span class="key-tag">SOC</span>
+            <span class="key-tag">AZURE</span>
+            <span class="key-tag">KALI</span>
+            <span class="key-tag">AD</span>
+            <span class="key-tag">SPLUNK</span>
           </div>
         </div>
 
-        <div class="window" style="padding:8px;background:var(--win-white);">
-          <div style="text-align:center;font-family:'Yuji Syuku',serif;font-size:1.7rem;color:var(--cobalt2);line-height:1.4;opacity:0.55;">
+        <div class="window" style="padding:10px;background:var(--win-white);">
+          <div style="text-align:center;font-family:'Yuji Syuku',serif;font-size:1.9rem;color:var(--cobalt2);line-height:1.4;opacity:0.6;">
             守護<br/>防衛
           </div>
-          <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--cobalt2);margin-top:4px;letter-spacing:0.1em;">CYBER_JUTSU</div>
+          <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--cobalt2);margin-top:5px;letter-spacing:0.12em;">CYBER_JUTSU</div>
         </div>
 
       </div>
@@ -659,7 +649,7 @@
 
             <div class="name-header">
               <div class="name-title-row" id="name-home"></div>
-              <div class="name-jp" style="margin-top:5px;">サラ・グッディ</div>
+              <div class="name-jp">サラ・グッディ</div>
               <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
               <div class="tag-row">
                 <span class="cyan-tag">SIEM</span>
@@ -679,12 +669,12 @@
                 <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
                 <p>I love <span class="kawaii">blue team ops</span>, building home labs, setting honeypots, and making threats very unhappy ⚔️</p>
                 <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab 💻</p>
-                <p style="margin-top:10px;font-size:0.76rem;color:var(--cobalt2);">Currently open to cybersecurity roles and internships !!</p>
+                <p style="margin-top:12px;font-size:0.88rem;color:var(--cobalt2);">Currently open to cybersecurity roles and internships !!</p>
               </div>
               <div>
                 <div class="window">
                   <div class="title-bar teal-bar">
-                    <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📌</span> focus.txt</div>
+                    <div class="title-bar-text"><span class="title-icon">📌</span> focus.txt</div>
                     <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
                   </div>
                   <div class="focus-panel">
@@ -698,8 +688,8 @@
               </div>
             </div>
 
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">
               // 守護 · 防衛 · 術式 · サイバー //
             </div>
           </div>
@@ -734,20 +724,20 @@
             <div class="sec-title">EDUCATION</div>
             <div class="exp-entry">
               <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.42rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</span>
+                <span class="exp-role" style="font-size:0.46rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</span>
                 <span class="exp-date">Jan 2026</span>
               </div>
               <div class="exp-co">◆ Western Governors University</div>
             </div>
             <div class="exp-entry" style="margin-bottom:0;">
               <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.42rem;">ASSOCIATE IN LIBERAL ARTS</span>
+                <span class="exp-role" style="font-size:0.46rem;">ASSOCIATE IN LIBERAL ARTS</span>
                 <span class="exp-date">June 2021</span>
               </div>
               <div class="exp-co">◆ Henry Ford Community College</div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 術式 · 守護 · 防衛 //</div>
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 術式 · 守護 · 防衛 //</div>
           </div>
         </div>
 
@@ -755,7 +745,9 @@
         <div class="view" id="page-projects">
           <div class="content-inner">
             <div class="sec-title">PROJECTS</div>
-
+            <div style="font-family:'DotGothic16',monospace;font-size:0.9rem;color:var(--cobalt2);margin-bottom:14px;">
+              ◆ Replace the # links with your real GitHub / project URLs !!
+            </div>
             <div class="proj-grid">
 
               <div class="window">
@@ -804,8 +796,8 @@
               </div>
 
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 斬 · 式 · 盾 · 術 //</div>
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 斬 · 式 · 盾 · 術 //</div>
           </div>
         </div>
 
@@ -813,7 +805,7 @@
         <div class="view" id="page-certs">
           <div class="content-inner">
             <div class="sec-title">CERTIFICATIONS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.8rem;color:var(--cobalt2);margin-bottom:12px;">
+            <div style="font-family:'DotGothic16',monospace;font-size:0.92rem;color:var(--cobalt2);margin-bottom:14px;">
               8 certs earned within 14 months !! (●ˇ∀ˇ●)
             </div>
             <div class="cert-list">
@@ -826,8 +818,8 @@
               <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date-lbl">OCT<br/>2024</span></div>
               <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date-lbl">DEC<br/>2024</span></div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 証明 · 認定 · 術式 //</div>
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 証明 · 認定 · 術式 //</div>
           </div>
         </div>
 
@@ -859,8 +851,8 @@
               <div class="skill-lbl">TICKETING</div>
               <div class="skill-tags"><span class="skill-tag">Vivantio</span></div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 技術 · 術式 · 能力 //</div>
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 技術 · 術式 · 能力 //</div>
           </div>
         </div>
 
@@ -868,19 +860,19 @@
         <div class="view" id="page-contact">
           <div class="content-inner">
             <div class="sec-title">CONTACT</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.86rem;color:var(--text);margin-bottom:14px;line-height:1.82;">
+            <div style="font-family:'DotGothic16',monospace;font-size:0.95rem;color:var(--text-mid);margin-bottom:16px;line-height:1.9;">
               Open to cybersecurity roles, internships, and collabs !<br/>
               Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ★
             </div>
             <div class="contact-grid">
-              <a class="window contact-win" href="/cdn-cgi/l/email-protection#2c5f494b43434845491d1e6c4b414d4540024f4341">
+              <a class="window contact-win" href="mailto:segoodie12@gmail.com">
                 <div class="title-bar">
                   <div class="title-bar-text"><span class="title-icon">📧</span> Email</div>
                   <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
                 </div>
                 <div class="contact-body">
                   <span class="contact-icon">📧</span>
-                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val"><span class="__cf_email__" data-cfemail="700315171f1f141915414230171d11191c5e131f1d">[email&#160;protected]</span></div></div>
+                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val">segoodie12@gmail.com</div></div>
                 </div>
               </a>
               <a class="window contact-win" href="https://linkedin.com" target="_blank">
@@ -894,8 +886,8 @@
                 </div>
               </a>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 連絡 · 接続 · 術式 //</div>
+            <hr class="win-rule" style="margin-top:16px;" />
+            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--cobalt2);letter-spacing:0.1em;">// 連絡 · 接続 · 術式 //</div>
           </div>
         </div>
 
@@ -904,11 +896,11 @@
 
     <div class="status-bar">
       <div class="status-cell">💾 Sara Goodie — Cybersecurity Portfolio</div>
-      <div class="status-cell" style="max-width:200px;">サラ・グッディ · 2026</div>
-      <div class="status-cell" style="max-width:130px;" id="clock">--:-- --</div>
+      <div class="status-cell" style="max-width:210px;">サラ・グッディ · 2026</div>
+      <div class="status-cell" style="max-width:140px;" id="clock">--:-- --</div>
     </div>
 
-  </div>
+  </div><!-- end main window -->
 
   <!-- BANNER BAR -->
   <div class="banner-wrap">
@@ -928,10 +920,10 @@
 
   <div class="footer">
     &gt;&gt; © 2026 SARA GOODIE // サラ・グッディ // CYBERSECURITY &amp; INFORMATION ASSURANCE &lt;&lt;<br/>
-    <span style="font-size:0.62rem;opacity:0.7;">BEST VIEWED IN 800×600 // MADE WITH COBALT BLUE AND KEYBOARD ENERGY</span>
+    <span style="font-size:0.68rem;opacity:0.6;">BEST VIEWED IN 800×600 // MADE WITH COBALT BLUE AND KEYBOARD ENERGY</span>
   </div>
 
-</div>
+</div><!-- end desktop -->
 
 <!-- TASKBAR -->
 <div class="taskbar">
@@ -943,72 +935,62 @@
   <div class="taskbar-clock" id="taskbar-clock">--:--</div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  /* ── TYPEWRITER KEY ANIMATION ── */
-  const NAME    = 'SARA GOODIE'.split('');
-  const DELAY   = 350;   // ms before typing starts
-  const STEP    = 100;   // ms between each key
-  const PRESS   = 80;    // ms the key stays pressed down
+<script>
+  /* ── ANIMATED TYPING NAME ── */
+  const NAME   = 'SARA GOODIE'.split('');
+  const DELAY  = 300;   // ms before start
+  const SPEED  = 100;   // ms per key
 
-  function buildKeys(container, isHome) {
-    NAME.forEach(ch => {
-      const el = document.createElement('span');
+  function buildNameRow(containerId) {
+    const container = document.getElementById(containerId);
+    NAME.forEach((ch, i) => {
       if (ch === ' ') {
-        el.className = 'key-anim space-key';
-      } else {
-        el.className = isHome ? 'key-anim key-home' : 'key-anim';
-        el.textContent = ch;
+        const sp = document.createElement('span');
+        sp.style.display = 'inline-block';
+        sp.style.width = '10px';
+        container.appendChild(sp);
+        return;
       }
-      container.appendChild(el);
-    });
-  }
+      const k = document.createElement('span');
+      k.className = 'name-key';
+      k.textContent = ch;
+      container.appendChild(k);
 
-  function animateKeys(container) {
-    const keys = container.querySelectorAll('.key-anim:not(.space-key)');
-    const all  = container.querySelectorAll('.key-anim');
-
-    // Show spaces immediately (they're invisible anyway)
-    container.querySelectorAll('.space-key').forEach(s => s.style.opacity = '1');
-
-    keys.forEach((el, i) => {
       setTimeout(() => {
-        // Pop into view
-        el.style.transition = 'opacity 0.05s';
-        el.style.opacity    = '1';
-        el.classList.add('visible');
-        // stagger the shimmer phase per key
-        el.style.animationDelay = (i * 0.28) + 's, ' + (i * 0.28) + 's';
+        // appear
+        k.style.transition = 'opacity 0.04s';
+        k.style.opacity = '1';
+        k.style.background = 'linear-gradient(180deg, #444, #222)';
+        k.style.borderColor = '#555';
+        k.style.boxShadow = '0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7)';
 
-        // Press down
+        // press down
         setTimeout(() => {
-          el.style.transition  = 'transform 0.06s ease, box-shadow 0.06s ease';
-          el.style.transform   = 'translateY(3px)';
-          el.style.boxShadow   = '0 0 0 var(--key-shadow), 0 1px 3px rgba(0,0,0,0.5)';
-        }, PRESS * 0.3);
+          k.style.transition = 'transform 0.06s, box-shadow 0.06s';
+          k.style.transform = 'translateY(4px)';
+          k.style.boxShadow = '0 1px 0 #000, 0 2px 4px rgba(0,0,0,0.6)';
+        }, 50);
 
-        // Release back up
+        // release
         setTimeout(() => {
-          el.style.transition  = 'transform 0.08s ease, box-shadow 0.08s ease';
-          el.style.transform   = 'translateY(0)';
-          el.style.boxShadow   = '0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5)';
-        }, PRESS);
-      }, DELAY + i * STEP);
+          k.style.transition = 'all 0.12s ease';
+          k.style.transform = 'translateY(0)';
+          k.style.background = 'linear-gradient(180deg, #2a2a2a, #0f0f0f)';
+          k.style.borderColor = '#111';
+          k.style.boxShadow = '0 5px 0 #000, 0 6px 10px rgba(0,0,0,0.7)';
+        }, 150);
+      }, DELAY + i * SPEED);
     });
   }
 
-  // Build and animate both name containers
-  [['name-top', false], ['name-home', true]].forEach(([id, isHome]) => {
-    const el = document.getElementById(id);
-    if (el) { buildKeys(el, isHome); animateKeys(el); }
-  });
+  buildNameRow('name-top');
+  buildNameRow('name-home');
 
   /* ── NAV ── */
   function showPage(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(a => {
-      a.classList.toggle('active', a.dataset.page === id);
-    });
+    document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.page === id));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1020,4 +1002,13 @@
     const now = new Date();
     const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
     const ampm = h >= 12 ? 'PM' : 'AM';
-    const str = ((h %
+    const str = ((h % 12) || 12) + ':' + m + ' ' + ampm;
+    const e1 = document.getElementById('clock');
+    const e2 = document.getElementById('taskbar-clock');
+    if (e1) e1.textContent = str;
+    if (e2) e2.textContent = str;
+  }
+  updateClock(); setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
