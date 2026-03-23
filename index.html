@@ -18,9 +18,12 @@
   text-align: center;
   color: white;
 
-  letter-spacing: 0 !important;     /* VERY IMPORTANT */
-  font-weight: normal !important;   /* reset */
-  text-transform: none !important;  /* don't force caps */
+  letter-spacing: 0 !important;
+  font-weight: normal !important;
+  text-transform: none !important;
+
+  line-height: 1.6 !important;     /* 👈 IMPORTANT */
+  padding-bottom: 20px;            /* 👈 gives space for flourish */
 }
     .name-main.logo-text {
   -webkit-font-smoothing: antialiased;
@@ -108,9 +111,12 @@
 
     /* ── THE NAME ── */
     .name-wrap {
-      position: relative;
-      opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
-    }
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.5s forwards;
+
+  overflow: visible;   /* 👈 ADD THIS */
+}
 
     /* ghost/echo layer behind */
     .name-ghost {
