@@ -3,970 +3,976 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sara Goodie — Cyber Portfolio</title>
+  <title>root@sgoodie:~$ _</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=Cutive+Mono&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* HENLO PLAND palette */
-      --cobalt:      #1a5fd4;   /* main cobalt blue bg */
-      --cobalt2:     #2470e8;   /* lighter cobalt */
-      --cobalt3:     #0d4ab8;   /* darker cobalt */
-      --cyan:        #00ccdd;   /* aquarium cyan accent */
-      --cyan2:       #44ddee;   /* lighter cyan */
-      --cyan-pale:   #b0f0f8;   /* pale cyan */
-      --teal:        #009988;   /* teal green accent */
-      --dot-blue:    rgba(100,180,255,0.18); /* dotted map pattern */
-
-      /* Win98 chrome — grey like the keyboard/computer in the image */
-      --win-face:    #d4d0c8;
-      --win-hilite:  #ffffff;
-      --win-shadow:  #808080;
-      --win-dark:    #404040;
-      --win-bg:      #c0c0c0;
-      --win-white:   #ffffff;
-      --win-inset:   #f0f0f0;
-
-      /* key-cap style */
-      --key-bg:      #2a2a2a;
-      --key-face:    #3a3a3a;
-      --key-text:    #ffffff;
-      --key-shadow:  #111111;
-
-      /* text */
-      --text:        #000000;
-      --text-mid:    #333333;
-      --text-soft:   #555555;
-      --link-col:    var(--cobalt3);
+      --pink:       #ff2d78;
+      --pink2:      #ff6aaa;
+      --pink-dim:   #c2185b;
+      --pink-pale:  #5a1a3a;
+      --pink-ghost: rgba(255,45,120,0.08);
+      --red:         #ff5555;
+      --amber:       #ffcc44;
+      --white-dim:   #f0e8f0;
+      --grey:        #aaaaaa;
+      --bg:          #0d0010;
+      --bg2:         #110014;
+      --panel:       #1c0a26;
+      --panel2:      #170820;
+      --border:      #6a1a4a;
+      --border2:     #3a0a2a;
+      --cursor-col:  #ff2d78;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DotGothic16', monospace;
-      /* cobalt blue with subtle dot pattern like the image */
-      background-color: var(--cobalt);
-      background-image:
-        radial-gradient(circle at 15% 25%, rgba(0,204,221,0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(100,180,255,0.15) 0%, transparent 40%),
-        radial-gradient(circle at 75% 80%, rgba(0,153,136,0.10) 0%, transparent 45%),
-        radial-gradient(circle at 30% 80%, rgba(36,112,232,0.20) 0%, transparent 40%);
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      background: var(--bg);
       min-height: 100vh;
-      color: var(--text);
-      font-size: 13px;
+      color: var(--white-dim);
+      font-size: 15px;
       overflow-x: hidden;
+      cursor: crosshair;
     }
 
-    /* dot map pixel pattern like the image */
+    /* ── CRT effects ── */
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      opacity: 0.12;
-      background-image: radial-gradient(circle, rgba(180,230,255,1) 1px, transparent 1px);
-      background-size: 18px 18px;
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.10) 2px,
+        rgba(0,0,0,0.10) 4px
+      );
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      background: radial-gradient(ellipse at center,
+        transparent 60%,
+        rgba(0,0,0,0.45) 100%
+      );
     }
 
-    ::-webkit-scrollbar { width: 17px; }
-    ::-webkit-scrollbar-track { background: var(--cobalt3); }
-    ::-webkit-scrollbar-thumb {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite);
-      border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark);
-      border-bottom: 2px solid var(--win-dark);
+    /* flicker animation */
+    @keyframes flicker {
+      0%,19.999%,22%,62.999%,64%,64.999%,70%,100% { opacity: 1; }
+      20%,21.999%,63%,63.999%,65%,69.999% { opacity: 0.92; }
+    }
+    .crt { animation: flicker 8s infinite; }
+
+    /* glitch effect */
+    @keyframes glitch {
+      0%,90%,100% { transform: translate(0); clip-path: none; }
+      91% { transform: translate(-2px, 1px); }
+      92% { transform: translate(2px, -1px); clip-path: inset(40% 0 50% 0); }
+      93% { transform: translate(-1px, 2px); clip-path: inset(10% 0 80% 0); }
+      94% { transform: translate(0); clip-path: none; }
+    }
+    .glitch { animation: glitch 6s infinite; }
+
+    /* text blink */
+    @keyframes blink { 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+    .cursor::after {
+      content: '█';
+      animation: blink 1s step-end infinite;
+      color: var(--cursor-col);
+      margin-left: 1px;
     }
 
-    /* ── WIN98 WINDOW ── */
-    .window {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite);
-      border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark);
-      border-bottom: 2px solid var(--win-dark);
-      box-shadow: 2px 2px 0 var(--win-shadow), 0 0 0 1px rgba(0,0,0,0.1);
+    /* scan line sweep */
+    @keyframes scan {
+      0% { top: -10%; }
+      100% { top: 110%; }
     }
-    .window-inner {
-      border-top: 1px solid var(--win-shadow);
-      border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite);
-      border-bottom: 1px solid var(--win-hilite);
-      margin: 2px;
-      background: var(--win-white);
+    .scan-line {
+      position: fixed; left: 0; right: 0; z-index: 9997; pointer-events: none;
+      height: 3px;
+      background: linear-gradient(180deg, transparent, rgba(0,255,65,0.06), transparent);
+      animation: scan 7s linear infinite;
     }
 
-    /* title bar — cobalt blue like Win98 but matching the image */
-    .title-bar {
-      background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-      padding: 3px 5px 3px 6px;
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--pink-pale); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--pink-dim); }
+
+    /* ── TERMINAL PANEL ── */
+    .term-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 0 0 20px rgba(255,45,120,0.04), inset 0 0 40px rgba(0,0,0,0.8);
+    }
+    .term-panel:hover {
+      border-color: var(--border);
+      box-shadow: 0 0 30px rgba(255,45,120,0.08);
+    }
+
+    /* terminal title bar */
+    .term-bar {
+      background: var(--panel2);
+      border-bottom: 1px solid var(--border);
+      padding: 5px 10px;
       display: flex; align-items: center; justify-content: space-between;
-      user-select: none;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa;
+      letter-spacing: 0.06em;
     }
-    .title-bar.teal-bar { background: linear-gradient(90deg, #006655, #009977); }
-    .title-bar.cyan-bar  { background: linear-gradient(90deg, #007799, var(--cyan)); }
-    .title-bar.dark-bar  { background: linear-gradient(90deg, #222233, #334466); }
+    .term-bar-title { display: flex; align-items: center; gap: 8px; color: var(--pink2); }
+    .term-bar-title::before { content: '$ '; color: var(--pink-dim); }
+    .term-dots { display: flex; gap: 5px; }
+    .term-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--pink-pale); border: 1px solid var(--pink-dim);
+      cursor: default;
+    }
+    .term-dot:hover { background: var(--pink2); box-shadow: 0 0 6px var(--pink); }
 
-    .title-bar-text {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.48rem; color: white;
-      letter-spacing: 0.04em; display: flex; align-items: center; gap: 5px;
-    }
-    .title-icon { font-size: 0.8rem; }
-    .title-bar-controls { display: flex; gap: 2px; }
-    .tb-btn {
-      width: 16px; height: 14px;
-      background: var(--win-face);
-      border-top: 1px solid var(--win-hilite);
-      border-left: 1px solid var(--win-hilite);
-      border-right: 1px solid var(--win-dark);
-      border-bottom: 1px solid var(--win-dark);
-      font-size: 0.5rem; display: flex; align-items: center; justify-content: center;
-      cursor: default; color: var(--text); font-weight: bold; line-height: 1;
-    }
-    .tb-btn:active {
-      border-top: 1px solid var(--win-dark); border-left: 1px solid var(--win-dark);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-    }
-
-    .menu-bar {
-      background: var(--win-face); border-bottom: 1px solid var(--win-shadow);
-      padding: 2px 6px; font-size: 0.78rem; color: var(--text); display: flex; gap: 14px;
-    }
-    .menu-bar span:hover { background: var(--cobalt3); color: white; padding: 0 3px; cursor: default; }
-
-    .inset {
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      background: var(--win-white); padding: 6px 8px;
-    }
-
-    .win-btn-raised {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 4px 14px; font-family: 'DotGothic16', monospace;
-      font-size: 0.8rem; color: var(--text); cursor: pointer; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 5px; transition: filter 0.1s;
-    }
-    .win-btn-raised:hover { filter: brightness(0.93); }
-    .win-btn-raised:active {
-      border-top: 2px solid var(--win-dark); border-left: 2px solid var(--win-dark);
-      border-right: 2px solid var(--win-hilite); border-bottom: 2px solid var(--win-hilite);
-    }
-
-    .win-rule {
-      border: none; border-top: 1px solid var(--win-shadow);
-      border-bottom: 1px solid var(--win-hilite); margin: 10px 0;
-    }
-
-    /* ── KEYBOARD KEY style (like the HENLO letters) ── */
-    .key-tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
-      border: 1.5px solid #111;
-      border-radius: 5px;
-      box-shadow: 0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5);
-      color: var(--key-text); font-family: 'Press Start 2P', monospace;
-      font-size: 0.52rem; letter-spacing: 0.06em;
-      padding: 4px 9px; cursor: default;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-    .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 var(--key-shadow); }
-
-    /* cyan pill tag */
-    .cyan-tag {
-      display: inline-flex; align-items: center;
-      background: transparent; border: 2px solid var(--cyan);
-      border-radius: 999px; padding: 2px 11px;
-      color: var(--cyan); font-family: 'DotGothic16', monospace;
-      font-size: 0.76rem; cursor: default;
-      transition: background 0.1s;
-    }
-    .cyan-tag:hover { background: rgba(0,204,221,0.12); }
-
-    /* address bar like the image */
-    .address-bar {
-      display: flex; align-items: center; gap: 6px;
-      background: var(--win-face); padding: 3px 6px;
-      border-bottom: 1px solid var(--win-shadow);
-    }
-    .addr-nav-btn {
-      background: var(--win-face);
-      border-top: 1px solid var(--win-hilite); border-left: 1px solid var(--win-hilite);
-      border-right: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-shadow);
-      width: 22px; height: 20px; font-size: 0.7rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: default; color: var(--text);
-    }
-    .addr-field {
-      flex: 1;
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      background: var(--win-white); padding: 2px 6px;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; color: var(--cobalt3);
-    }
-    .addr-go {
-      background: var(--cobalt2); color: white;
-      border-top: 1px solid var(--cobalt); border-left: 1px solid var(--cobalt);
-      border-right: 1px solid var(--cobalt3); border-bottom: 1px solid var(--cobalt3);
-      font-size: 0.7rem; padding: 2px 7px; cursor: default;
-      font-family: 'DotGothic16', monospace;
-    }
-
-    /* status bar */
-    .status-bar {
-      border-top: 1px solid var(--win-shadow);
-      display: flex; gap: 2px; padding: 2px 4px; background: var(--win-face);
-    }
-    .status-cell {
-      flex: 1; padding: 2px 6px;
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      font-family: 'DotGothic16', monospace; font-size: 0.72rem; color: var(--text);
-    }
+    /* prompt */
+    .prompt { color: var(--pink2); }
+    .prompt-path { color: var(--pink-dim); }
+    .prompt-sym { color: var(--pink); }
 
     /* ── LAYOUT ── */
     .desktop {
       position: relative; z-index: 1;
       min-height: 100vh; padding: 10px 10px 52px;
       display: flex; flex-direction: column; gap: 8px;
+      max-width: 960px; margin: 0 auto;
     }
 
-    /* top header strip */
-    .top-strip {
-      max-width: 920px; margin: 0 auto; width: 100%;
-      display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap;
+    /* ── BOOT HEADER ── */
+    .boot-header {
+      padding: 12px 14px; border-bottom: 1px solid var(--border);
+      background: var(--bg);
     }
-    .site-title-box {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 8px 16px; flex: 1; min-width: 200px;
-      display: flex; flex-direction: column; gap: 5px;
+    .boot-line {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa;
+      line-height: 1.8; letter-spacing: 0.04em;
     }
-    .site-title-main {
-      display: flex; gap: 5px; align-items: center; flex-wrap: wrap;
-    }
-    .site-title-sub {
-      font-family: 'DotGothic16', monospace; font-size: 0.7rem;
-      color: var(--cobalt3); letter-spacing: 0.04em;
-    }
+    .boot-line .hi { color: var(--pink); }
+    .boot-line .dim { color: var(--grey); }
+    .boot-line .warn { color: var(--amber); }
+    .boot-line .err  { color: var(--red); }
 
-    /* Taskbar */
-    .taskbar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--win-face); border-top: 2px solid var(--win-hilite);
-      height: 36px; display: flex; align-items: center; gap: 4px; padding: 0 6px;
+    /* name display */
+    .name-display {
+      margin: 14px 0 8px;
+      font-family: 'VT323', monospace;
+      font-size: clamp(4rem, 10vw, 7rem);
+      color: var(--pink);
+      letter-spacing: 0.12em;
+      text-shadow:
+        0 0 10px rgba(255,45,120,0.9),
+        0 0 30px rgba(255,45,120,0.6),
+        0 0 60px rgba(255,45,120,0.3);
+      line-height: 1;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0 12px;
     }
-    .start-btn {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 2px 12px; font-family: 'Press Start 2P', monospace;
-      font-size: 0.42rem; color: var(--text); cursor: pointer; font-weight: bold;
-      height: 26px; display: flex; align-items: center; gap: 5px;
+    .name-display .typed-char {
+      display: inline;
+      opacity: 0;
+      transition: none;
     }
-    .start-btn::before { content: '💾'; font-size: 0.9rem; }
-    .tb-div { width: 2px; height: 22px; border-left: 1px solid var(--win-shadow); border-right: 1px solid var(--win-hilite); margin: 0 2px; }
-    .taskbar-btn {
-      background: var(--win-face);
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 2px 8px; font-family: 'DotGothic16', monospace;
-      font-size: 0.7rem; color: var(--text); cursor: pointer; height: 26px;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .taskbar-btn.active { background: var(--win-bg); border-color: var(--win-shadow); }
-    .taskbar-clock {
-      margin-left: auto;
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 2px 10px; font-family: 'DotGothic16', monospace;
-      font-size: 0.72rem; color: var(--text); height: 26px; display: flex; align-items: center;
-    }
+    .name-display .space { display: inline-block; width: 0.5em; }
 
-    /* ── MAIN WINDOW ── */
-    .main-window { max-width: 920px; margin: 0 auto; width: 100%; }
-    .main-body { display: grid; grid-template-columns: 155px 1fr; gap: 0; padding: 3px; }
+    .name-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa;
+      letter-spacing: 0.1em; margin-top: 4px;
+    }
+    .name-sub::before { content: '// '; color: var(--pink-pale); }
 
-    /* marquee */
-    .marquee-strip {
-      background: var(--cobalt3); overflow: hidden; height: 24px;
-      display: flex; align-items: center;
-      border-top: 1px solid var(--cobalt); border-bottom: 1px solid rgba(0,0,0,0.3);
+    /* tag row */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .term-tag {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.78rem;
+      padding: 3px 12px; border: 1px solid var(--pink-dim);
+      color: var(--pink2); background: var(--pink-ghost);
+      letter-spacing: 0.06em; cursor: default;
+      transition: all 0.15s ease;
     }
-    .marquee-txt {
-      display: inline-block; animation: marq 30s linear infinite; padding-left: 100%;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--cyan);
-      white-space: nowrap; letter-spacing: 0.06em;
+    .term-tag:hover {
+      background: var(--pink-pale);
+      border-color: var(--pink);
+      color: var(--pink);
+      box-shadow: 0 0 10px rgba(255,45,120,0.2);
     }
-    @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    .term-tag.active { color: var(--bg); background: var(--pink); border-color: var(--pink); }
+
+    /* ── MAIN LAYOUT ── */
+    .main-body { display: grid; grid-template-columns: 200px 1fr; gap: 8px; }
 
     /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; gap: 5px; padding-right: 4px; }
+    .sidebar { display: flex; flex-direction: column; gap: 6px; }
 
     .nav-item {
-      display: flex; align-items: center; gap: 5px;
-      padding: 7px 10px; font-family: 'DotGothic16', monospace;
-      font-size: 0.82rem; color: var(--text); text-decoration: none; cursor: pointer;
-      border-bottom: 1px solid var(--win-bg); background: var(--win-white);
-      transition: background 0.08s;
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 12px; font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem; color: #cc88aa;
+      text-decoration: none; cursor: pointer;
+      border: 1px solid transparent;
+      border-left: 2px solid transparent;
+      transition: all 0.1s ease; background: var(--bg);
+      letter-spacing: 0.04em;
     }
-    .nav-item::before { content: '▶'; font-size: 0.5rem; color: var(--cobalt2); }
-    .nav-item:hover, .nav-item.active {
-      background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-      color: white;
+    .nav-item::before { content: '> '; color: var(--pink-pale); font-size: 0.7rem; }
+    .nav-item:hover {
+      color: var(--pink);
+      border-left-color: var(--pink);
+      background: var(--pink-ghost);
+      padding-left: 16px;
     }
-    .nav-item:hover::before, .nav-item.active::before { color: var(--cyan); }
+    .nav-item.active {
+      color: var(--pink);
+      border-left-color: var(--pink);
+      background: var(--pink-ghost);
+      padding-left: 16px;
+    }
+    .nav-item.active::before { color: var(--pink); }
 
-    .sidebar-info {
-      background: var(--win-white); padding: 7px 9px;
-      font-family: 'DotGothic16', monospace; font-size: 0.74rem; color: var(--text); line-height: 1.75;
+    .sidebar-block { padding: 10px 12px; }
+    .sb-label {
+      font-size: 0.7rem; color: #cc88aa; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
     }
-    .sidebar-info .lbl {
-      font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--cobalt2);
-      display: block; margin-top: 6px; margin-bottom: 1px; letter-spacing: 0.08em;
+    .sb-label::before { content: '# '; color: var(--pink-pale); }
+    .sb-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; color: #cc88aa; padding: 4px 0;
+      border-bottom: 1px dotted var(--border2);
     }
+    .sb-row .val { color: var(--pink); font-weight: bold; font-size: 0.88rem; }
+    .sb-info { font-size: 0.82rem; color: #ddaacc; line-height: 1.9; }
+    .sb-info .key { color: var(--pink2); }
+
     .online-dot {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--cyan); box-shadow: 0 0 7px var(--cyan);
-      margin-right: 4px; animation: blink 1.5s infinite;
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink); box-shadow: 0 0 8px var(--pink);
+      margin-right: 4px; animation: pulse-dot 1.5s ease-in-out infinite;
     }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
-
-    .stat-row {
-      display: flex; justify-content: space-between; padding: 4px 9px;
-      font-family: 'DotGothic16', monospace; font-size: 0.74rem; color: var(--text);
-      background: var(--win-white); border-bottom: 1px dotted var(--win-bg);
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 6px var(--pink); }
+      50% { box-shadow: 0 0 14px var(--pink), 0 0 24px rgba(255,45,120,0.4); }
     }
-    .stat-row .num { font-family: 'Press Start 2P', monospace; font-size: 0.46rem; color: var(--cobalt2); }
-
-    .key-row { padding: 8px 6px; background: var(--win-face); display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
 
     /* ── CONTENT ── */
-    .content-area { min-height: 480px; }
-    .view { display: none; animation: fadeWin 0.15s ease; }
+    .content-area { }
+    .view { display: none; animation: termLoad 0.2s ease; }
     .view.active { display: block; }
-    @keyframes fadeWin { from { opacity: 0; } to { opacity: 1; } }
-    .content-inner { padding: 12px 14px; background: var(--win-white); min-height: 100%; }
+    @keyframes termLoad {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-    .sec-title {
-      font-family: 'Press Start 2P', monospace; font-size: 0.58rem; color: var(--cobalt3);
-      margin-bottom: 13px; letter-spacing: 0.06em;
+    .content-inner { padding: 18px 20px; }
+
+    /* section heading */
+    .sec-heading {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa;
+      letter-spacing: 0.12em; margin-bottom: 16px;
+      padding-bottom: 6px; border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 8px;
     }
-    .sec-title::after { content: ''; flex: 1; height: 1px; border-top: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-hilite); }
+    .sec-heading::before { content: 'root@sgoodie:~$ cat '; color: var(--pink-pale); font-size: 0.65rem; }
+    .sec-heading .fn { color: var(--pink); }
+    .sec-heading::after { content: ''; flex: 1; border-bottom: 1px solid var(--border2); margin-left: 8px; }
 
-    /* HOME */
-    .welcome-grid { display: grid; grid-template-columns: 1fr 190px; gap: 12px; align-items: start; }
-
-    .name-header {
-      background: linear-gradient(135deg, #e8f4ff, #eefffc, #e8f0ff);
-      border: 2px solid var(--win-shadow); padding: 10px 12px; margin-bottom: 12px;
+    /* output text */
+    .output {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem; color: var(--white-dim);
+      line-height: 1.95;
     }
-    .name-title-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; }
+    .output p + p { margin-top: 10px; }
+    .output .hi    { color: var(--pink); }
+    .output .cmd   { color: var(--pink2); font-weight: bold; }
+    .output .dim   { color: #999999; font-size: 0.85rem; }
+    .output .warn  { color: var(--amber); }
+    .output .err   { color: var(--red); }
 
-    .name-sub { font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text-mid); margin-top: 4px; }
-    .name-jp  { font-family: 'Yuji Syuku', serif; font-size: 1rem; color: var(--cobalt2); letter-spacing: 0.18em; opacity: 0.75; }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-
-    .welcome-box { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); line-height: 1.88; }
-    .welcome-box p + p { margin-top: 9px; }
-    .welcome-box strong { color: var(--cobalt3); }
-    .kawaii { color: var(--cobalt2); font-weight: bold; }
-
-    .focus-panel { padding: 8px; background: var(--win-white); }
-    .focus-title { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--cobalt2); text-align: center; margin-bottom: 8px; letter-spacing: 0.1em; }
-    .focus-item {
-      display: flex; align-items: flex-start; gap: 6px;
-      font-family: 'DotGothic16', monospace; font-size: 0.78rem; color: var(--text);
-      padding: 5px 2px; border-bottom: 1px dotted var(--win-bg); line-height: 1.4;
+    /* command line entry */
+    .cmd-line {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.86rem; color: #cc88aa;
+      padding: 3px 0; letter-spacing: 0.04em;
     }
-    .focus-item::before { content: '●'; color: var(--cobalt2); font-size: 0.55rem; flex-shrink: 0; margin-top: 2px; }
+    .cmd-line .p { color: var(--pink2); }
+    .cmd-line .c { color: var(--pink); }
 
-    /* EXPERIENCE */
-    .exp-entry { margin-bottom: 18px; }
+    /* welcome grid */
+    .welcome-grid { display: grid; grid-template-columns: 1fr 200px; gap: 14px; align-items: start; margin-top: 10px; }
+
+    .focus-block { padding: 10px 12px; }
+    .focus-block-title {
+      font-size: 0.7rem; color: #cc88aa; letter-spacing: 0.12em;
+      margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px;
+    }
+    .focus-block-title::before { content: '// '; color: var(--pink-pale); }
+    .focus-entry {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.86rem; color: var(--white-dim);
+      padding: 4px 0; border-bottom: 1px dashed var(--border2);
+      display: flex; align-items: flex-start; gap: 6px; line-height: 1.45;
+    }
+    .focus-entry::before { content: '-'; color: var(--pink-dim); flex-shrink: 0; margin-top: 1px; }
+
+    /* experience */
+    .exp-entry { margin-bottom: 20px; }
     .exp-entry:last-child { margin-bottom: 0; }
-    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
-    .exp-role { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--cobalt3); }
-    .exp-date { font-family: 'DotGothic16', monospace; font-size: 0.76rem; color: var(--text-soft); }
-    .exp-co   { font-family: 'DotGothic16', monospace; font-size: 0.82rem; color: var(--cobalt2); margin-bottom: 9px; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .exp-list li { font-family: 'DotGothic16', monospace; font-size: 0.84rem; color: var(--text); line-height: 1.68; padding-left: 16px; position: relative; }
-    .exp-list li::before { content: '◆'; position: absolute; left: 0; color: var(--cobalt2); font-size: 0.5rem; top: 4px; }
+    .exp-cmd {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa; margin-bottom: 6px;
+    }
+    .exp-cmd .p { color: var(--pink2); }
+    .exp-cmd .c { color: var(--pink); }
+    .exp-role {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem; color: var(--pink);
+      letter-spacing: 0.06em; text-shadow: 0 0 10px rgba(255,45,120,0.3);
+    }
+    .exp-meta { font-size: 0.82rem; color: #cc88aa; margin-bottom: 8px; }
+    .exp-meta .org { color: var(--pink2); }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; padding-left: 2px; }
+    .exp-list li {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: var(--white-dim); line-height: 1.65;
+      padding-left: 16px; position: relative;
+    }
+    .exp-list li::before { content: '->'; position: absolute; left: 0; color: var(--pink-dim); font-size: 0.65rem; top: 4px; }
+    .exp-div {
+      border: none; border-top: 1px solid var(--border2); margin: 18px 0;
+    }
 
-    /* PROJECTS */
+    /* projects */
     .proj-grid { display: flex; flex-direction: column; gap: 10px; }
-    .proj-body { padding: 10px 13px; background: var(--win-white); }
-    .proj-desc { font-family: 'DotGothic16', monospace; font-size: 0.83rem; color: var(--text); line-height: 1.74; margin-bottom: 10px; }
-    .proj-link-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-body { padding: 12px 14px; }
+    .proj-cmd {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.76rem; color: #884466; margin-bottom: 8px; letter-spacing: 0.06em;
+    }
+    .proj-title {
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem; color: var(--pink);
+      letter-spacing: 0.04em; text-shadow: 0 0 10px rgba(255,45,120,0.3);
+      margin-bottom: 8px;
+    }
+    .proj-desc {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.88rem; color: var(--white-dim); line-height: 1.75; margin-bottom: 12px;
+    }
+    .proj-link-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .term-btn {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.82rem;
+      padding: 6px 16px; border: 1px solid var(--pink-dim);
+      color: var(--pink2); background: var(--bg);
+      text-decoration: none; cursor: pointer; letter-spacing: 0.06em;
+      transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .term-btn:hover {
+      background: var(--pink);
+      color: var(--bg);
+      border-color: var(--pink);
+      box-shadow: 0 0 14px rgba(255,45,120,0.35);
+    }
+    .term-btn.sec { border-color: var(--pink-pale); color: var(--pink-dim); }
+    .term-btn.sec:hover { background: var(--pink-pale); color: var(--pink); border-color: var(--border); }
 
-    /* CERTS */
-    .cert-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px; }
+    /* certs */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; }
     .cert-item {
-      background: var(--win-white);
-      border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
-      border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
-      padding: 7px 10px; display: flex; justify-content: space-between; align-items: center;
-      font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text);
-      transition: background 0.1s;
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 8px 12px; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.86rem; color: var(--white-dim);
+      transition: all 0.15s ease; cursor: default;
     }
-    .cert-item:hover { background: #e8f4ff; }
-    .cert-date-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
+    .cert-item:hover { border-color: var(--border); color: var(--pink); background: var(--pink-ghost); }
+    .cert-item::before { content: '[+] '; color: var(--pink-dim); font-size: 0.65rem; }
+    .cert-date { font-size: 0.76rem; color: #cc88aa; white-space: nowrap; }
 
-    /* SKILLS */
-    .skill-group { margin-bottom: 13px; }
+    /* skills */
+    .skill-group { margin-bottom: 14px; }
     .skill-group:last-child { margin-bottom: 0; }
-    .skill-lbl {
-      font-family: 'Press Start 2P', monospace; font-size: 0.44rem; color: var(--cobalt3);
-      margin-bottom: 6px; display: flex; align-items: center; gap: 5px; letter-spacing: 0.06em;
+    .skill-label {
+      font-size: 0.76rem; color: #dd88bb; letter-spacing: 0.1em;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
     }
-    .skill-lbl::before { content: '◆'; color: var(--cobalt2); font-size: 0.46rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .skill-label::before { content: '//'; color: var(--pink-pale); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .skill-tag {
-      background: var(--win-face);
-      border-top: 1px solid var(--win-hilite); border-left: 1px solid var(--win-hilite);
-      border-right: 1px solid var(--win-shadow); border-bottom: 1px solid var(--win-shadow);
-      padding: 2px 9px; font-family: 'DotGothic16', monospace; font-size: 0.78rem; color: var(--text);
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 2px 10px; font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; color: #cc88aa; cursor: default;
+      transition: all 0.15s ease;
     }
-    .skill-tag:hover { background: #e8f4ff; }
+    .skill-tag:hover { border-color: var(--border); color: var(--pink); background: var(--pink-ghost); }
 
-    /* CONTACT */
-    .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; }
-    .contact-win { flex: 1; min-width: 200px; text-decoration: none; transition: filter 0.1s; }
-    .contact-win:hover { filter: brightness(0.97); }
-    .contact-body { padding: 12px 14px; display: flex; align-items: center; gap: 12px; background: var(--win-white); }
-    .contact-icon { font-size: 1.6rem; }
-    .contact-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--cobalt2); letter-spacing: 0.1em; margin-bottom: 5px; }
-    .contact-val  { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); }
-
-    /* ── BANNER BAR ── */
-    .banner-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
-    .banner-bar {
-      background: var(--win-face);
-      border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
-      border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 6px 8px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    /* contact */
+    .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+    .contact-card {
+      flex: 1; min-width: 200px; background: var(--bg); border: 1px solid var(--border);
+      padding: 18px 20px; text-decoration: none; display: flex; align-items: center; gap: 14px;
+      transition: all 0.15s ease;
     }
-    .banner-item {
-      height: 28px; border: 1px solid var(--win-shadow); padding: 2px 8px;
-      font-family: 'Press Start 2P', monospace; font-size: 0.36rem;
-      display: flex; align-items: center; gap: 3px; white-space: nowrap; line-height: 1.5;
-    }
-    .bn-1 { background: var(--cobalt3); color: var(--cyan); }
-    .bn-2 { background: #005577; color: var(--cyan2); }
-    .bn-3 { background: #004455; color: #88eeff; }
-    .bn-4 { background: var(--teal); color: white; }
-    .bn-5 { background: #003355; color: var(--cyan-pale); }
-    .bn-6 { background: #007788; color: white; }
-    .bn-7 { background: #002244; color: var(--cyan2); }
-    .bn-8 { background: #006688; color: white; }
+    .contact-card:hover { border-color: var(--border); background: var(--pink-ghost); }
+    .contact-icon { font-size: 1.4rem; filter: grayscale(1) brightness(0.5); }
+    .contact-card:hover .contact-icon { filter: grayscale(0); }
+    .contact-lbl { font-size: 0.7rem; color: #aa6688; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+    .contact-val { font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: var(--pink2); }
 
-    /* footer */
-    .footer {
-      text-align: center; font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem; color: rgba(180,230,255,0.7);
-      padding: 6px 0 48px; text-shadow: 0 0 8px rgba(0,204,221,0.4);
+    /* status bar */
+    .status-row {
+      display: flex; gap: 2px; padding: 4px 6px;
+      border-top: 1px solid var(--border); background: var(--panel2);
+      font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--pink-dim);
       letter-spacing: 0.06em;
     }
+    .status-cell {
+      flex: 1; padding: 2px 8px; border: 1px solid var(--border2);
+    }
 
-    /* POPUP */
-    .popup-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.35); align-items: center; justify-content: center; }
-    .popup-overlay.show { display: flex; }
-    .popup-box { width: 300px; }
-    .popup-body { padding: 14px 16px; background: var(--win-face); display: flex; gap: 10px; align-items: flex-start; }
-    .popup-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .popup-text { font-family: 'DotGothic16', monospace; font-size: 0.84rem; color: var(--text); line-height: 1.6; }
-    .popup-btns { padding: 8px; background: var(--win-face); display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--win-shadow); }
+    /* bottom banner */
+    .banner-strip {
+      border: 1px solid var(--border);
+      padding: 6px 8px; background: var(--panel);
+      display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    }
+    .ban-item {
+      font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+      color: #cc88aa; border: 1px solid var(--border2);
+      padding: 2px 10px; letter-spacing: 0.08em; background: var(--bg);
+      transition: all 0.15s ease;
+    }
+    .ban-item:hover { color: var(--pink); border-color: var(--border); }
 
-    /* MOBILE */
+    /* taskbar */
+    .taskbar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--panel2); border-top: 1px solid var(--border);
+      height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 8px;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .tb-root {
+      font-size: 0.76rem; color: var(--pink2); letter-spacing: 0.08em;
+      padding: 2px 10px; border: 1px solid var(--pink-dim);
+      background: var(--pink-ghost); cursor: default;
+    }
+    .tb-root:hover { background: var(--pink-pale); }
+    .tb-div { width: 1px; height: 18px; background: var(--border); margin: 0 2px; }
+    .tb-btn {
+      font-size: 0.76rem; color: #cc88aa; padding: 2px 8px;
+      border: 1px solid transparent; cursor: pointer; letter-spacing: 0.04em;
+      transition: all 0.1s ease;
+    }
+    .tb-btn:hover, .tb-btn.active { color: var(--pink); border-color: var(--pink-pale); background: var(--pink-ghost); }
+    .tb-clock { margin-left: auto; font-size: 0.76rem; color: #aa7788; letter-spacing: 0.08em; }
+
+    /* matrix rain behind panels */
+    #matrix-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+    }
+
+    /* mobile */
     .mob-toggle { display: none; }
     @media (max-width: 680px) {
       .main-body { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .sidebar.open { display: flex; }
       .mob-toggle {
-        display: block; width: 100%;
-        background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-        color: white; border: none; padding: 6px;
-        font-family: 'Press Start 2P', monospace; font-size: 0.46rem; cursor: pointer; margin-bottom: 6px;
+        display: block; width: 100%; background: var(--panel2);
+        color: var(--pink); border: 1px solid var(--pink-dim); border-radius: 0;
+        padding: 6px; font-family: 'Share Tech Mono', monospace;
+        font-size: 0.68rem; cursor: pointer; margin-bottom: 6px; letter-spacing: 0.08em;
       }
       .welcome-grid { grid-template-columns: 1fr; }
-      .cert-list { grid-template-columns: 1fr; }
-      .desktop { padding: 6px 6px 50px; }
-      .top-strip { flex-direction: column; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .desktop { padding: 6px 6px 44px; }
+      .name-display { font-size: 2rem; }
     }
   </style>
 </head>
-<body>
+<body class="crt">
 
-<!-- POPUP -->
-<div class="popup-overlay" id="popup">
-  <div class="window popup-box">
-    <div class="title-bar">
-      <div class="title-bar-text"><span class="title-icon">⚠️</span> SYSTEM.EXE</div>
-      <div class="title-bar-controls"><div class="tb-btn" onclick="closePopup()">✕</div></div>
-    </div>
-    <div class="popup-body">
-      <div class="popup-icon">💾</div>
-      <div class="popup-text">Should you hire Sara Goodie for your cybersecurity team?</div>
-    </div>
-    <div class="popup-btns">
-      <button class="win-btn-raised" onclick="closePopup()" style="color:var(--cobalt3);font-weight:bold;">Yes</button>
-      <button class="win-btn-raised" onclick="closePopup()">Also Yes</button>
-    </div>
-  </div>
-</div>
+<canvas id="matrix-canvas"></canvas>
+<div class="scan-line"></div>
 
 <div class="desktop">
 
-  <!-- TOP STRIP -->
-  <div class="top-strip">
-    <div class="site-title-box">
-      <div class="site-title-main">
-        <span class="key-tag">S</span>
-        <span class="key-tag">A</span>
-        <span class="key-tag">R</span>
-        <span class="key-tag">A</span>
-        &nbsp;
-        <span class="key-tag">G</span>
-        <span class="key-tag">O</span>
-        <span class="key-tag">O</span>
-        <span class="key-tag">D</span>
-        <span class="key-tag">I</span>
-        <span class="key-tag">E</span>
+  <!-- ── BOOT HEADER ── -->
+  <div class="term-panel">
+    <div class="term-bar">
+      <div class="term-bar-title">root@sgoodie — bash — 120x38</div>
+      <div class="term-dots">
+        <div class="term-dot"></div>
+        <div class="term-dot"></div>
+        <div class="term-dot"></div>
       </div>
-      <div class="site-title-sub">💾 CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
-        <span class="cyan-tag">BLUE TEAM</span>
-        <span class="cyan-tag">SIEM</span>
-        <span class="cyan-tag">WGU 2026</span>
-        <span class="cyan-tag" onclick="showPopup()" style="cursor:pointer;background:rgba(0,204,221,0.15);">HIRE ME</span>
+    </div>
+    <div class="boot-header">
+      <div class="boot-line dim">Linux sgoodie-box 5.15.0-1 #1 SMP Mon Jan 13 00:00:00 EST 2026</div>
+      <div class="boot-line dim">Last login: <span class="hi">Mon Mar 23 03:47:12 2026</span> from <span class="warn">192.168.1.1</span></div>
+      <div class="boot-line">&nbsp;</div>
+      <div class="boot-line"><span class="p" style="color:var(--pink2);">root@sgoodie</span><span style="color:var(--grey);">:</span><span style="color:var(--pink-dim);">~</span><span style="color:var(--pink);">$</span> <span class="hi">whoami</span></div>
+      <div class="name-display glitch" id="name-typed"></div>
+      <div class="name-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+      <div class="tag-row" id="tags-row" style="opacity:0;transition:opacity 0.5s ease;">
+        <span class="term-tag">SIEM</span>
+        <span class="term-tag">AZURE SENTINEL</span>
+        <span class="term-tag active">BLUE TEAM</span>
+        <span class="term-tag">SPLUNK</span>
+        <span class="term-tag">ACTIVE DIRECTORY</span>
+        <span class="term-tag">THREAT DETECTION</span>
       </div>
     </div>
   </div>
 
-  <!-- MAIN WINDOW -->
-  <div class="window main-window">
+  <!-- ── MAIN ── -->
+  <div class="main-body">
 
-    <div class="title-bar">
-      <div class="title-bar-text"><span class="title-icon">💾</span> Sara Goodie — Cyber Portfolio</div>
-      <div class="title-bar-controls">
-        <div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div>
-      </div>
-    </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
 
-    <!-- address bar like in the image -->
-    <div class="address-bar">
-      <div class="addr-nav-btn">←</div>
-      <div class="addr-nav-btn">→</div>
-      <div class="addr-nav-btn">🏠</div>
-      <div class="addr-field">HTTPS://SARAGOODIE.GITHUB.IO/PORTFOLIO</div>
-      <div class="addr-go">GO</div>
-    </div>
-
-    <div class="menu-bar">
-      <span>File</span><span>Edit</span><span>View</span><span>Actions</span><span>Tools</span><span>Help</span>
-    </div>
-
-    <div class="marquee-strip">
-      <div class="marquee-txt">
-        &gt;&gt; WELCOME TO SARA GOODIE'S CYBER PORTFOLIO &gt;&gt; &nbsp;&nbsp; // WGU GRADUATE JAN 2026 // &nbsp;&nbsp; &gt;&gt; BLUE TEAM &gt;&gt; SIEM &gt;&gt; THREAT DETECTION &gt;&gt; AZURE SENTINEL &gt;&gt; &nbsp;&nbsp; // OPEN TO OPPORTUNITIES // &nbsp;&nbsp; &gt;&gt; 8 CERTIFICATIONS &gt;&gt; 3 LAB PROJECTS &gt;&gt; &nbsp;&nbsp; // サイバーセキュリティ // 守護 // 防衛 //
-      </div>
-    </div>
-
-    <div class="main-body">
-
-      <!-- SIDEBAR -->
-      <div class="sidebar" id="sidebar">
-
-        <div class="window">
-          <div class="title-bar">
-            <div class="title-bar-text" style="font-size:0.42rem;"><span class="title-icon">🗂️</span> Navigate</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <a class="nav-item active" onclick="showPage('home')"       data-page="home">🏠 Home</a>
-          <a class="nav-item"        onclick="showPage('experience')" data-page="experience">💼 Experience</a>
-          <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">📁 Projects</a>
-          <a class="nav-item"        onclick="showPage('certs')"      data-page="certs">🏆 Certs</a>
-          <a class="nav-item"        onclick="showPage('skills')"     data-page="skills">⚡ Skills</a>
-          <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">📧 Contact</a>
+      <div class="term-panel">
+        <div class="term-bar">
+          <div class="term-bar-title">navigation.sh</div>
+          <div class="term-dots"><div class="term-dot"></div></div>
         </div>
-
-        <div class="window">
-          <div class="title-bar teal-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📋</span> Info</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <div class="sidebar-info">
-            <span class="lbl">STATUS</span><span class="online-dot"></span>online!<br/>
-            <span class="lbl">LOCATION</span>📍 Detroit, MI<br/>
-            <span class="lbl">GRAD DATE</span>🎓 Jan 2026<br/>
-            <span class="lbl">EMAIL</span>
-            <a href="mailto:segoodie12@gmail.com" style="color:var(--cobalt2);font-size:0.68rem;">segoodie12<br/>@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="window">
-          <div class="title-bar cyan-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📊</span> Stats</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <div class="stat-row"><span>Certs</span><span class="num">8</span></div>
-          <div class="stat-row"><span>Labs</span><span class="num">3</span></div>
-          <div class="stat-row"><span>Yrs</span><span class="num">2+</span></div>
-          <div class="stat-row"><span>Vibes</span><span class="num">MAX</span></div>
-        </div>
-
-        <div class="window">
-          <div class="title-bar dark-bar">
-            <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">⌨️</span> keys.exe</div>
-            <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-          </div>
-          <div class="key-row">
-            <span class="key-tag" style="font-size:0.42rem;">SIEM</span>
-            <span class="key-tag" style="font-size:0.42rem;">SOC</span>
-            <span class="key-tag" style="font-size:0.42rem;">AZURE</span>
-            <span class="key-tag" style="font-size:0.42rem;">KALI</span>
-            <span class="key-tag" style="font-size:0.42rem;">AD</span>
-            <span class="key-tag" style="font-size:0.42rem;">SPLUNK</span>
-          </div>
-        </div>
-
-        <div class="window" style="padding:8px;background:var(--win-white);">
-          <div style="text-align:center;font-family:'Yuji Syuku',serif;font-size:1.7rem;color:var(--cobalt2);line-height:1.4;opacity:0.55;">
-            守護<br/>防衛
-          </div>
-          <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--cobalt2);margin-top:4px;letter-spacing:0.1em;">CYBER_JUTSU</div>
-        </div>
-
+        <a class="nav-item active" onclick="showPage('home')"       data-page="home">home.sh</a>
+        <a class="nav-item"        onclick="showPage('experience')" data-page="experience">experience.log</a>
+        <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">projects/</a>
+        <a class="nav-item"        onclick="showPage('certs')"      data-page="certs">certs.dat</a>
+        <a class="nav-item"        onclick="showPage('skills')"     data-page="skills">skills.sys</a>
+        <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">contact.txt</a>
       </div>
 
-      <!-- CONTENT -->
-      <div class="content-area window-inner">
-        <button class="mob-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">🗂️ MENU</button>
+      <div class="term-panel">
+        <div class="term-bar">
+          <div class="term-bar-title">sys_info.sh</div>
+          <div class="term-dots"><div class="term-dot"></div></div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sb-label">system status</div>
+          <div class="sb-info">
+            <span class="online-dot"></span><span class="key">STATUS:</span> ONLINE<br/>
+            <span class="key">LOC: </span>Detroit, MI<br/>
+            <span class="key">GRAD: </span>Jan 2026<br/>
+            <span class="key">MAIL: </span><a href="/cdn-cgi/l/email-protection#a9dacccec6c6cdc0cc989be9cec4c8c0c587cac6c4" style="color:var(--pink2);text-decoration:none;">segoodie12<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@gmail.com</a>
+          </div>
+        </div>
+      </div>
 
-        <!-- HOME -->
-        <div class="view active" id="page-home">
+      <div class="term-panel">
+        <div class="term-bar">
+          <div class="term-bar-title">stats.dat</div>
+          <div class="term-dots"><div class="term-dot"></div></div>
+        </div>
+        <div class="sidebar-block" style="padding:8px 12px;">
+          <div class="sb-label">metrics</div>
+          <div class="sb-row"><span>certs</span><span class="val">8</span></div>
+          <div class="sb-row"><span>labs</span><span class="val">3</span></div>
+          <div class="sb-row"><span>yrs_exp</span><span class="val">2+</span></div>
+          <div class="sb-row"><span>threat_lvl</span><span class="val" style="color:var(--amber);">MAX</span></div>
+        </div>
+      </div>
+
+      <div class="term-panel">
+        <div class="term-bar">
+          <div class="term-bar-title">skills.sh</div>
+          <div class="term-dots"><div class="term-dot"></div></div>
+        </div>
+        <div class="sidebar-block" style="padding:8px 10px;">
+          <div class="sb-label">loaded modules</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">SIEM</span>
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">SOC</span>
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">AZURE</span>
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">KALI</span>
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">PYTHON</span>
+            <span class="term-tag" style="font-size:0.62rem;padding:1px 7px;">SPLUNK</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+
+      <button class="mob-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">&gt; MENU</button>
+
+      <!-- HOME -->
+      <div class="view active" id="page-home">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">cat home.sh</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-
-            <div class="name-header">
-              <div class="name-title-row">
-                <span class="key-tag">S</span><span class="key-tag">A</span><span class="key-tag">R</span><span class="key-tag">A</span>
-                &nbsp;
-                <span class="key-tag">G</span><span class="key-tag">O</span><span class="key-tag">O</span><span class="key-tag">D</span><span class="key-tag">I</span><span class="key-tag">E</span>
-              </div>
-              <div class="name-jp" style="margin-top:5px;">サラ・グッディ</div>
-              <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
-              <div class="tag-row">
-                <span class="cyan-tag">SIEM</span>
-                <span class="cyan-tag">Azure Sentinel</span>
-                <span class="cyan-tag">Blue Team</span>
-                <span class="cyan-tag">Splunk</span>
-                <span class="cyan-tag">Active Directory</span>
-                <span class="cyan-tag">Threat Detection</span>
-              </div>
-            </div>
-
-            <div class="sec-title">WELCOME !!</div>
-
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">cat home.sh</span></div>
+            <div class="sec-heading"><span class="fn">WELCOME.TXT</span></div>
             <div class="welcome-grid">
-              <div class="welcome-box">
-                <p>Hi hi !! ◆ I'm <strong>Sara Goodie</strong>, a <span class="kawaii">cybersecurity nerd</span> based in Detroit, Michigan.</p>
-                <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
-                <p>I love <span class="kawaii">blue team ops</span>, building home labs, setting honeypots, and making threats very unhappy ⚔️</p>
-                <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab 💻</p>
-                <p style="margin-top:10px;font-size:0.76rem;color:var(--cobalt2);">Currently open to cybersecurity roles and internships !!</p>
+              <div class="output">
+                <p>Hi. I'm <span class="cmd">Sara Goodie</span>. <span class="dim">// cybersecurity</span></p>
+                <p>I graduated with a <span class="hi">B.S. in Cybersecurity &amp; Information Assurance</span> from Western Governors University — <span class="hi">January 2026</span>.</p>
+                <p>I build things that <span class="cmd">break other things</span> and then <span class="hi">fix them before anyone notices</span>. Blue team. Always.</p>
+                <p>I interned at the <span class="hi">Detroit Pistons IT Operations Team</span> — deployed real security tools, built a VirtualBox attack detection lab.</p>
+                <p class="dim" style="margin-top:12px;">// currently open to cybersecurity roles + internships</p>
+                <p class="dim">// <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a190f0d05050e030f5b582a0d070b030644090507">[email&#160;protected]</a></p>
               </div>
               <div>
-                <div class="window">
-                  <div class="title-bar teal-bar">
-                    <div class="title-bar-text" style="font-size:0.4rem;"><span class="title-icon">📌</span> focus.txt</div>
-                    <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
+                <div class="term-panel">
+                  <div class="term-bar">
+                    <div class="term-bar-title">focus.log</div>
+                    <div class="term-dots"><div class="term-dot"></div></div>
                   </div>
-                  <div class="focus-panel">
-                    <div class="focus-title">★ CURRENT FOCUS ★</div>
-                    <div class="focus-item">IAM Automation (Python + Graph API)</div>
-                    <div class="focus-item">Honeypot logging real attacks</div>
-                    <div class="focus-item">SIEM tuning &amp; threat detection</div>
-                    <div class="focus-item">Blue team operations</div>
+                  <div class="focus-block">
+                    <div class="focus-block-title">CURRENT FOCUS</div>
+                    <div class="focus-entry">IAM Automation (Python + Graph API)</div>
+                    <div class="focus-entry">Honeypot logging real attacks</div>
+                    <div class="focus-entry">SIEM tuning &amp; threat detection</div>
+                    <div class="focus-entry">Blue team operations</div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">
-              // 守護 · 防衛 · 術式 · サイバー //
+            <div style="margin-top:14px;font-size:0.68rem;color:var(--pink-dim);letter-spacing:0.1em;">
+              <span style="color:var(--pink-pale);">// </span>守護 · 防衛 · 術式 · サイバー
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- EXPERIENCE -->
-        <div class="view" id="page-experience">
+      <!-- EXPERIENCE -->
+      <div class="view" id="page-experience">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">cat experience.log</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-            <div class="sec-title">WORK EXPERIENCE</div>
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">cat experience.log</span></div>
+            <div class="sec-heading"><span class="fn">WORK_HISTORY</span></div>
+
             <div class="exp-entry">
-              <div class="exp-hrow"><span class="exp-role">IT INTERN</span><span class="exp-date">April – June 2025</span></div>
-              <div class="exp-co">◆ Detroit Pistons IT Operations Team</div>
+              <div class="exp-cmd"><span class="p">root@sgoodie</span><span style="color:var(--grey);">:</span><span style="color:var(--pink-dim);">~</span><span style="color:var(--pink);">$</span> <span class="c">grep -i "IT_INTERN" jobs.log</span></div>
+              <div class="exp-role">IT INTERN</div>
+              <div class="exp-meta"><span class="org">Detroit Pistons IT Operations Team</span> &nbsp;|&nbsp; April – June 2025</div>
               <ul class="exp-list">
                 <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
-                <li>Assisted with identity and access management using Active Directory, including user provisioning and permission updates.</li>
-                <li>Deployed endpoint cybersecurity tools and supported monitoring efforts to enhance security posture.</li>
-                <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to simulate and detect attacks.</li>
-                <li>Collaborated with IT and security teams to document workflows and improve incident response readiness.</li>
+                <li>Identity and access management via Active Directory — user provisioning and permission updates.</li>
+                <li>Deployed endpoint cybersecurity tools, supported monitoring efforts to enhance security posture.</li>
+                <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon.</li>
+                <li>Collaborated with IT and security teams to document workflows, improve incident response.</li>
               </ul>
             </div>
-            <hr class="win-rule" />
+
+            <div class="exp-div"></div>
+
             <div class="exp-entry">
-              <div class="exp-hrow"><span class="exp-role">ADVISOR</span><span class="exp-date">Oct – Dec 2022</span></div>
-              <div class="exp-co">◆ Best Buy | Customer Solutions Team</div>
+              <div class="exp-cmd"><span class="p">root@sgoodie</span><span style="color:var(--grey);">:</span><span style="color:var(--pink-dim);">~</span><span style="color:var(--pink);">$</span> <span class="c">grep -i "ADVISOR" jobs.log</span></div>
+              <div class="exp-role">ADVISOR</div>
+              <div class="exp-meta"><span class="org">Best Buy | Customer Solutions Team</span> &nbsp;|&nbsp; Oct – Dec 2022</div>
               <ul class="exp-list">
                 <li>Advised customers on technology solutions based on their needs and current trends.</li>
                 <li>Developed interpersonal skills through customer service and problem resolution.</li>
                 <li>Stayed updated on the latest technologies, enhancing products and technical knowledge.</li>
               </ul>
             </div>
-            <hr class="win-rule" />
-            <div class="sec-title">EDUCATION</div>
+
+            <div class="exp-div"></div>
+            <div class="sec-heading"><span class="fn">EDUCATION</span></div>
+
             <div class="exp-entry">
-              <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.42rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</span>
-                <span class="exp-date">Jan 2026</span>
-              </div>
-              <div class="exp-co">◆ Western Governors University</div>
+              <div class="exp-role" style="font-size:0.95rem;">B.S. CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+              <div class="exp-meta"><span class="org">Western Governors University</span> &nbsp;|&nbsp; Jan 2026</div>
             </div>
             <div class="exp-entry" style="margin-bottom:0;">
-              <div class="exp-hrow">
-                <span class="exp-role" style="font-size:0.42rem;">ASSOCIATE IN LIBERAL ARTS</span>
-                <span class="exp-date">June 2021</span>
-              </div>
-              <div class="exp-co">◆ Henry Ford Community College</div>
+              <div class="exp-role" style="font-size:0.95rem;">ASSOCIATE IN LIBERAL ARTS</div>
+              <div class="exp-meta"><span class="org">Henry Ford Community College</span> &nbsp;|&nbsp; June 2021</div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 術式 · 守護 · 防衛 //</div>
+
           </div>
         </div>
+      </div>
 
-        <!-- PROJECTS -->
-        <div class="view" id="page-projects">
+      <!-- PROJECTS -->
+      <div class="view" id="page-projects">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">ls -la projects/</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-            <div class="sec-title">PROJECTS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.78rem;color:var(--cobalt2);margin-bottom:12px;">
-              ◆ Replace the # links with your real GitHub / project URLs !!
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">ls -la projects/</span></div>
+            <div class="sec-heading"><span class="fn">PROJECTS/</span></div>
+            <div style="font-size:0.72rem;color:var(--pink-dim);margin-bottom:12px;font-family:'Share Tech Mono',monospace;">
+              <span style="color:var(--pink-pale);">// </span>Replace href="#" with your real GitHub / project URLs
             </div>
             <div class="proj-grid">
 
-              <div class="window">
-                <div class="title-bar">
-                  <div class="title-bar-text"><span class="title-icon">🛡️</span> SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
+              <div class="term-panel">
+                <div class="term-bar">
+                  <div class="term-bar-title">soc_deployment.sh</div>
+                  <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
                 </div>
-                <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
+                  <div class="proj-cmd">drwxr-xr-x &nbsp; sgoodie &nbsp; Jan 2026 &nbsp; SOC_DEPLOYMENT/</div>
+                  <div class="proj-title">[01] SOC DEPLOYMENT &amp; SIEM — AZURE &amp; SENTINEL</div>
                   <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
                   <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
+                    <a class="term-btn" href="#" target="_blank">./view_project.sh</a>
+                    <a class="term-btn sec" href="#" target="_blank">git clone repo</a>
                   </div>
                 </div>
               </div>
 
-              <div class="window">
-                <div class="title-bar teal-bar">
-                  <div class="title-bar-text"><span class="title-icon">🏠</span> Active Directory Home Lab</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
+              <div class="term-panel">
+                <div class="term-bar">
+                  <div class="term-bar-title">active_directory.sh</div>
+                  <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
                 </div>
-                <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
-                  <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, and managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
+                  <div class="proj-cmd">drwxr-xr-x &nbsp; sgoodie &nbsp; Jan 2026 &nbsp; AD_HOMELAB/</div>
+                  <div class="proj-title">[02] ACTIVE DIRECTORY HOME LAB</div>
+                  <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
                   <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
+                    <a class="term-btn" href="#" target="_blank">./view_project.sh</a>
+                    <a class="term-btn sec" href="#" target="_blank">git clone repo</a>
                   </div>
                 </div>
               </div>
 
-              <div class="window">
-                <div class="title-bar cyan-bar">
-                  <div class="title-bar-text"><span class="title-icon">⚔️</span> Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
-                  <div class="title-bar-controls"><div class="tb-btn">_</div><div class="tb-btn">□</div><div class="tb-btn">✕</div></div>
+              <div class="term-panel">
+                <div class="term-bar">
+                  <div class="term-bar-title">attack_detection.sh</div>
+                  <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
                 </div>
-                <div class="menu-bar"><span>File</span><span>Edit</span><span>View</span></div>
                 <div class="proj-body">
+                  <div class="proj-cmd">drwxr-xr-x &nbsp; sgoodie &nbsp; Jun 2025 &nbsp; ATTACK_DETECTION/</div>
+                  <div class="proj-title">[03] ATTACK DETECTION LAB — VIRTUALBOX + SPLUNK + SYSMON</div>
                   <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM for real-world threat simulation. Configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated endpoint compromise and threat detection to the IT department during internship.</div>
                   <div class="proj-link-row">
-                    <a class="win-btn-raised" href="#" target="_blank">▶ View Project</a>
-                    <a class="win-btn-raised" href="#" target="_blank" style="color:var(--teal);">📁 GitHub Repo</a>
+                    <a class="term-btn" href="#" target="_blank">./view_project.sh</a>
+                    <a class="term-btn sec" href="#" target="_blank">git clone repo</a>
                   </div>
                 </div>
               </div>
 
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 斬 · 式 · 盾 · 術 //</div>
           </div>
         </div>
+      </div>
 
-        <!-- CERTS -->
-        <div class="view" id="page-certs">
+      <!-- CERTS -->
+      <div class="view" id="page-certs">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">cat certs.dat</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-            <div class="sec-title">CERTIFICATIONS</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.8rem;color:var(--cobalt2);margin-bottom:12px;">
-              8 certs earned within 14 months !! (●ˇ∀ˇ●)
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">cat certs.dat | sort -k2</span></div>
+            <div class="sec-heading"><span class="fn">CERTIFICATIONS.DAT</span></div>
+            <div style="font-size:0.72rem;color:var(--pink-dim);margin-bottom:12px;font-family:'Share Tech Mono',monospace;">
+              <span style="color:var(--pink-pale);">[i] </span>8 certifications earned within 14 months
             </div>
-            <div class="cert-list">
-              <div class="cert-item"><span>CompTIA A+</span><span class="cert-date-lbl">NOV<br/>2023</span></div>
-              <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date-lbl">JAN<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date-lbl">MAR<br/>2024</span></div>
-              <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date-lbl">MAR<br/>2024</span></div>
-              <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date-lbl">JUN<br/>2024</span></div>
-              <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date-lbl">AUG<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date-lbl">OCT<br/>2024</span></div>
-              <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date-lbl">DEC<br/>2024</span></div>
+            <div class="cert-grid">
+              <div class="cert-item"><span>CompTIA A+</span><span class="cert-date">NOV 2023</span></div>
+              <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date">JAN 2024</span></div>
+              <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date">MAR 2024</span></div>
+              <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date">MAR 2024</span></div>
+              <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date">JUN 2024</span></div>
+              <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date">AUG 2024</span></div>
+              <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date">OCT 2024</span></div>
+              <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date">DEC 2024</span></div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 証明 · 認定 · 術式 //</div>
           </div>
         </div>
+      </div>
 
-        <!-- SKILLS -->
-        <div class="view" id="page-skills">
+      <!-- SKILLS -->
+      <div class="view" id="page-skills">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">cat skills.sys</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-            <div class="sec-title">TECHNICAL SKILLS</div>
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">lsmod | grep skills</span></div>
+            <div class="sec-heading"><span class="fn">TECHNICAL_SKILLS</span></div>
             <div class="skill-group">
-              <div class="skill-lbl">NETWORKING &amp; SYSTEMS</div>
+              <div class="skill-label">NETWORKING &amp; SYSTEMS</div>
               <div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div>
             </div>
             <div class="skill-group">
-              <div class="skill-lbl">SECURITY TOOLS</div>
+              <div class="skill-label">SECURITY TOOLS</div>
               <div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div>
             </div>
             <div class="skill-group">
-              <div class="skill-lbl">CLOUD &amp; VIRTUALIZATION</div>
+              <div class="skill-label">CLOUD &amp; VIRTUALIZATION</div>
               <div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div>
             </div>
             <div class="skill-group">
-              <div class="skill-lbl">SCRIPTING &amp; PROGRAMMING</div>
+              <div class="skill-label">SCRIPTING &amp; PROGRAMMING</div>
               <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div>
             </div>
             <div class="skill-group">
-              <div class="skill-lbl">COMPLIANCE FRAMEWORKS</div>
+              <div class="skill-label">COMPLIANCE FRAMEWORKS</div>
               <div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div>
             </div>
             <div class="skill-group">
-              <div class="skill-lbl">TICKETING</div>
+              <div class="skill-label">TICKETING</div>
               <div class="skill-tags"><span class="skill-tag">Vivantio</span></div>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 技術 · 術式 · 能力 //</div>
           </div>
         </div>
+      </div>
 
-        <!-- CONTACT -->
-        <div class="view" id="page-contact">
+      <!-- CONTACT -->
+      <div class="view" id="page-contact">
+        <div class="term-panel">
+          <div class="term-bar">
+            <div class="term-bar-title">cat contact.txt</div>
+            <div class="term-dots"><div class="term-dot"></div><div class="term-dot"></div><div class="term-dot"></div></div>
+          </div>
           <div class="content-inner">
-            <div class="sec-title">CONTACT</div>
-            <div style="font-family:'DotGothic16',monospace;font-size:0.86rem;color:var(--text);margin-bottom:14px;line-height:1.82;">
-              Open to cybersecurity roles, internships, and collabs !<br/>
-              Don't be shy — say hi !! (ﾉ◕ヮ◕)ﾉ*:･ﾟ★
+            <div class="cmd-line"><span class="p">root@sgoodie:~$</span> <span class="c">cat contact.txt</span></div>
+            <div class="sec-heading"><span class="fn">CONTACT.TXT</span></div>
+            <div class="output">
+              <p>Open to cybersecurity roles, internships, and collabs.</p>
+              <p class="dim">// don't be shy. reach out.</p>
             </div>
             <div class="contact-grid">
-              <a class="window contact-win" href="mailto:segoodie12@gmail.com">
-                <div class="title-bar">
-                  <div class="title-bar-text"><span class="title-icon">📧</span> Email</div>
-                  <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-                </div>
-                <div class="contact-body">
-                  <span class="contact-icon">📧</span>
-                  <div><div class="contact-lbl">EMAIL ADDRESS</div><div class="contact-val">segoodie12@gmail.com</div></div>
-                </div>
+              <a class="contact-card" href="/cdn-cgi/l/email-protection#93e0f6f4fcfcf7faf6a2a1d3f4fef2faffbdf0fcfe">
+                <span class="contact-icon">📧</span>
+                <div><div class="contact-lbl">EMAIL</div><div class="contact-val"><span class="__cf_email__" data-cfemail="87f4e2e0e8e8e3eee2b6b5c7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></div></div>
               </a>
-              <a class="window contact-win" href="https://linkedin.com" target="_blank">
-                <div class="title-bar teal-bar">
-                  <div class="title-bar-text"><span class="title-icon">💼</span> LinkedIn</div>
-                  <div class="title-bar-controls"><div class="tb-btn">✕</div></div>
-                </div>
-                <div class="contact-body">
-                  <span class="contact-icon">💼</span>
-                  <div><div class="contact-lbl">LINKEDIN</div><div class="contact-val">Connect with me !</div></div>
-                </div>
+              <a class="contact-card" href="https://linkedin.com" target="_blank">
+                <span class="contact-icon">💼</span>
+                <div><div class="contact-lbl">LINKEDIN</div><div class="contact-val">connect with me</div></div>
               </a>
             </div>
-            <hr class="win-rule" style="margin-top:14px;" />
-            <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--cobalt2);letter-spacing:0.1em;">// 連絡 · 接続 · 術式 //</div>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <div class="status-bar">
-      <div class="status-cell">💾 Sara Goodie — Cybersecurity Portfolio</div>
-      <div class="status-cell" style="max-width:200px;">サラ・グッディ · 2026</div>
-      <div class="status-cell" style="max-width:130px;" id="clock">--:-- --</div>
-    </div>
+    </div><!-- end content-area -->
+  </div><!-- end main-body -->
 
-  </div><!-- end main window -->
-
-  <!-- BANNER BAR -->
-  <div class="banner-wrap">
-    <div class="window">
-      <div class="banner-bar">
-        <div class="banner-item bn-1">💾 BEST<br/>VIEWED<br/>IE 6.0</div>
-        <div class="banner-item bn-2">⚡ CYBER<br/>SECURITY<br/>ROCKS</div>
-        <div class="banner-item bn-3">🔐 BLUE<br/>TEAM<br/>4EVER</div>
-        <div class="banner-item bn-4">サイバー<br/>術式<br/>守護</div>
-        <div class="banner-item bn-5">💾 WGU<br/>GRAD<br/>2026</div>
-        <div class="banner-item bn-6">◆ SIEM<br/>QUEEN<br/>◆</div>
-        <div class="banner-item bn-7">8 CERTS<br/>EARNED<br/>✓</div>
-        <div class="banner-item bn-8">⚔️ THREAT<br/>DETECT<br/>PRO</div>
-      </div>
-    </div>
+  <!-- BANNER STRIP -->
+  <div class="banner-strip">
+    <span class="ban-item">[+] BLUE_TEAM</span>
+    <span class="ban-item">[+] SIEM_OPS</span>
+    <span class="ban-item">[+] THREAT_DETECT</span>
+    <span class="ban-item">[+] WGU_2026</span>
+    <span class="ban-item">[+] 8_CERTS</span>
+    <span class="ban-item">[+] 3_LABS</span>
+    <span class="ban-item">[+] OPEN_TO_WORK</span>
+    <span class="ban-item" style="color:var(--amber);">[!] HIRE_ME</span>
+    <span class="ban-item dim" style="margin-left:auto;color:var(--grey);">守護 · 防衛</span>
   </div>
 
-  <div class="footer">
-    &gt;&gt; © 2026 SARA GOODIE // サラ・グッディ // CYBERSECURITY &amp; INFORMATION ASSURANCE &lt;&lt;<br/>
-    <span style="font-size:0.62rem;opacity:0.7;">BEST VIEWED IN 800×600 // MADE WITH COBALT BLUE AND KEYBOARD ENERGY</span>
+  <div style="font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--pink-pale);padding:6px 0 46px;text-align:center;letter-spacing:0.1em;">
+    // © 2026 SARA GOODIE // サラ・グッディ // CYBERSECURITY &amp; INFORMATION ASSURANCE //<br/>
+    <span style="color:var(--grey);">// hello_friend //</span>
   </div>
 
-</div>
+</div><!-- end desktop -->
 
 <!-- TASKBAR -->
 <div class="taskbar">
-  <div class="start-btn">▶ START</div>
+  <div class="tb-root">root@sgoodie</div>
   <div class="tb-div"></div>
-  <div class="taskbar-btn active" onclick="showPage('home')">💾 Sara Goodie</div>
-  <div class="taskbar-btn" onclick="showPage('projects')">📁 Projects</div>
-  <div class="taskbar-btn" onclick="showPage('contact')">📧 Contact</div>
-  <div class="taskbar-clock" id="taskbar-clock">--:--</div>
+  <div class="tb-btn active" onclick="showPage('home')">~/home</div>
+  <div class="tb-btn" onclick="showPage('projects')">~/projects</div>
+  <div class="tb-btn" onclick="showPage('contact')">~/contact</div>
+  <div class="tb-clock" id="taskbar-clock">--:--:--</div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /* ── MATRIX RAIN ── */
+  const canvas = document.getElementById('matrix-canvas');
+  const ctx = canvas.getContext('2d');
+  let drops = [];
+  function initMatrix() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const cols = Math.floor(canvas.width / 14);
+    drops = Array(cols).fill(1);
+  }
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ff2d78';
+    ctx.font = '12px Share Tech Mono';
+    const chars = '01アイウエオカキクケコサシスセソ守護防衛術式';
+    drops.forEach((y, i) => {
+      const ch = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillText(ch, i * 14, y * 14);
+      if (y * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    });
+  }
+  initMatrix();
+  setInterval(drawMatrix, 55);
+  window.addEventListener('resize', initMatrix);
+
+  /* ── TYPEWRITER NAME ── */
+  const NAME_CHARS = 'SARA GOODIE'.split('');
+  const nameEl = document.getElementById('name-typed');
+  const tagsEl = document.getElementById('tags-row');
+
+  NAME_CHARS.forEach((ch, i) => {
+    const span = document.createElement('span');
+    if (ch === ' ') {
+      span.className = 'space';
+    } else {
+      span.className = 'typed-char';
+      span.textContent = ch;
+    }
+    nameEl.appendChild(span);
+  });
+
+  const charEls = nameEl.querySelectorAll('.typed-char');
+  charEls.forEach((el, i) => {
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.04s ease';
+      el.style.opacity = '1';
+      // bright flash on appear
+      el.style.textShadow = '0 0 6px #fff, 0 0 20px rgba(255,45,120,1), 0 0 50px rgba(255,45,120,0.8)';
+      el.style.color = '#ffffff';
+      // settle to normal pink glow
+      setTimeout(() => {
+        el.style.transition = 'color 0.3s ease, text-shadow 0.3s ease';
+        el.style.color = 'var(--pink)';
+        el.style.textShadow = '0 0 10px rgba(255,45,120,0.9), 0 0 30px rgba(255,45,120,0.5)';
+      }, 120);
+    }, 600 + i * 110);
+  });
+
+  // Show tags after name finishes
+  setTimeout(() => { tagsEl.style.opacity = '1'; }, 600 + NAME_CHARS.length * 100 + 400);
+
+  /* ── NAV ── */
   function showPage(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(a => {
-      a.classList.toggle('active', a.dataset.page === id);
-    });
+    document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.page === id));
+    document.querySelectorAll('.tb-btn').forEach(b => b.classList.remove('active'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  function showPopup() { document.getElementById('popup').classList.add('show'); }
-  function closePopup() { document.getElementById('popup').classList.remove('show'); }
-  function updateClock() {
-    const now = new Date();
-    const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const str = ((h % 12) || 12) + ':' + m + ' ' + ampm;
-    const e1 = document.getElementById('clock');
-    const e2 = document.getElementById('taskbar-clock');
-    if (e1) e1.textContent = str;
-    if (e2) e2.textContent = str;
-  }
-  updateClock(); setInterval(updateClock, 1000);
-</script>
-</body>
-</html>
+
+  /* ── CLOCK ── *
