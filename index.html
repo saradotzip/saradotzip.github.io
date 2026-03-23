@@ -54,43 +54,6 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--grey2); }
 
-    /* ── KEYCAPS ── */
-    .name-key {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 1.85rem; height: 1.85rem;
-      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
-      border-top: 1.5px solid #dedede;
-      border-left: 1.5px solid #d2d2d2;
-      border-right: 1.5px solid #5a5a5a;
-      border-bottom: 1.5px solid #4c4c4c;
-      border-radius: 4px;
-      box-shadow: 0 4px 0 #3a3a3a, 0 5px 8px rgba(0,0,0,0.7),
-                  inset 0 1px 0 rgba(255,255,255,0.55);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.58rem; font-weight: bold;
-      color: #111; letter-spacing: 0;
-      opacity: 0;
-    }
-    .key-tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
-      border-top: 1.5px solid #dedede;
-      border-left: 1.5px solid #d2d2d2;
-      border-right: 1.5px solid #5a5a5a;
-      border-bottom: 1.5px solid #4c4c4c;
-      border-radius: 4px;
-      box-shadow: 0 3px 0 #3a3a3a, 0 4px 6px rgba(0,0,0,0.65),
-                  inset 0 1px 0 rgba(255,255,255,0.5);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.48rem; color: #111;
-      padding: 2px 7px; cursor: default;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-    .key-tag:hover {
-      transform: translateY(2px);
-      box-shadow: 0 1px 0 #3a3a3a, 0 2px 3px rgba(0,0,0,0.6);
-    }
-
     /* ── VTAG pill ── */
     .vtag {
       font-size: 0.7rem; color: var(--white3);
@@ -401,7 +364,7 @@
     <div class="hero-inner">
       <div class="hero-left">
         <div style="font-size:0.62rem;color:var(--grey);letter-spacing:0.25em;">◈ &nbsp; ◇ &nbsp; ◈ &nbsp; ◇ &nbsp; ◈</div>
-        <div class="name-row-hero" id="name-hero"></div>
+        <div class="name-text">SARA GOODIE</div>
         <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
         <div class="hero-tags">
           <span class="vtag">BLUE TEAM</span>
@@ -492,7 +455,7 @@
       <div class="view active" id="page-home">
         <div class="v-inner">
           <div class="name-header">
-            <div class="name-row-content" id="name-content"></div>
+            <div class="name-text">SARA GOODIE</div>
             <div class="name-jp">サラ・グッディ</div>
             <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
             <div class="tag-row">
@@ -671,39 +634,7 @@
 
 <script>
   /* ── KEYCAP ANIMATION ── */
-  const NAME = 'SARA GOODIE'.split('');
-
-  function buildKeys(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    NAME.forEach((ch, i) => {
-      if (ch === ' ') {
-        const sp = document.createElement('span');
-        sp.style.cssText = 'display:inline-block;width:8px;';
-        el.appendChild(sp); return;
-      }
-      const k = document.createElement('span');
-      k.className = 'name-key';
-      k.textContent = ch;
-      el.appendChild(k);
-      setTimeout(() => {
-        k.style.opacity = '1';
-        setTimeout(() => {
-          k.style.transition = 'transform 0.07s, box-shadow 0.07s';
-          k.style.transform = 'translateY(3px)';
-          k.style.boxShadow = '0 1px 0 #3a3a3a, 0 2px 3px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.35)';
-        }, 55);
-        setTimeout(() => {
-          k.style.transition = 'all 0.12s ease';
-          k.style.transform = 'translateY(0)';
-          k.style.boxShadow = '0 4px 0 #3a3a3a, 0 5px 8px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.55)';
-        }, 145);
-      }, 280 + i * 105);
-    });
-  }
-
-  buildKeys('name-hero');
-  buildKeys('name-content');
+  
 
   /* ── NAV ── */
   const LBLS = { home:'Home', experience:'Experience', projects:'Projects', certs:'Certifications', skills:'Skills', contact:'Contact' };
