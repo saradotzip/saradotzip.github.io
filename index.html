@@ -6,529 +6,377 @@
   <title>Sara Goodie — Cyber Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #000000;
-      --black2:  #080808;
-      --black3:  #0f0f0f;
-      --white:   #f0eeea;
-      --white2:  #d8d4cc;
-      --white3:  #b0aba0;
-      --grey:    #555550;
-      --grey2:   #333330;
-      --border:  #2a2a28;
-      --border2: #1a1a18;
+      --bg:      #000000;
+      --bg2:     #050505;
+      --bg3:     #0a0a0a;
+      --panel:   #0d0d0d;
+      --panel2:  #111111;
+      --border:  #1c1c1c;
+      --border2: #242424;
+      --pink:    #d45f8a;
+      --pink2:   #e88ab0;
+      --pink3:   #a03060;
+      --pink-g:  rgba(212,95,138,0.10);
+      --white:   #e8e8e0;
+      --white2:  #c0bfb8;
+      --white3:  #888880;
+      --grey:    #505048;
+      --grey2:   #303030;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: var(--black);
+      background: var(--bg);
       min-height: 100vh;
-      color: var(--white);
-      font-size: 14px;
+      color: var(--white2);
+      font-size: 12px;
       overflow-x: hidden;
     }
 
-    /* ── noise grain texture ── */
+    /* subtle scanlines */
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      opacity: 0.06;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
+      );
     }
 
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--grey2); }
 
-    /* ── CYBERSIGILISM SVG DECORATIONS ── */
-    /* Filigree corner piece — top left */
-    .sigil-tl, .sigil-tr, .sigil-bl, .sigil-br {
-      position: absolute; pointer-events: none; z-index: 0;
-      opacity: 0.55;
-      color: var(--white2);
-    }
-    .sigil-tl { top: 0; left: 0; }
-    .sigil-tr { top: 0; right: 0; transform: scaleX(-1); }
-    .sigil-bl { bottom: 0; left: 0; transform: scaleY(-1); }
-    .sigil-br { bottom: 0; right: 0; transform: scale(-1,-1); }
-
-    /* inline sigil dividers */
-    .sigil-divider {
-      width: 100%; display: flex; align-items: center; justify-content: center;
-      gap: 12px; margin: 16px 0; opacity: 0.5;
-    }
-    .sigil-divider::before, .sigil-divider::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--white2), transparent);
-    }
-    .sigil-divider span {
-      font-size: 0.9rem; color: var(--white2);
-      white-space: nowrap;
-    }
-
-    /* floating sigil accents */
-    .sigil-accent {
-      display: inline-block;
-      color: var(--white3); font-size: 0.75rem; opacity: 0.6;
-      letter-spacing: 0.3em;
-    }
-
-    /* ── LAYOUT ── */
-    .page-wrap {
-      position: relative; z-index: 1;
-      max-width: 960px; margin: 0 auto;
-      padding: 20px 16px 60px;
-      display: flex; flex-direction: column; gap: 12px;
-    }
-
-    /* ── HEADER ── */
-    .site-header {
-      position: relative;
-      border: 1px solid var(--border);
-      background: var(--black2);
-      padding: 28px 24px 20px;
-      overflow: hidden;
-    }
-    /* filigree corner brackets drawn with CSS */
-    .site-header::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        /* top-left corner lines */
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 40px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 1px 40px no-repeat,
-        /* top-right corner */
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 40px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 1px 40px no-repeat,
-        /* bottom-left */
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 40px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 1px 40px no-repeat,
-        /* bottom-right */
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 40px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 1px 40px no-repeat;
-      pointer-events: none; opacity: 0.4;
-    }
-
-    .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .header-left { display: flex; flex-direction: column; gap: 10px; }
-
-    /* name typed keys row */
-    .name-key-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 2rem; }
+    /* ── KEYCAPS ── */
     .name-key {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 1.9rem; height: 1.9rem;
-      background: linear-gradient(145deg, #c8c8c8, #909090);
-      border-top: 2px solid #e0e0e0; border-left: 2px solid #d4d4d4;
-      border-right: 2px solid #606060; border-bottom: 2px solid #505050;
-      border-radius: 5px;
-      box-shadow: 0 5px 0 #444, 0 7px 10px rgba(0,0,0,0.7),
-                  inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.2);
+      width: 1.85rem; height: 1.85rem;
+      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
+      border-top: 1.5px solid #dedede;
+      border-left: 1.5px solid #d2d2d2;
+      border-right: 1.5px solid #5a5a5a;
+      border-bottom: 1.5px solid #4c4c4c;
+      border-radius: 4px;
+      box-shadow: 0 4px 0 #3a3a3a, 0 5px 8px rgba(0,0,0,0.7),
+                  inset 0 1px 0 rgba(255,255,255,0.55);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.6rem; font-weight: bold;
-      color: #111; text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+      font-size: 0.58rem; font-weight: bold;
+      color: #111; letter-spacing: 0;
       opacity: 0;
-    }
-
-    .header-sub {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem; color: var(--white3);
-      letter-spacing: 0.12em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .header-sub::before { content: '✦'; font-size: 0.6rem; }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
-    .gothic-tag {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem; color: var(--white2);
-      border: 1px solid var(--grey2);
-      padding: 3px 12px;
-      background: transparent;
-      letter-spacing: 0.08em;
-      transition: all 0.15s ease; cursor: default;
-      position: relative;
-    }
-    .gothic-tag::before, .gothic-tag::after {
-      content: '';
-      position: absolute; top: 50%; width: 5px; height: 1px;
-      background: var(--white3);
-    }
-    .gothic-tag::before { right: 100%; margin-right: 2px; transform: translateY(-50%); }
-    .gothic-tag::after  { left:  100%; margin-left:  2px; transform: translateY(-50%); }
-    .gothic-tag:hover { background: rgba(255,255,255,0.06); color: var(--white); border-color: var(--grey); }
-
-    .header-right { text-align: right; }
-    .status-sigil {
-      font-family: 'IM Fell English', serif;
-      font-size: 0.8rem; color: var(--white3);
-      line-height: 1.8; letter-spacing: 0.04em;
-    }
-    .status-sigil .hi { color: var(--white); }
-    .online-dot {
-      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--white2); box-shadow: 0 0 6px var(--white);
-      margin-right: 5px; animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-
-    /* ── MAIN LAYOUT ── */
-    .main-body { display: grid; grid-template-columns: 185px 1fr; gap: 12px; }
-
-    /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; gap: 8px; }
-
-    .side-panel {
-      border: 1px solid var(--border);
-      background: var(--black2);
-      position: relative; overflow: hidden;
-    }
-    .side-panel-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.48rem; color: var(--white2);
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 7px 10px; border-bottom: 1px solid var(--border);
-      background: var(--black3);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .side-panel-title::before { content: '⬥'; font-size: 0.5rem; color: var(--white3); }
-
-    .nav-item {
-      display: flex; align-items: center; gap: 7px;
-      padding: 9px 12px; font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem; color: var(--white3);
-      text-decoration: none; cursor: pointer;
-      border-bottom: 1px solid var(--border2);
-      transition: all 0.1s ease;
-    }
-    .nav-item::before { content: '›'; color: var(--grey); }
-    .nav-item:hover, .nav-item.active {
-      color: var(--white); background: rgba(255,255,255,0.04);
-      padding-left: 16px;
-    }
-    .nav-item.active::before { content: '›'; color: var(--white2); }
-
-    .sb-info {
-      padding: 10px 12px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.78rem; color: var(--white3); line-height: 1.85;
-    }
-    .sb-lbl {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.36rem; color: var(--grey);
-      display: block; margin-top: 8px; margin-bottom: 2px;
-      letter-spacing: 0.14em; text-transform: uppercase;
-    }
-
-    .stat-row {
-      display: flex; justify-content: space-between; padding: 5px 12px;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;
-      color: var(--white3); border-bottom: 1px solid var(--border2);
-    }
-    .stat-val { color: var(--white); font-weight: bold; }
-
-    .key-row {
-      padding: 8px 8px;
-      display: flex; flex-wrap: wrap; gap: 5px; justify-content: center;
     }
     .key-tag {
       display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(145deg, #c8c8c8, #909090);
-      border-top: 1.5px solid #e0e0e0; border-left: 1.5px solid #d4d4d4;
-      border-right: 1.5px solid #606060; border-bottom: 1.5px solid #505050;
+      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
+      border-top: 1.5px solid #dedede;
+      border-left: 1.5px solid #d2d2d2;
+      border-right: 1.5px solid #5a5a5a;
+      border-bottom: 1.5px solid #4c4c4c;
       border-radius: 4px;
-      box-shadow: 0 4px 0 #444, 0 5px 7px rgba(0,0,0,0.6),
-                  inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(0,0,0,0.2);
+      box-shadow: 0 3px 0 #3a3a3a, 0 4px 6px rgba(0,0,0,0.65),
+                  inset 0 1px 0 rgba(255,255,255,0.5);
       font-family: 'Share Tech Mono', monospace;
-      font-size: 0.5rem; color: #111;
-      padding: 3px 8px; cursor: default;
+      font-size: 0.48rem; color: #111;
+      padding: 2px 7px; cursor: default;
       transition: transform 0.1s, box-shadow 0.1s;
     }
     .key-tag:hover {
-      transform: translateY(3px);
-      box-shadow: 0 1px 0 #444, 0 2px 3px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.35);
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #3a3a3a, 0 2px 3px rgba(0,0,0,0.6);
     }
 
-    .side-kanji {
-      text-align: center; padding: 10px 8px;
-      font-family: 'IM Fell English', serif; font-style: italic;
-      font-size: 1.6rem; color: var(--grey2); line-height: 1.4;
+    /* ── VTAG pill ── */
+    .vtag {
+      font-size: 0.7rem; color: var(--white3);
+      border: 1px solid var(--border2);
+      padding: 2px 10px; background: transparent;
+      letter-spacing: 0.06em; cursor: default;
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: all 0.12s ease;
     }
-    .side-kanji-sub {
-      text-align: center; padding: 0 8px 10px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.58rem; color: var(--grey); letter-spacing: 0.12em;
+    .vtag::before { content: '–'; color: var(--grey); font-size: 0.6rem; }
+    .vtag::after  { content: '–'; color: var(--grey); font-size: 0.6rem; }
+    .vtag:hover { color: var(--pink2); border-color: var(--pink3); }
+
+    /* ── LAYOUT ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 16px 14px 50px;
+      display: flex; flex-direction: column; gap: 8px;
     }
 
-    /* ── CONTENT ── */
-    .content-area { display: flex; flex-direction: column; gap: 0; }
-
-    .content-panel {
-      border: 1px solid var(--border);
-      background: var(--black2);
-      flex: 1;
-    }
-
-    .panel-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.5rem; color: var(--white2);
-      letter-spacing: 0.12em; padding: 7px 12px;
-      border-bottom: 1px solid var(--border);
-      background: var(--black3);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .panel-title-text { display: flex; align-items: center; gap: 6px; }
-    .panel-title-text::before { content: '⬥'; font-size: 0.5rem; color: var(--white3); }
-    .panel-close { color: var(--grey); font-size: 0.7rem; cursor: default; }
-
-    .view { display: none; animation: fadeIn 0.2s ease; }
-    .view.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .content-inner { padding: 20px 22px; }
-
-    /* ── SECTION HEADING ── */
-    .sec-head {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.62rem; color: var(--white2);
-      letter-spacing: 0.16em; text-transform: uppercase;
-      margin-bottom: 18px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .sec-head::before { content: '⬥'; color: var(--grey); font-size: 0.55rem; }
-    .sec-head::after  { content: ''; flex: 1; border-top: 1px solid var(--border); margin-left: 6px; }
-
-    /* ── HOME ── */
-    .welcome-grid { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: start; }
-
-    .name-header {
-      border: 1px solid var(--border); padding: 14px 16px; margin-bottom: 18px;
+    /* ── HERO PANEL ── */
+    .hero {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 22px 24px 16px;
       position: relative; overflow: hidden;
-      background: var(--black3);
     }
     /* corner brackets */
-    .name-header::before {
+    .hero::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      position: absolute; inset: 0; pointer-events: none;
       background:
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 22px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 1px 22px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 22px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 1px 22px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 22px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 1px 22px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 22px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 1px 22px no-repeat;
-      pointer-events: none; opacity: 0.35;
+        linear-gradient(var(--white3),var(--white3)) 0 0/30px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 0/1px 30px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 0/30px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 0/1px 30px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 100%/30px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 100%/1px 30px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 100%/30px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 100%/1px 30px no-repeat;
+      opacity: 0.35;
     }
-    .name-key-row2 { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 2rem; margin-bottom: 10px; }
-    .name-jp  { font-family: 'IM Fell English', serif; font-style: italic; font-size: 1rem; color: var(--white3); letter-spacing: 0.18em; margin-bottom: 5px; }
-    .name-sub { font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; color: var(--white3); }
-    .tag-row2 { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .hero-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .hero-left  { display: flex; flex-direction: column; gap: 9px; }
+    .hero-right { text-align: right; font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--white3); line-height: 1.9; }
+    .hero-right .hi { color: var(--white); }
 
-    .welcome-text {
-      font-family: 'IM Fell English', serif;
-      font-size: 0.95rem; color: var(--white2); line-height: 1.95;
+    .name-row-hero { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 1.9rem; }
+    .hero-sub {
+      font-size: 0.7rem; color: var(--white3); letter-spacing: 0.12em;
+      display: flex; align-items: center; gap: 6px;
     }
-    .welcome-text p + p { margin-top: 10px; }
-    .welcome-text strong { color: var(--white); font-style: italic; }
-    .hi { color: var(--white); font-style: italic; }
+    .hero-sub::before { content: '✦'; font-size: 0.55rem; color: var(--pink3); }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    .focus-box { border: 1px solid var(--border); background: var(--black3); }
-    .focus-box-title {
-      font-family: 'Cinzel Decorative', serif; font-size: 0.44rem;
-      color: var(--white3); text-align: center; padding: 7px;
-      border-bottom: 1px solid var(--border); letter-spacing: 0.12em;
+    .hero-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; margin-top: 14px; opacity: 0.4;
     }
-    .focus-entry {
-      display: flex; align-items: flex-start; gap: 7px;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--white3);
-      padding: 7px 10px; border-bottom: 1px solid var(--border2); line-height: 1.45;
+    .hero-divider::before, .hero-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--white3), transparent);
     }
-    .focus-entry::before { content: '›'; color: var(--grey); flex-shrink: 0; }
-
-    /* ── EXPERIENCE ── */
-    .exp-entry { margin-bottom: 22px; }
-    .exp-entry:last-child { margin-bottom: 0; }
-    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 4px; }
-    .exp-role { font-family: 'Cinzel Decorative', serif; font-size: 0.52rem; color: var(--white); letter-spacing: 0.08em; }
-    .exp-date { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--grey); }
-    .exp-co   { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.92rem; color: var(--white2); margin-bottom: 10px; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .exp-list li {
-      font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: var(--white3);
-      line-height: 1.7; padding-left: 18px; position: relative;
-    }
-    .exp-list li::before { content: '›'; position: absolute; left: 0; color: var(--grey); top: 0; }
-
-    /* ── PROJECTS ── */
-    .proj-grid { display: flex; flex-direction: column; gap: 12px; }
-    .proj-panel { border: 1px solid var(--border); background: var(--black3); position: relative; overflow: hidden; }
-    .proj-inner { padding: 14px 16px; }
-    .proj-title {
-      font-family: 'Cinzel Decorative', serif; font-size: 0.52rem;
-      color: var(--white); letter-spacing: 0.08em; margin-bottom: 10px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .proj-title::before { content: '⬥'; color: var(--grey); font-size: 0.5rem; flex-shrink: 0; }
-    .proj-desc { font-family: 'Share Tech Mono', monospace; font-size: 0.84rem; color: var(--white3); line-height: 1.72; margin-bottom: 12px; }
-    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; }
-    .gothic-btn {
-      font-family: 'Share Tech Mono', monospace; font-size: 0.78rem;
-      color: var(--white2); border: 1px solid var(--border);
-      padding: 5px 16px; background: transparent;
-      text-decoration: none; cursor: pointer; letter-spacing: 0.06em;
-      transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 6px;
-    }
-    .gothic-btn:hover { background: rgba(255,255,255,0.06); color: var(--white); border-color: var(--grey); }
-
-    /* ── CERTS ── */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 6px; }
-    .cert-item {
-      border: 1px solid var(--border); background: var(--black3);
-      padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.84rem; color: var(--white3);
-      transition: all 0.12s ease;
-    }
-    .cert-item:hover { background: rgba(255,255,255,0.03); color: var(--white); border-color: var(--grey2); }
-    .cert-item::before { content: '›'; color: var(--grey); margin-right: 6px; }
-    .cert-date { font-family: 'Cinzel Decorative', serif; font-size: 0.36rem; color: var(--grey); text-align: right; white-space: nowrap; }
-
-    /* ── SKILLS ── */
-    .skill-group { margin-bottom: 14px; }
-    .skill-group:last-child { margin-bottom: 0; }
-    .skill-lbl {
-      font-family: 'Cinzel Decorative', serif; font-size: 0.44rem;
-      color: var(--white2); margin-bottom: 7px;
-      display: flex; align-items: center; gap: 6px; letter-spacing: 0.1em;
-    }
-    .skill-lbl::before { content: '⬥'; color: var(--grey); font-size: 0.44rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .skill-tag {
-      border: 1px solid var(--border); background: var(--black3);
-      padding: 3px 10px; font-family: 'Share Tech Mono', monospace;
-      font-size: 0.8rem; color: var(--white3);
-      transition: all 0.12s ease;
-    }
-    .skill-tag:hover { color: var(--white); border-color: var(--grey2); background: rgba(255,255,255,0.03); }
-
-    /* ── CONTACT ── */
-    .contact-grid { display: flex; gap: 12px; flex-wrap: wrap; }
-    .contact-card {
-      flex: 1; min-width: 200px; text-decoration: none;
-      border: 1px solid var(--border); background: var(--black3);
-      padding: 16px 18px; display: flex; align-items: center; gap: 14px;
-      transition: all 0.15s ease;
-    }
-    .contact-card:hover { border-color: var(--grey2); background: rgba(255,255,255,0.03); }
-    .contact-icon { font-size: 1.6rem; filter: grayscale(1); opacity: 0.7; }
-    .contact-card:hover .contact-icon { opacity: 1; filter: none; }
-    .contact-lbl { font-family: 'Cinzel Decorative', serif; font-size: 0.38rem; color: var(--grey); letter-spacing: 0.12em; margin-bottom: 5px; }
-    .contact-val { font-family: 'Share Tech Mono', monospace; font-size: 0.88rem; color: var(--white2); }
+    .hero-divider span { font-size: 0.6rem; color: var(--white3); letter-spacing: 0.2em; }
 
     /* ── MARQUEE ── */
-    .marquee-bar {
-      border: 1px solid var(--border); background: var(--black3);
-      overflow: hidden; height: 28px; display: flex; align-items: center;
+    .marq-bar {
+      background: var(--bg); border: 1px solid var(--border);
+      overflow: hidden; height: 20px; display: flex; align-items: center;
     }
-    .marquee-txt {
-      display: inline-block; animation: marq 34s linear infinite; padding-left: 100%;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; color: var(--white3);
-      white-space: nowrap; letter-spacing: 0.08em;
+    .marq-txt {
+      display: inline-block; animation: marq 38s linear infinite; padding-left: 100%;
+      font-size: 0.65rem; color: var(--white3); white-space: nowrap; letter-spacing: 0.08em;
     }
-    @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    @keyframes marq { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-    /* ── BANNER ── */
-    .banner-row {
-      display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
-      border: 1px solid var(--border); background: var(--black3);
-      padding: 8px 10px;
-    }
-    .ban {
-      border: 1px solid var(--border2); padding: 3px 10px;
-      font-family: 'Share Tech Mono', monospace; font-size: 0.64rem;
-      color: var(--grey); white-space: nowrap;
-      transition: color 0.1s ease;
-    }
-    .ban:hover { color: var(--white2); border-color: var(--grey2); }
+    /* ── MAIN GRID ── */
+    .main-grid { display: grid; grid-template-columns: 185px 1fr; gap: 8px; }
 
-    /* ── FOOTER ── */
-    .footer {
-      text-align: center;
-      font-family: 'IM Fell English', serif; font-style: italic;
-      font-size: 0.88rem; color: var(--grey);
-      padding: 6px 0 50px; letter-spacing: 0.06em;
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 6px; }
+
+    .s-panel {
+      background: var(--bg2); border: 1px solid var(--border);
     }
+    .s-head {
+      padding: 5px 10px; background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.44rem; color: var(--white3);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .s-head::before { content: '◈'; color: var(--pink); font-size: 0.48rem; }
+
+    .nav-item {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 12px; font-size: 0.8rem; color: var(--white3);
+      text-decoration: none; cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.1s ease; font-family: 'IM Fell English', serif;
+    }
+    .nav-item::before { content: '›'; color: var(--grey); }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); padding-left: 16px; }
+    .nav-item.active {
+      color: var(--pink2); background: var(--pink-g);
+      border-left: 2px solid var(--pink); padding-left: 10px;
+    }
+    .nav-item.active::before { color: var(--pink); }
+
+    .s-body { padding: 9px 11px; font-size: 0.72rem; color: var(--white3); line-height: 1.9; }
+    .s-lbl {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.56rem; color: var(--pink); letter-spacing: 0.1em;
+      text-transform: uppercase; display: block; margin-top: 7px; margin-bottom: 1px;
+    }
+    .online-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink2); box-shadow: 0 0 7px var(--pink);
+      margin-right: 4px; animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+    .stat-row {
+      display: flex; justify-content: space-between;
+      padding: 5px 11px; font-size: 0.72rem; color: var(--white3);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row .v { color: var(--pink2); font-weight: bold; }
+
+    .key-row { padding: 7px 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .s-kanji { text-align: center; padding: 10px 8px 6px; font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.6rem; color: var(--grey2); line-height: 1.4; }
+    .s-kanji-sub { text-align: center; padding: 0 8px 10px; font-size: 0.6rem; color: var(--grey); letter-spacing: 0.1em; }
+
+    /* ── CONTENT PANEL ── */
+    .c-panel { background: var(--bg2); border: 1px solid var(--border); display: flex; flex-direction: column; }
+
+    .c-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 5px 10px; background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--white3);
+      letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0;
+    }
+    .c-head-l { display: flex; align-items: center; gap: 5px; }
+    .c-head-l::before { content: '◈'; color: var(--pink); font-size: 0.48rem; }
+    .c-head-close { color: var(--grey); cursor: default; font-size: 0.75rem; }
+
+    .view { display: none; animation: fadeIn 0.15s ease; }
+    .view.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+    .v-inner { padding: 16px 20px; }
+
+    /* name header inside content */
+    .name-header {
+      background: var(--bg3); border: 1px solid var(--border2);
+      padding: 14px 16px; margin-bottom: 16px; position: relative; overflow: hidden;
+    }
+    .name-header::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(var(--white3),var(--white3)) 0 0/18px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 0/1px 18px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 0/18px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 0/1px 18px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 100%/18px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 0 100%/1px 18px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 100%/18px 1px no-repeat,
+        linear-gradient(var(--white3),var(--white3)) 100% 100%/1px 18px no-repeat;
+      opacity: 0.25;
+    }
+    .name-row-content { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 1.9rem; margin-bottom: 8px; position: relative; z-index: 1; }
+    .name-jp  { font-family: 'IM Fell English', serif; font-style: italic; font-size: 1rem; color: var(--white3); letter-spacing: 0.18em; margin-bottom: 4px; }
+    .name-sub { font-size: 0.78rem; color: var(--white3); }
+    .tag-row  { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+
+    /* section heading */
+    .sec {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 0.58rem; color: var(--white2); letter-spacing: 0.14em;
+      margin-bottom: 14px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sec::before { content: '◈'; color: var(--pink); font-size: 0.52rem; }
+    .sec::after  { content: ''; flex: 1; border-top: 1px solid var(--border); margin-left: 4px; }
+
+    /* welcome */
+    .welcome-grid { display: grid; grid-template-columns: 1fr 195px; gap: 14px; align-items: start; }
+    .w-text { font-family: 'IM Fell English', serif; font-size: 0.92rem; color: var(--white2); line-height: 1.95; }
+    .w-text p + p { margin-top: 9px; }
+    .w-text strong { font-style: italic; color: var(--white); }
+    .w-text em { color: var(--pink2); }
+    .w-open { font-size: 0.78rem; color: var(--grey); margin-top: 11px; }
+
+    .focus-panel { background: var(--bg3); border: 1px solid var(--border2); }
+    .focus-head { padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.6rem; color: var(--pink); letter-spacing: 0.1em; text-align: center; }
+    .focus-item { display: flex; align-items: flex-start; gap: 5px; padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.74rem; color: var(--white3); line-height: 1.45; }
+    .focus-item::before { content: '›'; color: var(--pink3); flex-shrink: 0; }
+
+    .v-divider { display: flex; align-items: center; gap: 8px; margin: 14px 0; opacity: 0.35; }
+    .v-divider::before, .v-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--white3), transparent); }
+    .v-divider span { font-size: 0.6rem; color: var(--white3); letter-spacing: 0.18em; white-space: nowrap; }
+
+    /* experience */
+    .exp-entry { margin-bottom: 18px; }
+    .exp-entry:last-child { margin-bottom: 0; }
+    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
+    .exp-role { font-family: 'Cinzel Decorative', serif; font-size: 0.5rem; color: var(--pink2); letter-spacing: 0.08em; }
+    .exp-date { font-size: 0.72rem; color: var(--grey); }
+    .exp-co   { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.88rem; color: var(--white2); margin-bottom: 8px; }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .exp-list li { font-size: 0.8rem; color: var(--white3); line-height: 1.65; padding-left: 14px; position: relative; }
+    .exp-list li::before { content: '›'; position: absolute; left: 0; color: var(--pink3); top: 1px; }
+
+    /* projects */
+    .proj-grid { display: flex; flex-direction: column; gap: 10px; }
+    .proj-card { background: var(--bg3); border: 1px solid var(--border2); }
+    .proj-bar { padding: 5px 10px; border-bottom: 1px solid var(--border); font-size: 0.62rem; color: var(--white3); display: flex; align-items: center; gap: 4px; background: var(--bg); }
+    .proj-bar::before { content: '//'; color: var(--pink3); }
+    .proj-inner { padding: 10px 12px; }
+    .proj-title { font-family: 'Cinzel Decorative', serif; font-size: 0.5rem; color: var(--pink2); letter-spacing: 0.06em; margin-bottom: 8px; }
+    .proj-desc { font-size: 0.78rem; color: var(--white3); line-height: 1.72; margin-bottom: 10px; }
+    .proj-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+    .p-btn { font-size: 0.7rem; color: var(--white3); border: 1px solid var(--border2); padding: 4px 12px; background: transparent; text-decoration: none; cursor: pointer; transition: all 0.12s ease; display: inline-flex; align-items: center; gap: 4px; }
+    .p-btn::before { content: '›'; color: var(--pink3); }
+    .p-btn:hover { border-color: var(--pink); color: var(--pink2); background: var(--pink-g); }
+
+    /* certs */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 5px; }
+    .cert-item { background: var(--bg3); border: 1px solid var(--border); padding: 7px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--white3); transition: all 0.1s; }
+    .cert-item:hover { color: var(--white); border-color: var(--border2); }
+    .cert-item::before { content: '›'; color: var(--pink3); margin-right: 5px; font-size: 0.6rem; }
+    .cert-date { font-size: 0.56rem; color: var(--grey); text-align: right; white-space: nowrap; }
+
+    /* skills */
+    .skill-g { margin-bottom: 13px; }
+    .skill-g:last-child { margin-bottom: 0; }
+    .skill-lbl { font-size: 0.58rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+    .skill-lbl::before { content: '//'; color: var(--pink3); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .skill-tag { background: var(--bg3); border: 1px solid var(--border); padding: 2px 9px; font-size: 0.76rem; color: var(--white3); transition: all 0.1s; }
+    .skill-tag:hover { color: var(--pink2); border-color: var(--border2); }
+
+    /* contact */
+    .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-card { flex: 1; min-width: 190px; background: var(--bg3); border: 1px solid var(--border2); padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: all 0.12s; }
+    .contact-card:hover { border-color: var(--pink); background: var(--pink-g); }
+    .c-lbl { font-size: 0.56rem; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
+    .c-val { font-size: 0.82rem; color: var(--pink2); }
 
     /* ── TASKBAR ── */
     .taskbar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--black2); border-top: 1px solid var(--border);
-      height: 36px; display: flex; align-items: center; gap: 6px; padding: 0 10px;
+      background: var(--bg); border-top: 1px solid var(--border);
+      height: 28px; display: flex; align-items: center; padding: 0 10px; gap: 4px;
     }
-    .tb-logo {
-      font-family: 'Cinzel Decorative', serif; font-size: 0.44rem;
-      color: var(--white2); letter-spacing: 0.1em; padding: 2px 10px;
-      border: 1px solid var(--border); background: var(--black3); cursor: default;
-    }
-    .tb-sep { width: 1px; height: 20px; background: var(--border); margin: 0 2px; }
-    .tb-btn {
-      font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
-      color: var(--grey); padding: 2px 10px; border: 1px solid transparent;
-      cursor: pointer; transition: all 0.1s ease;
-    }
-    .tb-btn:hover, .tb-btn.active { color: var(--white2); border-color: var(--border); background: rgba(255,255,255,0.04); }
-    .tb-clock {
-      margin-left: auto; font-family: 'Share Tech Mono', monospace;
-      font-size: 0.72rem; color: var(--grey);
-    }
+    .tb-logo { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: var(--pink2); letter-spacing: 0.08em; padding: 0 8px; border-right: 1px solid var(--border); }
+    .tb-btn { font-size: 0.65rem; color: var(--white3); padding: 2px 10px; border: 1px solid transparent; cursor: pointer; transition: all 0.1s; }
+    .tb-btn:hover, .tb-btn.active { color: var(--pink2); border-color: var(--border2); background: var(--pink-g); }
+    .tb-clock { margin-left: auto; font-size: 0.65rem; color: var(--grey); letter-spacing: 0.08em; }
 
     /* ── POPUP ── */
-    .popup-bg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+    .popup-bg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
     .popup-bg.show { display: flex; }
-    .popup-win {
-      width: 340px; border: 1px solid var(--border2); background: var(--black2);
-      position: relative;
-    }
-    .popup-win::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 18px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 0 / 1px 18px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 18px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 0 / 1px 18px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 18px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 0 100% / 1px 18px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 18px 1px no-repeat,
-        linear-gradient(var(--white3), var(--white3)) 100% 100% / 1px 18px no-repeat;
-      pointer-events: none; opacity: 0.25;
-    }
-    .popup-head { font-family: 'Cinzel Decorative', serif; font-size: 0.48rem; color: var(--white2); padding: 9px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .popup-body { padding: 18px 20px; font-family: 'IM Fell English', serif; font-size: 1rem; color: var(--white2); line-height: 1.65; }
-    .popup-btns { padding: 12px; display: flex; justify-content: center; gap: 10px; border-top: 1px solid var(--border); }
+    .popup-win { width: 320px; background: var(--bg2); border: 1px solid var(--border2); }
+    .popup-hd { padding: 7px 10px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 0.65rem; color: var(--white3); display: flex; justify-content: space-between; align-items: center; }
+    .popup-hd::before { content: '◈'; color: var(--pink); margin-right: 5px; }
+    .popup-body { padding: 16px 16px; font-family: 'IM Fell English', serif; font-size: 0.95rem; color: var(--white2); line-height: 1.6; }
+    .popup-btns { padding: 10px; display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--border); }
 
     /* ── MOBILE ── */
     .mob-btn { display: none; }
     @media (max-width: 700px) {
-      .main-body { grid-template-columns: 1fr; }
+      .main-grid { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .sidebar.open { display: flex; }
-      .mob-btn {
-        display: block; width: 100%;
-        background: var(--black3); color: var(--white2); border: 1px solid var(--border);
-        padding: 8px; font-family: 'Share Tech Mono', monospace;
-        font-size: 0.7rem; cursor: pointer; margin-bottom: 8px; letter-spacing: 0.08em;
-      }
+      .mob-btn { display: block; width: 100%; background: var(--bg3); color: var(--pink2); border: 1px solid var(--border); padding: 7px; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; cursor: pointer; margin-bottom: 7px; letter-spacing: 0.08em; }
       .welcome-grid { grid-template-columns: 1fr; }
       .cert-grid { grid-template-columns: 1fr; }
-      .page-wrap { padding: 12px 10px 60px; }
+      .page { padding: 10px 8px 50px; }
+      .hero-inner { flex-direction: column; }
     }
   </style>
 </head>
@@ -537,80 +385,54 @@
 <!-- POPUP -->
 <div class="popup-bg" id="popup">
   <div class="popup-win">
-    <div class="popup-head">
-      <span>⬥ System Query</span>
-      <span class="popup-close" onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span>
-    </div>
+    <div class="popup-hd"><span>System Query</span><span onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span></div>
     <div class="popup-body">Should you hire Sara Goodie for your cybersecurity team?</div>
     <div class="popup-btns">
-      <button class="gothic-btn" onclick="closePopup()">⬥ Yes</button>
-      <button class="gothic-btn" onclick="closePopup()">⬥ Also Yes</button>
+      <button class="p-btn" onclick="closePopup()">Yes</button>
+      <button class="p-btn" onclick="closePopup()">Also Yes</button>
     </div>
   </div>
 </div>
 
-<div class="page-wrap">
+<div class="page">
 
-  <!-- SITE HEADER -->
-  <div class="site-header">
-    <!-- CSS-drawn cybersigilism corner ornaments -->
-    <svg class="sigil-tl" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L2 30 M2 2 L30 2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-      <path d="M2 2 L18 18" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-      <circle cx="2" cy="2" r="2" fill="currentColor" opacity="0.5"/>
-      <circle cx="18" cy="2" r="1" fill="currentColor" opacity="0.35"/>
-      <circle cx="2" cy="18" r="1" fill="currentColor" opacity="0.35"/>
-      <path d="M8 2 L8 8 M2 8 L8 8" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-      <path d="M14 2 L14 5 M2 14 L5 14" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
-      <!-- spike ornament -->
-      <path d="M2 35 L6 28 L10 35 L14 20 L18 35 L22 25 L26 35" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.25"/>
-      <path d="M35 2 L28 6 L35 10 L20 14 L35 18 L25 22 L35 26" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.25"/>
-    </svg>
-    <svg class="sigil-tr" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 2 L2 30 M2 2 L30 2" stroke="currentColor" stroke-width="1" opacity="0.6"/>
-      <path d="M2 2 L18 18" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-      <circle cx="2" cy="2" r="2" fill="currentColor" opacity="0.5"/>
-      <path d="M2 35 L6 28 L10 35 L14 20 L18 35 L22 25 L26 35" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.25"/>
-    </svg>
-
-    <div class="header-top">
-      <div class="header-left">
-        <div class="sigil-accent">⬥ ⬦ ⬥ ⬦ ⬥</div>
-        <div class="name-key-row" id="name-top"></div>
-        <div class="header-sub">Cybersecurity &amp; Information Assurance</div>
-        <div class="tag-row">
-          <span class="gothic-tag">BLUE TEAM</span>
-          <span class="gothic-tag">SIEM</span>
-          <span class="gothic-tag">WGU 2026</span>
-          <span class="gothic-tag" onclick="showPopup()" style="cursor:pointer;">HIRE ME</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div style="font-size:0.62rem;color:var(--grey);letter-spacing:0.25em;">◈ &nbsp; ◇ &nbsp; ◈ &nbsp; ◇ &nbsp; ◈</div>
+        <div class="name-row-hero" id="name-hero"></div>
+        <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+        <div class="hero-tags">
+          <span class="vtag">BLUE TEAM</span>
+          <span class="vtag">SIEM</span>
+          <span class="vtag">WGU 2026</span>
+          <span class="vtag" onclick="showPopup()" style="cursor:pointer;">HIRE ME</span>
         </div>
       </div>
-      <div class="header-right">
-        <div class="status-sigil">
-          <span class="online-dot"></span><span class="hi">online</span><br/>
-          📍 Detroit, MI<br/>
-          🎓 Jan 2026<br/>
-          8 certs · 3 labs
-        </div>
+      <div class="hero-right">
+        <span class="online-dot"></span><span style="color:var(--white);">online</span><br/>
+        <span style="color:var(--pink);">◈</span> Detroit, MI<br/>
+        <span style="color:var(--grey);">⬦</span> Jan 2026<br/>
+        8 certs · 3 labs
       </div>
     </div>
-
-    <div class="sigil-divider" style="margin:14px 0 0;"><span>⬥ ⬦ ⬥</span></div>
+    <div class="hero-divider"><span>◈ &nbsp; ◇ &nbsp; ◈</span></div>
   </div>
 
   <!-- MARQUEE -->
-  <div class="marquee-bar">
-    <div class="marquee-txt">⬥ SARA GOODIE — CYBERSECURITY PORTFOLIO ⬥ &nbsp;&nbsp; ⬦ WGU GRADUATE JAN 2026 ⬦ &nbsp;&nbsp; ⬥ BLUE TEAM ⬥ SIEM ⬥ THREAT DETECTION ⬥ AZURE SENTINEL ⬥ &nbsp;&nbsp; ⬦ OPEN TO OPPORTUNITIES ⬦ &nbsp;&nbsp; ⬥ 8 CERTIFICATIONS ⬥ 3 LAB PROJECTS ⬥ &nbsp;&nbsp; ⬦ サイバーセキュリティ ⬦ 守護 ⬦ 防衛 ⬦</div>
+  <div class="marq-bar">
+    <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; &nbsp;&nbsp; // SARA GOODIE — CYBER PORTFOLIO // &nbsp;&nbsp; WGU GRADUATE JAN 2026 &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; SIEM &nbsp;◇&nbsp; THREAT DETECTION &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; 3 LABS // OPEN TO OPPORTUNITIES //</div>
   </div>
 
-  <!-- MAIN BODY -->
-  <div class="main-body">
+  <!-- MAIN -->
+  <div class="main-grid">
 
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
 
-      <div class="side-panel">
-        <div class="side-panel-title">Navigate</div>
+      <div class="s-panel">
+        <div class="s-head">Navigate</div>
         <a class="nav-item active" onclick="showPage('home')"       data-page="home">Home</a>
         <a class="nav-item"        onclick="showPage('experience')" data-page="experience">Experience</a>
         <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">Projects</a>
@@ -619,27 +441,27 @@
         <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">Contact</a>
       </div>
 
-      <div class="side-panel">
-        <div class="side-panel-title">System Info</div>
-        <div class="sb-info">
-          <span class="sb-lbl">Status</span><span class="online-dot"></span>online<br/>
-          <span class="sb-lbl">Location</span>Detroit, MI<br/>
-          <span class="sb-lbl">Graduated</span>Jan 2026<br/>
-          <span class="sb-lbl">Email</span>
-          <a href="mailto:segoodie12@gmail.com" style="color:var(--white3);font-size:0.75rem;">segoodie12<br/>@gmail.com</a>
+      <div class="s-panel">
+        <div class="s-head">System Info</div>
+        <div class="s-body">
+          <span class="s-lbl">Status</span><span class="online-dot"></span>online
+          <span class="s-lbl">Location</span>Detroit, MI
+          <span class="s-lbl">Graduated</span>Jan 2026
+          <span class="s-lbl">Email</span>
+          <a href="mailto:segoodie12@gmail.com" style="color:var(--pink2);font-size:0.68rem;">segoodie12<br/>@gmail.com</a>
         </div>
       </div>
 
-      <div class="side-panel">
-        <div class="side-panel-title">Metrics</div>
-        <div class="stat-row"><span>Certs</span><span class="stat-val">8</span></div>
-        <div class="stat-row"><span>Labs</span><span class="stat-val">3</span></div>
-        <div class="stat-row"><span>Yrs</span><span class="stat-val">2+</span></div>
-        <div class="stat-row"><span>Vibes</span><span class="stat-val">∞</span></div>
+      <div class="s-panel">
+        <div class="s-head">Metrics</div>
+        <div class="stat-row"><span>Certs</span><span class="v">8</span></div>
+        <div class="stat-row"><span>Labs</span><span class="v">3</span></div>
+        <div class="stat-row"><span>Yrs</span><span class="v">2+</span></div>
+        <div class="stat-row"><span>Vibes</span><span class="v">∞</span></div>
       </div>
 
-      <div class="side-panel">
-        <div class="side-panel-title">Keys</div>
+      <div class="s-panel">
+        <div class="s-head">Keys</div>
         <div class="key-row">
           <span class="key-tag">SIEM</span>
           <span class="key-tag">SOC</span>
@@ -650,236 +472,215 @@
         </div>
       </div>
 
-      <div class="side-panel">
-        <div class="side-kanji">守護<br/>防衛</div>
-        <div class="side-kanji-sub">protect · defend</div>
-        <div class="sigil-divider" style="margin:0 8px 8px;opacity:0.25;"><span>⬥</span></div>
+      <div class="s-panel">
+        <div class="s-kanji">守護<br/>防衛</div>
+        <div class="s-kanji-sub">protect · defend</div>
       </div>
 
     </div>
 
     <!-- CONTENT -->
-    <div class="content-area">
-      <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">⬥ MENU</button>
-
-      <div class="content-panel">
-        <div class="panel-title">
-          <div class="panel-title-text" id="panel-label">Home</div>
-          <span class="panel-close">✕</span>
-        </div>
-
-        <!-- HOME -->
-        <div class="view active" id="page-home">
-          <div class="content-inner">
-
-            <div class="name-header">
-              <div class="name-key-row2" id="name-home"></div>
-              <div class="name-jp">サラ・グッディ</div>
-              <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
-              <div class="tag-row2">
-                <span class="gothic-tag">SIEM</span>
-                <span class="gothic-tag">Azure Sentinel</span>
-                <span class="gothic-tag">Blue Team</span>
-                <span class="gothic-tag">Splunk</span>
-                <span class="gothic-tag">Active Directory</span>
-                <span class="gothic-tag">Threat Detection</span>
-              </div>
-            </div>
-
-            <div class="sec-head">Welcome</div>
-
-            <div class="welcome-grid">
-              <div class="welcome-text">
-                <p>Hi. I'm <strong>Sara Goodie</strong> — a <span class="hi">cybersecurity professional</span> based in Detroit, Michigan.</p>
-                <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
-                <p>I love <span class="hi">blue team operations</span>, building home labs, setting honeypots, and making threats very unhappy ⚔️</p>
-                <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab 💻</p>
-                <p style="margin-top:12px;font-size:0.88rem;color:var(--grey);">Currently open to cybersecurity roles and internships.</p>
-              </div>
-              <div>
-                <div class="focus-box">
-                  <div class="focus-box-title">⬥ Current Focus ⬥</div>
-                  <div class="focus-entry">IAM Automation (Python + Graph API)</div>
-                  <div class="focus-entry">Honeypot logging real attacks</div>
-                  <div class="focus-entry">SIEM tuning &amp; threat detection</div>
-                  <div class="focus-entry">Blue team operations</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sigil-divider"><span>⬥ 守護 · 防衛 · 術式 ⬥</span></div>
-          </div>
-        </div>
-
-        <!-- EXPERIENCE -->
-        <div class="view" id="page-experience">
-          <div class="content-inner">
-            <div class="sec-head">Work Experience</div>
-            <div class="exp-entry">
-              <div class="exp-hrow"><span class="exp-role">IT Intern</span><span class="exp-date">April – June 2025</span></div>
-              <div class="exp-co">Detroit Pistons IT Operations Team</div>
-              <ul class="exp-list">
-                <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
-                <li>Assisted with identity and access management using Active Directory, including user provisioning and permission updates.</li>
-                <li>Deployed endpoint cybersecurity tools and supported monitoring efforts to enhance security posture.</li>
-                <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to simulate and detect attacks.</li>
-                <li>Collaborated with IT and security teams to document workflows and improve incident response readiness.</li>
-              </ul>
-            </div>
-            <div class="sigil-divider"><span>⬥</span></div>
-            <div class="exp-entry">
-              <div class="exp-hrow"><span class="exp-role">Advisor</span><span class="exp-date">Oct – Dec 2022</span></div>
-              <div class="exp-co">Best Buy | Customer Solutions Team</div>
-              <ul class="exp-list">
-                <li>Advised customers on technology solutions based on their needs and current trends.</li>
-                <li>Developed interpersonal skills through customer service and problem resolution.</li>
-                <li>Stayed updated on the latest technologies, enhancing products and technical knowledge.</li>
-              </ul>
-            </div>
-            <div class="sigil-divider"><span>⬥</span></div>
-            <div class="sec-head">Education</div>
-            <div class="exp-entry">
-              <div class="exp-hrow"><span class="exp-role" style="font-size:0.44rem;">B.S. Cybersecurity &amp; Information Assurance</span><span class="exp-date">Jan 2026</span></div>
-              <div class="exp-co">Western Governors University</div>
-            </div>
-            <div class="exp-entry" style="margin-bottom:0;">
-              <div class="exp-hrow"><span class="exp-role" style="font-size:0.44rem;">Associate in Liberal Arts</span><span class="exp-date">June 2021</span></div>
-              <div class="exp-co">Henry Ford Community College</div>
-            </div>
-            <div class="sigil-divider"><span>⬥ 術式 · 守護 ⬥</span></div>
-          </div>
-        </div>
-
-        <!-- PROJECTS -->
-        <div class="view" id="page-projects">
-          <div class="content-inner">
-            <div class="sec-head">Projects</div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--grey);margin-bottom:14px;">› Replace # with your real GitHub / project URLs</div>
-            <div class="proj-grid">
-              <div class="proj-panel">
-                <div class="proj-inner">
-                  <div class="proj-title">SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
-                  <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
-                  <div class="proj-links"><a class="gothic-btn" href="#" target="_blank">› View Project</a><a class="gothic-btn" href="#" target="_blank">› GitHub Repo</a></div>
-                </div>
-              </div>
-              <div class="proj-panel">
-                <div class="proj-inner">
-                  <div class="proj-title">Active Directory Home Lab</div>
-                  <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, and managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
-                  <div class="proj-links"><a class="gothic-btn" href="#" target="_blank">› View Project</a><a class="gothic-btn" href="#" target="_blank">› GitHub Repo</a></div>
-                </div>
-              </div>
-              <div class="proj-panel">
-                <div class="proj-inner">
-                  <div class="proj-title">Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
-                  <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM for real-world threat simulation. Configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated endpoint compromise and threat detection to the IT department during internship.</div>
-                  <div class="proj-links"><a class="gothic-btn" href="#" target="_blank">› View Project</a><a class="gothic-btn" href="#" target="_blank">› GitHub Repo</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="sigil-divider"><span>⬥ 斬 · 式 · 盾 ⬥</span></div>
-          </div>
-        </div>
-
-        <!-- CERTS -->
-        <div class="view" id="page-certs">
-          <div class="content-inner">
-            <div class="sec-head">Certifications</div>
-            <div style="font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--grey);margin-bottom:14px;">8 certifications earned within 14 months</div>
-            <div class="cert-grid">
-              <div class="cert-item"><span>CompTIA A+</span><span class="cert-date">NOV 2023</span></div>
-              <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date">JAN 2024</span></div>
-              <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date">MAR 2024</span></div>
-              <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date">MAR 2024</span></div>
-              <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date">JUN 2024</span></div>
-              <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date">AUG 2024</span></div>
-              <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date">OCT 2024</span></div>
-              <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date">DEC 2024</span></div>
-            </div>
-            <div class="sigil-divider"><span>⬥ 証明 · 認定 ⬥</span></div>
-          </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="view" id="page-skills">
-          <div class="content-inner">
-            <div class="sec-head">Technical Skills</div>
-            <div class="skill-group"><div class="skill-lbl">Networking &amp; Systems</div><div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div></div>
-            <div class="skill-group"><div class="skill-lbl">Security Tools</div><div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div></div>
-            <div class="skill-group"><div class="skill-lbl">Cloud &amp; Virtualization</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div></div>
-            <div class="skill-group"><div class="skill-lbl">Scripting &amp; Programming</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div></div>
-            <div class="skill-group"><div class="skill-lbl">Compliance Frameworks</div><div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div></div>
-            <div class="skill-group"><div class="skill-lbl">Ticketing</div><div class="skill-tags"><span class="skill-tag">Vivantio</span></div></div>
-            <div class="sigil-divider"><span>⬥ 技術 · 術式 ⬥</span></div>
-          </div>
-        </div>
-
-        <!-- CONTACT -->
-        <div class="view" id="page-contact">
-          <div class="content-inner">
-            <div class="sec-head">Contact</div>
-            <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.95rem;color:var(--white3);margin-bottom:16px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
-            <div class="contact-grid">
-              <a class="contact-card" href="mailto:segoodie12@gmail.com">
-                <span class="contact-icon">📧</span>
-                <div><div class="contact-lbl">Email</div><div class="contact-val">segoodie12@gmail.com</div></div>
-              </a>
-              <a class="contact-card" href="https://linkedin.com" target="_blank">
-                <span class="contact-icon">💼</span>
-                <div><div class="contact-lbl">LinkedIn</div><div class="contact-val">Connect with me</div></div>
-              </a>
-            </div>
-            <div class="sigil-divider"><span>⬥ 連絡 · 接続 ⬥</span></div>
-          </div>
-        </div>
-
+    <div class="c-panel">
+      <div class="c-head">
+        <div class="c-head-l" id="panel-lbl">Home</div>
+        <span class="c-head-close">✕</span>
       </div>
+
+      <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">◈ MENU</button>
+
+      <!-- HOME -->
+      <div class="view active" id="page-home">
+        <div class="v-inner">
+          <div class="name-header">
+            <div class="name-row-content" id="name-content"></div>
+            <div class="name-jp">サラ・グッディ</div>
+            <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
+            <div class="tag-row">
+              <span class="vtag">SIEM</span>
+              <span class="vtag">Azure Sentinel</span>
+              <span class="vtag">Blue Team</span>
+              <span class="vtag">Splunk</span>
+              <span class="vtag">Active Directory</span>
+              <span class="vtag">Threat Detection</span>
+            </div>
+          </div>
+
+          <div class="sec">Welcome</div>
+
+          <div class="welcome-grid">
+            <div class="w-text">
+              <p>Hi. I'm <strong>Sara Goodie</strong> — a <em>cybersecurity professional</em> based in Detroit, Michigan.</p>
+              <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
+              <p>I love <em>blue team operations</em>, building home labs, setting honeypots, and making threats very unhappy.</p>
+              <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab.</p>
+              <p class="w-open">Currently open to cybersecurity roles and internships.</p>
+            </div>
+            <div>
+              <div class="focus-panel">
+                <div class="focus-head">◈ Current Focus ◈</div>
+                <div class="focus-item">IAM Automation (Python + Graph API)</div>
+                <div class="focus-item">Honeypot logging real attacks</div>
+                <div class="focus-item">SIEM tuning &amp; threat detection</div>
+                <div class="focus-item">Blue team operations</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="v-divider"><span>◈ &nbsp; 守護 · 防衛 · 術式 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="view" id="page-experience">
+        <div class="v-inner">
+          <div class="sec">Work Experience</div>
+          <div class="exp-entry">
+            <div class="exp-hrow"><span class="exp-role">IT Intern</span><span class="exp-date">April – June 2025</span></div>
+            <div class="exp-co">Detroit Pistons IT Operations Team</div>
+            <ul class="exp-list">
+              <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
+              <li>Identity and access management via Active Directory — user provisioning and permission updates.</li>
+              <li>Deployed endpoint cybersecurity tools, supported monitoring to enhance security posture.</li>
+              <li>Built and presented a virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon.</li>
+              <li>Documented workflows and improved incident response readiness with IT and security teams.</li>
+            </ul>
+          </div>
+          <div class="v-divider"><span>◈</span></div>
+          <div class="exp-entry">
+            <div class="exp-hrow"><span class="exp-role">Advisor</span><span class="exp-date">Oct – Dec 2022</span></div>
+            <div class="exp-co">Best Buy | Customer Solutions Team</div>
+            <ul class="exp-list">
+              <li>Advised customers on technology solutions based on their needs and current trends.</li>
+              <li>Developed interpersonal skills through customer service and problem resolution.</li>
+              <li>Stayed updated on the latest technologies, enhancing product and technical knowledge.</li>
+            </ul>
+          </div>
+          <div class="v-divider"><span>◈</span></div>
+          <div class="sec">Education</div>
+          <div class="exp-entry">
+            <div class="exp-hrow"><span class="exp-role" style="font-size:0.42rem;">B.S. Cybersecurity &amp; Information Assurance</span><span class="exp-date">Jan 2026</span></div>
+            <div class="exp-co">Western Governors University</div>
+          </div>
+          <div class="exp-entry" style="margin-bottom:0;">
+            <div class="exp-hrow"><span class="exp-role" style="font-size:0.42rem;">Associate in Liberal Arts</span><span class="exp-date">June 2021</span></div>
+            <div class="exp-co">Henry Ford Community College</div>
+          </div>
+          <div class="v-divider"><span>◈ &nbsp; 術式 · 守護 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="view" id="page-projects">
+        <div class="v-inner">
+          <div class="sec">Projects</div>
+          <div style="font-size:0.74rem;color:var(--grey);margin-bottom:12px;">› Replace # links with your real GitHub / project URLs</div>
+          <div class="proj-grid">
+            <div class="proj-card">
+              <div class="proj-bar">SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
+              <div class="proj-inner">
+                <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
+                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+              </div>
+            </div>
+            <div class="proj-card">
+              <div class="proj-bar">Active Directory Home Lab</div>
+              <div class="proj-inner">
+                <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
+                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+              </div>
+            </div>
+            <div class="proj-card">
+              <div class="proj-bar">Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
+              <div class="proj-inner">
+                <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM, configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated threat detection to the IT department during internship.</div>
+                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="v-divider"><span>◈ &nbsp; 斬 · 式 · 盾 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
+      <!-- CERTS -->
+      <div class="view" id="page-certs">
+        <div class="v-inner">
+          <div class="sec">Certifications</div>
+          <div style="font-size:0.76rem;color:var(--grey);margin-bottom:12px;">8 certifications earned within 14 months</div>
+          <div class="cert-grid">
+            <div class="cert-item"><span>CompTIA A+</span><span class="cert-date">NOV 2023</span></div>
+            <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date">JAN 2024</span></div>
+            <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date">MAR 2024</span></div>
+            <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date">MAR 2024</span></div>
+            <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date">JUN 2024</span></div>
+            <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date">AUG 2024</span></div>
+            <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date">OCT 2024</span></div>
+            <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date">DEC 2024</span></div>
+          </div>
+          <div class="v-divider"><span>◈ &nbsp; 証明 · 認定 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="view" id="page-skills">
+        <div class="v-inner">
+          <div class="sec">Technical Skills</div>
+          <div class="skill-g"><div class="skill-lbl">Networking &amp; Systems</div><div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div></div>
+          <div class="skill-g"><div class="skill-lbl">Security Tools</div><div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div></div>
+          <div class="skill-g"><div class="skill-lbl">Cloud &amp; Virtualization</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div></div>
+          <div class="skill-g"><div class="skill-lbl">Scripting &amp; Programming</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div></div>
+          <div class="skill-g"><div class="skill-lbl">Compliance Frameworks</div><div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div></div>
+          <div class="skill-g"><div class="skill-lbl">Ticketing</div><div class="skill-tags"><span class="skill-tag">Vivantio</span></div></div>
+          <div class="v-divider"><span>◈ &nbsp; 技術 · 術式 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="view" id="page-contact">
+        <div class="v-inner">
+          <div class="sec">Contact</div>
+          <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.9rem;color:var(--white3);margin-bottom:14px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:segoodie12@gmail.com">
+              <div><div class="c-lbl">Email</div><div class="c-val">segoodie12@gmail.com</div></div>
+            </a>
+            <a class="contact-card" href="https://linkedin.com" target="_blank">
+              <div><div class="c-lbl">LinkedIn</div><div class="c-val">Connect with me</div></div>
+            </a>
+          </div>
+          <div class="v-divider"><span>◈ &nbsp; 連絡 · 接続 &nbsp; ◈</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- BANNER -->
-  <div class="banner-row">
-    <span class="ban">⬥ BLUE_TEAM</span>
-    <span class="ban">⬥ SIEM_OPS</span>
-    <span class="ban">⬥ THREAT_DETECT</span>
-    <span class="ban">⬥ WGU_2026</span>
-    <span class="ban">⬥ 8_CERTS</span>
-    <span class="ban">⬥ 3_LABS</span>
-    <span class="ban">⬥ AZURE_SENTINEL</span>
-    <span class="ban" style="color:var(--white2);" onclick="showPopup()">⬥ HIRE_ME</span>
-    <span class="ban" style="margin-left:auto;">守護 · 防衛</span>
-  </div>
-
-  <div class="footer">
-    ⬥ © 2026 Sara Goodie — サラ・グッディ — Cybersecurity &amp; Information Assurance ⬥<br/>
-    <span style="font-size:0.75rem;opacity:0.5;">In my restless dreams, I see that town... silent hill</span>
+  <div style="text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:0.8rem;color:var(--grey);padding:6px 0 44px;letter-spacing:0.06em;">
+    ◈ © 2026 Sara Goodie — サラ・グッディ — Cybersecurity &amp; Information Assurance ◈
   </div>
 
 </div>
 
 <!-- TASKBAR -->
 <div class="taskbar">
-  <div class="tb-logo">⬥ SGOODIE</div>
-  <div class="tb-sep"></div>
-  <div class="tb-btn active" onclick="showPage('home')">~/home</div>
-  <div class="tb-btn" onclick="showPage('projects')">~/projects</div>
-  <div class="tb-btn" onclick="showPage('contact')">~/contact</div>
+  <div class="tb-logo">SGOODIE</div>
+  <div class="tb-btn active" onclick="showPage('home')"    >~/home</div>
+  <div class="tb-btn"        onclick="showPage('projects')">~/projects</div>
+  <div class="tb-btn"        onclick="showPage('contact')" >~/contact</div>
   <div class="tb-clock" id="tb-clock">--:--:--</div>
 </div>
 
 <script>
-  /* ── KEYCAP TYPING ANIMATION ── */
+  /* ── KEYCAP ANIMATION ── */
   const NAME = 'SARA GOODIE'.split('');
 
   function buildKeys(id) {
     const el = document.getElementById(id);
+    if (!el) return;
     NAME.forEach((ch, i) => {
       if (ch === ' ') {
         const sp = document.createElement('span');
-        sp.style.cssText = 'display:inline-block;width:10px;';
-        el.appendChild(sp);
-        return;
+        sp.style.cssText = 'display:inline-block;width:8px;';
+        el.appendChild(sp); return;
       }
       const k = document.createElement('span');
       k.className = 'name-key';
@@ -887,36 +688,31 @@
       el.appendChild(k);
       setTimeout(() => {
         k.style.opacity = '1';
-        // press
         setTimeout(() => {
           k.style.transition = 'transform 0.07s, box-shadow 0.07s';
-          k.style.transform = 'translateY(4px)';
-          k.style.boxShadow = '0 1px 0 #444, 0 2px 4px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.35)';
+          k.style.transform = 'translateY(3px)';
+          k.style.boxShadow = '0 1px 0 #3a3a3a, 0 2px 3px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.35)';
         }, 55);
-        // release
         setTimeout(() => {
           k.style.transition = 'all 0.12s ease';
           k.style.transform = 'translateY(0)';
-          k.style.boxShadow = '0 5px 0 #444, 0 7px 10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.2)';
-        }, 155);
-      }, 300 + i * 110);
+          k.style.boxShadow = '0 4px 0 #3a3a3a, 0 5px 8px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.55)';
+        }, 145);
+      }, 280 + i * 105);
     });
   }
 
-  buildKeys('name-top');
-  buildKeys('name-home');
+  buildKeys('name-hero');
+  buildKeys('name-content');
 
   /* ── NAV ── */
-  const PAGE_LABELS = {
-    home: 'Home', experience: 'Experience', projects: 'Projects',
-    certs: 'Certifications', skills: 'Skills', contact: 'Contact'
-  };
+  const LBLS = { home:'Home', experience:'Experience', projects:'Projects', certs:'Certifications', skills:'Skills', contact:'Contact' };
 
   function showPage(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
     document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.page === id));
-    document.getElementById('panel-label').textContent = PAGE_LABELS[id] || id;
+    document.getElementById('panel-lbl').textContent = LBLS[id] || id;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -926,10 +722,8 @@
   /* ── CLOCK ── */
   function tick() {
     const n = new Date();
-    const h = String(n.getHours()).padStart(2,'0');
-    const m = String(n.getMinutes()).padStart(2,'0');
-    const s = String(n.getSeconds()).padStart(2,'0');
-    document.getElementById('tb-clock').textContent = h+':'+m+':'+s;
+    const t = String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
+    document.getElementById('tb-clock').textContent = t;
   }
   tick(); setInterval(tick, 1000);
 </script>
