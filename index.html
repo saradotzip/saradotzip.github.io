@@ -11,17 +11,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* HENLO PLAND palette */
-      --cobalt:      #1a5fd4;   /* main cobalt blue bg */
-      --cobalt2:     #2470e8;   /* lighter cobalt */
-      --cobalt3:     #0d4ab8;   /* darker cobalt */
-      --cyan:        #00ccdd;   /* aquarium cyan accent */
-      --cyan2:       #44ddee;   /* lighter cyan */
-      --cyan-pale:   #b0f0f8;   /* pale cyan */
-      --teal:        #009988;   /* teal green accent */
-      --dot-blue:    rgba(100,180,255,0.18); /* dotted map pattern */
-
-      /* Win98 chrome — grey like the keyboard/computer in the image */
+      --cobalt:      #1a5fd4;
+      --cobalt2:     #2470e8;
+      --cobalt3:     #0d4ab8;
+      --cyan:        #00ccdd;
+      --cyan2:       #44ddee;
+      --cyan-pale:   #b0f0f8;
+      --teal:        #009988;
       --win-face:    #d4d0c8;
       --win-hilite:  #ffffff;
       --win-shadow:  #808080;
@@ -29,48 +25,36 @@
       --win-bg:      #c0c0c0;
       --win-white:   #ffffff;
       --win-inset:   #f0f0f0;
-
-      /* key-cap style */
       --key-bg:      #2a2a2a;
       --key-face:    #3a3a3a;
       --key-text:    #ffffff;
       --key-shadow:  #111111;
-
-      /* text */
       --text:        #000000;
       --text-mid:    #333333;
       --text-soft:   #555555;
-      --link-col:    var(--cobalt3);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DotGothic16', monospace;
-      /* cobalt blue with subtle dot pattern like the image */
-      background-color: var(--cobalt);
+      background-color: #080808;
       background-image:
-        radial-gradient(circle at 15% 25%, rgba(0,204,221,0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 15%, rgba(100,180,255,0.15) 0%, transparent 40%),
-        radial-gradient(circle at 75% 80%, rgba(0,153,136,0.10) 0%, transparent 45%),
-        radial-gradient(circle at 30% 80%, rgba(36,112,232,0.20) 0%, transparent 40%);
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
+      background-size: 48px 48px, 48px 48px, 12px 12px, 12px 12px;
       min-height: 100vh;
       color: var(--text);
       font-size: 13px;
       overflow-x: hidden;
     }
 
-    /* dot map pixel pattern like the image */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      opacity: 0.12;
-      background-image: radial-gradient(circle, rgba(180,230,255,1) 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
+
 
     ::-webkit-scrollbar { width: 17px; }
-    ::-webkit-scrollbar-track { background: var(--cobalt3); }
+    ::-webkit-scrollbar-track { background: #111111; }
     ::-webkit-scrollbar-thumb {
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite);
@@ -97,7 +81,6 @@
       background: var(--win-white);
     }
 
-    /* title bar — cobalt blue like Win98 but matching the image */
     .title-bar {
       background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
       padding: 3px 5px 3px 6px;
@@ -161,7 +144,7 @@
       border-bottom: 1px solid var(--win-hilite); margin: 10px 0;
     }
 
-    /* ── KEYBOARD KEY style (like the HENLO letters) ── */
+    /* ── KEYBOARD KEY ── */
     .key-tag {
       display: inline-flex; align-items: center; justify-content: center;
       background: linear-gradient(180deg, var(--key-face), var(--key-bg));
@@ -175,18 +158,30 @@
     }
     .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 var(--key-shadow); }
 
-    /* cyan pill tag */
+    /* ── ANIMATED KEY (typewriter) ── */
+    .key-anim {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(180deg, var(--key-face), var(--key-bg));
+      border: 1.5px solid #111;
+      border-radius: 5px;
+      box-shadow: 0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5);
+      color: var(--key-text); font-family: 'Press Start 2P', monospace;
+      font-size: 0.65rem; letter-spacing: 0.06em;
+      width: 2rem; height: 2rem;
+      cursor: default;
+      opacity: 0;
+    }
+    .key-anim.space-key { background: none; border: none; box-shadow: none; width: 0.7rem; }
+
     .cyan-tag {
       display: inline-flex; align-items: center;
       background: transparent; border: 2px solid var(--cyan);
       border-radius: 999px; padding: 2px 11px;
       color: var(--cyan); font-family: 'DotGothic16', monospace;
-      font-size: 0.76rem; cursor: default;
-      transition: background 0.1s;
+      font-size: 0.76rem; cursor: default; transition: background 0.1s;
     }
     .cyan-tag:hover { background: rgba(0,204,221,0.12); }
 
-    /* address bar like the image */
     .address-bar {
       display: flex; align-items: center; gap: 6px;
       background: var(--win-face); padding: 3px 6px;
@@ -215,7 +210,6 @@
       font-family: 'DotGothic16', monospace;
     }
 
-    /* status bar */
     .status-bar {
       border-top: 1px solid var(--win-shadow);
       display: flex; gap: 2px; padding: 2px 4px; background: var(--win-face);
@@ -234,7 +228,6 @@
       display: flex; flex-direction: column; gap: 8px;
     }
 
-    /* top header strip */
     .top-strip {
       max-width: 920px; margin: 0 auto; width: 100%;
       display: flex; gap: 8px; align-items: stretch; flex-wrap: wrap;
@@ -243,16 +236,11 @@
       background: var(--win-face);
       border-top: 2px solid var(--win-hilite); border-left: 2px solid var(--win-hilite);
       border-right: 2px solid var(--win-dark); border-bottom: 2px solid var(--win-dark);
-      padding: 8px 16px; flex: 1; min-width: 200px;
-      display: flex; flex-direction: column; gap: 5px;
+      padding: 10px 16px; flex: 1; min-width: 200px;
+      display: flex; flex-direction: column; gap: 7px;
     }
-    .site-title-main {
-      display: flex; gap: 5px; align-items: center; flex-wrap: wrap;
-    }
-    .site-title-sub {
-      font-family: 'DotGothic16', monospace; font-size: 0.7rem;
-      color: var(--cobalt3); letter-spacing: 0.04em;
-    }
+    .site-title-main { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+    .site-title-sub { font-family: 'DotGothic16', monospace; font-size: 0.7rem; color: var(--cobalt3); letter-spacing: 0.04em; }
 
     /* Taskbar */
     .taskbar {
@@ -287,11 +275,9 @@
       font-size: 0.72rem; color: var(--text); height: 26px; display: flex; align-items: center;
     }
 
-    /* ── MAIN WINDOW ── */
     .main-window { max-width: 920px; margin: 0 auto; width: 100%; }
     .main-body { display: grid; grid-template-columns: 155px 1fr; gap: 0; padding: 3px; }
 
-    /* marquee */
     .marquee-strip {
       background: var(--cobalt3); overflow: hidden; height: 24px;
       display: flex; align-items: center;
@@ -315,10 +301,7 @@
       transition: background 0.08s;
     }
     .nav-item::before { content: '▶'; font-size: 0.5rem; color: var(--cobalt2); }
-    .nav-item:hover, .nav-item.active {
-      background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2));
-      color: white;
-    }
+    .nav-item:hover, .nav-item.active { background: linear-gradient(90deg, var(--cobalt3), var(--cobalt2)); color: white; }
     .nav-item:hover::before, .nav-item.active::before { color: var(--cyan); }
 
     .sidebar-info {
@@ -366,11 +349,9 @@
       background: linear-gradient(135deg, #e8f4ff, #eefffc, #e8f0ff);
       border: 2px solid var(--win-shadow); padding: 10px 12px; margin-bottom: 12px;
     }
-    .name-title-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; }
-
+    .name-title-row { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; min-height: 2.5rem; }
     .name-sub { font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text-mid); margin-top: 4px; }
     .name-jp  { font-family: 'Yuji Syuku', serif; font-size: 1rem; color: var(--cobalt2); letter-spacing: 0.18em; opacity: 0.75; }
-
     .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 
     .welcome-box { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); line-height: 1.88; }
@@ -411,8 +392,7 @@
       border-top: 1px solid var(--win-shadow); border-left: 1px solid var(--win-shadow);
       border-right: 1px solid var(--win-hilite); border-bottom: 1px solid var(--win-hilite);
       padding: 7px 10px; display: flex; justify-content: space-between; align-items: center;
-      font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text);
-      transition: background 0.1s;
+      font-family: 'DotGothic16', monospace; font-size: 0.8rem; color: var(--text); transition: background 0.1s;
     }
     .cert-item:hover { background: #e8f4ff; }
     .cert-date-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.36rem; color: var(--cobalt2); text-align: right; white-space: nowrap; }
@@ -443,7 +423,7 @@
     .contact-lbl { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--cobalt2); letter-spacing: 0.1em; margin-bottom: 5px; }
     .contact-val  { font-family: 'DotGothic16', monospace; font-size: 0.86rem; color: var(--text); }
 
-    /* ── BANNER BAR ── */
+    /* BANNER */
     .banner-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
     .banner-bar {
       background: var(--win-face);
@@ -465,12 +445,10 @@
     .bn-7 { background: #002244; color: var(--cyan2); }
     .bn-8 { background: #006688; color: white; }
 
-    /* footer */
     .footer {
       text-align: center; font-family: 'Share Tech Mono', monospace;
       font-size: 0.72rem; color: rgba(180,230,255,0.7);
-      padding: 6px 0 48px; text-shadow: 0 0 8px rgba(0,204,221,0.4);
-      letter-spacing: 0.06em;
+      padding: 6px 0 48px; text-shadow: 0 0 8px rgba(0,204,221,0.4); letter-spacing: 0.06em;
     }
 
     /* POPUP */
@@ -526,21 +504,9 @@
   <!-- TOP STRIP -->
   <div class="top-strip">
     <div class="site-title-box">
-      <div class="site-title-main">
-        <span class="key-tag">S</span>
-        <span class="key-tag">A</span>
-        <span class="key-tag">R</span>
-        <span class="key-tag">A</span>
-        &nbsp;
-        <span class="key-tag">G</span>
-        <span class="key-tag">O</span>
-        <span class="key-tag">O</span>
-        <span class="key-tag">D</span>
-        <span class="key-tag">I</span>
-        <span class="key-tag">E</span>
-      </div>
+      <div class="site-title-main" id="name-top"></div>
       <div class="site-title-sub">💾 CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:2px;">
         <span class="cyan-tag">BLUE TEAM</span>
         <span class="cyan-tag">SIEM</span>
         <span class="cyan-tag">WGU 2026</span>
@@ -559,7 +525,6 @@
       </div>
     </div>
 
-    <!-- address bar like in the image -->
     <div class="address-bar">
       <div class="addr-nav-btn">←</div>
       <div class="addr-nav-btn">→</div>
@@ -654,11 +619,7 @@
           <div class="content-inner">
 
             <div class="name-header">
-              <div class="name-title-row">
-                <span class="key-tag">S</span><span class="key-tag">A</span><span class="key-tag">R</span><span class="key-tag">A</span>
-                &nbsp;
-                <span class="key-tag">G</span><span class="key-tag">O</span><span class="key-tag">O</span><span class="key-tag">D</span><span class="key-tag">I</span><span class="key-tag">E</span>
-              </div>
+              <div class="name-title-row" id="name-home"></div>
               <div class="name-jp" style="margin-top:5px;">サラ・グッディ</div>
               <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
               <div class="tag-row">
@@ -910,7 +871,7 @@
       <div class="status-cell" style="max-width:130px;" id="clock">--:-- --</div>
     </div>
 
-  </div><!-- end main window -->
+  </div>
 
   <!-- BANNER BAR -->
   <div class="banner-wrap">
@@ -946,6 +907,62 @@
 </div>
 
 <script>
+  /* ── TYPEWRITER KEY ANIMATION ── */
+  const NAME    = 'SARA GOODIE'.split('');
+  const DELAY   = 350;   // ms before typing starts
+  const STEP    = 100;   // ms between each key
+  const PRESS   = 80;    // ms the key stays pressed down
+
+  function buildKeys(container) {
+    NAME.forEach(ch => {
+      const el = document.createElement('span');
+      if (ch === ' ') {
+        el.className = 'key-anim space-key';
+      } else {
+        el.className = 'key-anim';
+        el.textContent = ch;
+      }
+      container.appendChild(el);
+    });
+  }
+
+  function animateKeys(container) {
+    const keys = container.querySelectorAll('.key-anim:not(.space-key)');
+    const all  = container.querySelectorAll('.key-anim');
+
+    // Show spaces immediately (they're invisible anyway)
+    container.querySelectorAll('.space-key').forEach(s => s.style.opacity = '1');
+
+    keys.forEach((el, i) => {
+      setTimeout(() => {
+        // Pop into view
+        el.style.transition = 'opacity 0.05s';
+        el.style.opacity    = '1';
+
+        // Press down
+        setTimeout(() => {
+          el.style.transition  = 'transform 0.06s ease, box-shadow 0.06s ease';
+          el.style.transform   = 'translateY(3px)';
+          el.style.boxShadow   = '0 0 0 var(--key-shadow), 0 1px 3px rgba(0,0,0,0.5)';
+        }, PRESS * 0.3);
+
+        // Release back up
+        setTimeout(() => {
+          el.style.transition  = 'transform 0.08s ease, box-shadow 0.08s ease';
+          el.style.transform   = 'translateY(0)';
+          el.style.boxShadow   = '0 3px 0 var(--key-shadow), 0 4px 6px rgba(0,0,0,0.5)';
+        }, PRESS);
+      }, DELAY + i * STEP);
+    });
+  }
+
+  // Build and animate both name containers
+  ['name-top', 'name-home'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { buildKeys(el); animateKeys(el); }
+  });
+
+  /* ── NAV ── */
   function showPage(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
@@ -954,8 +971,11 @@
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  function showPopup() { document.getElementById('popup').classList.add('show'); }
+
+  function showPopup()  { document.getElementById('popup').classList.add('show'); }
   function closePopup() { document.getElementById('popup').classList.remove('show'); }
+
+  /* ── CLOCK ── */
   function updateClock() {
     const now = new Date();
     const h = now.getHours(), m = String(now.getMinutes()).padStart(2,'0');
