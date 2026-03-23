@@ -8,7 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+  font-family: 'KingJola';
+  src: url('kingjola.ttf') format('truetype');
+}
+    .logo-text {
+  font-family: 'KingJola';
+  font-size: 2.8rem;
+  text-align: center;
+  color: white;
+}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
 
     :root {
       --black:  #000000;
@@ -488,8 +499,8 @@
     </div>
 
     <div class="name-wrap">
-      <div class="name-ghost">SARA GOODIE</div>
-      <div class="name-main" id="hero-name"></div>
+      <div class="name-ghost"></div>
+      <div class="name-main logo-text">Sara Goodie</div>
       <div class="name-underline"></div>
     </div>
 
