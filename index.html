@@ -6,372 +6,473 @@
   <title>Sara Goodie — Cyber Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet" />
   <style>
-.name-text {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 2.2rem !important;
-  letter-spacing: 0.18em;
-  color: white;
-  text-transform: uppercase;
-}
-
-/* FORCE SMALL NAME FIX */
-.name-header .name-text {
-  font-size: 1.2rem !important;
-  letter-spacing: 0.12em !important;
-}    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #000000;
-      --bg2:     #050505;
-      --bg3:     #0a0a0a;
-      --panel:   #0d0d0d;
-      --panel2:  #111111;
-      --border:  #1c1c1c;
-      --border2: #242424;
-      --pink:    #d45f8a;
-      --pink2:   #e88ab0;
-      --pink3:   #a03060;
-      --pink-g:  rgba(212,95,138,0.10);
-      --white:   #e8e8e0;
-      --white2:  #c0bfb8;
-      --white3:  #888880;
-      --grey:    #505048;
-      --grey2:   #303030;
+      --black:  #000000;
+      --bg2:    #060606;
+      --bg3:    #0c0c0c;
+      --border: #1e1e1e;
+      --bord2:  #2a2a2a;
+      --pink:   #d45f8a;
+      --pink2:  #e88ab0;
+      --pink3:  #8a2a4a;
+      --pink-g: rgba(212,95,138,0.10);
+      --white:  #ede8e0;
+      --wh2:    #b8b3aa;
+      --wh3:    #7a7570;
+      --grey:   #444440;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: var(--bg);
+      background: var(--black);
       min-height: 100vh;
-      color: var(--white2);
+      color: var(--wh2);
       font-size: 12px;
       overflow-x: hidden;
     }
 
-    /* subtle scanlines */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 9999; pointer-events: none;
       background: repeating-linear-gradient(
         0deg, transparent, transparent 3px,
-        rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
+        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
       );
     }
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--grey2); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #1a1a1a; }
 
-    /* ── VTAG pill ── */
-    .vtag {
-      font-size: 0.7rem; color: var(--white3);
-      border: 1px solid var(--border2);
-      padding: 2px 10px; background: transparent;
-      letter-spacing: 0.06em; cursor: default;
-      display: inline-flex; align-items: center; gap: 5px;
-      transition: all 0.12s ease;
-    }
-    .vtag::before { content: '–'; color: var(--grey); font-size: 0.6rem; }
-    .vtag::after  { content: '–'; color: var(--grey); font-size: 0.6rem; }
-    .vtag:hover { color: var(--pink2); border-color: var(--pink3); }
-
-    /* ── LAYOUT ── */
-    .page {
-      position: relative; z-index: 1;
-      max-width: 1100px; margin: 0 auto;
-      padding: 16px 14px 50px;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-
-    /* ── HERO PANEL ── */
+    /* ── HERO ── */
     .hero {
-      background: var(--bg2);
-      border: 1px solid var(--border2);
-      padding: 22px 24px 16px;
-      position: relative; overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      background: var(--black);
+      padding: 40px 32px 28px;
+      overflow: hidden;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
     }
+
     /* corner brackets */
     .hero::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
       background:
-        linear-gradient(var(--white3),var(--white3)) 0 0/30px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 0/1px 30px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 0/30px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 0/1px 30px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 100%/30px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 100%/1px 30px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 100%/30px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 100%/1px 30px no-repeat;
-      opacity: 0.35;
+        linear-gradient(var(--wh3),var(--wh3)) 0 0/45px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 0/1px 45px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 0/45px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 0/1px 45px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 100%/45px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 100%/1px 45px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/45px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/1px 45px no-repeat;
+      opacity: 0.3;
     }
-    .hero-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .hero-left  { display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-    .hero-right { text-align: right; font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: var(--white3); line-height: 1.9; }
-    .hero-right .hi { color: var(--white); }
 
-    .name-row-hero { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 1.9rem; }
+    /* floating sigil dots above name */
+    .hero-dots {
+      display: flex; gap: 18px; margin-bottom: 22px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--wh3); opacity: 0.4;
+    }
+    .hero-dot.pink { background: var(--pink); opacity: 0.7; box-shadow: 0 0 8px var(--pink3); }
+
+    /* ── THE NAME ── */
+    .name-wrap {
+      position: relative;
+      opacity: 0; animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    /* ghost/echo layer behind */
+    .name-ghost {
+      position: absolute; inset: 0;
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(212,95,138,0.12);
+      letter-spacing: 0.25em;
+      line-height: 1;
+      transform: translate(3px, 4px) skewX(-1deg);
+      filter: blur(3px);
+      user-select: none;
+    }
+
+    /* main name */
+    .name-main {
+      font-family: 'Cinzel', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white);
+      letter-spacing: 0.25em;
+      line-height: 1;
+      position: relative; z-index: 1;
+      /* subtle gradient left-right */
+      background: linear-gradient(135deg,
+        #ffffff 0%,
+        #ede8e0 25%,
+        #ffffff 50%,
+        #c8b8b8 75%,
+        #ede8e0 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      /* shimmer animation */
+      background-size: 300% 100%;
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      50%  { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* decorative line under name */
+    .name-underline {
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--pink3) 20%,
+        var(--pink) 50%,
+        var(--pink3) 80%,
+        transparent 100%
+      );
+      margin: 10px auto 0;
+      width: 0;
+      animation: expandLine 1s ease 1.2s forwards;
+    }
+    @keyframes expandLine { to { width: 80%; } }
+
+    /* japanese name under */
+    .name-jp {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--wh3);
+      letter-spacing: 0.3em;
+      margin-top: 8px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 1.4s forwards;
+    }
+
+    /* sub text */
     .hero-sub {
-      font-size: 0.7rem; color: var(--white3); letter-spacing: 0.12em;
-      display: flex; align-items: center; gap: 6px;
+      font-size: 0.68rem; color: var(--wh3);
+      letter-spacing: 0.18em; margin-top: 16px;
+      display: flex; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeUp 0.7s ease 1.6s forwards;
     }
-    .hero-sub::before { content: '✦'; font-size: 0.55rem; color: var(--pink3); }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hero-sub::before, .hero-sub::after {
+      content: '';
+      flex: 1; max-width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--grey));
+    }
+    .hero-sub::after { background: linear-gradient(90deg, var(--grey), transparent); }
 
-    .hero-divider {
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px; margin-top: 14px; opacity: 0.4;
+    /* tag row */
+    .hero-tags {
+      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+      margin-top: 14px;
+      opacity: 0; animation: fadeUp 0.7s ease 1.8s forwards;
     }
-    .hero-divider::before, .hero-divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--white3), transparent);
+    .vtag {
+      font-size: 0.68rem; color: var(--wh3);
+      border: 1px solid var(--border);
+      padding: 2px 10px; background: transparent;
+      letter-spacing: 0.06em; cursor: default;
+      display: inline-flex; align-items: center; gap: 5px;
+      transition: all 0.12s ease;
     }
-    .hero-divider span { font-size: 0.6rem; color: var(--white3); letter-spacing: 0.2em; }
+    .vtag::before { content: '–'; color: var(--grey); }
+    .vtag::after  { content: '–'; color: var(--grey); }
+    .vtag:hover { color: var(--pink2); border-color: var(--pink3); }
+    .vtag.hire { cursor: pointer; }
+
+    /* status row */
+    .hero-status {
+      position: absolute; left: 24px; bottom: 18px;
+      text-align: left;
+      opacity: 0; animation: fadeUp 0.7s ease 2s forwards;
+    }
+    .hero-status-line { font-size: 0.72rem; color: var(--wh3); line-height: 1.85; }
+    .online-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink2); box-shadow: 0 0 8px var(--pink);
+      margin-right: 5px; animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+    /* bottom divider dots */
+    .hero-bottom-dots {
+      display: flex; gap: 18px; margin-top: 22px;
+      opacity: 0; animation: fadeUp 0.7s ease 2.1s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     /* ── MARQUEE ── */
     .marq-bar {
-      background: var(--bg); border: 1px solid var(--border);
-      overflow: hidden; height: 20px; display: flex; align-items: center;
+      background: var(--black); border: 1px solid var(--border);
+      border-top: none; overflow: hidden; height: 20px;
+      display: flex; align-items: center;
     }
     .marq-txt {
       display: inline-block; animation: marq 38s linear infinite; padding-left: 100%;
-      font-size: 0.65rem; color: var(--white3); white-space: nowrap; letter-spacing: 0.08em;
+      font-size: 0.62rem; color: var(--wh3); white-space: nowrap; letter-spacing: 0.08em;
     }
     @keyframes marq { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-    /* ── MAIN GRID ── */
-    .main-grid { display: grid; grid-template-columns: 185px 1fr; gap: 8px; }
+    /* ── LAYOUT ── */
+    .page { max-width: 1080px; margin: 0 auto; padding: 12px 12px 50px; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+
+    .main-grid { display: grid; grid-template-columns: 190px 1fr; gap: 8px; }
 
     /* ── SIDEBAR ── */
     .sidebar { display: flex; flex-direction: column; gap: 6px; }
-
-    .s-panel {
-      background: var(--bg2); border: 1px solid var(--border);
-    }
+    .s-panel { background: var(--black); border: 1px solid var(--border); }
     .s-head {
       padding: 5px 10px; background: var(--bg3);
       border-bottom: 1px solid var(--border);
       font-family: 'Cinzel Decorative', serif;
-      font-size: 0.44rem; color: var(--white3);
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.42rem; color: var(--wh3);
+      letter-spacing: 0.14em; text-transform: uppercase;
       display: flex; align-items: center; gap: 5px;
     }
-    .s-head::before { content: '◈'; color: var(--pink); font-size: 0.48rem; }
+    .s-head::before { content: '◈'; color: var(--pink); font-size: 0.46rem; }
 
     .nav-item {
       display: flex; align-items: center; gap: 6px;
-      padding: 8px 12px; font-size: 0.8rem; color: var(--white3);
+      padding: 8px 12px; font-family: 'IM Fell English', serif;
+      font-size: 0.85rem; color: var(--wh3);
       text-decoration: none; cursor: pointer;
       border-bottom: 1px solid var(--border);
-      transition: all 0.1s ease; font-family: 'IM Fell English', serif;
+      transition: all 0.1s ease;
     }
     .nav-item::before { content: '›'; color: var(--grey); }
-    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); padding-left: 16px; }
-    .nav-item.active {
-      color: var(--pink2); background: var(--pink-g);
-      border-left: 2px solid var(--pink); padding-left: 10px;
-    }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.02); padding-left: 16px; }
+    .nav-item.active { color: var(--pink2); background: var(--pink-g); border-left: 2px solid var(--pink); padding-left: 10px; }
     .nav-item.active::before { color: var(--pink); }
 
-    .s-body { padding: 9px 11px; font-size: 0.72rem; color: var(--white3); line-height: 1.9; }
-    .s-lbl {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.56rem; color: var(--pink); letter-spacing: 0.1em;
-      text-transform: uppercase; display: block; margin-top: 7px; margin-bottom: 1px;
-    }
-    .online-dot {
-      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--pink2); box-shadow: 0 0 7px var(--pink);
-      margin-right: 4px; animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+    .s-body { padding: 9px 11px; font-size: 0.72rem; color: var(--wh3); line-height: 1.9; }
+    .s-lbl { font-family: 'Share Tech Mono', monospace; font-size: 0.54rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: 7px; margin-bottom: 1px; }
 
-    .stat-row {
-      display: flex; justify-content: space-between;
-      padding: 5px 11px; font-size: 0.72rem; color: var(--white3);
-      border-bottom: 1px solid var(--border);
-    }
+    .stat-row { display: flex; justify-content: space-between; padding: 5px 11px; font-size: 0.72rem; color: var(--wh3); border-bottom: 1px solid var(--border); }
     .stat-row .v { color: var(--pink2); font-weight: bold; }
 
     .key-row { padding: 7px 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .key-tag {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
+      border-top: 1.5px solid #dedede; border-left: 1.5px solid #d2d2d2;
+      border-right: 1.5px solid #5a5a5a; border-bottom: 1.5px solid #4c4c4c;
+      border-radius: 4px;
+      box-shadow: 0 3px 0 #3a3a3a, 0 4px 6px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.5);
+      font-family: 'Share Tech Mono', monospace; font-size: 0.48rem; color: #111;
+      padding: 2px 7px; cursor: default;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 #3a3a3a; }
 
-    .s-kanji { text-align: center; padding: 10px 8px 6px; font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.6rem; color: var(--grey2); line-height: 1.4; }
-    .s-kanji-sub { text-align: center; padding: 0 8px 10px; font-size: 0.6rem; color: var(--grey); letter-spacing: 0.1em; }
+    .s-kanji { text-align: center; padding: 10px 8px 4px; font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.5rem; color: var(--grey); line-height: 1.4; }
+    .s-kanji-sub { text-align: center; padding: 0 8px 10px; font-size: 0.58rem; color: var(--grey); letter-spacing: 0.1em; }
 
-    /* ── CONTENT PANEL ── */
-    .c-panel { background: var(--bg2); border: 1px solid var(--border); display: flex; flex-direction: column; }
-
+    /* ── CONTENT ── */
+    .c-panel { background: var(--black); border: 1px solid var(--border); }
     .c-head {
       display: flex; align-items: center; justify-content: space-between;
       padding: 5px 10px; background: var(--bg3);
       border-bottom: 1px solid var(--border);
-      font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--white3);
-      letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0;
+      font-family: 'Share Tech Mono', monospace; font-size: 0.66rem; color: var(--wh3);
+      letter-spacing: 0.1em; text-transform: uppercase;
     }
     .c-head-l { display: flex; align-items: center; gap: 5px; }
-    .c-head-l::before { content: '◈'; color: var(--pink); font-size: 0.48rem; }
-    .c-head-close { color: var(--grey); cursor: default; font-size: 0.75rem; }
+    .c-head-l::before { content: '◈'; color: var(--pink); font-size: 0.46rem; }
+    .c-head-x { color: var(--grey); cursor: default; }
 
     .view { display: none; animation: fadeIn 0.15s ease; }
     .view.active { display: block; }
     @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-
     .v-inner { padding: 16px 20px; }
 
-    /* name header inside content */
+    /* content name header */
     .name-header {
-      background: var(--bg3); border: 1px solid var(--border2);
-      padding: 14px 16px; margin-bottom: 16px; position: relative; overflow: hidden;
+      background: var(--bg3); border: 1px solid var(--bord2);
+      padding: 16px 18px; margin-bottom: 16px; position: relative; overflow: hidden;
     }
     .name-header::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
       background:
-        linear-gradient(var(--white3),var(--white3)) 0 0/18px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 0/1px 18px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 0/18px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 0/1px 18px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 100%/18px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 0 100%/1px 18px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 100%/18px 1px no-repeat,
-        linear-gradient(var(--white3),var(--white3)) 100% 100%/1px 18px no-repeat;
-      opacity: 0.25;
+        linear-gradient(var(--wh3),var(--wh3)) 0 0/16px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 0/1px 16px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 0/16px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 0/1px 16px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 100%/16px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 0 100%/1px 16px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/16px 1px no-repeat,
+        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/1px 16px no-repeat;
+      opacity: 0.2;
     }
-    .name-row-content { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; min-height: 1.9rem; margin-bottom: 8px; position: relative; z-index: 1; }
-    .name-jp  { font-family: 'IM Fell English', serif; font-style: italic; font-size: 1rem; color: var(--white3); letter-spacing: 0.18em; margin-bottom: 4px; }
-    .name-sub { font-size: 0.78rem; color: var(--white3); }
-    .tag-row  { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 
-    /* section heading */
+    /* content name — smaller version of same effect */
+    .name-content-main {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      letter-spacing: 0.2em;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff 0%, #ede8e0 40%, #ffffff 60%, #c8b8b8 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s ease-in-out infinite;
+      margin-bottom: 8px;
+    }
+
+    .name-underline2 {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink3) 30%, var(--pink) 50%, var(--pink3) 70%, transparent);
+      width: 40%; margin-bottom: 8px;
+    }
+
+    .name-jp2 { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.95rem; color: var(--wh3); letter-spacing: 0.18em; margin-bottom: 4px; }
+    .name-sub2 { font-size: 0.78rem; color: var(--wh3); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+
+    /* sections */
     .sec {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 0.58rem; color: var(--white2); letter-spacing: 0.14em;
+      font-size: 0.56rem; color: var(--wh2); letter-spacing: 0.14em;
       margin-bottom: 14px; padding-bottom: 6px;
-      border-bottom: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 8px;
     }
-    .sec::before { content: '◈'; color: var(--pink); font-size: 0.52rem; }
-    .sec::after  { content: ''; flex: 1; border-top: 1px solid var(--border); margin-left: 4px; }
+    .sec::before { content: '◈'; color: var(--pink); }
+    .sec::after { content: ''; flex: 1; border-top: 1px solid var(--border); margin-left: 4px; }
 
     /* welcome */
-    .welcome-grid { display: grid; grid-template-columns: 1fr 195px; gap: 14px; align-items: start; }
-    .w-text { font-family: 'IM Fell English', serif; font-size: 0.92rem; color: var(--white2); line-height: 1.95; }
-    .w-text p + p { margin-top: 9px; }
-    .w-text strong { font-style: italic; color: var(--white); }
-    .w-text em { color: var(--pink2); }
-    .w-open { font-size: 0.78rem; color: var(--grey); margin-top: 11px; }
+    .wg { display: grid; grid-template-columns: 1fr 195px; gap: 14px; align-items: start; }
+    .wt { font-family: 'IM Fell English', serif; font-size: 0.92rem; color: var(--wh2); line-height: 1.95; }
+    .wt p + p { margin-top: 9px; }
+    .wt strong { font-style: italic; color: var(--white); }
+    .wt em { color: var(--pink2); }
+    .wo { font-size: 0.76rem; color: var(--grey); margin-top: 11px; }
 
-    .focus-panel { background: var(--bg3); border: 1px solid var(--border2); }
-    .focus-head { padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.6rem; color: var(--pink); letter-spacing: 0.1em; text-align: center; }
-    .focus-item { display: flex; align-items: flex-start; gap: 5px; padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.74rem; color: var(--white3); line-height: 1.45; }
-    .focus-item::before { content: '›'; color: var(--pink3); flex-shrink: 0; }
+    .fc { background: var(--bg3); border: 1px solid var(--bord2); }
+    .fh { padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.58rem; color: var(--pink); letter-spacing: 0.1em; text-align: center; }
+    .fi { display: flex; align-items: flex-start; gap: 5px; padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.74rem; color: var(--wh3); line-height: 1.45; }
+    .fi::before { content: '›'; color: var(--pink3); flex-shrink: 0; }
 
-    .v-divider { display: flex; align-items: center; gap: 8px; margin: 14px 0; opacity: 0.35; }
-    .v-divider::before, .v-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--white3), transparent); }
-    .v-divider span { font-size: 0.6rem; color: var(--white3); letter-spacing: 0.18em; white-space: nowrap; }
+    .vd { display: flex; align-items: center; gap: 8px; margin: 14px 0; }
+    .vd::before, .vd::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    .vd span { font-size: 0.58rem; color: var(--grey); letter-spacing: 0.18em; white-space: nowrap; }
 
-    /* experience */
-    .exp-entry { margin-bottom: 18px; }
-    .exp-entry:last-child { margin-bottom: 0; }
-    .exp-hrow { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
-    .exp-role { font-family: 'Cinzel Decorative', serif; font-size: 0.5rem; color: var(--pink2); letter-spacing: 0.08em; }
-    .exp-date { font-size: 0.72rem; color: var(--grey); }
-    .exp-co   { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.88rem; color: var(--white2); margin-bottom: 8px; }
-    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .exp-list li { font-size: 0.8rem; color: var(--white3); line-height: 1.65; padding-left: 14px; position: relative; }
-    .exp-list li::before { content: '›'; position: absolute; left: 0; color: var(--pink3); top: 1px; }
+    /* exp */
+    .ee { margin-bottom: 18px; }
+    .ee:last-child { margin-bottom: 0; }
+    .ehr { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
+    .er { font-family: 'Cinzel Decorative', serif; font-size: 0.48rem; color: var(--pink2); letter-spacing: 0.08em; }
+    .ed { font-size: 0.7rem; color: var(--grey); }
+    .eco { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.86rem; color: var(--wh2); margin-bottom: 8px; }
+    .el { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .el li { font-size: 0.78rem; color: var(--wh3); line-height: 1.65; padding-left: 14px; position: relative; }
+    .el li::before { content: '›'; position: absolute; left: 0; color: var(--pink3); top: 1px; }
 
-    /* projects */
-    .proj-grid { display: flex; flex-direction: column; gap: 10px; }
-    .proj-card { background: var(--bg3); border: 1px solid var(--border2); }
-    .proj-bar { padding: 5px 10px; border-bottom: 1px solid var(--border); font-size: 0.62rem; color: var(--white3); display: flex; align-items: center; gap: 4px; background: var(--bg); }
-    .proj-bar::before { content: '//'; color: var(--pink3); }
-    .proj-inner { padding: 10px 12px; }
-    .proj-title { font-family: 'Cinzel Decorative', serif; font-size: 0.5rem; color: var(--pink2); letter-spacing: 0.06em; margin-bottom: 8px; }
-    .proj-desc { font-size: 0.78rem; color: var(--white3); line-height: 1.72; margin-bottom: 10px; }
-    .proj-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .p-btn { font-size: 0.7rem; color: var(--white3); border: 1px solid var(--border2); padding: 4px 12px; background: transparent; text-decoration: none; cursor: pointer; transition: all 0.12s ease; display: inline-flex; align-items: center; gap: 4px; }
-    .p-btn::before { content: '›'; color: var(--pink3); }
-    .p-btn:hover { border-color: var(--pink); color: var(--pink2); background: var(--pink-g); }
+    /* proj */
+    .pg { display: flex; flex-direction: column; gap: 10px; }
+    .pc { background: var(--bg3); border: 1px solid var(--bord2); }
+    .pb { padding: 4px 10px; border-bottom: 1px solid var(--border); font-size: 0.62rem; color: var(--wh3); display: flex; align-items: center; gap: 4px; background: var(--black); }
+    .pb::before { content: '//'; color: var(--pink3); }
+    .pi { padding: 10px 12px; }
+    .pt { font-family: 'Cinzel Decorative', serif; font-size: 0.48rem; color: var(--pink2); letter-spacing: 0.06em; margin-bottom: 8px; }
+    .pd { font-size: 0.76rem; color: var(--wh3); line-height: 1.7; margin-bottom: 10px; }
+    .pbs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pbt { font-size: 0.7rem; color: var(--wh3); border: 1px solid var(--border); padding: 4px 12px; background: transparent; text-decoration: none; cursor: pointer; transition: all 0.12s; display: inline-flex; align-items: center; gap: 4px; }
+    .pbt::before { content: '›'; color: var(--pink3); }
+    .pbt:hover { border-color: var(--pink); color: var(--pink2); background: var(--pink-g); }
 
     /* certs */
-    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 5px; }
-    .cert-item { background: var(--bg3); border: 1px solid var(--border); padding: 7px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--white3); transition: all 0.1s; }
-    .cert-item:hover { color: var(--white); border-color: var(--border2); }
-    .cert-item::before { content: '›'; color: var(--pink3); margin-right: 5px; font-size: 0.6rem; }
-    .cert-date { font-size: 0.56rem; color: var(--grey); text-align: right; white-space: nowrap; }
+    .cg { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 5px; }
+    .ci { background: var(--bg3); border: 1px solid var(--border); padding: 7px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--wh3); transition: all 0.1s; }
+    .ci:hover { color: var(--white); border-color: var(--bord2); }
+    .ci::before { content: '›'; color: var(--pink3); margin-right: 5px; font-size: 0.6rem; }
+    .cd { font-size: 0.54rem; color: var(--grey); white-space: nowrap; }
 
     /* skills */
-    .skill-g { margin-bottom: 13px; }
-    .skill-g:last-child { margin-bottom: 0; }
-    .skill-lbl { font-size: 0.58rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
-    .skill-lbl::before { content: '//'; color: var(--pink3); }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-    .skill-tag { background: var(--bg3); border: 1px solid var(--border); padding: 2px 9px; font-size: 0.76rem; color: var(--white3); transition: all 0.1s; }
-    .skill-tag:hover { color: var(--pink2); border-color: var(--border2); }
+    .sg { margin-bottom: 13px; }
+    .sg:last-child { margin-bottom: 0; }
+    .sl { font-size: 0.56rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+    .sl::before { content: '//'; color: var(--pink3); }
+    .sts { display: flex; flex-wrap: wrap; gap: 4px; }
+    .st { background: var(--bg3); border: 1px solid var(--border); padding: 2px 9px; font-size: 0.74rem; color: var(--wh3); transition: all 0.1s; }
+    .st:hover { color: var(--pink2); border-color: var(--bord2); }
 
     /* contact */
-    .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; }
-    .contact-card { flex: 1; min-width: 190px; background: var(--bg3); border: 1px solid var(--border2); padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: all 0.12s; }
-    .contact-card:hover { border-color: var(--pink); background: var(--pink-g); }
-    .c-lbl { font-size: 0.56rem; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
-    .c-val { font-size: 0.82rem; color: var(--pink2); }
+    .ccg { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cc { flex: 1; min-width: 190px; background: var(--bg3); border: 1px solid var(--bord2); padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: all 0.12s; }
+    .cc:hover { border-color: var(--pink); background: var(--pink-g); }
+    .cl { font-size: 0.54rem; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
+    .cv { font-size: 0.82rem; color: var(--pink2); }
 
-    /* ── TASKBAR ── */
-    .taskbar {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--bg); border-top: 1px solid var(--border);
-      height: 28px; display: flex; align-items: center; padding: 0 10px; gap: 4px;
-    }
-    .tb-logo { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: var(--pink2); letter-spacing: 0.08em; padding: 0 8px; border-right: 1px solid var(--border); }
-    .tb-btn { font-size: 0.65rem; color: var(--white3); padding: 2px 10px; border: 1px solid transparent; cursor: pointer; transition: all 0.1s; }
-    .tb-btn:hover, .tb-btn.active { color: var(--pink2); border-color: var(--border2); background: var(--pink-g); }
-    .tb-clock { margin-left: auto; font-size: 0.65rem; color: var(--grey); letter-spacing: 0.08em; }
+    /* taskbar */
+    .taskbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: var(--black); border-top: 1px solid var(--border); height: 26px; display: flex; align-items: center; padding: 0 10px; gap: 4px; }
+    .tb-logo { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--pink2); letter-spacing: 0.08em; padding: 0 8px; border-right: 1px solid var(--border); }
+    .tb-btn { font-size: 0.62rem; color: var(--wh3); padding: 1px 10px; border: 1px solid transparent; cursor: pointer; transition: all 0.1s; }
+    .tb-btn:hover, .tb-btn.active { color: var(--pink2); border-color: var(--border); background: var(--pink-g); }
+    .tb-clock { margin-left: auto; font-size: 0.62rem; color: var(--grey); letter-spacing: 0.08em; }
 
-    /* ── POPUP ── */
-    .popup-bg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
-    .popup-bg.show { display: flex; }
-    .popup-win { width: 320px; background: var(--bg2); border: 1px solid var(--border2); }
-    .popup-hd { padding: 7px 10px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 0.65rem; color: var(--white3); display: flex; justify-content: space-between; align-items: center; }
-    .popup-hd::before { content: '◈'; color: var(--pink); margin-right: 5px; }
-    .popup-body { padding: 16px 16px; font-family: 'IM Fell English', serif; font-size: 0.95rem; color: var(--white2); line-height: 1.6; }
-    .popup-btns { padding: 10px; display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--border); }
+    /* popup */
+    .pbg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+    .pbg.show { display: flex; }
+    .pw { width: 320px; background: var(--bg2); border: 1px solid var(--bord2); }
+    .phd { padding: 7px 10px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 0.64rem; color: var(--wh3); display: flex; justify-content: space-between; }
+    .phd::before { content: '◈'; color: var(--pink); margin-right: 5px; }
+    .pbd { padding: 16px; font-family: 'IM Fell English', serif; font-size: 0.95rem; color: var(--wh2); line-height: 1.6; }
+    .pbt2 { padding: 10px; display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--border); }
 
-    /* ── MOBILE ── */
+    /* mobile */
     .mob-btn { display: none; }
     @media (max-width: 700px) {
       .main-grid { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .sidebar.open { display: flex; }
-      .mob-btn { display: block; width: 100%; background: var(--bg3); color: var(--pink2); border: 1px solid var(--border); padding: 7px; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; cursor: pointer; margin-bottom: 7px; letter-spacing: 0.08em; }
-      .welcome-grid { grid-template-columns: 1fr; }
-      .cert-grid { grid-template-columns: 1fr; }
+      .mob-btn { display: block; width: 100%; background: var(--bg3); color: var(--pink2); border: 1px solid var(--border); padding: 7px; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; cursor: pointer; margin-bottom: 7px; }
+      .wg { grid-template-columns: 1fr; }
+      .cg { grid-template-columns: 1fr; }
       .page { padding: 10px 8px 50px; }
-      .hero-inner { flex-direction: column; }
+      .hero { padding: 30px 18px 22px; }
+      .hero-status { position: static; text-align: center; margin-top: 16px; }
+      .name-main { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
 
 <!-- POPUP -->
-<div class="popup-bg" id="popup">
-  <div class="popup-win">
-    <div class="popup-hd"><span>System Query</span><span onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span></div>
-    <div class="popup-body">Should you hire Sara Goodie for your cybersecurity team?</div>
-    <div class="popup-btns">
-      <button class="p-btn" onclick="closePopup()">Yes</button>
-      <button class="p-btn" onclick="closePopup()">Also Yes</button>
+<div class="pbg" id="popup">
+  <div class="pw">
+    <div class="phd"><span>System Query</span><span onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span></div>
+    <div class="pbd">Should you hire Sara Goodie for your cybersecurity team?</div>
+    <div class="pbt2">
+      <button class="pbt" onclick="closePopup()">Yes</button>
+      <button class="pbt" onclick="closePopup()">Also Yes</button>
     </div>
   </div>
 </div>
@@ -380,31 +481,46 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div style="font-size:0.62rem;color:var(--grey);letter-spacing:0.25em;">◈ &nbsp; ◇ &nbsp; ◈ &nbsp; ◇ &nbsp; ◈</div>
-        <div class="name-text">SARA GOODIE</div>
-        <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-        <div class="hero-tags">
-          <span class="vtag">BLUE TEAM</span>
-          <span class="vtag">SIEM</span>
-          <span class="vtag">WGU 2026</span>
-          <span class="vtag" onclick="showPopup()" style="cursor:pointer;">HIRE ME</span>
-        </div>
-      </div>
-      <div class="hero-right">
-        <span class="online-dot"></span><span style="color:var(--white);">online</span><br/>
-        <span style="color:var(--pink);">◈</span> Detroit, MI<br/>
-        <span style="color:var(--grey);">⬦</span> Jan 2026<br/>
-        8 certs · 3 labs
-      </div>
+    <div class="hero-dots">
+      <div class="hero-dot"></div><div class="hero-dot"></div>
+      <div class="hero-dot pink"></div>
+      <div class="hero-dot"></div><div class="hero-dot"></div>
     </div>
-    <div class="hero-divider"><span>◈ &nbsp; ◇ &nbsp; ◈</span></div>
+
+    <div class="name-wrap">
+      <div class="name-ghost">SARA GOODIE</div>
+      <div class="name-main" id="hero-name"></div>
+      <div class="name-underline"></div>
+    </div>
+
+    <div class="name-jp">サラ・グッディ</div>
+
+    <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+
+    <div class="hero-tags">
+      <span class="vtag">BLUE TEAM</span>
+      <span class="vtag">SIEM</span>
+      <span class="vtag">WGU 2026</span>
+      <span class="vtag hire" onclick="showPopup()">HIRE ME</span>
+    </div>
+
+    <div class="hero-status">
+      <div class="hero-status-line"><span class="online-dot"></span><span style="color:var(--white)">online</span></div>
+      <div class="hero-status-line"><span style="color:var(--pink)">◈</span> Detroit, MI</div>
+      <div class="hero-status-line"><span style="color:var(--grey)">◇</span> Jan 2026</div>
+      <div class="hero-status-line">8 certs · 3 labs</div>
+    </div>
+
+    <div class="hero-bottom-dots">
+      <div class="hero-dot"></div>
+      <div class="hero-dot pink"></div>
+      <div class="hero-dot"></div>
+    </div>
   </div>
 
   <!-- MARQUEE -->
   <div class="marq-bar">
-    <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; &nbsp;&nbsp; // SARA GOODIE — CYBER PORTFOLIO // &nbsp;&nbsp; WGU GRADUATE JAN 2026 &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; SIEM &nbsp;◇&nbsp; THREAT DETECTION &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; 3 LABS // OPEN TO OPPORTUNITIES //</div>
+    <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; &nbsp;&nbsp; // SARA GOODIE — CYBER PORTFOLIO // &nbsp;&nbsp; WGU JAN 2026 &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; SIEM &nbsp;◇&nbsp; AZURE SENTINEL &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; OPEN TO OPPORTUNITIES // SARA GOODIE –</div>
   </div>
 
   <!-- MAIN -->
@@ -412,7 +528,6 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
-
       <div class="s-panel">
         <div class="s-head">Navigate</div>
         <a class="nav-item active" onclick="showPage('home')"       data-page="home">Home</a>
@@ -445,12 +560,9 @@
       <div class="s-panel">
         <div class="s-head">Keys</div>
         <div class="key-row">
-          <span class="key-tag">SIEM</span>
-          <span class="key-tag">SOC</span>
-          <span class="key-tag">AZURE</span>
-          <span class="key-tag">KALI</span>
-          <span class="key-tag">AD</span>
-          <span class="key-tag">SPLUNK</span>
+          <span class="key-tag">SIEM</span><span class="key-tag">SOC</span>
+          <span class="key-tag">AZURE</span><span class="key-tag">KALI</span>
+          <span class="key-tag">AD</span><span class="key-tag">SPLUNK</span>
         </div>
       </div>
 
@@ -458,14 +570,13 @@
         <div class="s-kanji">守護<br/>防衛</div>
         <div class="s-kanji-sub">protect · defend</div>
       </div>
-
     </div>
 
     <!-- CONTENT -->
     <div class="c-panel">
       <div class="c-head">
         <div class="c-head-l" id="panel-lbl">Home</div>
-        <span class="c-head-close">✕</span>
+        <span class="c-head-x">✕</span>
       </div>
 
       <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">◈ MENU</button>
@@ -474,9 +585,10 @@
       <div class="view active" id="page-home">
         <div class="v-inner">
           <div class="name-header">
-            <div class="name-text">SARA GOODIE</div>
-            <div class="name-jp">サラ・グッディ</div>
-            <div class="name-sub">Cybersecurity &amp; Information Assurance</div>
+            <div class="name-content-main">SARA GOODIE</div>
+            <div class="name-underline2"></div>
+            <div class="name-jp2">サラ・グッディ</div>
+            <div class="name-sub2">Cybersecurity &amp; Information Assurance</div>
             <div class="tag-row">
               <span class="vtag">SIEM</span>
               <span class="vtag">Azure Sentinel</span>
@@ -488,27 +600,25 @@
           </div>
 
           <div class="sec">Welcome</div>
-
-          <div class="welcome-grid">
-            <div class="w-text">
+          <div class="wg">
+            <div class="wt">
               <p>Hi. I'm <strong>Sara Goodie</strong> — a <em>cybersecurity professional</em> based in Detroit, Michigan.</p>
               <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
               <p>I love <em>blue team operations</em>, building home labs, setting honeypots, and making threats very unhappy.</p>
               <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab.</p>
-              <p class="w-open">Currently open to cybersecurity roles and internships.</p>
+              <p class="wo">Currently open to cybersecurity roles and internships.</p>
             </div>
             <div>
-              <div class="focus-panel">
-                <div class="focus-head">◈ Current Focus ◈</div>
-                <div class="focus-item">IAM Automation (Python + Graph API)</div>
-                <div class="focus-item">Honeypot logging real attacks</div>
-                <div class="focus-item">SIEM tuning &amp; threat detection</div>
-                <div class="focus-item">Blue team operations</div>
+              <div class="fc">
+                <div class="fh">◈ Current Focus ◈</div>
+                <div class="fi">IAM Automation (Python + Graph API)</div>
+                <div class="fi">Honeypot logging real attacks</div>
+                <div class="fi">SIEM tuning &amp; threat detection</div>
+                <div class="fi">Blue team operations</div>
               </div>
             </div>
           </div>
-
-          <div class="v-divider"><span>◈ &nbsp; 守護 · 防衛 · 術式 &nbsp; ◈</span></div>
+          <div class="vd"><span>◈ &nbsp; 守護 · 防衛 · 術式 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -516,38 +626,38 @@
       <div class="view" id="page-experience">
         <div class="v-inner">
           <div class="sec">Work Experience</div>
-          <div class="exp-entry">
-            <div class="exp-hrow"><span class="exp-role">IT Intern</span><span class="exp-date">April – June 2025</span></div>
-            <div class="exp-co">Detroit Pistons IT Operations Team</div>
-            <ul class="exp-list">
+          <div class="ee">
+            <div class="ehr"><span class="er">IT Intern</span><span class="ed">April – June 2025</span></div>
+            <div class="eco">Detroit Pistons IT Operations Team</div>
+            <ul class="el">
               <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment.</li>
               <li>Identity and access management via Active Directory — user provisioning and permission updates.</li>
               <li>Deployed endpoint cybersecurity tools, supported monitoring to enhance security posture.</li>
               <li>Built and presented a virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon.</li>
-              <li>Documented workflows and improved incident response readiness with IT and security teams.</li>
+              <li>Documented workflows and improved incident response readiness.</li>
             </ul>
           </div>
-          <div class="v-divider"><span>◈</span></div>
-          <div class="exp-entry">
-            <div class="exp-hrow"><span class="exp-role">Advisor</span><span class="exp-date">Oct – Dec 2022</span></div>
-            <div class="exp-co">Best Buy | Customer Solutions Team</div>
-            <ul class="exp-list">
+          <div class="vd"><span>◈</span></div>
+          <div class="ee">
+            <div class="ehr"><span class="er">Advisor</span><span class="ed">Oct – Dec 2022</span></div>
+            <div class="eco">Best Buy | Customer Solutions Team</div>
+            <ul class="el">
               <li>Advised customers on technology solutions based on their needs and current trends.</li>
               <li>Developed interpersonal skills through customer service and problem resolution.</li>
               <li>Stayed updated on the latest technologies, enhancing product and technical knowledge.</li>
             </ul>
           </div>
-          <div class="v-divider"><span>◈</span></div>
+          <div class="vd"><span>◈</span></div>
           <div class="sec">Education</div>
-          <div class="exp-entry">
-            <div class="exp-hrow"><span class="exp-role" style="font-size:0.42rem;">B.S. Cybersecurity &amp; Information Assurance</span><span class="exp-date">Jan 2026</span></div>
-            <div class="exp-co">Western Governors University</div>
+          <div class="ee">
+            <div class="ehr"><span class="er" style="font-size:0.4rem;">B.S. Cybersecurity &amp; Information Assurance</span><span class="ed">Jan 2026</span></div>
+            <div class="eco">Western Governors University</div>
           </div>
-          <div class="exp-entry" style="margin-bottom:0;">
-            <div class="exp-hrow"><span class="exp-role" style="font-size:0.42rem;">Associate in Liberal Arts</span><span class="exp-date">June 2021</span></div>
-            <div class="exp-co">Henry Ford Community College</div>
+          <div class="ee" style="margin-bottom:0;">
+            <div class="ehr"><span class="er" style="font-size:0.4rem;">Associate in Liberal Arts</span><span class="ed">June 2021</span></div>
+            <div class="eco">Henry Ford Community College</div>
           </div>
-          <div class="v-divider"><span>◈ &nbsp; 術式 · 守護 &nbsp; ◈</span></div>
+          <div class="vd"><span>◈ &nbsp; 術式 · 守護 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -555,31 +665,31 @@
       <div class="view" id="page-projects">
         <div class="v-inner">
           <div class="sec">Projects</div>
-          <div style="font-size:0.74rem;color:var(--grey);margin-bottom:12px;">› Replace # links with your real GitHub / project URLs</div>
-          <div class="proj-grid">
-            <div class="proj-card">
-              <div class="proj-bar">SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
-              <div class="proj-inner">
-                <div class="proj-desc">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
-                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-bottom:12px;">› Replace # with your real GitHub / project URLs</div>
+          <div class="pg">
+            <div class="pc">
+              <div class="pb">SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
+              <div class="pi">
+                <div class="pd">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
               </div>
             </div>
-            <div class="proj-card">
-              <div class="proj-bar">Active Directory Home Lab</div>
-              <div class="proj-inner">
-                <div class="proj-desc">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
-                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+            <div class="pc">
+              <div class="pb">Active Directory Home Lab</div>
+              <div class="pi">
+                <div class="pd">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
               </div>
             </div>
-            <div class="proj-card">
-              <div class="proj-bar">Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
-              <div class="proj-inner">
-                <div class="proj-desc">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM, configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated threat detection to the IT department during internship.</div>
-                <div class="proj-btns"><a class="p-btn" href="#" target="_blank">View Project</a><a class="p-btn" href="#" target="_blank">GitHub Repo</a></div>
+            <div class="pc">
+              <div class="pb">Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
+              <div class="pi">
+                <div class="pd">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM, configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated threat detection to the IT department during internship.</div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
               </div>
             </div>
           </div>
-          <div class="v-divider"><span>◈ &nbsp; 斬 · 式 · 盾 &nbsp; ◈</span></div>
+          <div class="vd"><span>◈ &nbsp; 斬 · 式 · 盾 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -587,18 +697,18 @@
       <div class="view" id="page-certs">
         <div class="v-inner">
           <div class="sec">Certifications</div>
-          <div style="font-size:0.76rem;color:var(--grey);margin-bottom:12px;">8 certifications earned within 14 months</div>
-          <div class="cert-grid">
-            <div class="cert-item"><span>CompTIA A+</span><span class="cert-date">NOV 2023</span></div>
-            <div class="cert-item"><span>CompTIA Network+</span><span class="cert-date">JAN 2024</span></div>
-            <div class="cert-item"><span>CompTIA Security+</span><span class="cert-date">MAR 2024</span></div>
-            <div class="cert-item"><span>ITIL 4 Foundation</span><span class="cert-date">MAR 2024</span></div>
-            <div class="cert-item"><span>LPI Linux Essentials</span><span class="cert-date">JUN 2024</span></div>
-            <div class="cert-item"><span>Associate of (ISC)²</span><span class="cert-date">AUG 2024</span></div>
-            <div class="cert-item"><span>CompTIA Project+</span><span class="cert-date">OCT 2024</span></div>
-            <div class="cert-item"><span>CompTIA CySA+</span><span class="cert-date">DEC 2024</span></div>
+          <div style="font-size:0.74rem;color:var(--grey);margin-bottom:12px;">8 certifications earned within 14 months</div>
+          <div class="cg">
+            <div class="ci"><span>CompTIA A+</span><span class="cd">NOV 2023</span></div>
+            <div class="ci"><span>CompTIA Network+</span><span class="cd">JAN 2024</span></div>
+            <div class="ci"><span>CompTIA Security+</span><span class="cd">MAR 2024</span></div>
+            <div class="ci"><span>ITIL 4 Foundation</span><span class="cd">MAR 2024</span></div>
+            <div class="ci"><span>LPI Linux Essentials</span><span class="cd">JUN 2024</span></div>
+            <div class="ci"><span>Associate of (ISC)²</span><span class="cd">AUG 2024</span></div>
+            <div class="ci"><span>CompTIA Project+</span><span class="cd">OCT 2024</span></div>
+            <div class="ci"><span>CompTIA CySA+</span><span class="cd">DEC 2024</span></div>
           </div>
-          <div class="v-divider"><span>◈ &nbsp; 証明 · 認定 &nbsp; ◈</span></div>
+          <div class="vd"><span>◈ &nbsp; 証明 · 認定 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -606,13 +716,13 @@
       <div class="view" id="page-skills">
         <div class="v-inner">
           <div class="sec">Technical Skills</div>
-          <div class="skill-g"><div class="skill-lbl">Networking &amp; Systems</div><div class="skill-tags"><span class="skill-tag">L2/L3 Networking</span><span class="skill-tag">DNS</span><span class="skill-tag">DHCP</span><span class="skill-tag">SMTP</span><span class="skill-tag">Active Directory</span><span class="skill-tag">Windows Server</span><span class="skill-tag">Ubuntu Server</span><span class="skill-tag">Kali Linux</span></div></div>
-          <div class="skill-g"><div class="skill-lbl">Security Tools</div><div class="skill-tags"><span class="skill-tag">Wireshark</span><span class="skill-tag">Zenmap</span><span class="skill-tag">Nmap</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Censys</span><span class="skill-tag">KnowBe4</span><span class="skill-tag">CrowdStrike</span></div></div>
-          <div class="skill-g"><div class="skill-lbl">Cloud &amp; Virtualization</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">Intune</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">VMware</span></div></div>
-          <div class="skill-g"><div class="skill-lbl">Scripting &amp; Programming</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PowerShell</span><span class="skill-tag">SQL</span><span class="skill-tag">C++</span></div></div>
-          <div class="skill-g"><div class="skill-lbl">Compliance Frameworks</div><div class="skill-tags"><span class="skill-tag">NIST 800-171</span><span class="skill-tag">HIPAA</span><span class="skill-tag">SOX</span><span class="skill-tag">ISO/IEC 27001</span></div></div>
-          <div class="skill-g"><div class="skill-lbl">Ticketing</div><div class="skill-tags"><span class="skill-tag">Vivantio</span></div></div>
-          <div class="v-divider"><span>◈ &nbsp; 技術 · 術式 &nbsp; ◈</span></div>
+          <div class="sg"><div class="sl">Networking &amp; Systems</div><div class="sts"><span class="st">L2/L3 Networking</span><span class="st">DNS</span><span class="st">DHCP</span><span class="st">SMTP</span><span class="st">Active Directory</span><span class="st">Windows Server</span><span class="st">Ubuntu Server</span><span class="st">Kali Linux</span></div></div>
+          <div class="sg"><div class="sl">Security Tools</div><div class="sts"><span class="st">Wireshark</span><span class="st">Zenmap</span><span class="st">Nmap</span><span class="st">Metasploit</span><span class="st">Censys</span><span class="st">KnowBe4</span><span class="st">CrowdStrike</span></div></div>
+          <div class="sg"><div class="sl">Cloud &amp; Virtualization</div><div class="sts"><span class="st">Microsoft Azure</span><span class="st">Intune</span><span class="st">Hyper-V</span><span class="st">VMware</span></div></div>
+          <div class="sg"><div class="sl">Scripting &amp; Programming</div><div class="sts"><span class="st">Python</span><span class="st">PowerShell</span><span class="st">SQL</span><span class="st">C++</span></div></div>
+          <div class="sg"><div class="sl">Compliance Frameworks</div><div class="sts"><span class="st">NIST 800-171</span><span class="st">HIPAA</span><span class="st">SOX</span><span class="st">ISO/IEC 27001</span></div></div>
+          <div class="sg"><div class="sl">Ticketing</div><div class="sts"><span class="st">Vivantio</span></div></div>
+          <div class="vd"><span>◈ &nbsp; 技術 · 術式 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -620,26 +730,25 @@
       <div class="view" id="page-contact">
         <div class="v-inner">
           <div class="sec">Contact</div>
-          <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.9rem;color:var(--white3);margin-bottom:14px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
-          <div class="contact-grid">
-            <a class="contact-card" href="mailto:segoodie12@gmail.com">
-              <div><div class="c-lbl">Email</div><div class="c-val">segoodie12@gmail.com</div></div>
+          <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.9rem;color:var(--wh3);margin-bottom:14px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
+          <div class="ccg">
+            <a class="cc" href="mailto:segoodie12@gmail.com">
+              <div><div class="cl">Email</div><div class="cv">segoodie12@gmail.com</div></div>
             </a>
-            <a class="contact-card" href="https://linkedin.com" target="_blank">
-              <div><div class="c-lbl">LinkedIn</div><div class="c-val">Connect with me</div></div>
+            <a class="cc" href="https://linkedin.com" target="_blank">
+              <div><div class="cl">LinkedIn</div><div class="cv">Connect with me</div></div>
             </a>
           </div>
-          <div class="v-divider"><span>◈ &nbsp; 連絡 · 接続 &nbsp; ◈</span></div>
+          <div class="vd"><span>◈ &nbsp; 連絡 · 接続 &nbsp; ◈</span></div>
         </div>
       </div>
 
     </div>
   </div>
 
-  <div style="text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:0.8rem;color:var(--grey);padding:6px 0 44px;letter-spacing:0.06em;">
+  <div style="text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:0.78rem;color:var(--grey);padding:6px 0 44px;letter-spacing:0.06em;">
     ◈ © 2026 Sara Goodie — サラ・グッディ — Cybersecurity &amp; Information Assurance ◈
   </div>
-
 </div>
 
 <!-- TASKBAR -->
@@ -652,12 +761,22 @@
 </div>
 
 <script>
-  /* ── KEYCAP ANIMATION ── */
-  
+  /* ── HERO NAME TYPEWRITER ── */
+  const FULL = 'SARA GOODIE';
+  const el   = document.getElementById('hero-name');
+  let   idx  = 0;
+
+  // start blank, type each letter
+  function typeNext() {
+    if (idx >= FULL.length) return;
+    el.textContent = FULL.slice(0, idx + 1);
+    idx++;
+    setTimeout(typeNext, 80 + Math.random() * 40);
+  }
+  setTimeout(typeNext, 900);
 
   /* ── NAV ── */
   const LBLS = { home:'Home', experience:'Experience', projects:'Projects', certs:'Certifications', skills:'Skills', contact:'Contact' };
-
   function showPage(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById('page-' + id).classList.add('active');
@@ -672,8 +791,10 @@
   /* ── CLOCK ── */
   function tick() {
     const n = new Date();
-    const t = String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
-    document.getElementById('tb-clock').textContent = t;
+    document.getElementById('tb-clock').textContent =
+      String(n.getHours()).padStart(2,'0')+':'+
+      String(n.getMinutes()).padStart(2,'0')+':'+
+      String(n.getSeconds()).padStart(2,'0');
   }
   tick(); setInterval(tick, 1000);
 </script>
