@@ -14,9 +14,17 @@
 }
     .profile-img {
   width: 100%;
-  max-width: 140px;
+  max-width: 100px;   /* 👈 smaller */
+  display: block;
+  margin: 0 auto;
   image-rendering: pixelated;
-  filter: drop-shadow(0 0 8px rgba(255, 0, 150, 0.4));
+}
+    .profile-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  overflow: hidden;   /* 👈 prevents layout breaking */
 }
     .name-main.logo-text {
   font-family: 'KingJola' !important;
@@ -614,9 +622,9 @@
         </div>
       </div>
 
-     <div class="s-panel">
+<div class="s-panel">
   <div class="profile-box">
-    <img src="computer.gif" alt="Cyber Computer" class="profile-img">
+    <img src="computer.gif" class="profile-img">
   </div>
 </div>
 
