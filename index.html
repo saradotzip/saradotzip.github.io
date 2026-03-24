@@ -58,6 +58,17 @@
   flex: 1;
   min-width: 0;
 }
+    .sidebar {
+  width: 260px;
+  flex-shrink: 0;
+
+  max-height: 100vh;   /* 👈 NEW */
+  overflow-y: auto;    /* 👈 NEW */
+  padding-right: 4px;  /* optional nicer scroll */
+}
+    .s-panel {
+  flex-shrink: 0;
+}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
 
