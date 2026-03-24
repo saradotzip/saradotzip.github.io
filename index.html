@@ -28,6 +28,13 @@
     .name-main.logo-text {
   -webkit-font-smoothing: antialiased;
 }
+    .hero-line {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--pink2), transparent);
+  margin: 10px auto;
+  opacity: 0.6;
+}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
 
@@ -50,7 +57,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Share Tech Mono', monospace;
+      font-family: 'Inter', sans-serif;
       background: var(--black);
       min-height: 100vh;
       color: var(--wh2);
@@ -274,7 +281,7 @@
       padding: 5px 10px; background: var(--bg3);
       border-bottom: 1px solid var(--border);
       font-family: 'Cinzel Decorative', serif;
-      font-size: 0.9rem; color: var(--wh3);
+      font-size: 1.1rem; color: var(--white);
       letter-spacing: 0.15em; text-transform: uppercase;
       display: flex; align-items: center; gap: 5px;
     }
@@ -283,7 +290,7 @@
     .nav-item {
       display: flex; align-items: center; gap: 6px;
       padding: 8px 12px; font-family: 'IM Fell English', serif;
-      font-size: 0.85rem; color: var(--wh3);
+      font-size: 0.95rem; color: var(--white);
       text-decoration: none; cursor: pointer;
       border-bottom: 1px solid var(--border);
       transition: all 0.1s ease;
@@ -520,6 +527,7 @@
     <div class="name-jp">サラ・グッディ</div>
 
     <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
+    <div class="hero-line"></div>
 
     <div class="hero-status">
       <div class="hero-status-line"><span class="online-dot"></span><span style="color:var(--white)">online</span></div>
