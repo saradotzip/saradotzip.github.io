@@ -49,10 +49,6 @@
   margin: 10px auto;
   opacity: 0.6;
 }
-    .sidebar {
-  width: 260px;   /* 👈 forces sidebar to stay wide */
-  flex-shrink: 0;
-}
 
     .main {
   flex: 1;
@@ -62,12 +58,9 @@
   width: 260px;
   flex-shrink: 0;
 
-  max-height: 100vh;   /* 👈 NEW */
-  overflow-y: auto;    /* 👈 NEW */
-  padding-right: 4px;  /* optional nicer scroll */
 }
     .s-panel {
-  flex-shrink: 0;
+  flex: none;
 }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
