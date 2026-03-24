@@ -28,6 +28,9 @@
     .name-main.logo-text {
   -webkit-font-smoothing: antialiased;
 }
+    .name-main.logo-text {
+  margin-bottom: 4px !important;   /* 👈 tighten space under logo */
+}
     .hero-line {
   width: 180px;
   height: 1px;
@@ -84,7 +87,7 @@
       position: relative;
       border: 1px solid var(--border);
       background: var(--black);
-      padding: 40px 32px 28px;
+      padding: 40px 20px 25px;
       overflow: hidden;
       display: flex; flex-direction: column; align-items: center;
       text-align: center;
@@ -195,8 +198,8 @@
       font-size: 1rem;
       color: var(--wh3);
       letter-spacing: 0.3em;
-      margin-top: 8px;
-      opacity: 0;
+      margin-top: 4px;
+      opacity: 0.8;
       animation: fadeUp 0.7s ease 1.4s forwards;
     }
 
