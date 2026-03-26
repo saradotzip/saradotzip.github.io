@@ -8,553 +8,165 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-  font-family: 'KingJola';
-  src: url('kingjola.ttf') format('truetype');
-}
-    .profile-img {
-  width: 100%;
-  max-width: 100px;   /* 👈 smaller */
-  display: block;
-  margin: 0 auto;
-  image-rendering: pixelated;
-}
-    .profile-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  overflow: hidden;   /* 👈 prevents layout breaking */
-}
-    .name-main.logo-text {
-  font-family: 'KingJola' !important;
-  font-size: 4rem !important;
-  text-align: center;
-  color: white;
-
-  letter-spacing: 0 !important;
-  font-weight: normal !important;
-  text-transform: none !important;
-
-  line-height: 1.8 !important;
-  padding-bottom: 30px;
-  margin-bottom: 4px;
-
-  -webkit-font-smoothing: antialiased;
-}
-    .hero-line {
-  width: 180px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--pink2), transparent);
-  margin: 10px auto;
-  opacity: 0.6;
-}
-
-    .main {
-  flex: 1;
-  min-width: 0;
-}
-    .sidebar {
-  width: 215px;
-  flex-shrink: 0;
-
-}
-    .s-panel {
-  flex: none;
-}
-    .profile-img {
-  filter: drop-shadow(0 0 8px rgba(212,95,138,0.4));
-}
-    .profile-box {
-  padding: 12px;
-  border-top: 1px solid var(--border);
-}
-    .nav-item:hover {
-  background: rgba(212,95,138,0.1);
-  transition: 0.2s;
-}
-    .footer {
-  opacity: 0.6;
-  font-size: 0.7rem;
-  text-align: center;
-  margin-top: 30px;
-}
-  
+    @font-face { font-family: 'KingJola'; src: url('kingjola.ttf') format('truetype'); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-
     :root {
-      --black:  #000000;
-      --bg2:    #060606;
-      --bg3:    #0c0c0c;
-      --border: #1e1e1e;
-      --bord2:  #2a2a2a;
-      --pink:   #d45f8a;
-      --pink2:  #e88ab0;
-      --pink3:  #8a2a4a;
-      --pink-g: rgba(212,95,138,0.10);
-      --white:  #ede8e0;
-      --wh2:    #b8b3aa;
-      --wh3:    #7a7570;
-      --grey:   #444440;
+      --black:#000000; --bg2:#060606; --bg3:#0c0c0c;
+      --border:#1e1e1e; --bord2:#2a2a2a;
+      --pink:#d45f8a; --pink2:#e88ab0; --pink3:#8a2a4a; --pink-g:rgba(212,95,138,0.08);
+      --white:#ede8e0; --wh2:#b8b3aa; --wh3:#7a7570; --grey:#444440;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family:'IM Fell English',serif; background:var(--black); min-height:100vh; color:var(--white); font-size:15px; line-height:1.7; overflow-x:hidden; }
+    body::before { content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px); }
+    ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:var(--black); } ::-webkit-scrollbar-thumb { background:#1e1e1e; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--black);
-      min-height: 100vh;
-      color: var(--white);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg, transparent, transparent 3px,
-        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
-      );
-    }
-
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: #1a1a1a; }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      border: 1px solid var(--border);
-      background: var(--black);
-      padding: 30px 20px 20px;
-      min-height: unset !important; 
-     /* overflow: hidden; */
-      display: flex; flex-direction: column; align-items: center;
-      text-align: center;
-    }
-
-    /* corner brackets */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        linear-gradient(var(--wh3),var(--wh3)) 0 0/45px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 0/1px 45px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 0/45px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 0/1px 45px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 100%/45px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 100%/1px 45px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/45px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/1px 45px no-repeat;
-      opacity: 0.3;
-    }
-
-    /* floating sigil dots above name */
-    .hero-dots {
-      display: flex; gap: 18px; margin-bottom: 4px;
-      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
-    }
-    .hero-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--wh3); opacity: 0.4;
-    }
-    .hero-dot.pink { background: var(--pink); opacity: 0.7; box-shadow: 0 0 8px var(--pink3); }
-
-    /* ── THE NAME ── */
-    .name-wrap {
-  position: relative;
-  opacity: 0;
-  animation: fadeUp 0.9s ease 0.5s forwards;
-
-  overflow: visible;   /* 👈 ADD THIS */
-}
-
-    /* ghost/echo layer behind */
-    .name-ghost {
-      position: absolute; inset: 0;
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(212,95,138,0.12);
-      letter-spacing: 0.25em;
-      line-height: 1;
-      transform: translate(3px, 4px) skewX(-1deg);
-      filter: blur(3px);
-      user-select: none;
-    }
-
-    /* main name */
-    .name-main {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      color: var(--white);
-      letter-spacing: 0.25em;
-      line-height: 1;
-      position: relative; z-index: 1;
-      /* subtle gradient left-right */
-      background: linear-gradient(135deg,
-        #ffffff 0%,
-        #ede8e0 25%,
-        #ffffff 50%,
-        #c8b8b8 75%,
-        #ede8e0 100%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      /* shimmer animation */
-      background-size: 300% 100%;
-      animation: shimmer 6s ease-in-out infinite;
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: 200% center; }
-      50%  { background-position: 0% center; }
-      100% { background-position: 200% center; }
-    }
-
-    /* decorative line under name */
-    .name-underline {
-      height: 1px;
-      background: linear-gradient(90deg,
-        transparent 0%,
-        var(--pink3) 20%,
-        var(--pink) 50%,
-        var(--pink3) 80%,
-        transparent 100%
-      );
-      margin: 10px auto 0;
-      width: 0;
-      animation: expandLine 1s ease 1.2s forwards;
-    }
-    @keyframes expandLine { to { width: 80%; } }
-
-    /* japanese name under */
-    .name-jp {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--wh3);
-      letter-spacing: 0.3em;
-      margin-top: 4px;
-      opacity: 0.8;
-      animation: fadeUp 0.7s ease 1.4s forwards;
-    }
-
-    /* sub text */
-    .hero-sub {
-      font-size: 0.68rem; color: var(--wh3);
-      letter-spacing: 0.18em; margin-top: 16px;
-      display: flex; align-items: center; gap: 8px;
-      opacity: 0; animation: fadeUp 0.7s ease 1.6s forwards;
-    }
-    .hero-sub::before, .hero-sub::after {
-      content: '';
-      flex: 1; max-width: 60px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--grey));
-    }
-    .hero-sub::after { background: linear-gradient(90deg, var(--grey), transparent); }
-
-    /* tag row */
-    .hero-tags {
-      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
-      margin-top: 14px;
-      opacity: 0; animation: fadeUp 0.7s ease 1.8s forwards;
-    }
-    .vtag {
-      font-size: 0.68rem; color: var(--wh3);
-      border: 1px solid var(--border);
-      padding: 2px 10px; background: transparent;
-      letter-spacing: 0.06em; cursor: default;
-      display: inline-flex; align-items: center; gap: 5px;
-      transition: all 0.12s ease;
-    }
-    .vtag::before { content: '–'; color: var(--grey); }
-    .vtag::after  { content: '–'; color: var(--grey); }
-    .vtag:hover { color: var(--pink2); border-color: var(--pink3); }
-    .vtag.hire { cursor: pointer; }
-
-    /* status row */
-     -- .hero-status {
-      position: absolute; left: 24px; bottom: 18px;
-      text-align: left;
-      opacity: 0; animation: fadeUp 0.7s ease 2s forwards;
-    }
-    .hero-status-line { font-size: 0.72rem; color: var(--wh3); line-height: 1.85; }
-    .online-dot {
-      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--pink2); box-shadow: 0 0 8px var(--pink);
-      margin-right: 5px; animation: blink 2s ease-in-out infinite;
-    } 
-    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
-
-    /* bottom divider dots */
-    .hero-bottom-dots {
-      display: flex; gap: 18px; margin-top: 6px;
-      opacity: 0; animation: fadeUp 0.7s ease 2.1s forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── MARQUEE ── */
-    .marq-bar {
-      background: var(--black); border: 1px solid var(--border);
-      border-top: none; overflow: hidden; height: 20px;
-      display: flex; align-items: center;
-    }
-    .marq-txt {
-      display: inline-block; animation: marq 38s linear infinite; padding-left: 100%;
-      font-size: 0.62rem; color: var(--wh3); white-space: nowrap; letter-spacing: 0.08em;
-    }
+    .marq-bar { background:var(--black); border-bottom:1px solid var(--border); overflow:hidden; height:22px; display:flex; align-items:center; }
+    .marq-txt { display:inline-block; animation:marq 42s linear infinite; padding-left:100%; font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--grey); white-space:nowrap; letter-spacing:0.1em; }
     @keyframes marq { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-    /* ── LAYOUT ── */
-    .page { max-width: 1080px; margin: 0 auto; padding: 12px 12px 50px; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+    .hero { border-bottom:1px solid var(--border); background:var(--black); padding:28px 32px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:24px; position:relative; }
+    .hero::after { content:''; position:absolute; bottom:0; left:32px; width:120px; height:1px; background:linear-gradient(90deg,var(--pink3),var(--pink),transparent); }
+    .hero-name { font-family:'KingJola',serif; font-weight:normal; font-size:clamp(2.4rem,5vw,3.6rem); color:var(--white); line-height:1.1; letter-spacing:0.04em; margin-bottom:8px; }
+    .hero-role { font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--wh3); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+    .hero-role::after { content:''; display:inline-block; width:40px; height:1px; background:var(--pink3); }
+    .hero-bio { font-family:'IM Fell English',serif; font-size:0.9rem; color:var(--wh3); line-height:1.75; max-width:520px; }
+    .hero-bio strong { color:var(--wh2); font-style:italic; }
+    .hero-bio em { color:var(--pink2); font-style:normal; }
+    .hero-cta-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+    .hero-open { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.14em; color:var(--pink2); text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+    .hero-open::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--pink2); box-shadow:0 0 8px var(--pink); animation:blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+    .hero-jp { font-family:'IM Fell English',serif; font-style:italic; font-size:0.75rem; color:var(--grey); letter-spacing:0.24em; margin-top:6px; }
+    .hero-stats { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+    .hstat { background:var(--bg3); border:1px solid var(--border); padding:6px 14px; text-align:right; min-width:110px; }
+    .hstat-val { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:700; color:var(--pink2); line-height:1; }
+    .hstat-lbl { font-family:'Share Tech Mono',monospace; font-size:0.52rem; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-top:2px; }
 
-    .main-grid { display: grid; grid-template-columns: 215px 1fr; gap: 8px; }
+    .page { max-width:1080px; margin:0 auto; padding:10px 12px 50px; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1; }
+    .main-grid { display:grid; grid-template-columns:1fr 200px; gap:8px; }
 
-    /* ── SIDEBAR ── */
-    .sidebar { display: flex; flex-direction: column; gap: 4px; }
-    .s-panel { background: var(--black); border: 1px solid var(--border); }
-    .s-head {
-      padding: 5px 10px; background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.9rem; color: var(--white);
-      letter-spacing: 0.15em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 5px;
-    }
-    .s-head::before { content: '◈'; color: var(--pink); font-size: 0.46rem; }
+    .sidebar { display:flex; flex-direction:column; gap:4px; }
+    .s-panel { background:var(--black); border:1px solid var(--border); }
+    .s-head { padding:5px 10px; background:var(--bg3); border-bottom:1px solid var(--border); font-family:'Cinzel Decorative',serif; font-size:0.52rem; color:var(--wh2); letter-spacing:0.18em; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+    .s-head::before { content:'◈'; color:var(--pink); font-size:0.44rem; }
+    .nav-item { display:flex; align-items:center; gap:6px; padding:8px 12px; font-family:'IM Fell English',serif; font-size:0.92rem; color:var(--wh3); text-decoration:none; cursor:pointer; border-bottom:1px solid var(--border); transition:all 0.1s ease; }
+    .nav-item::before { content:'›'; color:var(--grey); }
+    .nav-item:hover { color:var(--white); background:rgba(255,255,255,0.02); padding-left:16px; }
+    .nav-item.active { color:var(--pink2); background:var(--pink-g); border-right:2px solid var(--pink); }
+    .nav-item.active::before { color:var(--pink); }
+    .stat-row { display:flex; justify-content:space-between; padding:4px 10px; font-family:'Share Tech Mono',monospace; font-size:0.66rem; color:var(--wh3); border-bottom:1px solid var(--border); }
+    .stat-row .v { color:var(--pink2); }
+    .s-body { padding:8px 10px; font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--wh3); line-height:2; }
+    .s-lbl { font-size:0.5rem; color:var(--pink); letter-spacing:0.12em; text-transform:uppercase; display:block; margin-top:6px; }
+    .online-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--pink2); box-shadow:0 0 6px var(--pink); margin-right:4px; animation:blink 2s ease-in-out infinite; }
+    .profile-box { display:flex; justify-content:center; align-items:center; padding:14px; overflow:hidden; }
+    .profile-img { width:80px; display:block; margin:0 auto; image-rendering:pixelated; filter:drop-shadow(0 0 6px rgba(212,95,138,0.35)); }
 
-    .nav-item {
-      display: flex; align-items: center; gap: 6px;
-      padding: 8px 12px; font-family: 'IM Fell English', serif;
-      font-size: 0.95rem; color: var(--white);
-      text-decoration: none; cursor: pointer;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.1s ease;
-    }
-    .nav-item::before { content: '›'; color: var(--grey); }
-    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.02); padding-left: 16px; }
-    .nav-item.active { color: var(--pink2); background: var(--pink-g); border-left: 2px solid var(--pink); padding-left: 10px; }
-    .nav-item.active::before { color: var(--pink); }
-
-    .s-body { padding: 6px 10px; font-size: 0.72rem; color: var(--wh3); line-height: 1.9; }
-    .s-lbl { font-family: 'Share Tech Mono', monospace; font-size: 0.54rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: 7px; margin-bottom: 1px; }
-
-    .stat-row { display: flex; justify-content: space-between; padding: 3px 10px; font-size: 0.72rem; color: var(--wh3); border-bottom: 1px solid var(--border); }
-    .stat-row .v { color: var(--pink2); font-weight: bold; }
-
-    .key-row { padding: 7px 8px; display: flex; flex-wrap: wrap; gap: 4px; }
-    .key-tag {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: linear-gradient(145deg, #c6c6c6, #8c8c8c);
-      border-top: 1.5px solid #dedede; border-left: 1.5px solid #d2d2d2;
-      border-right: 1.5px solid #5a5a5a; border-bottom: 1.5px solid #4c4c4c;
-      border-radius: 4px;
-      box-shadow: 0 3px 0 #3a3a3a, 0 4px 6px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.5);
-      font-family: 'Share Tech Mono', monospace; font-size: 0.48rem; color: #111;
-      padding: 2px 7px; cursor: default;
-      transition: transform 0.1s, box-shadow 0.1s;
-    }
-    .key-tag:hover { transform: translateY(2px); box-shadow: 0 1px 0 #3a3a3a; }
-
-    .s-kanji { text-align: center; padding: 10px 8px 4px; font-family: 'IM Fell English', serif; font-style: italic; font-size: 1.5rem; color: var(--grey); line-height: 1.4; }
-    .s-kanji-sub { text-align: center; padding: 0 8px 10px; font-size: 0.58rem; color: var(--grey); letter-spacing: 0.1em; }
-
-    /* ── CONTENT ── */
-    .c-panel { background: var(--black); border: 1px solid var(--border); }
-    .c-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 5px 10px; background: var(--bg3);
-      border-bottom: 1px solid var(--border);
-      font-family: 'Share Tech Mono', monospace; font-size: 0.66rem; color: var(--wh3);
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
-    .c-head-l { display: flex; align-items: center; gap: 5px; }
-    .c-head-l::before { content: '◈'; color: var(--pink); font-size: 0.46rem; }
-    .c-head-x { color: var(--grey); cursor: default; }
-
-    .view { display: none; animation: fadeIn 0.15s ease; }
-    .view.active { display: block; }
+    .c-panel { background:var(--black); border:1px solid var(--border); }
+    .c-head { display:flex; align-items:center; justify-content:space-between; padding:5px 12px; background:var(--bg3); border-bottom:1px solid var(--border); font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--wh3); letter-spacing:0.1em; text-transform:uppercase; }
+    .c-head-l { display:flex; align-items:center; gap:6px; }
+    .c-head-l::before { content:'◈'; color:var(--pink); font-size:0.44rem; }
+    .c-head-x { color:var(--grey); cursor:default; }
+    .view { display:none; animation:fadeIn 0.15s ease; }
+    .view.active { display:block; }
     @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
-    .v-inner { padding: 16px 20px; }
+    .v-inner { padding:20px 22px; }
 
-    /* content name header */
-    .name-header {
-  background: var(--bg3);
-  border: 1px solid var(--border2);
+    .sec { font-family:'Cinzel Decorative',serif; font-size:0.52rem; color:var(--wh2); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:14px; padding-bottom:7px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
+    .sec::before { content:'◈'; color:var(--pink); font-size:0.44rem; }
+    .sec::after { content:''; flex:1; border-top:1px solid var(--border); margin-left:4px; }
+    .vd { display:flex; align-items:center; gap:8px; margin:18px 0; }
+    .vd::before,.vd::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); }
+    .vd span { font-size:0.52rem; color:var(--grey); letter-spacing:0.2em; white-space:nowrap; }
 
-  padding: 22px 24px;
-  margin-bottom: 20px;
+    .home-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px; }
+    .highlight-card { background:var(--bg3); border:1px solid var(--bord2); border-left:2px solid var(--pink3); padding:14px 16px; }
+    .hc-label { font-family:'Share Tech Mono',monospace; font-size:0.52rem; color:var(--pink); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8px; }
+    .hc-big { font-family:'Cinzel',serif; font-size:2rem; font-weight:700; color:var(--pink2); line-height:1; margin-bottom:2px; }
+    .hc-sub { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--wh3); letter-spacing:0.06em; }
+    .fc { background:var(--bg3); border:1px solid var(--bord2); }
+    .fh { padding:5px 10px; border-bottom:1px solid var(--border); font-family:'Share Tech Mono',monospace; font-size:0.52rem; color:var(--pink); letter-spacing:0.12em; text-transform:uppercase; }
+    .fi { display:flex; align-items:flex-start; gap:6px; padding:6px 10px; border-bottom:1px solid var(--border); font-size:0.8rem; color:var(--wh3); line-height:1.4; }
+    .fi:last-child { border-bottom:none; }
+    .fi::before { content:'›'; color:var(--pink3); flex-shrink:0; margin-top:1px; }
+    .wt { font-family:'IM Fell English',serif; font-size:0.88rem; color:var(--wh2); line-height:1.9; }
+    .wt p+p { margin-top:8px; }
+    .wt strong { font-style:italic; color:var(--white); }
+    .wt em { color:var(--pink2); font-style:normal; }
+    .wo { font-size:0.74rem; color:var(--grey); margin-top:10px; font-style:italic; }
 
-  position: relative;
-  overflow: hidden;
-}
-    .name-header .name-content-main {
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  color: var(--white);
-}
-    .name-header::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        linear-gradient(var(--wh3),var(--wh3)) 0 0/16px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 0/1px 16px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 0/16px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 0/1px 16px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 100%/16px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 0 100%/1px 16px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/16px 1px no-repeat,
-        linear-gradient(var(--wh3),var(--wh3)) 100% 100%/1px 16px no-repeat;
-      opacity: 0.2;
-    }
+    .ee { margin-bottom:20px; } .ee:last-child { margin-bottom:0; }
+    .ehr { display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px; margin-bottom:3px; }
+    .er { font-family:'Cinzel Decorative',serif; font-size:0.46rem; color:var(--pink2); letter-spacing:0.1em; }
+    .ed { font-family:'Share Tech Mono',monospace; font-size:0.64rem; color:var(--grey); }
+    .eco { font-family:'IM Fell English',serif; font-style:italic; font-size:0.88rem; color:var(--wh2); margin-bottom:8px; }
+    .el { list-style:none; display:flex; flex-direction:column; gap:5px; }
+    .el li { font-size:0.8rem; color:var(--wh3); line-height:1.65; padding-left:14px; position:relative; }
+    .el li::before { content:'›'; position:absolute; left:0; color:var(--pink3); top:1px; }
 
-    /* content name — smaller version of same effect */
-    .name-content-main {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
-      letter-spacing: 0.2em;
-      line-height: 1;
-      background: linear-gradient(135deg, #ffffff 0%, #ede8e0 40%, #ffffff 60%, #c8b8b8 100%);
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 6s ease-in-out infinite;
-      margin-bottom: 8px;
-    }
+    .pg { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .pc { background:var(--bg3); border:1px solid var(--bord2); display:flex; flex-direction:column; }
+    .pb { padding:5px 10px; border-bottom:1px solid var(--border); font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--wh3); display:flex; align-items:center; gap:5px; background:var(--black); letter-spacing:0.04em; }
+    .pb::before { content:'//'; color:var(--pink3); }
+    .pi { padding:10px 12px; display:flex; flex-direction:column; flex:1; }
+    .pd { font-size:0.78rem; color:var(--wh3); line-height:1.7; margin-bottom:10px; flex:1; }
+    .pbs { display:flex; gap:6px; flex-wrap:wrap; margin-top:auto; }
+    .pbt { font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--wh3); border:1px solid var(--border); padding:4px 10px; background:transparent; text-decoration:none; cursor:pointer; transition:all 0.12s; display:inline-flex; align-items:center; gap:4px; }
+    .pbt::before { content:'›'; color:var(--pink3); }
+    .pbt:hover { border-color:var(--pink); color:var(--pink2); background:var(--pink-g); }
 
-    .name-underline2 {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--pink3) 30%, var(--pink) 50%, var(--pink3) 70%, transparent);
-      width: 40%; margin-bottom: 8px;
-    }
+    .certs-intro { font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--grey); margin-bottom:12px; letter-spacing:0.04em; }
+    .cg { display:grid; grid-template-columns:repeat(2,1fr); gap:5px; }
+    .ci { background:var(--bg3); border:1px solid var(--border); padding:8px 10px; display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--wh3); transition:all 0.1s; }
+    .ci:hover { color:var(--white); border-color:var(--bord2); }
+    .ci::before { content:'›'; color:var(--pink3); margin-right:6px; font-size:0.6rem; }
+    .cd { font-family:'Share Tech Mono',monospace; font-size:0.52rem; color:var(--grey); white-space:nowrap; }
 
-    .name-jp2 { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.95rem; color: var(--wh3); letter-spacing: 0.18em; margin-bottom: 4px; }
-    .name-sub2 { font-size: 0.78rem; color: var(--wh3); }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .sg { margin-bottom:14px; } .sg:last-child { margin-bottom:0; }
+    .sl { font-family:'Share Tech Mono',monospace; font-size:0.54rem; color:var(--pink); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:7px; display:flex; align-items:center; gap:6px; }
+    .sl::before { content:'//'; color:var(--pink3); }
+    .sts { display:flex; flex-wrap:wrap; gap:4px; }
+    .st { background:var(--bg3); border:1px solid var(--border); padding:3px 10px; font-family:'Share Tech Mono',monospace; font-size:0.66rem; color:var(--wh3); transition:all 0.1s; }
+    .st:hover { color:var(--pink2); border-color:var(--bord2); }
 
-    /* sections */
-    .sec {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.56rem; color: var(--wh2); letter-spacing: 0.14em;
-      margin-bottom: 14px; padding-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .sec::before { content: '◈'; color: var(--pink); }
-    .sec::after { content: ''; flex: 1; border-top: 1px solid var(--border); margin-left: 4px; }
+    .ccg { display:flex; gap:8px; flex-wrap:wrap; }
+    .cc { flex:1; min-width:180px; background:var(--bg3); border:1px solid var(--bord2); padding:14px 16px; display:flex; align-items:center; text-decoration:none; transition:all 0.12s; }
+    .cc:hover { border-color:var(--pink); background:var(--pink-g); }
+    .cl { font-family:'Share Tech Mono',monospace; font-size:0.5rem; color:var(--grey); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:5px; }
+    .cv { font-size:0.82rem; color:var(--pink2); }
 
-    /* welcome */
-    .wg { display: grid; grid-template-columns: 1fr 195px; gap: 14px; align-items: start; }
-    .wt { font-family: 'IM Fell English', serif; font-size: 0.92rem; color: var(--wh2); line-height: 1.95; }
-    .wt p + p { margin-top: 9px; }
-    .wt strong { font-style: italic; color: var(--white); }
-    .wt em { color: var(--pink2); }
-    .wo { font-size: 0.76rem; color: var(--grey); margin-top: 11px; }
+    .taskbar { position:fixed; bottom:0; left:0; right:0; z-index:1000; background:var(--black); border-top:1px solid var(--border); height:26px; display:flex; align-items:center; padding:0 10px; gap:4px; }
+    .tb-logo { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--pink2); letter-spacing:0.1em; padding:0 8px; border-right:1px solid var(--border); }
+    .tb-btn { font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--wh3); padding:1px 10px; border:1px solid transparent; cursor:pointer; transition:all 0.1s; }
+    .tb-btn:hover,.tb-btn.active { color:var(--pink2); border-color:var(--border); background:var(--pink-g); }
+    .tb-clock { margin-left:auto; font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--grey); letter-spacing:0.1em; }
 
-    .fc { background: var(--bg3); border: 1px solid var(--bord2); }
-    .fh { padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.58rem; color: var(--pink); letter-spacing: 0.1em; text-align: center; }
-    .fi { display: flex; align-items: flex-start; gap: 5px; padding: 5px 8px; border-bottom: 1px solid var(--border); font-size: 0.74rem; color: var(--wh3); line-height: 1.45; }
-    .fi::before { content: '›'; color: var(--pink3); flex-shrink: 0; }
+    .pbg { display:none; position:fixed; inset:0; z-index:500; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
+    .pbg.show { display:flex; }
+    .pw { width:300px; background:var(--bg2); border:1px solid var(--bord2); }
+    .phd { padding:6px 10px; background:var(--bg3); border-bottom:1px solid var(--border); font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--wh3); display:flex; justify-content:space-between; }
+    .phd::before { content:'◈'; color:var(--pink); margin-right:5px; }
+    .pbd { padding:16px; font-family:'IM Fell English',serif; font-size:0.92rem; color:var(--wh2); line-height:1.65; }
+    .pbt2 { padding:10px; display:flex; justify-content:center; gap:8px; border-top:1px solid var(--border); }
 
-    .vd { display: flex; align-items: center; gap: 8px; margin: 14px 0; }
-    .vd::before, .vd::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-    .vd span { font-size: 0.58rem; color: var(--grey); letter-spacing: 0.18em; white-space: nowrap; }
-
-    /* exp */
-    .ee { margin-bottom: 18px; }
-    .ee:last-child { margin-bottom: 0; }
-    .ehr { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px; margin-bottom: 3px; }
-    .er { font-family: 'Cinzel Decorative', serif; font-size: 0.48rem; color: var(--pink2); letter-spacing: 0.08em; }
-    .ed { font-size: 0.7rem; color: var(--grey); }
-    .eco { font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.86rem; color: var(--wh2); margin-bottom: 8px; }
-    .el { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-    .el li { font-size: 0.78rem; color: var(--wh3); line-height: 1.65; padding-left: 14px; position: relative; }
-    .el li::before { content: '›'; position: absolute; left: 0; color: var(--pink3); top: 1px; }
-
-    /* proj */
-    .pg { display: flex; flex-direction: column; gap: 10px; }
-    .pc { background: var(--bg3); border: 1px solid var(--bord2); }
-    .pb { padding: 4px 10px; border-bottom: 1px solid var(--border); font-size: 0.62rem; color: var(--wh3); display: flex; align-items: center; gap: 4px; background: var(--black); }
-    .pb::before { content: '//'; color: var(--pink3); }
-    .pi { padding: 10px 12px; }
-    .pt { font-family: 'Cinzel Decorative', serif; font-size: 0.48rem; color: var(--pink2); letter-spacing: 0.06em; margin-bottom: 8px; }
-    .pd { font-size: 0.76rem; color: var(--wh3); line-height: 1.7; margin-bottom: 10px; }
-    .pbs { display: flex; gap: 6px; flex-wrap: wrap; }
-    .pbt { font-size: 0.7rem; color: var(--wh3); border: 1px solid var(--border); padding: 4px 12px; background: transparent; text-decoration: none; cursor: pointer; transition: all 0.12s; display: inline-flex; align-items: center; gap: 4px; }
-    .pbt::before { content: '›'; color: var(--pink3); }
-    .pbt:hover { border-color: var(--pink); color: var(--pink2); background: var(--pink-g); }
-
-    /* certs */
-    .cg { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 5px; }
-    .ci { background: var(--bg3); border: 1px solid var(--border); padding: 7px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--wh3); transition: all 0.1s; }
-    .ci:hover { color: var(--white); border-color: var(--bord2); }
-    .ci::before { content: '›'; color: var(--pink3); margin-right: 5px; font-size: 0.6rem; }
-    .cd { font-size: 0.54rem; color: var(--grey); white-space: nowrap; }
-
-    /* skills */
-    .sg { margin-bottom: 13px; }
-    .sg:last-child { margin-bottom: 0; }
-    .sl { font-size: 0.56rem; color: var(--pink); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
-    .sl::before { content: '//'; color: var(--pink3); }
-    .sts { display: flex; flex-wrap: wrap; gap: 4px; }
-    .st { background: var(--bg3); border: 1px solid var(--border); padding: 2px 9px; font-size: 0.74rem; color: var(--wh3); transition: all 0.1s; }
-    .st:hover { color: var(--pink2); border-color: var(--bord2); }
-
-    /* contact */
-    .ccg { display: flex; gap: 10px; flex-wrap: wrap; }
-    .cc { flex: 1; min-width: 190px; background: var(--bg3); border: 1px solid var(--bord2); padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; transition: all 0.12s; }
-    .cc:hover { border-color: var(--pink); background: var(--pink-g); }
-    .cl { font-size: 0.54rem; color: var(--grey); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-family: 'Share Tech Mono', monospace; }
-    .cv { font-size: 0.82rem; color: var(--pink2); }
-
-    /* taskbar */
-    .taskbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: var(--black); border-top: 1px solid var(--border); height: 26px; display: flex; align-items: center; padding: 0 10px; gap: 4px; }
-    .tb-logo { font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: var(--pink2); letter-spacing: 0.08em; padding: 0 8px; border-right: 1px solid var(--border); }
-    .tb-btn { font-size: 0.62rem; color: var(--wh3); padding: 1px 10px; border: 1px solid transparent; cursor: pointer; transition: all 0.1s; }
-    .tb-btn:hover, .tb-btn.active { color: var(--pink2); border-color: var(--border); background: var(--pink-g); }
-    .tb-clock { margin-left: auto; font-size: 0.62rem; color: var(--grey); letter-spacing: 0.08em; }
-
-    /* popup */
-    .pbg { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
-    .pbg.show { display: flex; }
-    .pw { width: 320px; background: var(--bg2); border: 1px solid var(--bord2); }
-    .phd { padding: 7px 10px; background: var(--bg3); border-bottom: 1px solid var(--border); font-size: 0.64rem; color: var(--wh3); display: flex; justify-content: space-between; }
-    .phd::before { content: '◈'; color: var(--pink); margin-right: 5px; }
-    .pbd { padding: 16px; font-family: 'IM Fell English', serif; font-size: 0.95rem; color: var(--wh2); line-height: 1.6; }
-    .pbt2 { padding: 10px; display: flex; justify-content: center; gap: 8px; border-top: 1px solid var(--border); }
-
-    /* mobile */
-    .mob-btn { display: none; }
-    @media (max-width: 700px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
-      .sidebar.open { display: flex; }
-      .mob-btn { display: block; width: 100%; background: var(--bg3); color: var(--pink2); border: 1px solid var(--border); padding: 7px; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; cursor: pointer; margin-bottom: 7px; }
-      .wg { grid-template-columns: 1fr; }
-      .cg { grid-template-columns: 1fr; }
-      .page { padding: 10px 8px 50px; }
-      .hero { padding: 30px 18px 22px; }
-      .hero-status { position: static; text-align: center; margin-top: 16px; }
-      .name-main { font-size: 2.2rem; }
+    .mob-btn { display:none; }
+    @media (max-width:700px) {
+      .main-grid { grid-template-columns:1fr; }
+      .sidebar { display:none; }
+      .sidebar.open { display:flex; }
+      .mob-btn { display:block; width:100%; background:var(--bg3); color:var(--pink2); border:1px solid var(--border); padding:7px; font-family:'Share Tech Mono',monospace; font-size:0.62rem; cursor:pointer; margin-bottom:6px; }
+      .pg { grid-template-columns:1fr; }
+      .cg { grid-template-columns:1fr; }
+      .home-grid { grid-template-columns:1fr; }
+      .hero { grid-template-columns:1fr; padding:22px 18px; }
+      .hero-stats { flex-direction:row; align-items:flex-start; justify-content:flex-start; }
+      .page { padding:8px 8px 50px; }
     }
   </style>
 </head>
 <body>
 
-<!-- POPUP -->
 <div class="pbg" id="popup">
   <div class="pw">
     <div class="phd"><span>System Query</span><span onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span></div>
@@ -566,147 +178,78 @@
   </div>
 </div>
 
-<div class="page">
+<div class="marq-bar">
+  <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; // SARA GOODIE — CYBER PORTFOLIO // WHITE HAT &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; INFOSEC &nbsp;◇&nbsp; WomenInCyber &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; OPEN TO OPPORTUNITIES &nbsp;◇&nbsp; DETROIT, MI &nbsp;◈&nbsp; WGU JAN 2026 –</div>
+</div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-dots">
-      <div class="hero-dot"></div><div class="hero-dot"></div>
-      <div class="hero-dot pink"></div>
-      <div class="hero-dot"></div><div class="hero-dot"></div>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-name">Sara Goodie</div>
+    <div class="hero-role">Security Analyst &nbsp;·&nbsp; Blue Team &nbsp;·&nbsp; Detroit, MI</div>
+    <div class="hero-bio">
+      <strong>B.S. Cybersecurity &amp; Information Assurance</strong>, Western Governors University · Jan 2026.
+      8 certifications in 14 months. Interned at the <strong>Detroit Pistons IT Operations Team</strong>
+      building real detection labs. Loves <em>blue team ops</em>, honeypots, and making threats very unhappy.
     </div>
-
-    <div class="name-wrap">
-      <div class="name-ghost"></div>
-      <div class="name-main logo-text">Sara Goodie</div>
-      <div class="name-underline"></div>
+    <div class="hero-cta-row">
+      <div class="hero-open">Open to roles &amp; internships</div>
     </div>
-
-    <div class="name-jp">サラ・グッディ</div>
-
-    <div class="hero-sub">CYBERSECURITY &amp; INFORMATION ASSURANCE</div>
-    <div class="hero-line"></div>
-
-   <!-- <div class="hero-status">
-      <div class="hero-status-line"><span class="online-dot"></span><span style="color:var(--white)">online</span></div>
-      <div class="hero-status-line"><span style="color:var(--pink)">◈</span> Detroit, MI</div>
-      <div class="hero-status-line"><span style="color:var(--grey)">◇</span> Jan 2026</div>
-      <div class="hero-status-line">8 certs · 3 labs</div>
-    </div> -->
-
-    <div class="hero-bottom-dots">
-      <div class="hero-dot"></div>
-      <div class="hero-dot pink"></div>
-      <div class="hero-dot"></div>
-    </div>
+    <div class="hero-jp">サラ・グッディ &nbsp;·&nbsp; サイバーセキュリティ</div>
   </div>
-
-  <!-- MARQUEE -->
-  <div class="marq-bar">
-    <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; &nbsp;&nbsp; // SARA GOODIE — CYBER PORTFOLIO // &nbsp;&nbsp; WHITE HAT &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; INFOSEC &nbsp;◇&nbsp; WomenInCyber &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; OPEN TO OPPORTUNITIES // SARA GOODIE –</div>
-  </div>
-
-  <!-- MAIN -->
-  <div class="main-grid">
-
-    <!-- SIDEBAR -->
-    <div class="sidebar" id="sidebar">
-      <div class="s-panel">
-        <div class="s-head">Navigate</div>
-        <a class="nav-item active" onclick="showPage('home')"       data-page="home">Home</a>
-        <a class="nav-item"        onclick="showPage('experience')" data-page="experience">Experience</a>
-        <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">Projects</a>
-        <a class="nav-item"        onclick="showPage('certs')"      data-page="certs">Certs</a>
-        <a class="nav-item"        onclick="showPage('skills')"     data-page="skills">Skills</a>
-        <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">Contact</a>
-      </div>
-
-      <div class="s-panel">
-        <div class="s-head">Metrics</div>
-        <div class="stat-row"><span>Certs</span><span class="v">8</span></div>
-        <div class="stat-row"><span>Labs</span><span class="v">3</span></div>
-        <div class="stat-row"><span>Yrs</span><span class="v">2+</span></div>
-      </div>
-      
-      <div class="s-panel">
-        <div class="s-head">System Info</div>
-        <div class="s-body">
-          <span class="s-lbl">Status</span><span class="online-dot"></span>online
-          <span class="s-lbl">Location</span>Detroit, MI
-        </div>
-      </div>
-
-
-
-      <!-- <div class="s-panel">
-        <div class="s-head">Keys</div>
-        <div class="key-row">
-          <span class="key-tag">SIEM</span><span class="key-tag">SOC</span>
-          <span class="key-tag">AZURE</span><span class="key-tag">KALI</span>
-          <span class="key-tag">AD</span><span class="key-tag">SPLUNK</span>
-        </div>
-      </div> -->
-
-<div class="s-panel">
-  <div class="s-head"></div>
-
-  <div class="profile-box">
-    <img src="computer.gif" alt="Cyber Computer" class="profile-img">
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-val">8</div><div class="hstat-lbl">Certifications</div></div>
+    <div class="hstat"><div class="hstat-val">3</div><div class="hstat-lbl">Labs Built</div></div>
+    <div class="hstat"><div class="hstat-val">2+</div><div class="hstat-lbl">Yrs Experience</div></div>
   </div>
 </div>
 
-</div> <!-- 👈 ADD THIS LINE (CLOSE SIDEBAR) -->
+<div class="page">
+  <div class="main-grid">
 
-<!-- CONTENT -->
-<div class="c-panel">
+    <div class="c-panel">
       <div class="c-head">
         <div class="c-head-l" id="panel-lbl">Home</div>
         <span class="c-head-x">✕</span>
       </div>
-
       <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">◈ MENU</button>
 
-      <!-- HOME -->
       <div class="view active" id="page-home">
         <div class="v-inner">
-          <div class="name-header">
-            <div class="name-content-main">SARA GOODIE</div>
-            <div class="name-underline2"></div>
-            <div class="name-sub2">Security Analyst | Blue Team</div>
-           <!-- <div class="tag-row">
-              <span class="vtag">Blue Team</span>
-              <span class="vtag">-</span>
-              <span class="vtag">-</span>
-              <span class="vtag">-</span>
-              <span class="vtag">-</span>
-              <span class="vtag">-</span>
-            </div> -->
-          </div>
-
-          <div class="sec">Welcome</div>
-          <div class="wg">
-            <div class="wt">
-              <p>Hi. I'm <strong>Sara Goodie</strong> — a <em>cybersecurity professional</em> based in Detroit, Michigan.</p>
-              <p>I graduated with a <strong>B.S. in Cybersecurity &amp; Information Assurance</strong> from Western Governors University in <strong>January 2026</strong>.</p>
-              <p>I love <em>blue team operations</em>, building home labs, setting honeypots, and making threats very unhappy.</p>
-              <p>I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab.</p>
-              <p class="wo">Currently open to cybersecurity roles and internships.</p>
+          <div class="sec">At a Glance</div>
+          <div class="home-grid">
+            <div class="highlight-card">
+              <div class="hc-label">Certifications Earned</div>
+              <div class="hc-big">8</div>
+              <div class="hc-sub">in 14 months &nbsp;·&nbsp; Nov 2023 – Dec 2024</div>
             </div>
-            <div>
-              <div class="fc">
-                <div class="fh">✎ Current Focus ᝰ</div>
-                <div class="fi">CCSP Certification</div>
-                <div class="fi">IAM Automation (Python + Graph API)</div>
-                <div class="fi">Honeypot logging real attacks</div>
-                <div class="fi">SIEM tuning &amp; threat detection</div>
-              </div>
+            <div class="highlight-card">
+              <div class="hc-label">Latest Cert</div>
+              <div class="hc-big" style="font-size:1.1rem;margin-top:4px;">CySA+</div>
+              <div class="hc-sub">CompTIA &nbsp;·&nbsp; Dec 2024</div>
+            </div>
+            <div class="highlight-card">
+              <div class="hc-label">Internship</div>
+              <div class="hc-big" style="font-size:0.95rem;margin-top:4px;line-height:1.3;">Detroit Pistons</div>
+              <div class="hc-sub">IT Operations &nbsp;·&nbsp; Apr – Jun 2025</div>
+            </div>
+            <div class="fc">
+              <div class="fh">Current Focus</div>
+              <div class="fi">CCSP Certification</div>
+              <div class="fi">IAM Automation · Python + Graph API</div>
+              <div class="fi">Honeypot logging real attacks</div>
+              <div class="fi">SIEM tuning &amp; threat detection</div>
             </div>
           </div>
-          <div class="vd"><span>◈ &nbsp; 𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃 &nbsp; ◈</span></div>
+          <div class="sec">About</div>
+          <div class="wt">
+            <p>Hi. I'm <strong>Sara Goodie</strong> — a <em>cybersecurity professional</em> based in Detroit, Michigan.</p>
+            <p>I love <em>blue team operations</em>, building home labs, setting honeypots, and making threats very unhappy. I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab.</p>
+            <p class="wo">Currently open to cybersecurity roles and internships.</p>
+          </div>
+          <div class="vd"><span>◈ &nbsp; 𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃 &nbsp; ◈</span></div>
         </div>
       </div>
 
-      <!-- EXPERIENCE -->
       <div class="view" id="page-experience">
         <div class="v-inner">
           <div class="sec">Work Experience</div>
@@ -745,31 +288,30 @@
         </div>
       </div>
 
-      <!-- PROJECTS -->
       <div class="view" id="page-projects">
         <div class="v-inner">
           <div class="sec">Projects</div>
-          <div style="font-size:0.72rem;color:var(--grey);margin-bottom:12px;">› Replace # with your real GitHub / project URLs</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--grey);margin-bottom:12px;">› Replace # with your real GitHub / project URLs</div>
           <div class="pg">
             <div class="pc">
               <div class="pb">SOC Deployment &amp; SIEM — Azure &amp; Sentinel</div>
               <div class="pi">
                 <div class="pd">Deployed a SIEM using Microsoft Sentinel on Azure, provisioning a Windows Server VM to monitor RDP events and integrate threat intelligence with IoCs. Configured log analytics workspaces, data connectors, and custom alerts for real-time threat detection and automated response workflows.</div>
-                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub</a></div>
               </div>
             </div>
             <div class="pc">
               <div class="pb">Active Directory Home Lab</div>
               <div class="pi">
                 <div class="pd">Built an AD home lab simulating an enterprise network. Set up a Windows Server domain controller, configured DNS, DHCP, and Group Policies, managed user/group accounts for hands-on IT infrastructure and network security experience.</div>
-                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub</a></div>
               </div>
             </div>
             <div class="pc">
               <div class="pb">Attack Detection Lab — VirtualBox + Splunk + Sysmon</div>
               <div class="pi">
                 <div class="pd">Built a virtual lab to simulate cyberattacks and monitor detection. Deployed attacker VM and vulnerable VM, configured Splunk to collect and analyze Windows event logs via Sysmon. Demonstrated threat detection to the IT department during internship.</div>
-                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub Repo</a></div>
+                <div class="pbs"><a class="pbt" href="#" target="_blank">View Project</a><a class="pbt" href="#" target="_blank">GitHub</a></div>
               </div>
             </div>
           </div>
@@ -777,11 +319,10 @@
         </div>
       </div>
 
-      <!-- CERTS -->
       <div class="view" id="page-certs">
         <div class="v-inner">
           <div class="sec">Certifications</div>
-          <div style="font-size:0.74rem;color:var(--grey);margin-bottom:12px;">8 certifications earned within 14 months</div>
+          <div class="certs-intro">8 certifications earned within 14 months</div>
           <div class="cg">
             <div class="ci"><span>CompTIA A+</span><span class="cd">NOV 2023</span></div>
             <div class="ci"><span>CompTIA Network+</span><span class="cd">JAN 2024</span></div>
@@ -796,7 +337,6 @@
         </div>
       </div>
 
-      <!-- SKILLS -->
       <div class="view" id="page-skills">
         <div class="v-inner">
           <div class="sec">Technical Skills</div>
@@ -810,77 +350,82 @@
         </div>
       </div>
 
-      <!-- CONTACT -->
       <div class="view" id="page-contact">
         <div class="v-inner">
           <div class="sec">Contact</div>
-          <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.9rem;color:var(--wh3);margin-bottom:14px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
+          <div style="font-family:'IM Fell English',serif;font-style:italic;font-size:0.88rem;color:var(--wh3);margin-bottom:14px;line-height:1.8;">Open to cybersecurity roles, internships, and collaborations.</div>
           <div class="ccg">
-            <a class="cc" href="mailto:segoodie12@gmail.com">
-              <div><div class="cl">Email</div><div class="cv">segoodie12@gmail.com</div></div>
-            </a>
-            <a class="cc" href="https://linkedin.com" target="_blank">
-              <div><div class="cl">LinkedIn</div><div class="cv">Connect with me</div></div>
-            </a>
+            <a class="cc" href="mailto:segoodie12@gmail.com"><div><div class="cl">Email</div><div class="cv">segoodie12@gmail.com</div></div></a>
+            <a class="cc" href="https://linkedin.com" target="_blank"><div><div class="cl">LinkedIn</div><div class="cv">Connect with me</div></div></a>
           </div>
           <div class="vd"><span>◈ &nbsp; 連絡 · 接続 &nbsp; ◈</span></div>
         </div>
       </div>
-
     </div>
+
+    <div class="sidebar" id="sidebar">
+      <div class="s-panel">
+        <div class="s-head">Navigate</div>
+        <a class="nav-item active" onclick="showPage('home')"       data-page="home">Home</a>
+        <a class="nav-item"        onclick="showPage('experience')" data-page="experience">Experience</a>
+        <a class="nav-item"        onclick="showPage('projects')"   data-page="projects">Projects</a>
+        <a class="nav-item"        onclick="showPage('certs')"      data-page="certs">Certs</a>
+        <a class="nav-item"        onclick="showPage('skills')"     data-page="skills">Skills</a>
+        <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">Contact</a>
+      </div>
+      <div class="s-panel">
+        <div class="s-head">Metrics</div>
+        <div class="stat-row"><span>Certs</span><span class="v">8</span></div>
+        <div class="stat-row"><span>Labs</span><span class="v">3</span></div>
+        <div class="stat-row"><span>Yrs</span><span class="v">2+</span></div>
+      </div>
+      <div class="s-panel">
+        <div class="s-head">System Info</div>
+        <div class="s-body">
+          <span class="s-lbl">Status</span><span class="online-dot"></span>online
+          <span class="s-lbl">Location</span>Detroit, MI
+          <span class="s-lbl">Availability</span><span style="color:var(--pink2);">Open now</span>
+        </div>
+      </div>
+      <div class="s-panel">
+        <div class="s-head"></div>
+        <div class="profile-box">
+          <img src="computer.gif" alt="Cyber Computer" class="profile-img">
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div style="text-align:center;font-family:'IM Fell English',serif;font-style:italic;font-size:0.78rem;color:var(--white);padding:6px 0 44px;letter-spacing:0.06em;">
-    ◈ © 2026 Sara Goodie — Cybersecurity &amp; Information Assurance ◈ 
+  <div style="text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.56rem;color:var(--grey);padding:8px 0 44px;letter-spacing:0.1em;">
+    ◈ &nbsp; © 2026 Sara Goodie — Cybersecurity &amp; Information Assurance &nbsp; ◈
   </div>
 </div>
 
-<!-- TASKBAR -->
 <div class="taskbar">
   <div class="tb-logo">SGOODIE</div>
-  <div class="tb-btn active" onclick="showPage('home')"    >~/home</div>
+  <div class="tb-btn active" onclick="showPage('home')">~/home</div>
   <div class="tb-btn"        onclick="showPage('projects')">~/projects</div>
-  <div class="tb-btn"        onclick="showPage('contact')" >~/contact</div>
+  <div class="tb-btn"        onclick="showPage('contact')">~/contact</div>
   <div class="tb-clock" id="tb-clock">--:--:--</div>
 </div>
 
 <script>
-  /* ── HERO NAME TYPEWRITER ── */
-  const FULL = 'SARA GOODIE';
-  const el   = document.getElementById('hero-name');
-  let   idx  = 0;
-
-  // start blank, type each letter
-  function typeNext() {
-    if (idx >= FULL.length) return;
-    el.textContent = FULL.slice(0, idx + 1);
-    idx++;
-    setTimeout(typeNext, 80 + Math.random() * 40);
-  }
-  setTimeout(typeNext, 900);
-
-  /* ── NAV ── */
-  const LBLS = { home:'Home', experience:'Experience', projects:'Projects', certs:'Certifications', skills:'Skills', contact:'Contact' };
+  const LBLS = {home:'Home',experience:'Experience',projects:'Projects',certs:'Certifications',skills:'Skills',contact:'Contact'};
   function showPage(id) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(a => a.classList.toggle('active', a.dataset.page === id));
-    document.getElementById('panel-lbl').textContent = LBLS[id] || id;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+    document.getElementById('panel-lbl').textContent=LBLS[id]||id;
+    window.scrollTo({top:0,behavior:'smooth'});
   }
-
-  function showPopup()  { document.getElementById('popup').classList.add('show'); }
-  function closePopup() { document.getElementById('popup').classList.remove('show'); }
-
-  /* ── CLOCK ── */
-  function tick() {
-    const n = new Date();
-    document.getElementById('tb-clock').textContent =
-      String(n.getHours()).padStart(2,'0')+':'+
-      String(n.getMinutes()).padStart(2,'0')+':'+
-      String(n.getSeconds()).padStart(2,'0');
+  function closePopup(){document.getElementById('popup').classList.remove('show');}
+  function tick(){
+    const n=new Date();
+    document.getElementById('tb-clock').textContent=
+      String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
   }
-  tick(); setInterval(tick, 1000);
+  tick(); setInterval(tick,1000);
 </script>
 </body>
 </html>
