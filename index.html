@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Share+Tech+Mono&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet" />
   <style>
-    @font-face { font-family: 'KingJola'; src: url('kingjola.ttf') format('truetype'); }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --black:#000000; --bg2:#060606; --bg3:#0c0c0c;
@@ -141,14 +140,6 @@
     .tb-btn:hover,.tb-btn.active { color:var(--pink2); border-color:var(--border); background:var(--pink-g); }
     .tb-clock { margin-left:auto; font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--grey); letter-spacing:0.1em; }
 
-    .pbg { display:none; position:fixed; inset:0; z-index:500; background:rgba(0,0,0,0.75); align-items:center; justify-content:center; }
-    .pbg.show { display:flex; }
-    .pw { width:300px; background:var(--bg2); border:1px solid var(--bord2); }
-    .phd { padding:6px 10px; background:var(--bg3); border-bottom:1px solid var(--border); font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--wh3); display:flex; justify-content:space-between; }
-    .phd::before { content:'◈'; color:var(--pink); margin-right:5px; }
-    .pbd { padding:16px; font-family:'IM Fell English',serif; font-size:0.92rem; color:var(--wh2); line-height:1.65; }
-    .pbt2 { padding:10px; display:flex; justify-content:center; gap:8px; border-top:1px solid var(--border); }
-
     .mob-btn { display:none; }
     @media (max-width:700px) {
       .main-grid { grid-template-columns:1fr; }
@@ -165,17 +156,6 @@
   </style>
 </head>
 <body>
-
-<div class="pbg" id="popup">
-  <div class="pw">
-    <div class="phd"><span>System Query</span><span onclick="closePopup()" style="cursor:default;color:var(--grey);">✕</span></div>
-    <div class="pbd">Should you hire Sara Goodie for your cybersecurity team?</div>
-    <div class="pbt2">
-      <button class="pbt" onclick="closePopup()">Yes</button>
-      <button class="pbt" onclick="closePopup()">Also Yes</button>
-    </div>
-  </div>
-</div>
 
 <div class="marq-bar">
   <div class="marq-txt">サイバーセキュリティ &nbsp;◇&nbsp; 守護 &nbsp;◈&nbsp; 防衛 &nbsp;◇&nbsp; // SARA GOODIE — CYBER PORTFOLIO // WHITE HAT &nbsp;◇&nbsp; BLUE TEAM &nbsp;◈&nbsp; INFOSEC &nbsp;◇&nbsp; WomenInCyber &nbsp;◈&nbsp; 8 CERTIFICATIONS &nbsp;◇&nbsp; OPEN TO OPPORTUNITIES &nbsp;◇&nbsp; DETROIT, MI &nbsp;◈&nbsp; WGU JAN 2026 –</div>
@@ -236,12 +216,6 @@
               <div class="fi">SIEM tuning &amp; threat detection</div>
             </div>
           </div>
-          <div class="sec">About</div>
-          <div class="wt">
-            <p>Hi. I'm <strong>Sara Goodie</strong> — a <em>cybersecurity professional</em> based in Detroit, Michigan.</p>
-            <p>I love <em>blue team operations</em>, building home labs, setting honeypots, and making threats very unhappy. I interned at the <strong>Detroit Pistons IT Operations Team</strong> where I deployed real security tools and built a VirtualBox attack detection lab.</p>
-            <p class="wo">Currently open to cybersecurity roles and internships.</p>
-          </div>
           <div class="vd"><span>◈ &nbsp; 𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃 &nbsp; ◈</span></div>
         </div>
       </div>
@@ -280,7 +254,6 @@
             <div class="ehr"><span class="er" style="font-size:0.4rem;">Associate in Liberal Arts</span><span class="ed">June 2021</span></div>
             <div class="eco">Henry Ford Community College</div>
           </div>
-          <div class="vd"><span>◈ &nbsp; 術式 · 守護 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -311,7 +284,6 @@
               </div>
             </div>
           </div>
-          <div class="vd"><span>◈ &nbsp; 斬 · 式 · 盾 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -329,7 +301,6 @@
             <div class="ci"><span>CompTIA Project+</span><span class="cd">OCT 2024</span></div>
             <div class="ci"><span>CompTIA CySA+</span><span class="cd">DEC 2024</span></div>
           </div>
-          <div class="vd"><span>◈ &nbsp; 証明 · 認定 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -342,7 +313,6 @@
           <div class="sg"><div class="sl">Scripting &amp; Programming</div><div class="sts"><span class="st">Python</span><span class="st">PowerShell</span><span class="st">SQL</span><span class="st">C++</span></div></div>
           <div class="sg"><div class="sl">Compliance Frameworks</div><div class="sts"><span class="st">NIST 800-171</span><span class="st">HIPAA</span><span class="st">SOX</span><span class="st">ISO/IEC 27001</span></div></div>
           <div class="sg"><div class="sl">Ticketing</div><div class="sts"><span class="st">Vivantio</span></div></div>
-          <div class="vd"><span>◈ &nbsp; 技術 · 術式 &nbsp; ◈</span></div>
         </div>
       </div>
 
@@ -354,7 +324,6 @@
             <a class="cc" href="mailto:segoodie12@gmail.com"><div><div class="cl">Email</div><div class="cv">segoodie12@gmail.com</div></div></a>
             <a class="cc" href="https://linkedin.com" target="_blank"><div><div class="cl">LinkedIn</div><div class="cv">Connect with me</div></div></a>
           </div>
-          <div class="vd"><span>◈ &nbsp; 連絡 · 接続 &nbsp; ◈</span></div>
         </div>
       </div>
     </div>
@@ -368,12 +337,6 @@
         <a class="nav-item"        onclick="showPage('certs')"      data-page="certs">Certs</a>
         <a class="nav-item"        onclick="showPage('skills')"     data-page="skills">Skills</a>
         <a class="nav-item"        onclick="showPage('contact')"    data-page="contact">Contact</a>
-      </div>
-      <div class="s-panel">
-        <div class="s-head">Metrics</div>
-        <div class="stat-row"><span>Certs</span><span class="v">8</span></div>
-        <div class="stat-row"><span>Labs</span><span class="v">3</span></div>
-        <div class="stat-row"><span>Yrs</span><span class="v">2+</span></div>
       </div>
       <div class="s-panel">
         <div class="s-head">System Info</div>
@@ -415,7 +378,6 @@
     document.getElementById('panel-lbl').textContent=LBLS[id]||id;
     window.scrollTo({top:0,behavior:'smooth'});
   }
-  function closePopup(){document.getElementById('popup').classList.remove('show');}
   function tick(){
     const n=new Date();
     document.getElementById('tb-clock').textContent=
