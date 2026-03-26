@@ -25,23 +25,22 @@
     .marq-txt { display:inline-block; animation:marq 42s linear infinite; padding-left:100%; font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--grey); white-space:nowrap; letter-spacing:0.1em; }
     @keyframes marq { from{transform:translateX(0);} to{transform:translateX(-100%);} }
 
-    .hero { border-bottom:1px solid var(--border); background:var(--black); padding:28px 32px 24px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:24px; position:relative; }
+    .hero { border-bottom:1px solid var(--border); background:var(--black); padding:16px 32px 14px; display:block; position:relative; }
     .hero::after { content:''; position:absolute; bottom:0; left:32px; width:120px; height:1px; background:linear-gradient(90deg,var(--pink3),var(--pink),transparent); }
-    .hero-name { font-family:'KingJola',serif; font-weight:normal; font-size:clamp(2.4rem,5vw,3.6rem); color:var(--white); line-height:1.1; letter-spacing:0.04em; margin-bottom:8px; }
-    .hero-role { font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--wh3); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+    .hero-name { font-family:'KingJola',serif; font-weight:normal; font-size:clamp(2.8rem,6vw,4.8rem); color:var(--white); line-height:1.05; letter-spacing:0.04em; margin-bottom:4px; }
+    .hero-role { font-family:'Share Tech Mono',monospace; font-size:0.62rem; color:var(--wh3); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:10px; }
     .hero-role::after { content:''; display:inline-block; width:40px; height:1px; background:var(--pink3); }
-    .hero-bio { font-family:'IM Fell English',serif; font-size:0.9rem; color:var(--wh3); line-height:1.75; max-width:520px; }
+    .hero-bio { font-family:'IM Fell English',serif; font-size:0.88rem; color:var(--wh3); line-height:1.65; max-width:600px; }
     .hero-bio strong { color:var(--wh2); font-style:italic; }
     .hero-bio em { color:var(--pink2); font-style:normal; }
-    .hero-cta-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+    .hero-bottom-row { display:flex; align-items:center; justify-content:space-between; margin-top:10px; flex-wrap:wrap; gap:8px; }
     .hero-open { font-family:'Share Tech Mono',monospace; font-size:0.6rem; letter-spacing:0.14em; color:var(--pink2); text-transform:uppercase; display:flex; align-items:center; gap:6px; }
     .hero-open::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--pink2); box-shadow:0 0 8px var(--pink); animation:blink 2s ease-in-out infinite; }
     @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
-    .hero-jp { font-family:'IM Fell English',serif; font-style:italic; font-size:0.75rem; color:var(--grey); letter-spacing:0.24em; margin-top:6px; }
-    .hero-stats { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
-    .hstat { background:var(--bg3); border:1px solid var(--border); padding:6px 14px; text-align:right; min-width:110px; }
-    .hstat-val { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:700; color:var(--pink2); line-height:1; }
-    .hstat-lbl { font-family:'Share Tech Mono',monospace; font-size:0.52rem; color:var(--grey); letter-spacing:0.12em; text-transform:uppercase; margin-top:2px; }
+    .hero-stats { display:flex; flex-direction:row; gap:6px; align-items:center; }
+    .hstat { background:var(--bg3); border:1px solid var(--border); padding:4px 12px; text-align:center; }
+    .hstat-val { font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:var(--pink2); line-height:1; }
+    .hstat-lbl { font-family:'Share Tech Mono',monospace; font-size:0.48rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; margin-top:1px; }
 
     .page { max-width:1080px; margin:0 auto; padding:10px 12px 50px; display:flex; flex-direction:column; gap:8px; position:relative; z-index:1; }
     .main-grid { display:grid; grid-template-columns:1fr 200px; gap:8px; }
@@ -159,8 +158,8 @@
       .pg { grid-template-columns:1fr; }
       .cg { grid-template-columns:1fr; }
       .home-grid { grid-template-columns:1fr; }
-      .hero { grid-template-columns:1fr; padding:22px 18px; }
-      .hero-stats { flex-direction:row; align-items:flex-start; justify-content:flex-start; }
+      .hero { padding:14px 16px; }
+      .hero-bottom-row { flex-direction:column; align-items:flex-start; }
       .page { padding:8px 8px 50px; }
     }
   </style>
@@ -183,23 +182,20 @@
 </div>
 
 <div class="hero">
-  <div class="hero-left">
-    <div class="hero-name">Sara Goodie</div>
-    <div class="hero-role">Security Analyst &nbsp;·&nbsp; Blue Team &nbsp;·&nbsp; Detroit, MI</div>
-    <div class="hero-bio">
-      <strong>B.S. Cybersecurity &amp; Information Assurance</strong>, Western Governors University · Jan 2026.
-      8 certifications in 14 months. Interned at the <strong>Detroit Pistons IT Operations Team</strong>
-      building real detection labs. Loves <em>blue team ops</em>, honeypots, and making threats very unhappy.
-    </div>
-    <div class="hero-cta-row">
-      <div class="hero-open">Open to roles &amp; internships</div>
-    </div>
-    <div class="hero-jp">サラ・グッディ &nbsp;·&nbsp; サイバーセキュリティ</div>
+  <div class="hero-name">Sara Goodie</div>
+  <div class="hero-role">Security Analyst &nbsp;·&nbsp; Blue Team &nbsp;·&nbsp; Detroit, MI</div>
+  <div class="hero-bio">
+    <strong>B.S. Cybersecurity &amp; Information Assurance</strong>, Western Governors University · Jan 2026.
+    8 certifications in 14 months. Interned at the <strong>Detroit Pistons IT Operations Team</strong>
+    building real detection labs. Loves <em>blue team ops</em>, honeypots, and making threats very unhappy.
   </div>
-  <div class="hero-stats">
-    <div class="hstat"><div class="hstat-val">8</div><div class="hstat-lbl">Certifications</div></div>
-    <div class="hstat"><div class="hstat-val">3</div><div class="hstat-lbl">Labs Built</div></div>
-    <div class="hstat"><div class="hstat-val">2+</div><div class="hstat-lbl">Yrs Experience</div></div>
+  <div class="hero-bottom-row">
+    <div class="hero-open">Open to roles &amp; internships</div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">8</div><div class="hstat-lbl">Certifications</div></div>
+      <div class="hstat"><div class="hstat-val">3</div><div class="hstat-lbl">Labs Built</div></div>
+      <div class="hstat"><div class="hstat-val">2+</div><div class="hstat-lbl">Yrs Exp</div></div>
+    </div>
   </div>
 </div>
 
