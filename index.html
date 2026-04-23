@@ -227,6 +227,48 @@
     font-size: 13px;
     color: var(--muted);
     line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .project-btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 7px 14px;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .project-btn:hover {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .project-btn-coming {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--border);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .project-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    background: var(--black);
+    color: var(--white);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 12px;
   }
 
   /* EXPERIENCE */
@@ -444,25 +486,64 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">Selected projects</div>
+  <div class="section-label">Personal labs</div>
   <div class="projects-grid">
     <div class="project-card">
       <div class="project-num">01</div>
       <div class="project-title">SOC Deployment &amp; SIEM Implementation</div>
-      <div class="project-stack">Microsoft Azure · Sentinel</div>
+      <div class="project-stack">Personal project &nbsp;·&nbsp; Microsoft Azure · Sentinel</div>
       <div class="project-desc">Provisioned a Windows Server VM to monitor RDP events, integrated threat intelligence feeds with IoCs, and configured custom real-time alerts. Built automated response workflows and log analytics workspaces to reduce manual triage time.</div>
+      <a class="project-btn" href="https://github.com/saradotzip/azure-sentinel-lab" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
       <div class="project-title">Attack Detection Lab</div>
-      <div class="project-stack">VirtualBox · Splunk · Sysmon</div>
+      <div class="project-stack">Personal project &nbsp;·&nbsp; VirtualBox · Splunk · Sysmon</div>
       <div class="project-desc">Deployed attacker and target VMs to simulate real-world threats. Configured Splunk to ingest and analyze Windows event logs via Sysmon. Demonstrated live compromise and threat detection to the Detroit Pistons IT department.</div>
+      <a class="project-btn" href="https://github.com/saradotzip/attack-detection-lab" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
       <div class="project-title">Active Directory Home Lab</div>
-      <div class="project-stack">Windows Server · DNS · DHCP · Group Policy</div>
+      <div class="project-stack">Personal project &nbsp;·&nbsp; Windows Server · DNS · DHCP · Group Policy</div>
       <div class="project-desc">Configured a Windows Server domain controller with DNS, DHCP, and Group Policy. Managed user accounts and permissions to mirror enterprise Active Directory administration.</div>
+      <span class="project-btn-coming">Repo coming soon</span>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top: 64px;">WGU coursework</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-badge">C769</div>
+      <div class="project-title">IT Capstone</div>
+      <div class="project-stack">WGU C769 — IT Capstone Written Project</div>
+      <div class="project-desc">Comprehensive capstone integrating core IT concepts including infrastructure, security, and systems analysis. Demonstrated mastery across the BS Cybersecurity &amp; Information Assurance program at WGU.</div>
+      <span class="project-btn-coming">Repo coming soon</span>
+    </div>
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-badge">D431</div>
+      <div class="project-title">Digital Forensics Case</div>
+      <div class="project-stack">WGU D431 — Digital Forensics in Cybersecurity &nbsp;·&nbsp; Autopsy</div>
+      <div class="project-desc">Conducted a structured digital forensics investigation using Autopsy. Performed evidence acquisition, file system analysis, artifact recovery, and documented findings in a formal forensic case report.</div>
+      <span class="project-btn-coming">Repo coming soon</span>
+    </div>
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <div class="project-badge">C841</div>
+      <div class="project-title">SIEM Implementation &amp; Threat Detection</div>
+      <div class="project-stack">WGU — Information Systems Security &nbsp;·&nbsp; SIEM</div>
+      <div class="project-desc">Designed and implemented a SIEM solution for threat detection and log correlation. Developed alerting rules, monitored event data, and produced an incident response summary as the course capstone.</div>
+      <span class="project-btn-coming">Repo coming soon</span>
+    </div>
+    <div class="project-card">
+      <div class="project-num">07</div>
+      <div class="project-badge">C844</div>
+      <div class="project-title">Network Vulnerability Assessment</div>
+      <div class="project-stack">WGU C844 — Emerging Technologies in Cybersecurity &nbsp;·&nbsp; Zenmap</div>
+      <div class="project-desc">Performed a full network vulnerability assessment using Zenmap. Identified open ports, enumerated services, assessed risk exposure, and produced a professional remediation report aligned with NIST guidelines.</div>
+      <span class="project-btn-coming">Repo coming soon</span>
     </div>
   </div>
 </section>
