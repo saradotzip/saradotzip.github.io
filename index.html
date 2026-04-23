@@ -4,17 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sara Goodie — Cybersecurity Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0a0a0a;
-    --white: #fafaf8;
-    --accent: #1a6b4a;
-    --accent-light: #e8f4ef;
-    --muted: #6b6b6b;
-    --border: #e2e2de;
+    --bg:        #0d0d0f;
+    --bg2:       #131316;
+    --bg3:       #1a1a1e;
+    --pink:      #e8528a;
+    --pink-dim:  #b03d68;
+    --pink-glow: rgba(232,82,138,0.10);
+    --white:     #f0eef4;
+    --muted:     #7a7585;
+    --border:    rgba(255,255,255,0.07);
+    --border2:   rgba(232,82,138,0.25);
     --mono: 'DM Mono', monospace;
     --sans: 'DM Sans', sans-serif;
   }
@@ -23,8 +27,8 @@
 
   body {
     font-family: var(--sans);
-    background: var(--white);
-    color: var(--black);
+    background: var(--bg);
+    color: var(--white);
     font-size: 15px;
     line-height: 1.6;
   }
@@ -32,8 +36,8 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(12px);
+    background: rgba(13,13,15,0.9);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
     padding: 0 5%;
@@ -48,15 +52,11 @@
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.05em;
-    color: var(--black);
+    color: var(--pink);
     text-decoration: none;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
 
   .nav-links a {
     font-family: var(--mono);
@@ -68,9 +68,28 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--black); }
+  .nav-links a:hover { color: var(--pink); }
 
   section { padding: 100px 5%; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border2);
+  }
 
   /* HERO */
   #hero {
@@ -88,7 +107,7 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--pink);
     margin-bottom: 24px;
     display: flex;
     align-items: center;
@@ -100,7 +119,7 @@
     display: block;
     width: 24px;
     height: 1px;
-    background: var(--accent);
+    background: var(--pink);
   }
 
   h1 {
@@ -110,13 +129,10 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     margin-bottom: 28px;
-    color: var(--black);
+    color: var(--white);
   }
 
-  h1 em {
-    font-style: normal;
-    font-weight: 500;
-  }
+  h1 em { font-style: normal; font-weight: 500; color: var(--pink); }
 
   .hero-summary {
     font-size: 16px;
@@ -124,23 +140,6 @@
     max-width: 560px;
     line-height: 1.7;
     margin-bottom: 40px;
-  }
-
-  .hero-certs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 40px;
-  }
-
-  .cert-pill {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    color: var(--muted);
   }
 
   .hero-links { display: flex; gap: 16px; }
@@ -154,33 +153,59 @@
     text-decoration: none;
     transition: all 0.2s;
     cursor: pointer;
-    border: none;
     display: inline-block;
   }
 
-  .btn-primary { background: var(--black); color: var(--white); }
-  .btn-primary:hover { background: #333; }
-  .btn-outline { background: transparent; color: var(--black); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--black); }
+  .btn-primary { background: var(--pink); color: #0d0d0f; border: 1px solid var(--pink); font-weight: 500; }
+  .btn-primary:hover { background: var(--pink-dim); border-color: var(--pink-dim); }
+  .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-  /* SECTION HEADERS */
-  .section-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 48px;
-    display: flex;
-    align-items: center;
+  /* CERTIFICATIONS */
+  #certifications { border-bottom: 1px solid var(--border); }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 12px;
   }
 
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--pink);
+    background: var(--pink-glow);
+  }
+
+  .cert-card-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+
+  .cert-card-issuer {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+  }
+
+  .cert-card-link {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--pink);
+    letter-spacing: 0.04em;
   }
 
   /* PROJECTS */
@@ -188,75 +213,38 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
   }
 
   .project-card {
     padding: 32px;
-    background: var(--white);
+    background: var(--bg2);
     transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
   }
 
-  .project-card:hover { background: var(--accent-light); }
+  .project-card:hover { background: var(--bg3); }
 
   .project-num {
     font-family: var(--mono);
     font-size: 10px;
     color: var(--muted);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
-  .project-title {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-
-  .project-stack {
+  .project-type {
     font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    margin-bottom: 14px;
-    letter-spacing: 0.04em;
-  }
-
-  .project-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-    margin-bottom: 20px;
-  }
-
-  .project-btn {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--accent);
-    text-decoration: none;
-    border: 1px solid var(--accent);
-    padding: 7px 14px;
-    border-radius: 3px;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .project-btn:hover {
-    background: var(--accent);
-    color: var(--white);
-  }
-
-  .project-btn-coming {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--border);
-    border: 1px solid var(--border);
-    padding: 7px 14px;
-    border-radius: 3px;
-    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
   }
 
   .project-badge {
@@ -264,11 +252,66 @@
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.1em;
-    background: var(--black);
-    color: var(--white);
+    background: var(--pink);
+    color: #0d0d0f;
     padding: 3px 8px;
     border-radius: 3px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+
+  .project-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    color: var(--white);
+  }
+
+  .project-stack {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .project-btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--pink);
+    text-decoration: none;
+    border: 1px solid var(--pink-dim);
+    padding: 7px 14px;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+    align-self: flex-start;
+  }
+
+  .project-btn:hover { background: var(--pink); color: #0d0d0f; }
+
+  .project-btn-coming {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 3px;
+    display: inline-block;
+    align-self: flex-start;
   }
 
   /* EXPERIENCE */
@@ -286,24 +329,9 @@
 
   .exp-item:last-child { border-bottom: none; }
 
-  .exp-date {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    padding-top: 2px;
-  }
-
-  .exp-role {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-
-  .exp-org {
-    font-size: 13px;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 2px; }
+  .exp-role { font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--white); }
+  .exp-org { font-size: 13px; color: var(--pink); margin-bottom: 12px; }
 
   .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 
@@ -319,7 +347,7 @@
     content: '—';
     position: absolute;
     left: 0;
-    color: var(--border);
+    color: var(--border2);
     font-size: 11px;
   }
 
@@ -330,17 +358,20 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
   }
 
-  .skill-group { padding: 28px; background: var(--white); }
+  .skill-group { padding: 28px; background: var(--bg2); }
 
   .skill-group-label {
     font-family: var(--mono);
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--pink);
     margin-bottom: 14px;
   }
 
@@ -349,8 +380,9 @@
   .skill-tag {
     font-size: 12px;
     padding: 4px 10px;
-    background: var(--accent-light);
-    color: var(--accent);
+    background: var(--bg3);
+    color: var(--muted);
+    border: 1px solid var(--border);
     border-radius: 3px;
   }
 
@@ -366,14 +398,8 @@
     align-items: start;
   }
 
-  .edu-year {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    padding-top: 2px;
-  }
-
-  .edu-degree { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .edu-year { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 2px; }
+  .edu-degree { font-size: 15px; font-weight: 500; margin-bottom: 4px; color: var(--white); }
   .edu-school { font-size: 13px; color: var(--muted); }
 
   /* CONTACT */
@@ -387,7 +413,10 @@
     letter-spacing: -0.02em;
     margin-bottom: 32px;
     line-height: 1.1;
+    color: var(--white);
   }
+
+  .contact-heading em { font-style: normal; color: var(--pink); }
 
   .contact-links { display: flex; flex-direction: column; }
 
@@ -398,11 +427,11 @@
     padding: 18px 0;
     border-bottom: 1px solid var(--border);
     text-decoration: none;
-    color: var(--black);
+    color: var(--white);
     transition: color 0.2s;
   }
 
-  .contact-link:hover { color: var(--accent); }
+  .contact-link:hover { color: var(--pink); }
 
   .contact-link-label {
     font-family: var(--mono);
@@ -417,14 +446,11 @@
 
   .contact-arrow {
     font-size: 18px;
-    color: var(--border);
+    color: var(--border2);
     transition: color 0.2s, transform 0.2s;
   }
 
-  .contact-link:hover .contact-arrow {
-    color: var(--accent);
-    transform: translateX(4px);
-  }
+  .contact-link:hover .contact-arrow { color: var(--pink); transform: translateX(4px); }
 
   footer {
     padding: 24px 5%;
@@ -434,11 +460,7 @@
     align-items: center;
   }
 
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
+  .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 
   @media (max-width: 600px) {
     .exp-item, .edu-item { grid-template-columns: 1fr; gap: 8px; }
@@ -451,6 +473,7 @@
 <nav>
   <a class="nav-name" href="#hero">SG</a>
   <ul class="nav-links">
+    <li><a href="#certifications">Certs</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -466,21 +489,73 @@
     <p class="hero-summary">
       IT and cybersecurity professional with hands-on experience in SIEM deployment, endpoint security, and incident response. Certified across the full CompTIA security track — committed to building systems that are resilient, monitored, and secure.
     </p>
-    <div class="hero-certs">
-      <span class="cert-pill">CompTIA Pentest+</span>
-      <span class="cert-pill">CySA+</span>
-      <span class="cert-pill">Security+</span>
-      <span class="cert-pill">Network+</span>
-      <span class="cert-pill">A+</span>
-      <span class="cert-pill">Project+</span>
-      <span class="cert-pill">(ISC)² Associate</span>
-      <span class="cert-pill">ITIL 4</span>
-      <span class="cert-pill">LPI Linux Essentials</span>
-    </div>
     <div class="hero-links">
       <a class="btn btn-primary" href="#contact">Get in touch</a>
       <a class="btn btn-outline" href="#projects">View projects</a>
     </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Certifications</div>
+  <div class="certs-grid">
+
+    <!-- Replace each # with your Credly badge URL e.g. https://www.credly.com/badges/YOUR-BADGE-ID -->
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA Pentest+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA CySA+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA Security+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA Network+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA A+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">CompTIA Project+</div>
+      <div class="cert-card-issuer">CompTIA</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">Associate of (ISC)²</div>
+      <div class="cert-card-issuer">(ISC)²</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">ITIL 4 Foundation</div>
+      <div class="cert-card-issuer">Axelos</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
+    <a class="cert-card" href="#" target="_blank" rel="noopener">
+      <div class="cert-card-name">LPI Linux Essentials</div>
+      <div class="cert-card-issuer">Linux Professional Institute</div>
+      <div class="cert-card-link">View on Credly →</div>
+    </a>
+
   </div>
 </section>
 
@@ -490,22 +565,25 @@
   <div class="projects-grid">
     <div class="project-card">
       <div class="project-num">01</div>
+      <div class="project-type">Personal project</div>
       <div class="project-title">SOC Deployment &amp; SIEM Implementation</div>
-      <div class="project-stack">Personal project &nbsp;·&nbsp; Microsoft Azure · Sentinel</div>
+      <div class="project-stack">Microsoft Azure · Sentinel</div>
       <div class="project-desc">Provisioned a Windows Server VM to monitor RDP events, integrated threat intelligence feeds with IoCs, and configured custom real-time alerts. Built automated response workflows and log analytics workspaces to reduce manual triage time.</div>
       <a class="project-btn" href="https://github.com/saradotzip/azure-sentinel-lab" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
+      <div class="project-type">Personal project</div>
       <div class="project-title">Attack Detection Lab</div>
-      <div class="project-stack">Personal project &nbsp;·&nbsp; VirtualBox · Splunk · Sysmon</div>
+      <div class="project-stack">VirtualBox · Splunk · Sysmon</div>
       <div class="project-desc">Deployed attacker and target VMs to simulate real-world threats. Configured Splunk to ingest and analyze Windows event logs via Sysmon. Demonstrated live compromise and threat detection to the Detroit Pistons IT department.</div>
       <a class="project-btn" href="https://github.com/saradotzip/attack-detection-lab" target="_blank" rel="noopener">View on GitHub →</a>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
+      <div class="project-type">Personal project</div>
       <div class="project-title">Active Directory Home Lab</div>
-      <div class="project-stack">Personal project &nbsp;·&nbsp; Windows Server · DNS · DHCP · Group Policy</div>
+      <div class="project-stack">Windows Server · DNS · DHCP · Group Policy</div>
       <div class="project-desc">Configured a Windows Server domain controller with DNS, DHCP, and Group Policy. Managed user accounts and permissions to mirror enterprise Active Directory administration.</div>
       <span class="project-btn-coming">Repo coming soon</span>
     </div>
@@ -515,6 +593,7 @@
   <div class="projects-grid">
     <div class="project-card">
       <div class="project-num">04</div>
+      <div class="project-type">WGU course</div>
       <div class="project-badge">C769</div>
       <div class="project-title">IT Capstone</div>
       <div class="project-stack">WGU C769 — IT Capstone Written Project</div>
@@ -523,25 +602,19 @@
     </div>
     <div class="project-card">
       <div class="project-num">05</div>
+      <div class="project-type">WGU course</div>
       <div class="project-badge">D431</div>
       <div class="project-title">Digital Forensics Case</div>
-      <div class="project-stack">WGU D431 — Digital Forensics in Cybersecurity &nbsp;·&nbsp; Autopsy</div>
+      <div class="project-stack">WGU D431 — Digital Forensics in Cybersecurity · Autopsy</div>
       <div class="project-desc">Conducted a structured digital forensics investigation using Autopsy. Performed evidence acquisition, file system analysis, artifact recovery, and documented findings in a formal forensic case report.</div>
       <span class="project-btn-coming">Repo coming soon</span>
     </div>
     <div class="project-card">
       <div class="project-num">06</div>
-      <div class="project-badge">C841</div>
-      <div class="project-title">SIEM Implementation &amp; Threat Detection</div>
-      <div class="project-stack">WGU — Information Systems Security &nbsp;·&nbsp; SIEM</div>
-      <div class="project-desc">Designed and implemented a SIEM solution for threat detection and log correlation. Developed alerting rules, monitored event data, and produced an incident response summary as the course capstone.</div>
-      <span class="project-btn-coming">Repo coming soon</span>
-    </div>
-    <div class="project-card">
-      <div class="project-num">07</div>
+      <div class="project-type">WGU course</div>
       <div class="project-badge">C844</div>
       <div class="project-title">Network Vulnerability Assessment</div>
-      <div class="project-stack">WGU C844 — Emerging Technologies in Cybersecurity &nbsp;·&nbsp; Zenmap</div>
+      <div class="project-stack">WGU C844 — Emerging Technologies in Cybersecurity · Zenmap</div>
       <div class="project-desc">Performed a full network vulnerability assessment using Zenmap. Identified open ports, enumerated services, assessed risk exposure, and produced a professional remediation report aligned with NIST guidelines.</div>
       <span class="project-btn-coming">Repo coming soon</span>
     </div>
@@ -560,8 +633,8 @@
         <ul class="exp-bullets">
           <li>Hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment using Vivantio</li>
           <li>Managed identity and access provisioning in Active Directory, including user account creation and permission updates</li>
-          <li>Deployed endpoint cybersecurity tools including CrowdStrike and supported security monitoring efforts</li>
-          <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to demonstrate live attack detection</li>
+          <li>Deployed endpoint cybersecurity tools including CrowdStrike and supported security monitoring efforts across the organization</li>
+          <li>Built and presented a custom virtual cybersecurity lab using VirtualBox, Splunk, and Sysmon to demonstrate live attack detection to the IT department</li>
         </ul>
       </div>
     </div>
@@ -595,6 +668,7 @@
         <span class="skill-tag">Censys</span>
         <span class="skill-tag">Zenmap</span>
         <span class="skill-tag">Sysmon</span>
+        <span class="skill-tag">Autopsy</span>
       </div>
     </div>
     <div class="skill-group">
@@ -632,6 +706,15 @@
         <span class="skill-tag">ISO/IEC 27001</span>
       </div>
     </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Ticketing &amp; IT management</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Vivantio</span>
+        <span class="skill-tag">Device Imaging</span>
+        <span class="skill-tag">Endpoint Management</span>
+        <span class="skill-tag">Microsoft Intune</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -660,7 +743,7 @@
 <section id="contact">
   <div class="contact-inner">
     <div class="section-label">Contact</div>
-    <div class="contact-heading">Let's work<br>together.</div>
+    <div class="contact-heading">Let's work<br><em>together.</em></div>
     <div class="contact-links">
       <a class="contact-link" href="mailto:segoodie12@gmail.com">
         <div>
@@ -669,7 +752,7 @@
         </div>
         <span class="contact-arrow">→</span>
       </a>
-      <a class="contact-link" href="https://linkedin.com/in/saragoodie" target="_blank">
+      <a class="contact-link" href="https://linkedin.com/in/saragoodie" target="_blank" rel="noopener">
         <div>
           <div class="contact-link-label">LinkedIn</div>
           <div class="contact-link-value">linkedin.com/in/saragoodie</div>
@@ -688,7 +771,7 @@
 </section>
 
 <footer>
-  <span class="footer-copy">© 2025 Sara Goodie</span>
+  <span class="footer-copy">© 2026 Sara Goodie</span>
   <span class="footer-copy">Cybersecurity &amp; Information Assurance</span>
 </footer>
 
