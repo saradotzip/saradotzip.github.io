@@ -7,6 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23111'/><rect x='13' y='6' width='6' height='20' fill='%23fff' opacity='.7'/><rect x='6' y='13' width='20' height='6' fill='%23fff' opacity='.7'/></svg>"/>
 <style>
+  @font-face {
+  font-family: 'Kroegbainder';
+  src: url('Kroegbainder.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
@@ -122,8 +129,8 @@ html,body{
 }
 
 .hero-name{
-  font-family:'DM Serif Display',serif;
-  font-style:italic;
+  font-family:'Kroegbainder', sans-serif;
+  font-style: normal;
   font-size:clamp(58px,9.5vw,130px);
   color:#fff;
   line-height:0.92;letter-spacing:-0.02em;
