@@ -564,20 +564,6 @@ html,body{
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
-ok 
-
-    lines = lines.slice(-20);
-
-    lines.forEach((line, i)=>{
-      ctx.fillText(line, 20, 40 + i*22);
-    });
-
-    texture.needsUpdate = true;
-  }
-
-  setInterval(update, 100);
-  return texture;
-}
   const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 200);
   camera.position.set(0, 1, 10);
 
