@@ -553,7 +553,8 @@ html,body{
 
 <!-- ════════════ THREE.JS VOXELS ════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+  <script>
 (function(){
   const canvas = document.getElementById('orb-canvas');
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
@@ -563,25 +564,7 @@ html,body{
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
-  function createScreenTexture(){
-  const canvas = document.createElement('canvas');
-  canvas.width = 512;
-  canvas.height = 512;
-  const ctx = canvas.getContext('2d');
-
-  const texture = new THREE.CanvasTexture(canvas);
-  let lines = [];
-
-  function update(){
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0,0,512,512);
-
-    ctx.fillStyle = "#00ff88";
-    ctx.font = "20px monospace";
-
-    if(Math.random() < 0.1){
-      lines.push("> " + Math.random().toString(36).substring(2,10));
-    }
+ok 
 
     lines = lines.slice(-20);
 
@@ -610,22 +593,22 @@ html,body{
   // Dark matte material to match dark theme
   const mat = new THREE.MeshStandardMaterial({color:0x2a2d3a, roughness:0.65, metalness:0.12});
   const matLight = new THREE.MeshStandardMaterial({color:0x3d4156, roughness:0.55, metalness:0.08});
+// 👇 ADD IT HERE
+const loader = new THREE.GLTFLoader();
 
-  const pcGroup = new THREE.Group();
+let pcModel;
 
-const monitorGeo = new THREE.BoxGeometry(4, 3, 3);
-const monitor = new THREE.Mesh(monitorGeo, mat);
-pcGroup.add(monitor);
+loader.load('retro-pc.glb', function(gltf){
+  pcModel = gltf.scene;
 
-const screenGeo = new THREE.PlaneGeometry(2.8, 2);
-const screenMat = new THREE.MeshBasicMaterial({
-  map: createScreenTexture()
+  pcModel.scale.set(1.5, 1.5, 1.5);
+  pcModel.position.set(0, -1, 0);
+
+  scene.add(pcModel);
+}, undefined, function(error){
+  console.error(error);
 });
-const screen = new THREE.Mesh(screenGeo, screenMat);
-screen.position.set(0, 0.2, 1.51);
-pcGroup.add(screen);
 
-scene.add(pcGroup);
 
 
 
@@ -641,9 +624,10 @@ scene.add(pcGroup);
   function animate(){
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
-    pcGroup.rotation.y = t * 0.4;
-    pcGroup.rotation.x = Math.sin(t * 1.5) * 0.2;
-
+    if(pcModel){
+  pcModel.rotation.y = t * 0.4;
+  pcModel.position.y = Math.sin(t * 1.5) * 0.2 - 1;
+}
     renderer.render(scene,camera);
   }
   animate();
