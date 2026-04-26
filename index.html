@@ -598,7 +598,7 @@ html,body{
   const meshes = [];
 
   voxels.forEach(([x,y,z,s],i) => {
-    const geo = new THREE.BoxGeometry(s*0.86,s*0.86,s*0.86);
+    const geo = new THREE.BoxGeometry(s*1.2,s*1.2,s*1.2);
     const m = i % 5 === 0 ? matLight.clone() : mat.clone();
     const mesh = new THREE.Mesh(geo, m);
     mesh.position.set(x*1.1,y*1.1,z*1.1);
