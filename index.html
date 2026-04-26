@@ -563,8 +563,40 @@ html,body{
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
+  function createScreenTexture(){
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  const texture = new THREE.CanvasTexture(canvas);
+  let lines = [];
+
+  function update(){
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0,0,512,512);
+
+    ctx.fillStyle = "#00ff88";
+    ctx.font = "20px monospace";
+
+    if(Math.random() < 0.1){
+      lines.push("> " + Math.random().toString(36).substring(2,10));
+    }
+
+    lines = lines.slice(-20);
+
+    lines.forEach((line, i)=>{
+      ctx.fillText(line, 20, 40 + i*22);
+    });
+
+    texture.needsUpdate = true;
+  }
+
+  setInterval(update, 100);
+  return texture;
+}
   const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 200);
-  camera.position.set(0, 2, 20);
+  camera.position.set(0, 1, 10);
 
   // Lights
   scene.add(new THREE.AmbientLight(0xffffff, 0.4));
@@ -579,36 +611,23 @@ html,body{
   const mat = new THREE.MeshStandardMaterial({color:0x2a2d3a, roughness:0.65, metalness:0.12});
   const matLight = new THREE.MeshStandardMaterial({color:0x3d4156, roughness:0.55, metalness:0.08});
 
-  const voxels = [
-    [0,0,0,1.0],[1,0,0,0.88],[-1,0,0,0.88],[0,1,0,0.88],[0,-1,0,0.88],
-    [0,0,1,0.82],[0,0,-1,0.82],
-    [1,1,0,0.76],[-1,1,0,0.76],[1,-1,0,0.76],[-1,-1,0,0.76],
-    [0,1,1,0.72],[0,-1,1,0.72],[0,1,-1,0.72],[0,-1,-1,0.72],
-    [1,0,1,0.72],[-1,0,1,0.72],[1,0,-1,0.72],[-1,0,-1,0.72],
-    [2,0,0,0.62],[-2,0,0,0.62],[0,2,0,0.62],[0,-2,0,0.62],[0,0,2,0.58],[0,0,-2,0.58],
-    [1,2,0,0.48],[-1,2,0,0.48],[2,1,0,0.48],[-2,1,0,0.48],
-    [1,-2,0,0.48],[-1,-2,0,0.48],[2,-1,0,0.48],[-2,-1,0,0.48],
-    [1,1,1,0.52],[-1,1,1,0.52],[1,-1,1,0.52],[-1,-1,1,0.52],
-    [1,1,-1,0.52],[-1,1,-1,0.52],[1,-1,-1,0.52],[-1,-1,-1,0.52],
-    [0,3,0,0.36],[0,-3,0,0.36],[3,0,0,0.36],[-3,0,0,0.36],
-    [2,2,0,0.32],[-2,2,0,0.32],[2,-2,0,0.32],[-2,-2,0,0.32],
-  ];
+  const pcGroup = new THREE.Group();
 
-  const group = new THREE.Group();
-  const meshes = [];
+const monitorGeo = new THREE.BoxGeometry(4, 3, 3);
+const monitor = new THREE.Mesh(monitorGeo, mat);
+pcGroup.add(monitor);
 
-  voxels.forEach(([x,y,z,s],i) => {
-    const geo = new THREE.BoxGeometry(s*1.2,s*1.2,s*1.2);
-    const m = i % 5 === 0 ? matLight.clone() : mat.clone();
-    const mesh = new THREE.Mesh(geo, m);
-    mesh.position.set(x*1.1,y*1.1,z*1.1);
-    mesh.castShadow = true; mesh.receiveShadow = true;
-    mesh.rotation.set((Math.random()-.5)*0.15,(Math.random()-.5)*0.15,(Math.random()-.5)*0.15);
-    mesh.userData = {ox:x*1.1,oy:y*1.1,oz:z*1.1,phase:Math.random()*Math.PI*2,freq:0.35+Math.random()*0.28};
-    group.add(mesh); meshes.push(mesh);
-  });
+const screenGeo = new THREE.PlaneGeometry(2.8, 2);
+const screenMat = new THREE.MeshBasicMaterial({
+  map: createScreenTexture()
+});
+const screen = new THREE.Mesh(screenGeo, screenMat);
+screen.position.set(0, 0.2, 1.51);
+pcGroup.add(screen);
 
-  scene.add(group);
+scene.add(pcGroup);
+
+
 
   // Auto slow rotate only — no drag
   const clock = new THREE.Clock();
@@ -622,14 +641,8 @@ html,body{
   function animate(){
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
-    group.rotation.y = t * 0.18;
-    group.rotation.x = Math.sin(t * 0.14) * 0.12;
-
-    meshes.forEach(m=>{
-      const d=m.userData;
-      const b=Math.sin(t*d.freq+d.phase)*0.022;
-      m.position.set(d.ox+b*0.3,d.oy+b,d.oz+b*0.2);
-    });
+    pcGroup.rotation.y = t * 0.4;
+    pcGroup.rotation.x = Math.sin(t * 1.5) * 0.2;
 
     renderer.render(scene,camera);
   }
