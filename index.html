@@ -562,7 +562,7 @@ html,body{
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = 0.83;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
@@ -573,7 +573,7 @@ html,body{
   camera.position.set(0, 1, 10);
 
   // Lights
-  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
   const sun = new THREE.DirectionalLight(0xffffff, 0.9);
   sun.position.set(6,12,8); sun.castShadow=true;
   sun.shadow.mapSize.set(1024,1024);
