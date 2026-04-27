@@ -562,7 +562,7 @@ html,body{
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.83;
+  renderer.toneMappingExposure = 0.80;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
