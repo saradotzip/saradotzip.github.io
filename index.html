@@ -607,8 +607,8 @@ let pcModel;
 loader.load('FINALPLS2.glb', function(gltf){
   pcModel = gltf.scene;
 
-  pcModel.scale.set(1.1, 1.1, 1.1);
-  pcModel.position.set(2, -0.5, 0);
+  pcModel.scale.set(1.4, 1.4, 1.4);
+  pcModel.position.set(3.5, -0.5, 0);
 // 👇 ADD THIS HERE
   pcModel.traverse((child)=>{
     if(child.isMesh){
