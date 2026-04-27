@@ -864,6 +864,45 @@ box-shadow:
   .folder-close{display:none}
   .about-body,.exp-body,.certs-body{padding:20px}
 }
+
+/* 👇 PASTE IT HERE */
+
+/* ══ MATRIX LEFT SIDE EFFECT ══ */
+#matrix-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+
+  mask-image: linear-gradient(to right, black 65%, transparent 100%);
+}
+
+.matrix-char {
+  position: absolute;
+  color: rgba(74,222,154,0.25);
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -873,7 +912,7 @@ box-shadow:
 <!-- ════════════════════ HERO ════════════════════ -->
 <section id="hero">
   <canvas id="orb-canvas"></canvas>
-
+<div id="matrix-left"></div>
   <!-- NEW: subtle accent glow under PC area -->
   <div class="pc-glow"></div>
 
@@ -1280,5 +1319,31 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(hash){const btn=document.querySelector(`.tab-btn[onclick*="${hash}"]`);if(btn)openPanel(hash,btn)}
 });
 </script>
+<script>
+const matrixContainer = document.getElementById("matrix-left");
+
+const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@%";
+
+function createChar() {
+  const span = document.createElement("span");
+  span.className = "matrix-char";
+
+  span.textContent = chars[Math.floor(Math.random() * chars.length)];
+
+  span.style.left = Math.random() * 100 + "%";
+  span.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  span.style.fontSize = (Math.random() * 6 + 10) + "px";
+
+  matrixContainer.appendChild(span);
+
+  setTimeout(() => {
+    span.remove();
+  }, 6000);
+}
+
+setInterval(createChar, 70);
+</script>
+
+  
 </body>
 </html>
