@@ -614,15 +614,17 @@ loader.load('PCfinal.glb?v=1', function(gltf){
     renderer.setSize(window.innerWidth,window.innerHeight);
   });
 
-  function animate(){
-    requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
-    if(pcModel){
-  pcModel.rotation.y = t * 0.4;
-  pcModel.position.y = Math.sin(t * 1.5) * 0.2 - 1;
-}
-    renderer.render(scene,camera);
+ function animate(){
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+
+  if(pcModel){
+    pcModel.rotation.y = 0.5; // fixed angle
+    pcModel.position.y = Math.sin(t * 1.2) * 0.08 - 1; // soft float
   }
+
+  renderer.render(scene,camera);
+}
   animate();
 })();
 </script>
