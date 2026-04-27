@@ -580,6 +580,10 @@ html,body{
   scene.add(sun);
   const fill = new THREE.DirectionalLight(0x8090c0,0.3);
   fill.position.set(-5,-3,6); scene.add(fill);
+  
+  const glow = new THREE.PointLight(0x3da6ff, 1, 5);
+  glow.position.set(2, 1, 2); // adjust if needed
+  scene.add(glow);
 
   // Dark matte material to match dark theme
   const mat = new THREE.MeshStandardMaterial({color:0x2a2d3a, roughness:0.65, metalness:0.12});
