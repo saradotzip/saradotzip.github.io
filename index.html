@@ -710,13 +710,20 @@ function showProject(key, el){
 let activePanel=null, activeBtn=null;
 
 function openPanel(name, btn){
-  const panel=document.getElementById('panel-'+name);
-  if(activePanel===panel){closeAll();return}
-  if(activePanel){activePanel.classList.remove('open');if(activeBtn)activeBtn.classList.remove('active')}
-  panel.classList.add('open'); btn.classList.add('active');
-  activePanel=panel; activeBtn=btn;
-  history.replaceState(null,'','#'+name);
-  if(name==='about') triggerAboutCounters();
+  // Close any open panel first
+  document.querySelectorAll('.folder-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+  const panel = document.getElementById('panel-' + name);
+  panel.classList.add('open');
+  btn.classList.add('active');
+
+  activePanel = panel;
+  activeBtn = btn;
+
+  history.replaceState(null, '', '#' + name);
+
+  if(name === 'about') triggerAboutCounters();
 }
 
 function closeAll(){
