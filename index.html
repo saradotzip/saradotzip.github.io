@@ -573,7 +573,7 @@ html,body{
   camera.position.set(0, 1, 10);
 
   // Lights
-  scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
   const sun = new THREE.DirectionalLight(0xffffff, 0.9);
   sun.position.set(6,12,8); sun.castShadow=true;
   sun.shadow.mapSize.set(1024,1024);
@@ -582,7 +582,7 @@ html,body{
   fill.position.set(-5,-3,6); scene.add(fill);
   
   const glow = new THREE.PointLight(0x3da6ff, 2, 6);
-  glow.position.set(2, 1.5, 2); // adjust if needed
+  glow.position.set(2, 1.0, 2); // adjust if needed
   scene.add(glow);
 
   // Dark matte material to match dark theme
