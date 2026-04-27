@@ -74,7 +74,12 @@ html,body{
 /* vignette */
 #hero::after{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,transparent 30%,rgba(5,6,10,0.75) 100%);
+background: radial-gradient(
+  ellipse at center,
+  rgba(255,255,255,0.05) 0%,
+  transparent 40%,
+  rgba(5,6,10,0.85) 100%
+);
   pointer-events:none;z-index:3;
 }
 
@@ -132,18 +137,18 @@ html,body{
 
 .hero-name{
   font-family:'Kroegbainder', sans-serif;
-  font-style: normal;
+  font-style:normal;
   font-size:clamp(58px,9.5vw,130px);
   color:#fff;
 
   line-height:0.92;
-  letter-spacing:-0.015em; /* slightly less aggressive */
+  letter-spacing:-0.015em;
 
-  animation:nameReveal 1.1s cubic-bezier(0.16,1,0.3,1) 0.1s both;
-
-  text-shadow:0 0 60px rgba(0,0,0,0.9),0 0 120px rgba(0,0,0,0.7),0 2px 4px rgba(0,0,0,0.8);
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.2),
+    0 0 20px rgba(255,255,255,0.15),
+    0 10px 40px rgba(0,0,0,0.6);
 }
-
 .hero-location{
   font-size:10px;letter-spacing:0.22em;
   color:var(--dimmer);text-transform:uppercase;margin-top:16px;
