@@ -619,7 +619,7 @@ loader.load('PCfinal.glb?v=1', function(gltf){
   const t = clock.getElapsedTime();
 
   if(pcModel){
-    pcModel.rotation.y = -0.5; // fixed angle
+    pcModel.rotation.y = -0.1; // fixed angle
     pcModel.position.y = Math.sin(t * 1.2) * 0.08 - 1; // soft float
   }
 
