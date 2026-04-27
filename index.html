@@ -62,7 +62,27 @@ html,body{
   display:flex;flex-direction:column;
   z-index:0;
 }
-
+/* 🔥 ADD IT RIGHT HERE */
+@keyframes glowFlicker {
+  0%, 100% {
+    text-shadow:
+      0 0 12px rgba(74,222,154,0.15),
+      0 0 40px rgba(74,222,154,0.08),
+      0 10px 40px rgba(0,0,0,0.6);
+  }
+  50% {
+    text-shadow:
+      0 0 16px rgba(74,222,154,0.25),
+      0 0 60px rgba(74,222,154,0.12),
+      0 10px 40px rgba(0,0,0,0.6);
+  }
+  52% {
+    text-shadow:
+      0 0 8px rgba(74,222,154,0.08),
+      0 0 20px rgba(74,222,154,0.05),
+      0 10px 40px rgba(0,0,0,0.6);
+  }
+}
 /* drifting grid */
 #hero::before{
   content:'';position:absolute;inset:-80px;
@@ -179,10 +199,12 @@ html,body{
   line-height:0.92;
   letter-spacing:-0.015em;
   text-shadow:
-    0 0 8px rgba(255,255,255,0.2),
-    0 0 20px rgba(255,255,255,0.15),
-    0 10px 40px rgba(0,0,0,0.6);
-  animation:nameReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+  0 0 12px rgba(74,222,154,0.15),
+  0 0 40px rgba(74,222,154,0.08),
+  0 10px 40px rgba(0,0,0,0.6);
+  animation:
+  nameReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both,
+  glowFlicker 3s infinite ease-in-out;
 }
 
 /* IMPROVED: brighter location */
