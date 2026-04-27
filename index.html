@@ -28,6 +28,10 @@
   --white:rgba(255,255,255,0.85);
   --dim:rgba(255,255,255,0.32);
   --dimmer:rgba(255,255,255,0.18);
+  /* NEW: accent green for cyber feel */
+  --accent:#4ade9a;
+  --accent-dim:rgba(74,222,154,0.15);
+  --accent-border:rgba(74,222,154,0.35);
 }
 
 html,body{
@@ -74,12 +78,12 @@ html,body{
 /* vignette */
 #hero::after{
   content:'';position:absolute;inset:0;
-background: radial-gradient(
-  ellipse at center,
-  rgba(255,255,255,0.05) 0%,
-  transparent 40%,
-  rgba(5,6,10,0.85) 100%
-);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.05) 0%,
+    transparent 40%,
+    rgba(5,6,10,0.85) 100%
+  );
   pointer-events:none;z-index:3;
 }
 
@@ -87,34 +91,65 @@ background: radial-gradient(
 #orb-canvas{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   opacity:0.55;
-  /* 👇 add this */
   filter: blur(0.5px) brightness(0.85);
 }
 
-/* ── TOP NAV ── */
+/* ── IMPROVED: TOP NAV ── */
 .hero-nav{
   position:relative;z-index:20;
   display:flex;justify-content:space-between;align-items:center;
-  padding:24px 36px 0;
+  padding:26px 40px 0;
   animation:navFadeIn 0.9s ease 0.2s both;
 }
 @keyframes navFadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
-.hero-wordmark{
-  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);
+/* NEW: nav separator line at bottom */
+.hero-nav::after{
+  content:'';
+  position:absolute;
+  bottom:-14px;left:40px;right:40px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.08) 70%, transparent);
 }
+
+.hero-wordmark{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  /* IMPROVED: brighter, with accent dot */
+  color:rgba(255,255,255,0.65);
+  display:flex;align-items:center;gap:8px;
+}
+/* accent dot before wordmark */
+.hero-wordmark::before{
+  content:'';
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
 
 .hero-nav-right{
-  display:flex;align-items:center;gap:24px;
+  display:flex;align-items:center;gap:28px;
 }
+/* IMPROVED: brighter nav links with underline hover */
 .hero-nav-right a{
-  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--dim);text-decoration:none;
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.6);text-decoration:none;
+  position:relative;
+  padding-bottom:3px;
   transition:color 0.2s;
 }
-.hero-nav-right a:hover{color:var(--white)}
+.hero-nav-right a::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.25s ease;
+}
+.hero-nav-right a:hover{color:rgba(255,255,255,0.95)}
+.hero-nav-right a:hover::after{transform:scaleX(1)}
 
-/* ══ HERO CENTRE ══ */
+/* ══ IMPROVED: HERO CENTRE ══ */
 .hero-center{
   position:absolute;
   top:50%;left:50%;
@@ -129,9 +164,10 @@ background: radial-gradient(
   align-items:center;
 }
 
+/* IMPROVED: brighter label */
 .hero-label{
   font-size:11px;letter-spacing:0.26em;
-  color:var(--dim);text-transform:uppercase;margin-bottom:14px;
+  color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:14px;
   animation:fadeUp 0.8s ease 0.3s both;
 }
 
@@ -140,29 +176,45 @@ background: radial-gradient(
   font-style:normal;
   font-size:clamp(58px,9.5vw,130px);
   color:#fff;
-
   line-height:0.92;
   letter-spacing:-0.015em;
-
   text-shadow:
     0 0 8px rgba(255,255,255,0.2),
     0 0 20px rgba(255,255,255,0.15),
     0 10px 40px rgba(0,0,0,0.6);
+  animation:nameReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both;
 }
+
+/* IMPROVED: brighter location */
 .hero-location{
   font-size:10px;letter-spacing:0.22em;
-  color:var(--dimmer);text-transform:uppercase;margin-top:16px;
+  color:rgba(255,255,255,0.38);text-transform:uppercase;margin-top:14px;
   animation:fadeUp 0.8s ease 0.55s both;
 }
 
-/* ── TABS UNDER NAME ── */
+/* ── NEW: SPECIALTY TAGS ── */
+.hero-tags{
+  display:flex;gap:8px;margin-top:14px;
+  animation:fadeUp 0.8s ease 0.65s both;
+  flex-wrap:wrap;justify-content:center;
+}
+.hero-tag-pill{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid rgba(74,222,154,0.3);
+  color:rgba(74,222,154,0.7);
+  border-radius:2px;
+  background:rgba(74,222,154,0.05);
+}
+
+/* ── IMPROVED: TABS UNDER NAME ── */
 .tab-tray{
   display:flex;
   flex-direction:row;
   gap:8px;
-  margin-top:36px;
+  margin-top:28px;
   pointer-events:all;
-  animation:fadeUp 0.8s ease 0.75s both;
+  animation:fadeUp 0.8s ease 0.78s both;
   flex-wrap:wrap;
   justify-content:center;
 }
@@ -171,50 +223,41 @@ background: radial-gradient(
   display:flex;
   align-items:center;
   gap:8px;
-
-  padding:12px 22px;
-
+  padding:11px 22px;
   font-family:'IBM Plex Mono', monospace;
   font-size:11px;
   font-weight:500;
   letter-spacing:0.14em;
   text-transform:uppercase;
-
-  color:rgba(255,255,255,0.75);
-
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:6px;
-
+  color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:4px;
   cursor:pointer;
   outline:none;
   white-space:nowrap;
-
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
     color 0.25s ease,
     transform 0.2s ease,
     box-shadow 0.25s ease;
-
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  position:relative;
+  overflow:hidden;
 }
 .tab-btn .tab-arrow{
   font-size:9px;
   transition:transform 0.25s ease;
 }
+.tab-btn:hover .tab-arrow{transform:translateX(4px)}
 
-.tab-btn:hover .tab-arrow{
-  transform:translateX(4px);
-}
+/* IMPROVED: green accent hover */
 .tab-btn:hover{
-  background:rgba(255,255,255,0.2);
-  border-color:rgba(255,255,255,0.35);
-  color:white;
-
+  background:rgba(74,222,154,0.08);
+  border-color:rgba(74,222,154,0.4);
+  color:rgba(255,255,255,0.95);
   transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(0,0,0,0.35);
+  box-shadow:0 6px 20px rgba(0,0,0,0.35), 0 0 12px rgba(74,222,154,0.1);
 }
 .tab-btn.active{
   background:rgba(255,255,255,0.92);
@@ -223,31 +266,57 @@ background: radial-gradient(
   box-shadow:0 4px 20px rgba(0,0,0,0.4);
 }
 .tab-btn.active .tab-arrow{transform:rotate(90deg)}
-/* CLICK RIPPLE EFFECT */
-.tab-btn{
-  position:relative;
-  overflow:hidden;
-}
 
+/* ripple */
 .tab-btn::after{
   content:"";
   position:absolute;
-  width:120%;
-  height:120%;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%) scale(0);
-  background:rgba(255,255,255,0.2);
+  width:120%;height:120%;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:rgba(74,222,154,0.15);
   border-radius:50%;
   opacity:0;
   pointer-events:none;
 }
-
 .tab-btn:active::after{
-  transform:translate(-50%, -50%) scale(1);
+  transform:translate(-50%,-50%) scale(1);
   opacity:1;
   transition:transform 0.4s ease, opacity 0.6s ease;
 }
+
+/* ── NEW: SCROLL HINT ── */
+.scroll-hint{
+  margin-top:32px;
+  animation:fadeUp 0.8s ease 1.1s both;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  pointer-events:none;
+}
+.scroll-hint span{
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.22);
+}
+.scroll-chevron{
+  width:16px;height:9px;
+  animation:chevronBob 2s ease-in-out infinite;
+}
+.scroll-chevron path{stroke:rgba(255,255,255,0.2);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes chevronBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(4px)}
+}
+
+/* ── NEW: subtle PC glow / ground shadow ── */
+.pc-glow{
+  position:absolute;
+  bottom:8%;right:10%;
+  width:420px;height:80px;
+  background:radial-gradient(ellipse, rgba(74,222,154,0.06) 0%, transparent 70%);
+  pointer-events:none;z-index:4;
+  border-radius:50%;
+  filter:blur(20px);
+}
+
 @keyframes nameReveal{
   from{opacity:0;transform:translateY(28px) skewY(1.5deg);filter:blur(6px)}
   to{opacity:1;transform:translateY(0) skewY(0);filter:blur(0)}
@@ -257,75 +326,24 @@ background: radial-gradient(
 /* ══ FOLDER PANELS — CENTERED WINDOWS ══ */
 .folder-panel{
   position:fixed;
-  top:50%;
-  left:50%;
+  top:50%;left:50%;
   transform:translate(-50%, -50%) scale(0.95);
-
-  width:90%;
-  max-width:1100px;
-  height:85vh;
-
+  width:90%;max-width:1100px;height:85vh;
   background:var(--cream);
   z-index:100;
-
-  opacity:0;
-  pointer-events:none;
-
-  transition:
-    transform 0.35s cubic-bezier(0.32,0.72,0,1),
-    opacity 0.25s ease;
-
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-
-  border-radius:14px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.45);
+  opacity:0;pointer-events:none;
+  transition:transform 0.35s cubic-bezier(0.32,0.72,0,1),opacity 0.25s ease;
+  display:flex;flex-direction:column;overflow:hidden;
+  border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,0.45);
 }
-
-/* open state */
-.folder-panel.open{
-  transform:translate(-50%, -50%) scale(1);
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* smoother content fade */
-.folder-panel .folder-inner>*{
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity 0.35s ease 0.2s, transform 0.35s ease 0.2s;
-}
-.folder-panel.open .folder-inner>*{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.folder-panel .folder-inner>*{
-  opacity:0;transform:translateY(16px);
-  transition:opacity 0.35s ease 0.26s,transform 0.35s ease 0.26s;
-}
+.folder-panel.open{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}
+.folder-panel .folder-inner>*{opacity:0;transform:translateY(16px);transition:opacity 0.35s ease 0.2s,transform 0.35s ease 0.2s}
 .folder-panel.open .folder-inner>*{opacity:1;transform:translateY(0)}
 
-.folder-drag-pill{
-  width:36px;height:4px;border-radius:2px;
-  background:#c8c2b8;margin:10px auto 0;flex-shrink:0;
-}
-
-.folder-handle{
-  flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
-  padding:8px 32px 12px;
-  border-bottom:1.5px solid #d8d2c6;
-  background:var(--cream-dark);
-  border-radius:12px 12px 0 0;
-}
+.folder-drag-pill{width:36px;height:4px;border-radius:2px;background:#c8c2b8;margin:10px auto 0;flex-shrink:0}
+.folder-handle{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:8px 32px 12px;border-bottom:1.5px solid #d8d2c6;background:var(--cream-dark);border-radius:12px 12px 0 0}
 .folder-handle-title{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-light)}
-.folder-close{
-  background:none;border:none;font-size:18px;cursor:pointer;
-  color:var(--ink-light);line-height:1;
-  transition:opacity 0.15s,transform 0.2s;
-  width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;
-}
+.folder-close{background:none;border:none;font-size:18px;cursor:pointer;color:var(--ink-light);line-height:1;transition:opacity 0.15s,transform 0.2s;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%}
 .folder-close:hover{opacity:0.5;transform:rotate(90deg)}
 .folder-inner{flex:1;overflow-y:auto;overflow-x:hidden}
 
@@ -334,20 +352,13 @@ background: radial-gradient(
 .about-meta{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px}
 .about-body h2{font-family:'DM Serif Display',serif;font-size:44px;font-weight:400;margin-bottom:24px;line-height:1.1}
 .about-body p{font-size:13px;line-height:1.85;color:var(--ink-mid);margin-bottom:16px;max-width:640px}
-
 .stat-row{display:flex;gap:36px;margin:24px 0 28px;flex-wrap:wrap}
 .stat-block{display:flex;flex-direction:column;gap:4px}
 .stat-block .s-num{font-family:'DM Serif Display',serif;font-style:italic;font-size:36px;line-height:1;color:var(--ink)}
 .stat-block .s-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light)}
-
 .cert-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.cert-chip{
-  font-size:10px;letter-spacing:0.07em;text-transform:uppercase;
-  padding:5px 12px;background:var(--ink);color:var(--cream);border-radius:2px;
-  transition:background 0.15s,transform 0.15s;cursor:default;
-}
+.cert-chip{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;padding:5px 12px;background:var(--ink);color:var(--cream);border-radius:2px;transition:background 0.15s,transform 0.15s;cursor:default}
 .cert-chip:hover{background:#333;transform:translateY(-2px)}
-
 .skills-grid{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:680px}
 .skill-block h4{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px;border-bottom:1px solid #d0cbc0;padding-bottom:6px}
 .skill-block p{font-size:12px;line-height:1.7;color:var(--ink-mid)}
@@ -422,6 +433,8 @@ background: radial-gradient(
   .hero-nav{padding:14px 18px 0}
   .tab-tray{gap:6px}
   .tab-btn{padding:8px 14px;font-size:9px}
+  .hero-tags{gap:6px}
+  .scroll-hint{display:none}
 }
 
 /* ══ PRINT ══ */
@@ -432,7 +445,7 @@ background: radial-gradient(
   .hero-center{position:relative;top:auto;left:auto;transform:none;padding:40px 0 20px}
   .hero-name{color:#111;text-shadow:none}
   .hero-label,.hero-location,.hero-wordmark{color:#444!important}
-  .tab-tray,.folder-drag-pill{display:none}
+  .tab-tray,.folder-drag-pill,.scroll-hint,.pc-glow{display:none}
   .folder-panel{position:relative;transform:none!important;height:auto;box-shadow:none;border-radius:0;margin-bottom:20px;page-break-inside:avoid}
   .folder-panel .folder-inner>*{opacity:1;transform:none}
   .folder-close{display:none}
@@ -448,7 +461,10 @@ background: radial-gradient(
 <section id="hero">
   <canvas id="orb-canvas"></canvas>
 
-  <!-- Top nav -->
+  <!-- NEW: subtle accent glow under PC area -->
+  <div class="pc-glow"></div>
+
+  <!-- IMPROVED: Top nav -->
   <nav class="hero-nav">
     <div class="hero-wordmark">Portfolio 2026</div>
     <div class="hero-nav-right">
@@ -463,11 +479,26 @@ background: radial-gradient(
     <div class="hero-name">Sara Goodie</div>
     <div class="hero-location">Dearborn Heights, MI</div>
 
+    <!-- NEW: specialty tags -->
+    <div class="hero-tags">
+      <span class="hero-tag-pill">SOC Analysis</span>
+      <span class="hero-tag-pill">Threat Detection</span>
+      <span class="hero-tag-pill">Penetration Testing</span>
+    </div>
+
     <div class="tab-tray">
       <button class="tab-btn" onclick="openPanel('about',this)">About <span class="tab-arrow">›</span></button>
       <button class="tab-btn" onclick="openPanel('experience',this)">Experience <span class="tab-arrow">›</span></button>
       <button class="tab-btn" onclick="openPanel('projects',this)">Projects <span class="tab-arrow">›</span></button>
       <button class="tab-btn" onclick="openPanel('certs',this)">Certifications <span class="tab-arrow">›</span></button>
+    </div>
+
+    <!-- NEW: scroll / click hint -->
+    <div class="scroll-hint">
+      <span>Select a section above</span>
+      <svg class="scroll-chevron" viewBox="0 0 16 9" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1l7 7 7-7"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -486,23 +517,18 @@ background: radial-gradient(
       <h2>Sara Goodie</h2>
       <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis, with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
 
-      <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren’t immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
+      <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren't immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
 
-      <p>Through my labs, I’ve simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I’ve worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
+      <p>Through my labs, I've simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I've worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
 
       <p>During my internship, I gained experience in an enterprise environment, including working with Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, which gave me insight into how technology and support systems function in real-time, high-demand environments.</p>
 
-      <p>I’m continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
+      <p>I'm continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
      
       <div class="about-meta" style="margin-top:20px;margin-bottom:10px">Affiliations</div>
-<div class="cert-chips">
-  <span class="cert-chip">WGU Cyber Club — Member</span>
-  <span class="cert-chip">WiCyS — Member</span>
-</div>
-
-      </div> <!-- about-body -->
-</div> <!-- folder-inner -->
-</div> <!-- folder-panel -->
+      <div class="cert-chips">
+        <span class="cert-chip">WGU Cyber Club — Member</span>
+        <span class="cert-chip">WiCyS — Member</span>
       </div>
     </div>
   </div>
@@ -540,10 +566,10 @@ background: radial-gradient(
           <div class="exp-role">Advisor — Customer Solutions Team</div>
           <div class="exp-company">Best Buy</div>
           <ul class="exp-bullets">
-  <li>Provided technical guidance to customers on hardware and software solutions, strengthening troubleshooting and problem-solving skills.</li>
-  <li>Diagnosed and resolved common technical issues for customer devices, including connectivity, performance, and configuration problems.</li>
-  <li>Communicated technical concepts to non-technical users, improving clarity and customer understanding of solutions.</li>
-</ul>
+            <li>Provided technical guidance to customers on hardware and software solutions, strengthening troubleshooting and problem-solving skills.</li>
+            <li>Diagnosed and resolved common technical issues for customer devices, including connectivity, performance, and configuration problems.</li>
+            <li>Communicated technical concepts to non-technical users, improving clarity and customer understanding of solutions.</li>
+          </ul>
         </div>
         <div class="exp-date">Oct – Dec 2022</div>
       </div>
@@ -635,7 +661,7 @@ background: radial-gradient(
 <!-- ════════════ THREE.JS VOXELS ════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
-  <script>
+<script>
 (function(){
   const canvas = document.getElementById('orb-canvas');
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
@@ -651,7 +677,6 @@ background: radial-gradient(
   const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 200);
   camera.position.set(0, 1, 10);
 
-  // Lights
   scene.add(new THREE.AmbientLight(0xffffff, 0.4));
   const sun = new THREE.DirectionalLight(0xffffff, 0.9);
   sun.position.set(6,12,8); sun.castShadow=true;
@@ -661,52 +686,42 @@ background: radial-gradient(
   fill.position.set(-5,-3,6); scene.add(fill);
   
   const glow = new THREE.PointLight(0x3da6ff, 2, 6);
-  glow.position.set(2, 1.0, 2); // adjust if needed
+  glow.position.set(2, 1.0, 2);
   scene.add(glow);
 
-  // Dark matte material to match dark theme
   const mat = new THREE.MeshStandardMaterial({color:0x2a2d3a, roughness:0.65, metalness:0.12});
   const matLight = new THREE.MeshStandardMaterial({color:0x3d4156, roughness:0.55, metalness:0.08});
 
-  // 🌅 Environment lighting (PUT THIS ABOVE loader)
-const pmremGenerator = new THREE.PMREMGenerator(renderer);
-pmremGenerator.compileEquirectangularShader();
+  const pmremGenerator = new THREE.PMREMGenerator(renderer);
+  pmremGenerator.compileEquirectangularShader();
 
-new THREE.TextureLoader().load(
-  'https://threejs.org/examples/textures/equirectangular/venice_sunset_1k.hdr',
-  function (texture) {
-    const envMap = pmremGenerator.fromEquirectangular(texture).texture;
-    scene.environment = envMap;
-    texture.dispose();
-    pmremGenerator.dispose();
-  }
-);
-  
-  // 👇 ADD IT HERE
-const loader = new THREE.GLTFLoader();
-
-let pcModel;
-
-loader.load('FINALPLS2.glb', function(gltf){
-  pcModel = gltf.scene;
-
-  pcModel.scale.set(1.4, 1.4, 1.4);
-  pcModel.position.set(3.0, -0.5, 0);
-// 👇 ADD THIS HERE
-  pcModel.traverse((child)=>{
-    if(child.isMesh){
-     child.material.color.multiplyScalar(1.1);
+  new THREE.TextureLoader().load(
+    'https://threejs.org/examples/textures/equirectangular/venice_sunset_1k.hdr',
+    function (texture) {
+      const envMap = pmremGenerator.fromEquirectangular(texture).texture;
+      scene.environment = envMap;
+      texture.dispose();
+      pmremGenerator.dispose();
     }
+  );
+  
+  const loader = new THREE.GLTFLoader();
+  let pcModel;
+
+  loader.load('FINALPLS2.glb', function(gltf){
+    pcModel = gltf.scene;
+    pcModel.scale.set(1.4, 1.4, 1.4);
+    pcModel.position.set(3.0, -0.5, 0);
+    pcModel.traverse((child)=>{
+      if(child.isMesh){
+        child.material.color.multiplyScalar(1.1);
+      }
+    });
+    scene.add(pcModel);
+  }, undefined, function(error){
+    console.error(error);
   });
-  scene.add(pcModel);
-}, undefined, function(error){
-  console.error(error);
-});
 
-
-
-
-  // Auto slow rotate only — no drag
   const clock = new THREE.Clock();
 
   window.addEventListener('resize',()=>{
@@ -715,17 +730,15 @@ loader.load('FINALPLS2.glb', function(gltf){
     renderer.setSize(window.innerWidth,window.innerHeight);
   });
 
- function animate(){
-  requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-
-  if(pcModel){
-    pcModel.rotation.y = -0.9; // fixed angle
-    pcModel.position.y = Math.sin(t * 1.2) * 0.08 - 1; // soft float
+  function animate(){
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    if(pcModel){
+      pcModel.rotation.y = -0.9;
+      pcModel.position.y = Math.sin(t * 1.2) * 0.08 - 1;
+    }
+    renderer.render(scene,camera);
   }
-
-  renderer.render(scene,camera);
-}
   animate();
 })();
 </script>
@@ -781,39 +794,23 @@ let activePanel=null, activeBtn=null;
 
 function openPanel(name, btn){
   const panel = document.getElementById('panel-' + name);
-
-  if(activePanel === panel){
-    closeAll();
-    return;
-  }
-
-  if(activePanel){
-    activePanel.classList.remove('open');
-    if(activeBtn) activeBtn.classList.remove('active');
-  }
-
+  if(activePanel === panel){ closeAll(); return; }
+  if(activePanel){ activePanel.classList.remove('open'); if(activeBtn) activeBtn.classList.remove('active'); }
   panel.classList.add('open');
   btn.classList.add('active');
-
   activePanel = panel;
   activeBtn = btn;
-
   document.getElementById('hero').classList.add('dimmed');
-
   history.replaceState(null,'','#'+name);
-
   if(name === 'about') triggerAboutCounters();
 }
 
 function closeAll(){
   document.querySelectorAll('.folder-panel').forEach(p => p.classList.remove('open'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
   document.getElementById('hero').classList.remove('dimmed');
-
   activePanel = null;
   activeBtn = null;
-
   history.replaceState(null,'','#');
 }
 
