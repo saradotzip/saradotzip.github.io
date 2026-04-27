@@ -53,7 +53,23 @@ html,body{
   0%{background-position:0 0}25%{background-position:-40px 20px}
   50%{background-position:20px -30px}75%{background-position:-10px 40px}
 }
+/* 🔥 ADD THIS RIGHT HERE */
+@keyframes rgbGlitch {
+  0%, 97%, 100% {
+    transform: translate(0, 0);
+    filter: none;
+  }
 
+  98% {
+    transform: translate(-2px, 1px);
+    filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
+  }
+
+  99% {
+    transform: translate(2px, -1px);
+    filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+  }
+}
 /* ══ HERO ══ */
 #hero{
   position:fixed;inset:0;
@@ -234,7 +250,8 @@ html,body{
   0 10px 40px rgba(0,0,0,0.6);
   animation:
   nameReveal 1s cubic-bezier(0.16,1,0.3,1) 0.1s both,
-  glowFlicker 4s infinite linear;
+  glowFlicker 4s infinite linear,
+  rgbGlitch 6s infinite;
 }
 
 /* IMPROVED: brighter location */
