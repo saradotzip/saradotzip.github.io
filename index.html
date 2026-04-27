@@ -608,7 +608,7 @@ loader.load('FINALPLS2.glb', function(gltf){
   pcModel = gltf.scene;
 
   pcModel.scale.set(1.4, 1.4, 1.4);
-  pcModel.position.set(2.8, -0.5, 0);
+  pcModel.position.set(3.0, -0.5, 0);
 // 👇 ADD THIS HERE
   pcModel.traverse((child)=>{
     if(child.isMesh){
@@ -637,7 +637,7 @@ loader.load('FINALPLS2.glb', function(gltf){
   const t = clock.getElapsedTime();
 
   if(pcModel){
-    pcModel.rotation.y = -0.8; // fixed angle
+    pcModel.rotation.y = -0.10; // fixed angle
     pcModel.position.y = Math.sin(t * 1.2) * 0.08 - 1; // soft float
   }
 
