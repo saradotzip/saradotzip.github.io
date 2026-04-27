@@ -616,7 +616,7 @@ loader.load('FINALPLS2.glb', function(gltf){
 // 👇 ADD THIS HERE
   pcModel.traverse((child)=>{
     if(child.isMesh){
-     child.material.color.multiplyScalar(1.1);
+     child.material.color.multiplyScalar(0.9);
     }
   });
   scene.add(pcModel);
