@@ -218,7 +218,31 @@ html,body{
   box-shadow:0 4px 20px rgba(0,0,0,0.4);
 }
 .tab-btn.active .tab-arrow{transform:rotate(90deg)}
+/* CLICK RIPPLE EFFECT */
+.tab-btn{
+  position:relative;
+  overflow:hidden;
+}
 
+.tab-btn::after{
+  content:"";
+  position:absolute;
+  width:120%;
+  height:120%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0);
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+}
+
+.tab-btn:active::after{
+  transform:translate(-50%, -50%) scale(1);
+  opacity:1;
+  transition:transform 0.4s ease, opacity 0.6s ease;
+}
 @keyframes nameReveal{
   from{opacity:0;transform:translateY(28px) skewY(1.5deg);filter:blur(6px)}
   to{opacity:1;transform:translateY(0) skewY(0);filter:blur(0)}
