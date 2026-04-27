@@ -347,80 +347,418 @@ html,body{
 .folder-close:hover{opacity:0.5;transform:rotate(90deg)}
 .folder-inner{flex:1;overflow-y:auto;overflow-x:hidden}
 
+/* ══ SHARED TERMINAL PANEL BASE ══ */
+#panel-about,#panel-experience,#panel-certs{
+  background:var(--t-bg);
+  border:1px solid var(--t-green-border);
+  border-radius:8px;
+  box-shadow:0 0 40px rgba(74,222,154,0.08),0 20px 60px rgba(0,0,0,0.7);
+}
+#panel-about .folder-drag-pill,
+#panel-experience .folder-drag-pill,
+#panel-certs .folder-drag-pill{background:var(--t-green-border)}
+
+#panel-about .folder-handle,
+#panel-experience .folder-handle,
+#panel-certs .folder-handle{
+  background:var(--t-bg2);
+  border-bottom:1px solid var(--t-green-border);
+  border-radius:8px 8px 0 0;
+  padding:10px 20px;
+}
+#panel-about .folder-handle-title,
+#panel-experience .folder-handle-title,
+#panel-certs .folder-handle-title{
+  color:var(--t-green);font-size:10px;letter-spacing:0.2em;
+  display:flex;align-items:center;gap:10px;
+}
+#panel-about .folder-handle-title::before,
+#panel-experience .folder-handle-title::before,
+#panel-certs .folder-handle-title::before{
+  content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--t-green);box-shadow:0 0 6px var(--t-green);
+  animation:termPulse 2s ease-in-out infinite;
+}
+#panel-about .folder-close,
+#panel-experience .folder-close,
+#panel-certs .folder-close{
+  color:var(--t-green-dim);font-size:14px;
+  border:1px solid var(--t-green-border);border-radius:3px;
+  width:22px;height:22px;
+}
+#panel-about .folder-close:hover,
+#panel-experience .folder-close:hover,
+#panel-certs .folder-close:hover{color:var(--t-red);border-color:var(--t-red);opacity:1;transform:none}
+
+#panel-about::after,#panel-experience::after,#panel-certs::after{
+  content:'';pointer-events:none;position:absolute;inset:0;z-index:200;border-radius:8px;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.13) 2px,rgba(0,0,0,0.13) 4px);
+}
+#panel-about .folder-inner,
+#panel-experience .folder-inner,
+#panel-certs .folder-inner{
+  overflow-y:auto;
+}
+#panel-about .folder-inner::-webkit-scrollbar,
+#panel-experience .folder-inner::-webkit-scrollbar,
+#panel-certs .folder-inner::-webkit-scrollbar{width:4px}
+#panel-about .folder-inner::-webkit-scrollbar-thumb,
+#panel-experience .folder-inner::-webkit-scrollbar-thumb,
+#panel-certs .folder-inner::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
+
 /* ══ ABOUT ══ */
-.about-body{padding:48px 72px;max-width:860px}
-.about-meta{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px}
-.about-body h2{font-family:'DM Serif Display',serif;font-size:44px;font-weight:400;margin-bottom:24px;line-height:1.1}
-.about-body p{font-size:13px;line-height:1.85;color:var(--ink-mid);margin-bottom:16px;max-width:640px}
-.stat-row{display:flex;gap:36px;margin:24px 0 28px;flex-wrap:wrap}
-.stat-block{display:flex;flex-direction:column;gap:4px}
-.stat-block .s-num{font-family:'DM Serif Display',serif;font-style:italic;font-size:36px;line-height:1;color:var(--ink)}
-.stat-block .s-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light)}
+.about-body{padding:36px 48px;max-width:900px}
+.term-prompt{
+  font-size:9px;letter-spacing:0.18em;text-transform:lowercase;
+  color:rgba(74,222,154,0.5);margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;
+}
+.term-prompt::before{content:'root@sara:~$';color:var(--t-green);margin-right:4px;opacity:0.7}
+.about-body h2{
+  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
+  color:var(--t-green);margin-bottom:20px;line-height:1.2;
+  text-shadow:0 0 20px rgba(74,222,154,0.3);
+}
+.about-body p{font-size:12px;line-height:1.9;color:rgba(74,222,154,0.65);margin-bottom:14px;max-width:680px}
+.about-body p strong{color:var(--t-green);font-weight:500}
+.about-divider{
+  border:none;border-top:1px solid var(--t-green-border);
+  margin:24px 0;
+}
+.about-section-label{
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(74,222,154,0.45);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.about-section-label::before{content:'##';color:var(--t-green);opacity:0.5;margin-right:2px}
+
+/* affiliation chips */
 .cert-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.cert-chip{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;padding:5px 12px;background:var(--ink);color:var(--cream);border-radius:2px;transition:background 0.15s,transform 0.15s;cursor:default}
-.cert-chip:hover{background:#333;transform:translateY(-2px)}
-.skills-grid{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:680px}
-.skill-block h4{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px;border-bottom:1px solid #d0cbc0;padding-bottom:6px}
-.skill-block p{font-size:12px;line-height:1.7;color:var(--ink-mid)}
+.cert-chip{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:5px 12px;
+  border:1px solid var(--t-green-border);
+  color:rgba(74,222,154,0.7);
+  border-radius:2px;background:var(--t-green-faint);
+  cursor:default;transition:background 0.15s,color 0.15s;
+}
+.cert-chip:hover{background:rgba(74,222,154,0.12);color:var(--t-green)}
 
 /* ══ EXPERIENCE ══ */
-.exp-body{padding:48px 72px;max-width:860px}
-.exp-body h2{font-family:'DM Serif Display',serif;font-size:44px;font-weight:400;margin-bottom:32px;line-height:1.1}
-.exp-item{display:grid;grid-template-columns:1fr auto;border-top:1.5px solid #d0cbc0;padding:24px 0;gap:12px}
-.exp-item:last-child{border-bottom:1.5px solid #d0cbc0}
-.exp-role{font-size:14px;font-weight:500;margin-bottom:4px}
-.exp-company{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px}
-.exp-date{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);white-space:nowrap;padding-top:4px}
+.exp-body{padding:36px 48px;max-width:900px}
+.exp-body h2{
+  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
+  color:var(--t-green);margin-bottom:28px;
+  text-shadow:0 0 20px rgba(74,222,154,0.3);
+}
+.exp-item{
+  border-top:1px solid var(--t-green-border);
+  padding:22px 0;
+  display:grid;grid-template-columns:1fr auto;gap:16px;
+}
+.exp-item:last-child{border-bottom:1px solid var(--t-green-border)}
+.exp-header-left{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.exp-role{
+  font-size:13px;font-weight:500;
+  color:var(--t-green);letter-spacing:0.02em;
+}
+.exp-company{
+  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(74,222,154,0.45);
+}
+.exp-date{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(74,222,154,0.35);white-space:nowrap;padding-top:4px;
+  border:1px solid var(--t-green-border);
+  padding:3px 8px;border-radius:2px;
+  align-self:start;background:var(--t-green-faint);
+  height:fit-content;
+}
 .exp-bullets{list-style:none;padding:0}
-.exp-bullets li{font-size:12px;line-height:1.8;color:var(--ink-mid);padding-left:14px;position:relative;margin-bottom:4px}
-.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--ink-light)}
-
-/* ══ PROJECTS ══ */
-.file-layout{display:flex;height:100%}
-.file-sidebar{width:280px;min-width:240px;border-right:1.5px solid #d0cbc0;background:var(--cream-dark);overflow-y:auto;flex-shrink:0}
-.file-sidebar-header{display:flex;justify-content:space-between;align-items:center;padding:20px 22px 16px;font-size:13px;font-weight:500;border-bottom:1.5px solid #d0cbc0;position:sticky;top:0;background:var(--cream-dark);z-index:2}
-.file-item{padding:16px 22px;border-bottom:1px solid #d8d2c8;cursor:pointer;border-left:3px solid transparent;transition:background 0.15s,padding-left 0.2s,border-left-color 0.2s}
-.file-item:hover{background:var(--cream);padding-left:26px}
-.file-item.active{background:var(--cream);border-left-color:var(--ink);padding-left:26px}
-.fi-date{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:3px}
-.fi-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
-.fi-preview{font-size:11px;color:var(--ink-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.file-detail{flex:1;padding:44px 56px;overflow-y:auto}
-.file-detail-meta{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px}
-.file-detail h2{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;margin-bottom:22px;line-height:1.2}
-.file-detail p{font-size:13px;line-height:1.9;color:var(--ink-mid);margin-bottom:16px;max-width:620px}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px}
-.file-tag{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--ink-mid);color:var(--ink-mid);border-radius:2px;transition:background 0.15s,color 0.15s;cursor:default}
-.file-tag:hover{background:var(--ink);color:var(--cream)}
-.github-link{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:2px;transition:opacity 0.2s,gap 0.2s}
-.github-link:hover{opacity:0.5;gap:14px}
-@keyframes detailIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
-.file-detail.switching{animation:detailIn 0.25s ease both}
+.exp-bullets li{
+  font-size:11px;line-height:1.9;
+  color:rgba(74,222,154,0.6);
+  padding-left:0;position:relative;margin-bottom:3px;
+}
+.exp-bullets li::before{content:'> ';color:var(--t-green);opacity:0.6}
+.exp-edu-label{
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(74,222,154,0.4);margin:28px 0 4px;
+  display:flex;align-items:center;gap:8px;
+}
+.exp-edu-label::before{content:'##';color:var(--t-green);opacity:0.4;margin-right:2px}
 
 /* ══ CERTS ══ */
-.certs-body{padding:48px 72px}
-.certs-body .panel-head{margin-bottom:36px}
-.certs-body .panel-head .meta{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-light);margin-bottom:8px}
-.certs-body .panel-head h2{font-family:'DM Serif Display',serif;font-size:38px;font-weight:400}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.cert-card{background:var(--cream-dark);border:1px solid #cdc7bc;padding:22px 18px 18px;position:relative;transition:transform 0.22s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.22s;overflow:hidden;cursor:default}
-.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 0.28s ease}
+.certs-body{padding:36px 48px}
+.certs-body .panel-head{margin-bottom:28px}
+.certs-body .panel-head .meta{
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(74,222,154,0.45);margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;
+}
+.certs-body .panel-head .meta::before{content:'root@sara:~$';color:var(--t-green);opacity:0.7;margin-right:4px}
+.certs-body .panel-head h2{
+  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
+  color:var(--t-green);text-shadow:0 0 20px rgba(74,222,154,0.3);
+}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cert-card{
+  background:var(--t-bg2);
+  border:1px solid var(--t-green-border);
+  padding:18px 16px 16px;
+  position:relative;overflow:hidden;cursor:default;
+  transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+  border-radius:3px;
+}
+.cert-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--t-green);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.28s ease;
+  box-shadow:0 0 8px var(--t-green);
+}
 .cert-card:hover::before{transform:scaleX(1)}
-.cert-card:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 10px 28px rgba(0,0,0,0.11)}
-.cert-icon{font-size:24px;margin-bottom:12px;display:block}
-.cert-card h3{font-size:12px;font-weight:500;letter-spacing:0.03em;margin-bottom:5px;line-height:1.4}
-.cert-issuer{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light)}
-.cert-badge{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1)}
-.cert-card:hover .cert-badge{transform:rotate(18deg) scale(1.1)}
-.cert-badge svg{width:11px;height:11px;fill:white}
+.cert-card:hover{
+  border-color:rgba(74,222,154,0.4);
+  box-shadow:0 0 18px rgba(74,222,154,0.08);
+  transform:translateY(-3px);
+}
+.cert-icon{font-size:20px;margin-bottom:10px;display:block}
+.cert-card h3{
+  font-size:11px;font-weight:500;letter-spacing:0.04em;
+  color:rgba(74,222,154,0.9);margin-bottom:4px;line-height:1.4;
+}
+.cert-issuer{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(74,222,154,0.4)}
+.cert-badge{
+  position:absolute;top:12px;right:12px;
+  width:20px;height:20px;border-radius:50%;
+  border:1px solid var(--t-green-border);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),border-color 0.2s;
+}
+.cert-card:hover .cert-badge{transform:rotate(18deg) scale(1.1);border-color:var(--t-green)}
+.cert-badge svg{width:9px;height:9px;fill:var(--t-green)}
 
-@keyframes certCardIn{from{opacity:0;transform:translateY(18px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-.folder-panel.open .cert-card{animation:certCardIn 0.38s cubic-bezier(0.34,1.56,0.64,1) both}
-.folder-panel.open .cert-card:nth-child(1){animation-delay:.06s}.folder-panel.open .cert-card:nth-child(2){animation-delay:.10s}
-.folder-panel.open .cert-card:nth-child(3){animation-delay:.14s}.folder-panel.open .cert-card:nth-child(4){animation-delay:.18s}
-.folder-panel.open .cert-card:nth-child(5){animation-delay:.22s}.folder-panel.open .cert-card:nth-child(6){animation-delay:.26s}
-.folder-panel.open .cert-card:nth-child(7){animation-delay:.30s}.folder-panel.open .cert-card:nth-child(8){animation-delay:.34s}
-.folder-panel.open .cert-card:nth-child(9){animation-delay:.38s}
+/* ══ PROJECTS — RETRO TERMINAL ══ */
+:root{
+  --t-bg:#080c08;
+  --t-bg2:#0c110c;
+  --t-green:#4ade9a;
+  --t-green-dim:rgba(74,222,154,0.55);
+  --t-green-faint:rgba(74,222,154,0.08);
+  --t-green-border:rgba(74,222,154,0.22);
+  --t-amber:#f5c542;
+  --t-red:#ff5f57;
+}
+
+/* override folder panel for projects only */
+#panel-projects{
+  background:var(--t-bg);
+  border:1px solid var(--t-green-border);
+  border-radius:8px;
+  box-shadow:0 0 40px rgba(74,222,154,0.08), 0 20px 60px rgba(0,0,0,0.7);
+}
+#panel-projects .folder-drag-pill{background:var(--t-green-border)}
+#panel-projects .folder-handle{
+  background:var(--t-bg2);
+  border-bottom:1px solid var(--t-green-border);
+  border-radius:8px 8px 0 0;
+  padding:10px 20px 10px;
+}
+#panel-projects .folder-handle-title{
+  color:var(--t-green);
+  font-size:10px;letter-spacing:0.2em;
+  display:flex;align-items:center;gap:10px;
+}
+#panel-projects .folder-handle-title::before{
+  content:'';display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--t-green);
+  box-shadow:0 0 6px var(--t-green);
+  animation:termPulse 2s ease-in-out infinite;
+}
+@keyframes termPulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+#panel-projects .folder-close{
+  color:var(--t-green-dim);font-size:14px;
+  border:1px solid var(--t-green-border);border-radius:3px;
+  width:22px;height:22px;
+}
+#panel-projects .folder-close:hover{color:var(--t-red);border-color:var(--t-red);opacity:1;transform:none}
+
+/* scanline overlay on the whole panel */
+#panel-projects::after{
+  content:'';pointer-events:none;
+  position:absolute;inset:0;z-index:200;border-radius:8px;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.13) 2px,
+    rgba(0,0,0,0.13) 4px
+  );
+}
+
+.file-layout{display:flex;height:100%}
+
+/* ── SIDEBAR ── */
+.file-sidebar{
+  width:260px;min-width:220px;flex-shrink:0;
+  border-right:1px solid var(--t-green-border);
+  background:var(--t-bg2);
+  overflow-y:auto;
+}
+.file-sidebar::-webkit-scrollbar{width:4px}
+.file-sidebar::-webkit-scrollbar-track{background:transparent}
+.file-sidebar::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
+
+.file-sidebar-header{
+  padding:16px 18px 12px;
+  border-bottom:1px solid var(--t-green-border);
+  position:sticky;top:0;background:var(--t-bg2);z-index:2;
+}
+.file-sidebar-header span{
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--t-green-dim);
+  display:flex;align-items:center;gap:8px;
+}
+.file-sidebar-header span::before{content:'> ';color:var(--t-green);opacity:0.6}
+
+.file-item{
+  padding:14px 18px;
+  border-bottom:1px solid rgba(74,222,154,0.07);
+  cursor:pointer;
+  border-left:2px solid transparent;
+  transition:background 0.15s,border-left-color 0.15s;
+  position:relative;
+}
+.file-item:hover{background:var(--t-green-faint);border-left-color:rgba(74,222,154,0.4)}
+.file-item.active{
+  background:rgba(74,222,154,0.06);
+  border-left-color:var(--t-green);
+}
+.fi-badge{
+  display:inline-block;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:2px 7px;border:1px solid;border-radius:2px;
+  margin-bottom:6px;
+}
+.fi-badge.siem{color:#5bc8fa;border-color:rgba(91,200,250,0.35)}
+.fi-badge.offensive{color:#f5a742;border-color:rgba(245,167,66,0.35)}
+.fi-badge.identity{color:#b07aff;border-color:rgba(176,122,255,0.35)}
+
+.fi-date{font-size:9px;letter-spacing:0.1em;color:rgba(74,222,154,0.4);margin-bottom:3px}
+.fi-title{font-size:12px;font-weight:500;color:rgba(74,222,154,0.9);margin-bottom:3px;letter-spacing:0.02em}
+.fi-preview{font-size:10px;color:rgba(74,222,154,0.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* cursor blink on active item */
+.file-item.active .fi-title::after{
+  content:'_';
+  animation:blink 1s step-end infinite;
+  color:var(--t-green);
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── DETAIL PANE ── */
+.file-detail{
+  flex:1;padding:32px 40px;overflow-y:auto;
+  background:var(--t-bg);
+  position:relative;
+}
+.file-detail::-webkit-scrollbar{width:4px}
+.file-detail::-webkit-scrollbar-track{background:transparent}
+.file-detail::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
+
+/* prompt line at top */
+.file-detail-meta{
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(74,222,154,0.5);margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;
+}
+.file-detail-meta::before{content:'root@sara:~$';color:var(--t-green);margin-right:4px;opacity:0.7}
+
+.file-detail h2{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:20px;font-weight:500;
+  color:var(--t-green);
+  margin-bottom:20px;line-height:1.3;
+  letter-spacing:0.01em;
+  text-shadow:0 0 20px rgba(74,222,154,0.3);
+}
+
+/* key stat strip */
+.proj-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--t-green-border);
+  border:1px solid var(--t-green-border);
+  margin-bottom:24px;
+}
+.proj-stat{
+  background:var(--t-bg2);
+  padding:12px 14px;
+  display:flex;flex-direction:column;gap:3px;
+}
+.proj-stat-val{font-size:18px;font-weight:500;color:var(--t-green);letter-spacing:0.02em;text-shadow:0 0 12px rgba(74,222,154,0.4)}
+.proj-stat-lbl{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(74,222,154,0.45)}
+
+.file-detail p{
+  font-size:12px;line-height:1.85;
+  color:rgba(74,222,154,0.65);
+  margin-bottom:14px;max-width:640px;
+}
+.file-detail p strong{color:rgba(74,222,154,0.9);font-weight:500}
+
+/* outcome list — looks like terminal output */
+.term-list{
+  margin:16px 0 20px;
+  border-left:2px solid var(--t-green-border);
+  padding-left:16px;
+}
+.term-list li{
+  list-style:none;
+  font-size:11px;line-height:1.9;
+  color:rgba(74,222,154,0.65);
+  padding-left:0;
+  position:relative;
+}
+.term-list li::before{content:'[OK] ';color:var(--t-green);font-size:10px;letter-spacing:0.05em}
+
+/* tags */
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px}
+.file-tag{
+  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;
+  border:1px solid var(--t-green-border);
+  color:rgba(74,222,154,0.6);
+  border-radius:2px;
+  background:var(--t-green-faint);
+  transition:background 0.15s,color 0.15s,border-color 0.15s;cursor:default;
+}
+.file-tag:hover{background:rgba(74,222,154,0.15);color:var(--t-green);border-color:var(--t-green)}
+
+/* github link */
+.github-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t-green);text-decoration:none;
+  border:1px solid var(--t-green-border);
+  padding:8px 16px;border-radius:3px;
+  background:var(--t-green-faint);
+  transition:background 0.2s,box-shadow 0.2s;
+}
+.github-link:hover{
+  background:rgba(74,222,154,0.12);
+  box-shadow:0 0 14px rgba(74,222,154,0.15);
+}
+
+@keyframes detailIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+.file-detail.switching{animation:detailIn 0.2s ease both}
+
+@keyframes certCardIn{from{opacity:0;transform:translateY(12px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.folder-panel.open .cert-card{animation:certCardIn 0.32s ease both}
+.folder-panel.open .cert-card:nth-child(1){animation-delay:.04s}.folder-panel.open .cert-card:nth-child(2){animation-delay:.08s}
+.folder-panel.open .cert-card:nth-child(3){animation-delay:.12s}.folder-panel.open .cert-card:nth-child(4){animation-delay:.16s}
+.folder-panel.open .cert-card:nth-child(5){animation-delay:.20s}.folder-panel.open .cert-card:nth-child(6){animation-delay:.24s}
+.folder-panel.open .cert-card:nth-child(7){animation-delay:.28s}.folder-panel.open .cert-card:nth-child(8){animation-delay:.32s}
+.folder-panel.open .cert-card:nth-child(9){animation-delay:.36s}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:680px){
@@ -508,24 +846,20 @@ html,body{
 <div class="folder-panel" id="panel-about">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
-    <span class="folder-handle-title">About</span>
+    <span class="folder-handle-title">whoami — /home/sara/profile.md</span>
     <button class="folder-close" onclick="closeAll()">✕</button>
   </div>
   <div class="folder-inner">
     <div class="about-body">
-      <div class="about-meta">Profile</div>
-      <h2>Sara Goodie</h2>
-      <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis, with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
-
+      <div class="term-prompt">cat profile.md</div>
+      <h2>Sara Goodie // Cybersecurity Analyst</h2>
+      <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis — with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
       <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren't immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
-
       <p>Through my labs, I've simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I've worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
-
-      <p>During my internship, I gained experience in an enterprise environment, including working with Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, which gave me insight into how technology and support systems function in real-time, high-demand environments.</p>
-
+      <p>During my internship, I gained experience in an enterprise environment — Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, giving me insight into how technology and support systems function in real-time, high-demand environments.</p>
       <p>I'm continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
-     
-      <div class="about-meta" style="margin-top:20px;margin-bottom:10px">Affiliations</div>
+      <hr class="about-divider"/>
+      <div class="about-section-label">affiliations</div>
       <div class="cert-chips">
         <span class="cert-chip">WGU Cyber Club — Member</span>
         <span class="cert-chip">WiCyS — Member</span>
@@ -539,18 +873,20 @@ html,body{
 <div class="folder-panel" id="panel-experience">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
-    <span class="folder-handle-title">Experience</span>
+    <span class="folder-handle-title">history — /home/sara/work.log</span>
     <button class="folder-close" onclick="closeAll()">✕</button>
   </div>
   <div class="folder-inner">
     <div class="exp-body">
-      <div class="about-meta">Work History</div>
+      <div class="term-prompt">cat work.log</div>
       <h2>Work Experience</h2>
 
       <div class="exp-item">
         <div>
-          <div class="exp-role">IT Intern</div>
-          <div class="exp-company">Detroit Pistons IT Operations Team</div>
+          <div class="exp-header-left">
+            <div class="exp-role">IT Intern</div>
+            <div class="exp-company">Detroit Pistons · IT Operations Team</div>
+          </div>
           <ul class="exp-bullets">
             <li>Performed hardware/software troubleshooting, device imaging, and ticket resolution in a hybrid enterprise environment using Vivantio.</li>
             <li>Managed identity and access provisioning in Active Directory, including user account creation and permission updates.</li>
@@ -563,8 +899,10 @@ html,body{
 
       <div class="exp-item">
         <div>
-          <div class="exp-role">Advisor — Customer Solutions Team</div>
-          <div class="exp-company">Best Buy</div>
+          <div class="exp-header-left">
+            <div class="exp-role">Advisor — Customer Solutions Team</div>
+            <div class="exp-company">Best Buy</div>
+          </div>
           <ul class="exp-bullets">
             <li>Provided technical guidance to customers on hardware and software solutions, strengthening troubleshooting and problem-solving skills.</li>
             <li>Diagnosed and resolved common technical issues for customer devices, including connectivity, performance, and configuration problems.</li>
@@ -574,22 +912,24 @@ html,body{
         <div class="exp-date">Oct – Dec 2022</div>
       </div>
 
-      <div style="margin-top:36px">
-        <div class="about-meta" style="margin-bottom:16px">Education</div>
-        <div class="exp-item">
-          <div>
-            <div class="exp-role">BS — Cybersecurity & Information Assurance</div>
+      <div class="exp-edu-label">education</div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-header-left">
+            <div class="exp-role">BS — Cybersecurity &amp; Information Assurance</div>
             <div class="exp-company">Western Governors University</div>
           </div>
-          <div class="exp-date">Graduated 2026</div>
         </div>
-        <div class="exp-item">
-          <div>
+        <div class="exp-date">Graduated 2026</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-header-left">
             <div class="exp-role">Associate in Liberal Arts</div>
             <div class="exp-company">Henry Ford Community College</div>
           </div>
-          <div class="exp-date">2021</div>
         </div>
+        <div class="exp-date">2021</div>
       </div>
     </div>
   </div>
@@ -600,27 +940,30 @@ html,body{
 <div class="folder-panel" id="panel-projects">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
-    <span class="folder-handle-title">Projects</span>
+    <span class="folder-handle-title">projects — /home/sara/labs</span>
     <button class="folder-close" onclick="closeAll()">✕</button>
   </div>
   <div class="folder-inner">
     <div class="file-layout">
       <div class="file-sidebar">
-        <div class="file-sidebar-header"><span>All Projects</span></div>
+        <div class="file-sidebar-header"><span>ls -la ./projects</span></div>
         <div class="file-item active" onclick="showProject('soc',this)">
-          <div class="fi-date">2025</div>
-          <div class="fi-title">SOC Deployment & SIEM</div>
-          <div class="fi-preview">Microsoft Azure & Sentinel…</div>
+          <div class="fi-badge siem">SIEM</div>
+          <div class="fi-date">2025-04</div>
+          <div class="fi-title">SOC Deployment &amp; SIEM</div>
+          <div class="fi-preview">Azure · Sentinel · KQL</div>
         </div>
         <div class="file-item" onclick="showProject('attack',this)">
-          <div class="fi-date">2025</div>
+          <div class="fi-badge offensive">OFFENSIVE</div>
+          <div class="fi-date">2025-01</div>
           <div class="fi-title">Attack Detection Lab</div>
-          <div class="fi-preview">VirtualBox, Splunk & Sysmon…</div>
+          <div class="fi-preview">Splunk · Sysmon · Kali</div>
         </div>
         <div class="file-item" onclick="showProject('ad',this)">
-          <div class="fi-date">2025</div>
-          <div class="fi-title">Active Directory Home Lab</div>
-          <div class="fi-preview">Windows Server domain controller…</div>
+          <div class="fi-badge identity">IDENTITY</div>
+          <div class="fi-date">2023-11</div>
+          <div class="fi-title">Active Directory Lab</div>
+          <div class="fi-preview">WinServer · GPO · PS</div>
         </div>
       </div>
       <div class="file-detail" id="file-detail-pane"></div>
@@ -747,44 +1090,57 @@ html,body{
 /* ══ PROJECTS ══ */
 const projects={
   soc:{
-    date:'Featured Project',
+    cmd:'cat soc-siem.md',
     title:'SOC Deployment & SIEM Implementation',
-    body:`<p>Built a full Security Operations Center pipeline on Microsoft Azure, provisioning a Windows Server VM to monitor RDP events, integrate threat intelligence feeds with IoCs, and configure custom alerts for real-time incident correlation.</p>
-          <p>Engineered automated response workflows and log analytics workspaces using Microsoft Sentinel to reduce manual triage time and strengthen overall security posture.</p>
-          <p><strong>Key outcomes:</strong></p>
-          <p>— Live threat feed integration with IoC matching<br>— Custom Sentinel playbooks for automated response<br>— Reduced triage time through dashboard automation</p>`,
+    stats:[{val:'3',lbl:'Azure VMs'},{val:'12',lbl:'Alert Rules'},{val:'100%',lbl:'Log Coverage'}],
+    desc:'Built a full SOC pipeline on Microsoft Azure — provisioned a Windows Server VM to monitor RDP events, integrated threat intelligence feeds with IoC matching, and configured custom Sentinel alerts for real-time incident correlation.',
+    desc2:'Engineered automated playbooks to reduce manual triage and built a KQL-based dashboard for live threat visibility.',
+    outcomes:['Live threat feed integration with IoC matching','Custom Sentinel playbooks for automated response','KQL dashboards for real-time alert triage','Reduced manual investigation time significantly'],
     tags:['Azure','Microsoft Sentinel','SIEM','Log Analytics','Incident Response','KQL'],
     github:'https://github.com/saragoodie'
   },
   attack:{
-    date:'2024',
-    title:'Attack Detection Lab — VirtualBox, Splunk & Sysmon',
-    body:`<p>Deployed attacker and vulnerable target VMs in VirtualBox to simulate real-world threat scenarios. Configured Splunk to ingest and analyze Windows Event Logs via Sysmon, enabling end-to-end attack visibility.</p>
-          <p>Demonstrated live endpoint compromise and threat detection to the Detroit Pistons IT department, showcasing lateral movement and detection techniques.</p>
-          <p><strong>Attack scenarios modeled:</strong></p>
-          <p>— Credential dumping via Mimikatz<br>— Lateral movement detection in Splunk<br>— Sysmon event ID correlation for malware behavior</p>`,
+    cmd:'cat attack-lab.md',
+    title:'Attack Detection Lab — Splunk & Sysmon',
+    stats:[{val:'4',lbl:'Attack Chains'},{val:'200+',lbl:'Event IDs'},{val:'Live',lbl:'Detection'}],
+    desc:'Deployed attacker and victim VMs in VirtualBox to simulate real-world threat scenarios. Configured Splunk to ingest Windows Event Logs via Sysmon for end-to-end attack visibility.',
+    desc2:'Demonstrated live endpoint compromise and detection to the Detroit Pistons IT department — walking through lateral movement, credential dumping, and how each action surfaces in logs.',
+    outcomes:['Credential dumping via Mimikatz with Splunk detection','Lateral movement mapped and alerted in real time','Sysmon event ID correlation for malware behavior','Live demo presented to enterprise IT team'],
     tags:['Splunk','Sysmon','VirtualBox','Kali Linux','Threat Detection','DFIR'],
     github:'https://github.com/saragoodie'
   },
   ad:{
-    date:'2023',
+    cmd:'cat active-directory.md',
     title:'Active Directory Home Lab — Windows Server',
-    body:`<p>Configured a full Windows Server domain controller environment with DNS, DHCP, and Group Policy to simulate enterprise Active Directory administration.</p>
-          <p>Managed user accounts and permissions mirroring real-world enterprise AD operations, including OU structure, security group policies, and user provisioning workflows.</p>
-          <p><strong>Components built:</strong></p>
-          <p>— Domain controller + DNS/DHCP setup<br>— Group Policy Objects for security hardening<br>— User provisioning automation via PowerShell</p>`,
+    stats:[{val:'1',lbl:'Domain'},{val:'50+',lbl:'GPO Rules'},{val:'PS',lbl:'Automated'}],
+    desc:'Configured a full Windows Server domain controller with DNS, DHCP, and Group Policy to simulate enterprise AD administration. Built OU structure, security group policies, and user provisioning workflows.',
+    desc2:'Practiced the full identity lifecycle — from account creation to access reviews — mirroring what I later did hands-on at the Detroit Pistons internship.',
+    outcomes:['Domain controller + DNS/DHCP from scratch','Group Policy Objects for security hardening','User provisioning automation via PowerShell','OU structure mirroring enterprise environments'],
     tags:['Active Directory','Windows Server','DNS','DHCP','Group Policy','PowerShell'],
     github:'https://github.com/saragoodie'
   }
 };
 
-const ghSvg=`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>`;
+const ghSvg=`<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>`;
 
 function showProject(key, el){
   const p=projects[key];
   const pane=document.getElementById('file-detail-pane');
   pane.classList.remove('switching'); void pane.offsetWidth; pane.classList.add('switching');
-  pane.innerHTML=`<div class="file-detail-meta">${p.date}</div><h2>${p.title}</h2>${p.body}<div class="tag-row">${p.tags.map(t=>`<span class="file-tag">${t}</span>`).join('')}</div><a class="github-link" href="${p.github}" target="_blank">${ghSvg} View on GitHub →</a>`;
+  pane.innerHTML=`
+    <div class="file-detail-meta">${p.cmd}</div>
+    <h2>${p.title}</h2>
+    <div class="proj-stats">
+      ${p.stats.map(s=>`<div class="proj-stat"><div class="proj-stat-val">${s.val}</div><div class="proj-stat-lbl">${s.lbl}</div></div>`).join('')}
+    </div>
+    <p>${p.desc}</p>
+    <p>${p.desc2}</p>
+    <ul class="term-list">
+      ${p.outcomes.map(o=>`<li>${o}</li>`).join('')}
+    </ul>
+    <div class="tag-row">${p.tags.map(t=>`<span class="file-tag">${t}</span>`).join('')}</div>
+    <a class="github-link" href="${p.github}" target="_blank">${ghSvg} &nbsp;view on github →</a>
+  `;
   document.querySelectorAll('.file-item').forEach(i=>i.classList.remove('active'));
   el.classList.add('active');
 }
