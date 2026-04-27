@@ -202,21 +202,52 @@ html,body{
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* ══ FOLDER PANELS — slide up ══ */
+/* ══ FOLDER PANELS — CENTERED WINDOWS ══ */
 .folder-panel{
   position:fixed;
-  bottom:0;left:0;right:0;
-  transform:translateY(100%);
-  height:calc(100vh - 64px);
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0.95);
+
+  width:90%;
+  max-width:1100px;
+  height:85vh;
+
   background:var(--cream);
   z-index:100;
-  transition:transform 0.46s cubic-bezier(0.32,0.72,0,1);
-  display:flex;flex-direction:column;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:
+    transform 0.35s cubic-bezier(0.32,0.72,0,1),
+    opacity 0.25s ease;
+
+  display:flex;
+  flex-direction:column;
   overflow:hidden;
-  border-radius:12px 12px 0 0;
-  box-shadow:0 -10px 40px rgba(0,0,0,0.35);
+
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.45);
 }
-.folder-panel.open{transform:translateY(0)}
+
+/* open state */
+.folder-panel.open{
+  transform:translate(-50%, -50%) scale(1);
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* smoother content fade */
+.folder-panel .folder-inner>*{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity 0.35s ease 0.2s, transform 0.35s ease 0.2s;
+}
+.folder-panel.open .folder-inner>*{
+  opacity:1;
+  transform:translateY(0);
+}
 
 .folder-panel .folder-inner>*{
   opacity:0;transform:translateY(16px);
@@ -499,17 +530,17 @@ html,body{
       <div class="file-sidebar">
         <div class="file-sidebar-header"><span>All Projects</span></div>
         <div class="file-item active" onclick="showProject('soc',this)">
-          <div class="fi-date">Featured</div>
+          <div class="fi-date">2025</div>
           <div class="fi-title">SOC Deployment & SIEM</div>
           <div class="fi-preview">Microsoft Azure & Sentinel…</div>
         </div>
         <div class="file-item" onclick="showProject('attack',this)">
-          <div class="fi-date">2024</div>
+          <div class="fi-date">2025</div>
           <div class="fi-title">Attack Detection Lab</div>
           <div class="fi-preview">VirtualBox, Splunk & Sysmon…</div>
         </div>
         <div class="file-item" onclick="showProject('ad',this)">
-          <div class="fi-date">2023</div>
+          <div class="fi-date">2025</div>
           <div class="fi-title">Active Directory Home Lab</div>
           <div class="fi-preview">Windows Server domain controller…</div>
         </div>
@@ -697,19 +728,40 @@ function showProject(key, el){
 let activePanel=null, activeBtn=null;
 
 function openPanel(name, btn){
-  const panel=document.getElementById('panel-'+name);
-  if(activePanel===panel){closeAll();return}
-  if(activePanel){activePanel.classList.remove('open');if(activeBtn)activeBtn.classList.remove('active')}
-  panel.classList.add('open'); btn.classList.add('active');
-  activePanel=panel; activeBtn=btn;
+  const panel = document.getElementById('panel-' + name);
+
+  if(activePanel === panel){
+    closeAll();
+    return;
+  }
+
+  if(activePanel){
+    activePanel.classList.remove('open');
+    if(activeBtn) activeBtn.classList.remove('active');
+  }
+
+  panel.classList.add('open');
+  btn.classList.add('active');
+
+  activePanel = panel;
+  activeBtn = btn;
+
+  document.getElementById('hero').classList.add('dimmed');
+
   history.replaceState(null,'','#'+name);
-  if(name==='about') triggerAboutCounters();
+
+  if(name === 'about') triggerAboutCounters();
 }
 
 function closeAll(){
-  document.querySelectorAll('.folder-panel').forEach(p=>p.classList.remove('open'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  activePanel=null; activeBtn=null;
+  document.querySelectorAll('.folder-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+  document.getElementById('hero').classList.remove('dimmed');
+
+  activePanel = null;
+  activeBtn = null;
+
   history.replaceState(null,'','#');
 }
 
