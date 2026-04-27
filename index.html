@@ -401,47 +401,36 @@ html,body{
     <div class="about-body">
       <div class="about-meta">Profile</div>
       <h2>Sara Goodie</h2>
-      <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis, with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
+      <p>IT and cybersecurity professional with internship experience at the <strong>Detroit Pistons IT Operations Team</strong> and a BS in Cybersecurity & Information Assurance (WGU, expected 2026). Proficient in SIEM deployment, endpoint security, and incident response.</p>
+      <p>Skilled with Microsoft Sentinel, Splunk, and CrowdStrike — certified across the full CompTIA security track including CySA+ and Pentest+. I build real-world labs, simulate attacks, and engineer detection pipelines.</p>
+      <p><a href="mailto:segoodie12@gmail.com" style="color:var(--ink)">segoodie12@gmail.com</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/saragoodie" target="_blank" style="color:var(--ink)">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/saragoodie" target="_blank" style="color:var(--ink)">GitHub</a></p>
 
-      <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren’t immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
+      <div class="stat-row">
+        <div class="stat-block"><span class="s-num" data-target="9" data-counted="false">0</span><span class="s-label">Certifications</span></div>
+        <div class="stat-block"><span class="s-num" data-target="3" data-counted="false">0</span><span class="s-label">Labs Built</span></div>
+        <div class="stat-block"><span class="s-num" data-target="1" data-counted="false">0</span><span class="s-label">Internship</span></div>
+        <div class="stat-block"><span class="s-num" data-target="2" data-counted="false">0</span><span class="s-label">Years Experience</span></div>
+      </div>
 
-      <p>Through my labs, I’ve simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I’ve worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
+      <div class="about-meta" style="margin-bottom:10px">Certifications at a glance</div>
+      <div class="cert-chips">
+        <span class="cert-chip">Pentest+</span><span class="cert-chip">CySA+</span>
+        <span class="cert-chip">Security+</span><span class="cert-chip">Network+</span>
+        <span class="cert-chip">A+</span><span class="cert-chip">Project+</span>
+        <span class="cert-chip">ISC² Associate</span><span class="cert-chip">ITIL 4 Foundation</span>
+        <span class="cert-chip">LPI Linux Essentials</span>
+      </div>
 
-      <p>During my internship, I gained experience in an enterprise environment, including working with Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, which gave me insight into how technology and support systems function in real-time, high-demand environments.</p>
-
-      <p>I’m continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
-
-     <div class="about-meta" style="margin-top:20px;margin-bottom:10px">Affiliations</div>
-<div class="cert-chips">
-  <span class="cert-chip">WGU Cyber Club — Member</span>
-  <span class="cert-chip">WiCyS — Member</span>
+      <div class="skills-grid">
+        <div class="skill-block"><h4>Security Tools</h4><p>Splunk · Microsoft Sentinel · Wireshark · Nmap · Metasploit · CrowdStrike · KnowBe4 · Censys · Zenmap · Sysmon</p></div>
+        <div class="skill-block"><h4>Cloud & Virtualization</h4><p>Microsoft Azure · Hyper-V · VMware · Microsoft Intune · VirtualBox</p></div>
+        <div class="skill-block"><h4>Networking & Systems</h4><p>Active Directory · Windows Server · Ubuntu · Kali Linux · DNS · DHCP · L2/L3 Networking</p></div>
+        <div class="skill-block"><h4>Scripting & Compliance</h4><p>Python · PowerShell · SQL · C++ · NIST 800-171 · HIPAA · SOX · ISO/IEC 27001</p></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="about-meta" style="margin-top:35px;margin-bottom:12px">Skills</div>
-
-<div class="skills-grid" style="margin-top:10px;">
-
-  <div class="skill-block">
-    <h4>Security & Detection</h4>
-    <p>Log analysis & correlation · SIEM fundamentals (Splunk, Microsoft Sentinel) · Endpoint monitoring (Sysmon, CrowdStrike) · Threat detection & alerting</p>
-  </div>
-
-  <div class="skill-block">
-    <h4>Cloud & Virtualization</h4>
-    <p>Microsoft Azure · Virtual machines & lab environments · Hyper-V · VMware · VirtualBox</p>
-  </div>
-
-  <div class="skill-block">
-    <h4>Networking & Systems</h4>
-    <p>Active Directory fundamentals · Windows Server · Linux (Ubuntu, Kali) · DNS · DHCP · L2/L3 networking</p>
-  </div>
-
-  <div class="skill-block">
-    <h4>Scripting & Automation</h4>
-    <p>Python (basic scripting) · PowerShell (automation & administration) · SQL fundamentals</p>
-  </div>
-
-</div>
 
 <!-- ════════════ PANEL: EXPERIENCE ════════════ -->
 <div class="folder-panel" id="panel-experience">
@@ -623,11 +612,11 @@ loader.load('FINALPLS2.glb', function(gltf){
   pcModel = gltf.scene;
 
   pcModel.scale.set(1.4, 1.4, 1.4);
-  pcModel.position.set(2.5, -0.5, 0);
+  pcModel.position.set(3.0, -0.5, 0);
 // 👇 ADD THIS HERE
   pcModel.traverse((child)=>{
     if(child.isMesh){
-     child.material.color.multiplyScalar(0.9);
+     child.material.color.multiplyScalar(1.1);
     }
   });
   scene.add(pcModel);
@@ -712,20 +701,13 @@ function showProject(key, el){
 let activePanel=null, activeBtn=null;
 
 function openPanel(name, btn){
-  // Close any open panel first
-  document.querySelectorAll('.folder-panel').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
-  const panel = document.getElementById('panel-' + name);
-  panel.classList.add('open');
-  btn.classList.add('active');
-
-  activePanel = panel;
-  activeBtn = btn;
-
-  history.replaceState(null, '', '#' + name);
-
-  if(name === 'about') triggerAboutCounters();
+  const panel=document.getElementById('panel-'+name);
+  if(activePanel===panel){closeAll();return}
+  if(activePanel){activePanel.classList.remove('open');if(activeBtn)activeBtn.classList.remove('active')}
+  panel.classList.add('open'); btn.classList.add('active');
+  activePanel=panel; activeBtn=btn;
+  history.replaceState(null,'','#'+name);
+  if(name==='about') triggerAboutCounters();
 }
 
 function closeAll(){
