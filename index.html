@@ -33,6 +33,42 @@
   --accent-border:rgba(74,222,154,0.35);
 }
 
+/* ── PAGE LOAD TRANSITION ── */
+#page-loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+  transition:opacity 0.7s ease 0.2s, visibility 0.7s ease 0.2s;
+}
+#page-loader.fade-out{opacity:0;visibility:hidden}
+.loader-name{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.32em;text-transform:uppercase;
+  color:rgba(74,222,154,0.5);
+  animation:loaderPulse 1s ease-in-out infinite;
+}
+.loader-bar{
+  width:160px;height:1px;
+  background:rgba(74,222,154,0.12);
+  position:relative;overflow:hidden;
+}
+.loader-bar-fill{
+  position:absolute;top:0;left:0;height:100%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent);
+  animation:loaderFill 1.1s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes loaderFill{from{width:0}to{width:100%}}
+@keyframes loaderPulse{0%,100%{opacity:0.5}50%{opacity:1}}
+
+/* Site fades in after loader */
+#site-wrap{
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+#site-wrap.visible{opacity:1}
+
 html,body{
   width:100%;height:100%;
   overflow:hidden;
@@ -445,7 +481,103 @@ box-shadow:
 #panel-experience .folder-inner::-webkit-scrollbar-thumb,
 #panel-certs .folder-inner::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
 
-.about-body{padding:44px 60px;max-width:960px}
+/* ── ABOUT LAYOUT — two-column ── */
+.about-layout{
+  display:grid;
+  grid-template-columns:1fr 260px;
+  gap:0;
+  min-height:100%;
+}
+.about-body{padding:44px 52px;max-width:none}
+.about-sidebar{
+  border-left:1px solid var(--t-green-border);
+  padding:32px 24px;
+  background:var(--t-bg2);
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  position:relative;
+  overflow:hidden;
+}
+/* scanlines on sidebar */
+.about-sidebar::after{
+  content:'';pointer-events:none;position:absolute;inset:0;z-index:1;
+  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.07) 3px,rgba(0,0,0,0.07) 6px);
+}
+.about-sidebar > *{position:relative;z-index:2}
+
+/* sidebar sections */
+.asb-section{
+  padding:20px 0;
+  border-bottom:1px solid var(--t-green-border);
+}
+.asb-section:first-child{padding-top:0}
+.asb-section:last-child{border-bottom:none}
+
+.asb-label{
+  font-size:8px;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(74,222,154,0.38);
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.asb-label::before{content:'//';color:var(--t-green);opacity:0.4;font-size:9px}
+
+/* status badge */
+.asb-status{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:500;
+  color:var(--t-green);
+  letter-spacing:0.04em;
+}
+.asb-status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--t-green);
+  box-shadow:0 0 8px var(--t-green);
+  animation:termPulse 2s ease-in-out infinite;
+  flex-shrink:0;
+}
+
+/* targeting / roles */
+.asb-roles{
+  display:flex;flex-direction:column;gap:5px;
+  margin-top:2px;
+}
+.asb-role-item{
+  font-size:11px;color:rgba(74,222,154,0.75);
+  letter-spacing:0.03em;line-height:1.5;
+  display:flex;align-items:center;gap:6px;
+}
+.asb-role-item::before{content:'›';color:var(--t-green);opacity:0.6;font-size:12px}
+.asb-subtext{
+  font-size:9px;color:rgba(74,222,154,0.35);
+  letter-spacing:0.08em;margin-top:7px;
+}
+
+/* education */
+.asb-edu-title{
+  font-size:12px;font-weight:500;
+  color:rgba(74,222,154,0.85);
+  letter-spacing:0.02em;margin-bottom:3px;
+}
+.asb-edu-meta{
+  font-size:9px;color:rgba(74,222,154,0.4);
+  letter-spacing:0.08em;
+  line-height:1.7;
+}
+
+
+/* links */
+.asb-links{display:flex;flex-direction:column;gap:7px}
+.asb-link{
+  font-size:10px;color:rgba(74,222,154,0.55);
+  text-decoration:none;letter-spacing:0.04em;
+  display:flex;align-items:center;gap:6px;
+  transition:color 0.2s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.asb-link::before{content:'↗';font-size:9px;color:var(--t-green);opacity:0.5;flex-shrink:0}
+.asb-link:hover{color:var(--t-green)}
+
 .term-prompt{
   font-size:10px;letter-spacing:0.18em;text-transform:lowercase;
   color:rgba(74,222,154,0.5);margin-bottom:8px;
@@ -517,12 +649,6 @@ box-shadow:
   padding-left:0;position:relative;margin-bottom:4px;
 }
 .exp-bullets li::before{content:'> ';color:var(--t-green);opacity:0.6}
-.exp-edu-label{
-  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
-  color:rgba(74,222,154,0.4);margin:28px 0 4px;
-  display:flex;align-items:center;gap:8px;
-}
-.exp-edu-label::before{content:'##';color:var(--t-green);opacity:0.4;margin-right:2px}
 
 .certs-body{padding:44px 60px}
 .certs-body .panel-head{margin-bottom:32px}
@@ -794,6 +920,10 @@ box-shadow:
 .folder-panel.open .cert-card:nth-child(7){animation-delay:.28s}.folder-panel.open .cert-card:nth-child(8){animation-delay:.32s}
 .folder-panel.open .cert-card:nth-child(9){animation-delay:.36s}
 
+@media(max-width:780px){
+  .about-layout{grid-template-columns:1fr}
+  .about-sidebar{border-left:none;border-top:1px solid var(--t-green-border)}
+}
 @media(max-width:680px){
   .folder-panel{height:calc(100vh - 50px);border-radius:10px 10px 0 0}
   .about-body,.certs-body,.exp-body{padding:28px 20px}
@@ -968,6 +1098,14 @@ box-shadow:
 </head>
 <body>
 
+<!-- ── PAGE LOADER ── -->
+<div id="page-loader">
+  <div class="loader-name">sara_goodie.portfolio</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<div id="site-wrap">
+
 <div id="grain"></div>
 
 <!-- ════════ CONTACT MODAL ════════ -->
@@ -979,7 +1117,7 @@ box-shadow:
     </div>
     <div class="cmodal-body">
       <div id="cmodal-form-wrap">
-        <p class="cmodal-intro">Got an opportunity or want to collaborate? Feel free to message me directly! I’d love to connect.</p>
+        <p class="cmodal-intro">Got an opportunity or want to collaborate? Feel free to message me directly! I'd love to connect.</p>
         <div class="cfield-row">
           <div class="cfield">
             <label>Your Name</label>
@@ -1030,8 +1168,6 @@ box-shadow:
     <div class="hero-wordmark">Portfolio 2026</div>
     <div class="hero-nav-right">
       <a href="https://linkedin.com/in/saragoodie" target="_blank">LinkedIn</a>
-      <!-- ▼ PASTE YOUR RESUME FILE PATH/URL BELOW (e.g. href="Sara_Goodie_Resume.pdf") -->
-      <a href="YOUR_RESUME_FILE_HERE.pdf" download class="nav-resume">Resume ↓</a>
       <a href="#" onclick="openContact(event)">Email</a>
     </div>
   </nav>
@@ -1069,20 +1205,66 @@ box-shadow:
     <button class="folder-close" onclick="closeAll()">✕</button>
   </div>
   <div class="folder-inner">
-    <div class="about-body">
-      <div class="term-prompt">cat profile.md</div>
-      <h2>Sara Goodie // Cybersecurity Analyst</h2>
-      <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis — with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
-      <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren't immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
-      <p>Through my labs, I've simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I've worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
-      <p>During my internship, I gained experience in an enterprise environment — Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, giving me insight into how technology and support systems function in real-time, high-demand environments.</p>
-      <p>I'm continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
-      <hr class="about-divider"/>
-      <div class="about-section-label">affiliations</div>
-      <div class="cert-chips">
-        <span class="cert-chip">WGU Cyber Club — Member</span>
-        <span class="cert-chip">WiCyS — Member</span>
+    <div class="about-layout">
+
+      <!-- main content -->
+      <div class="about-body">
+        <div class="term-prompt">cat profile.md</div>
+        <h2>Sara Goodie // Cybersecurity Analyst</h2>
+        <p>Entry-level cybersecurity professional focused on security operations, threat detection, and log analysis — with hands-on experience building and testing labs and supporting IT operations during my internship with the <strong>Detroit Pistons</strong>.</p>
+        <p>I tend to think through multiple scenarios and anticipate what could happen next when approaching a problem. Combined with a creative, outside-the-box mindset, this helps me recognize patterns and behaviors that aren't immediately obvious — which is what drew me to cybersecurity and threat detection.</p>
+        <p>Through my labs, I've simulated real-world attacks such as brute-force attempts, credential dumping, and lateral movement, then analyzed system and network logs to understand how those actions appear and can be detected. I've worked with SIEM and endpoint monitoring tools (including Splunk, Microsoft Sentinel, and Sysmon) to practice log correlation, basic alerting, and threat analysis.</p>
+        <p>During my internship, I gained experience in an enterprise environment — Active Directory, endpoint security tools, and troubleshooting across users and systems. I also had the opportunity to attend live game operations and shadow IT staff, giving me insight into how technology and support systems function in real-time, high-demand environments.</p>
+        <p>I'm continuing to develop my ability to detect, analyze, and respond to security events in real-world environments, with a focus on practical, hands-on learning.</p>
+        <hr class="about-divider"/>
+        <div class="about-section-label">affiliations</div>
+        <div class="cert-chips">
+          <span class="cert-chip">WGU Cyber Club — Member</span>
+          <span class="cert-chip">WiCyS — Member</span>
+        </div>
       </div>
+
+      <!-- sidebar -->
+       <div class="asb-section">
+          <div class="asb-label">education</div>
+          <div class="asb-edu-title">B.S. Cybersecurity &amp; IA</div>
+          <div class="asb-edu-meta">
+            WGU · Jul 2023 – Apr 2026
+          </div>
+        </div>
+      
+      
+      <aside class="about-sidebar">
+
+        <div class="asb-section">
+          <div class="asb-label">status</div>
+          <div class="asb-status">
+            <span class="asb-status-dot"></span>
+            Open to Opportunities
+          </div>
+        </div>
+
+        <div class="asb-section">
+          <div class="asb-label">targeting</div>
+          <div class="asb-roles">
+            <span class="asb-role-item">IAM Analyst</span>
+            <span class="asb-role-item">SOC Analyst</span>
+            <span class="asb-role-item">Help Desk</span>
+          </div>
+          <div class="asb-subtext"></div>
+        </div>
+
+
+        <div class="asb-section">
+          <div class="asb-label">links</div>
+          <div class="asb-links">
+            <a class="asb-link" href="https://linkedin.com/in/saragoodie" target="_blank" rel="noopener">linkedin.com/in/saragoodie</a>
+            <a class="asb-link" href="#" onclick="openContact(event)">segoodie12@gmail.com</a>
+            <a class="asb-link" href="resume.pdf" download>resume.pdf</a>
+          </div>
+        </div>
+
+      </aside>
     </div>
   </div>
 </div>
@@ -1131,25 +1313,6 @@ box-shadow:
         <div class="exp-date">Oct – Dec 2022</div>
       </div>
 
-      <div class="exp-edu-label">education</div>
-      <div class="exp-item">
-        <div>
-          <div class="exp-header-left">
-            <div class="exp-role">BS — Cybersecurity &amp; Information Assurance</div>
-            <div class="exp-company">Western Governors University</div>
-          </div>
-        </div>
-        <div class="exp-date">Graduated 2026</div>
-      </div>
-      <div class="exp-item">
-        <div>
-          <div class="exp-header-left">
-            <div class="exp-role">Associate in Liberal Arts</div>
-            <div class="exp-company">Henry Ford Community College</div>
-          </div>
-        </div>
-        <div class="exp-date">2021</div>
-      </div>
     </div>
   </div>
 </div>
@@ -1243,6 +1406,8 @@ box-shadow:
     </div>
   </div>
 </div>
+
+</div><!-- /site-wrap -->
 
 
 <!-- THREE.JS -->
@@ -1580,6 +1745,20 @@ function sendContactForm(){
   document.getElementById('cmodal-sent').style.display='block';
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
+</script>
+
+<!-- PAGE LOADER / INTRO TRANSITION -->
+<script>
+(function(){
+  const loader = document.getElementById('page-loader');
+  const site   = document.getElementById('site-wrap');
+
+  // After loader bar animation (~1.1s) + small buffer, fade out loader, fade in site
+  setTimeout(function(){
+    loader.classList.add('fade-out');
+    site.classList.add('visible');
+  }, 1400);
+})();
 </script>
 
 </body>
