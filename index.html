@@ -565,6 +565,23 @@ box-shadow:
   line-height:1.7;
 }
 
+/* award */
+.asb-award{
+  display:flex;align-items:flex-start;gap:10px;
+}
+.asb-award-icon{
+  font-size:16px;flex-shrink:0;margin-top:1px;
+  filter:drop-shadow(0 0 6px rgba(74,222,154,0.3));
+}
+.asb-award-text{}
+.asb-award-name{
+  font-size:11px;font-weight:500;
+  color:rgba(74,222,154,0.85);letter-spacing:0.02em;line-height:1.4;
+}
+.asb-award-sub{
+  font-size:9px;color:rgba(74,222,154,0.4);
+  letter-spacing:0.08em;margin-top:2px;
+}
 
 /* links */
 .asb-links{display:flex;flex-direction:column;gap:7px}
@@ -1224,16 +1241,8 @@ box-shadow:
         </div>
       </div>
 
-      <aside class="about-sidebar">
-
-  <!-- education -->
-  <div class="asb-section">
-    <div class="asb-label">education</div>
-    <div class="asb-edu-title">B.S. Cybersecurity &amp; IA</div>
-    <div class="asb-edu-meta">
-      WGU · Jul 2023 – Apr 2026
-    </div>
-  </div>
+      <!-- sidebar -->
+<aside class="about-sidebar">
 
   <div class="asb-section">
     <div class="asb-label">status</div>
@@ -1244,10 +1253,16 @@ box-shadow:
   </div>
 
   <div class="asb-section">
+    <div class="asb-label">education</div>
+    <div class="asb-edu-title">B.S. Cybersecurity &amp; IA</div>
+    <div class="asb-edu-meta">WGU · Jul 2023 – Apr 2026</div>
+  </div>
+
+  <div class="asb-section">
     <div class="asb-label">targeting</div>
     <div class="asb-roles">
-      <span class="asb-role-item">IAM Analyst</span>
       <span class="asb-role-item">SOC Analyst</span>
+      <span class="asb-role-item">IAM Analyst</span>
       <span class="asb-role-item">Help Desk</span>
     </div>
   </div>
@@ -1256,7 +1271,7 @@ box-shadow:
     <div class="asb-label">links</div>
     <div class="asb-links">
       <a class="asb-link" href="https://linkedin.com/in/saragoodie" target="_blank" rel="noopener">linkedin.com/in/saragoodie</a>
-      <a class="asb-link" href="#" onclick="openContact(event)">segoodie12@gmail.com</a>
+      <a class="asb-link" href="mailto:segoodie12@gmail.com">segoodie12@gmail.com</a>
       <a class="asb-link" href="resume.pdf" download>resume.pdf</a>
     </div>
   </div>
