@@ -28,7 +28,6 @@
   --white:rgba(255,255,255,0.85);
   --dim:rgba(255,255,255,0.32);
   --dimmer:rgba(255,255,255,0.18);
-  /* NEW: accent green for cyber feel */
   --accent:#4ade9a;
   --accent-dim:rgba(74,222,154,0.15);
   --accent-border:rgba(74,222,154,0.35);
@@ -42,7 +41,6 @@ html,body{
   cursor:auto;
 }
 
-/* ══ NOISE GRAIN ══ */
 #grain{
   position:fixed;inset:0;z-index:8;pointer-events:none;opacity:0.04;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -53,24 +51,20 @@ html,body{
   0%{background-position:0 0}25%{background-position:-40px 20px}
   50%{background-position:20px -30px}75%{background-position:-10px 40px}
 }
-/* 🔥 ADD THIS RIGHT HERE */
 @keyframes rgbGlitch {
   0%, 97%, 100% {
     transform: translate(0, 0);
     filter: none;
   }
-
   98% {
     transform: translate(-1px, 0.5px);
     filter: drop-shadow(1px 0 red) drop-shadow(-1px 0 cyan);
   }
-
   99% {
     transform: translate(2px, -1px);
     filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
   }
 }
-/* ══ HERO ══ */
 #hero{
   position:fixed;inset:0;
   background:var(--bg);
@@ -78,7 +72,6 @@ html,body{
   display:flex;flex-direction:column;
   z-index:0;
 }
-/* 🔥 ADD IT RIGHT HERE */
 @keyframes glowFlicker {
   0%, 100% {
     text-shadow:
@@ -86,42 +79,36 @@ html,body{
       0 0 40px rgba(74,222,154,0.08),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   5% {
     text-shadow:
       0 0 20px rgba(74,222,154,0.35),
       0 0 80px rgba(74,222,154,0.18),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   6% {
     text-shadow:
       0 0 6px rgba(74,222,154,0.05),
       0 0 12px rgba(74,222,154,0.03),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   7% {
     text-shadow:
       0 0 18px rgba(74,222,154,0.3),
       0 0 60px rgba(74,222,154,0.12),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   30% {
     text-shadow:
       0 0 14px rgba(74,222,154,0.2),
       0 0 50px rgba(74,222,154,0.1),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   31% {
     text-shadow:
       0 0 5px rgba(74,222,154,0.04),
       0 0 10px rgba(74,222,154,0.02),
       0 10px 40px rgba(0,0,0,0.6);
   }
-
   32% {
     text-shadow:
       0 0 16px rgba(74,222,154,0.25),
@@ -129,7 +116,6 @@ html,body{
       0 10px 40px rgba(0,0,0,0.6);
   }
 }
-/* drifting grid */
 #hero::before{
   content:'';position:absolute;inset:-80px;
   background-image:
@@ -141,7 +127,6 @@ html,body{
 }
 @keyframes gridDrift{0%{transform:translate(0,0)}100%{transform:translate(72px,72px)}}
 
-/* vignette */
 #hero::after{
   content:'';position:absolute;inset:0;
   background: radial-gradient(
@@ -153,14 +138,12 @@ html,body{
   pointer-events:none;z-index:3;
 }
 
-/* Three.js canvas — behind name */
 #orb-canvas{
   position:absolute;inset:0;z-index:1;pointer-events:none;
   opacity:0.55;
   filter: blur(0.5px) brightness(0.85);
 }
 
-/* ── IMPROVED: TOP NAV ── */
 .hero-nav{
   position:relative;z-index:20;
   display:flex;justify-content:space-between;align-items:center;
@@ -169,7 +152,6 @@ html,body{
 }
 @keyframes navFadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
-/* NEW: nav separator line at bottom */
 .hero-nav::after{
   content:'';
   position:absolute;
@@ -180,11 +162,9 @@ html,body{
 
 .hero-wordmark{
   font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-  /* IMPROVED: brighter, with accent dot */
   color:rgba(255,255,255,0.65);
   display:flex;align-items:center;gap:8px;
 }
-/* accent dot before wordmark */
 .hero-wordmark::before{
   content:'';
   display:inline-block;width:6px;height:6px;border-radius:50%;
@@ -197,7 +177,6 @@ html,body{
 .hero-nav-right{
   display:flex;align-items:center;gap:28px;
 }
-/* IMPROVED: brighter nav links with underline hover */
 .hero-nav-right a{
   font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
   color:rgba(255,255,255,0.6);text-decoration:none;
@@ -215,7 +194,6 @@ html,body{
 .hero-nav-right a:hover{color:rgba(255,255,255,0.95)}
 .hero-nav-right a:hover::after{transform:scaleX(1)}
 
-/* ══ IMPROVED: HERO CENTRE ══ */
 .hero-center{
   position:absolute;
   top:50%;left:50%;
@@ -230,7 +208,6 @@ html,body{
   align-items:center;
 }
 
-/* IMPROVED: brighter label */
 .hero-label{
   font-size:11px;letter-spacing:0.26em;
   color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:14px;
@@ -253,14 +230,12 @@ html,body{
   glowFlicker 4s infinite linear;
 }
 
-/* IMPROVED: brighter location */
 .hero-location{
   font-size:10px;letter-spacing:0.22em;
   color:rgba(255,255,255,0.38);text-transform:uppercase;margin-top:14px;
   animation:fadeUp 0.8s ease 0.55s both;
 }
 
-/* ── NEW: SPECIALTY TAGS ── */
 .hero-tags{
   display:flex;gap:8px;margin-top:14px;
   animation:fadeUp 0.8s ease 0.65s both;
@@ -275,7 +250,6 @@ html,body{
   background:rgba(74,222,154,0.05);
 }
 
-/* ── IMPROVED: TABS UNDER NAME ── */
 .tab-tray{
   display:flex;
   flex-direction:row;
@@ -319,7 +293,6 @@ html,body{
 }
 .tab-btn:hover .tab-arrow{transform:translateX(4px)}
 
-/* IMPROVED: green accent hover */
 .tab-btn:hover{
   background:rgba(74,222,154,0.08);
   border-color:rgba(74,222,154,0.4);
@@ -335,7 +308,6 @@ html,body{
 }
 .tab-btn.active .tab-arrow{transform:rotate(90deg)}
 
-/* ripple */
 .tab-btn::after{
   content:"";
   position:absolute;
@@ -353,7 +325,6 @@ html,body{
   transition:transform 0.4s ease, opacity 0.6s ease;
 }
 
-/* ── NEW: SCROLL HINT ── */
 .scroll-hint{
   margin-top:32px;
   animation:fadeUp 0.8s ease 1.1s both;
@@ -374,7 +345,6 @@ html,body{
   50%{transform:translateY(4px)}
 }
 
-/* ── NEW: subtle PC glow / ground shadow ── */
 .pc-glow{
   position:absolute;
   bottom:8%;right:10%;
@@ -391,7 +361,6 @@ html,body{
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* ══ FOLDER PANELS — CENTERED WINDOWS ══ */
 .folder-panel{
   position:fixed;
   top:50%;left:50%;
@@ -418,7 +387,6 @@ box-shadow:
 .folder-close:hover{opacity:0.5;transform:rotate(90deg)}
 .folder-inner{flex:1;overflow-y:auto;overflow-x:hidden}
 
-/* ══ SHARED TERMINAL PANEL BASE ══ */
 #panel-about,#panel-experience,#panel-certs{
   background:var(--t-bg);
   border:1px solid var(--t-green-border);
@@ -477,7 +445,6 @@ box-shadow:
 #panel-experience .folder-inner::-webkit-scrollbar-thumb,
 #panel-certs .folder-inner::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
 
-/* ══ ABOUT ══ */
 .about-body{padding:36px 48px;max-width:900px}
 .term-prompt{
   font-size:9px;letter-spacing:0.18em;text-transform:lowercase;
@@ -503,7 +470,6 @@ box-shadow:
 }
 .about-section-label::before{content:'##';color:var(--t-green);opacity:0.5;margin-right:2px}
 
-/* affiliation chips */
 .cert-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .cert-chip{
   font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
@@ -515,7 +481,6 @@ box-shadow:
 }
 .cert-chip:hover{background:rgba(74,222,154,0.12);color:var(--t-green)}
 
-/* ══ EXPERIENCE ══ */
 .exp-body{padding:36px 48px;max-width:900px}
 .exp-body h2{
   font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
@@ -559,7 +524,6 @@ box-shadow:
 }
 .exp-edu-label::before{content:'##';color:var(--t-green);opacity:0.4;margin-right:2px}
 
-/* ══ CERTS ══ */
 .certs-body{padding:36px 48px}
 .certs-body .panel-head{margin-bottom:28px}
 .certs-body .panel-head .meta{
@@ -612,7 +576,6 @@ box-shadow:
 .cert-card:hover .cert-badge{transform:rotate(18deg) scale(1.1);border-color:var(--t-green)}
 .cert-badge svg{width:9px;height:9px;fill:var(--t-green)}
 
-/* ══ PROJECTS — RETRO TERMINAL ══ */
 :root{
   --t-bg:#080c08;
   --t-bg2:#0c110c;
@@ -624,7 +587,6 @@ box-shadow:
   --t-red:#ff5f57;
 }
 
-/* override folder panel for projects only */
 #panel-projects{
   background:var(--t-bg);
   border:1px solid var(--t-green-border);
@@ -658,7 +620,6 @@ box-shadow:
 }
 #panel-projects .folder-close:hover{color:var(--t-red);border-color:var(--t-red);opacity:1;transform:none}
 
-/* scanline overlay on the whole panel */
 #panel-projects::after{
   content:'';pointer-events:none;
   position:absolute;inset:0;z-index:200;border-radius:8px;
@@ -673,7 +634,6 @@ box-shadow:
 
 .file-layout{display:flex;height:100%}
 
-/* ── SIDEBAR ── */
 .file-sidebar{
   width:260px;min-width:220px;flex-shrink:0;
   border-right:1px solid var(--t-green-border);
@@ -717,12 +677,15 @@ box-shadow:
 .fi-badge.siem{color:#5bc8fa;border-color:rgba(91,200,250,0.35)}
 .fi-badge.offensive{color:#f5a742;border-color:rgba(245,167,66,0.35)}
 .fi-badge.identity{color:#b07aff;border-color:rgba(176,122,255,0.35)}
+.fi-badge.forensics{color:#ff7eb3;border-color:rgba(255,126,179,0.35)}
+.fi-badge.legal{color:#a8d8ff;border-color:rgba(168,216,255,0.35)}
+.fi-badge.capstone{color:#ffd166;border-color:rgba(255,209,102,0.35)}
+.fi-badge.emerging{color:#c3f584;border-color:rgba(195,245,132,0.35)}
 
 .fi-date{font-size:9px;letter-spacing:0.1em;color:rgba(74,222,154,0.4);margin-bottom:3px}
 .fi-title{font-size:12px;font-weight:500;color:rgba(74,222,154,0.9);margin-bottom:3px;letter-spacing:0.02em}
 .fi-preview{font-size:10px;color:rgba(74,222,154,0.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* cursor blink on active item */
 .file-item.active .fi-title::after{
   content:'_';
   animation:blink 1s step-end infinite;
@@ -730,7 +693,6 @@ box-shadow:
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* ── DETAIL PANE ── */
 .file-detail{
   flex:1;padding:32px 40px;overflow-y:auto;
   background:var(--t-bg);
@@ -740,7 +702,6 @@ box-shadow:
 .file-detail::-webkit-scrollbar-track{background:transparent}
 .file-detail::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
 
-/* prompt line at top */
 .file-detail-meta{
   font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
   color:rgba(74,222,154,0.5);margin-bottom:6px;
@@ -759,7 +720,6 @@ box-shadow:
   0 0 25px rgba(74,222,154,0.25);
 }
 
-/* key stat strip */
 .proj-stats{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:1px;background:var(--t-green-border);
@@ -781,7 +741,6 @@ box-shadow:
 }
 .file-detail p strong{color:rgba(74,222,154,0.9);font-weight:500}
 
-/* outcome list — looks like terminal output */
 .term-list{
   margin:16px 0 20px;
   border-left:2px solid var(--t-green-border);
@@ -796,7 +755,6 @@ box-shadow:
 }
 .term-list li::before{content:'[OK] ';color:var(--t-green);font-size:10px;letter-spacing:0.05em}
 
-/* tags */
 .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px}
 .file-tag{
   font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
@@ -809,7 +767,6 @@ box-shadow:
 }
 .file-tag:hover{background:rgba(74,222,154,0.15);color:var(--t-green);border-color:var(--t-green)}
 
-/* github link */
 .github-link{
   display:inline-flex;align-items:center;gap:8px;
   font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
@@ -835,7 +792,6 @@ box-shadow:
 .folder-panel.open .cert-card:nth-child(7){animation-delay:.28s}.folder-panel.open .cert-card:nth-child(8){animation-delay:.32s}
 .folder-panel.open .cert-card:nth-child(9){animation-delay:.36s}
 
-/* ══ RESPONSIVE ══ */
 @media(max-width:680px){
   .folder-panel{height:calc(100vh - 50px);border-radius:10px 10px 0 0}
   .about-body,.certs-body,.exp-body{padding:28px 20px}
@@ -850,7 +806,6 @@ box-shadow:
   .scroll-hint{display:none}
 }
 
-/* ══ PRINT ══ */
 @media print{
   html,body{overflow:visible;height:auto;background:white}
   #hero{position:relative;height:auto;page-break-after:always}
@@ -865,9 +820,6 @@ box-shadow:
   .about-body,.exp-body,.certs-body{padding:20px}
 }
 
-/* 👇 PASTE IT HERE */
-
-/* ══ MATRIX LEFT SIDE EFFECT ══ */
 #matrix-left {
   position: absolute;
   top: 0;
@@ -877,32 +829,25 @@ box-shadow:
   overflow: hidden;
   z-index: 2;
   pointer-events: none;
-
   mask-image: linear-gradient(to right, black 65%, transparent 100%);
 }
-/* ✅ ADD THIS RIGHT HERE */
 #matrix-left canvas {
   width: 100%;
   height: 100%;
   display: block;
   opacity: 0.6;
 }
-
-
 </style>
 </head>
 <body>
 
 <div id="grain"></div>
 
-<!-- ════════════════════ HERO ════════════════════ -->
 <section id="hero">
   <canvas id="orb-canvas"></canvas>
-<div id="matrix-left"></div>
-  <!-- NEW: subtle accent glow under PC area -->
+  <div id="matrix-left"></div>
   <div class="pc-glow"></div>
 
-  <!-- IMPROVED: Top nav -->
   <nav class="hero-nav">
     <div class="hero-wordmark">Portfolio 2026</div>
     <div class="hero-nav-right">
@@ -911,13 +856,11 @@ box-shadow:
     </div>
   </nav>
 
-  <!-- Centre: name + tabs underneath -->
   <div class="hero-center">
     <div class="hero-label">Cybersecurity Portfolio</div>
     <div class="hero-name">Sara Goodie</div>
     <div class="hero-location">Dearborn Heights, MI</div>
 
-    <!-- NEW: specialty tags -->
     <div class="hero-tags">
       <span class="hero-tag-pill">SOC Analysis</span>
       <span class="hero-tag-pill">Threat Detection</span>
@@ -931,17 +874,14 @@ box-shadow:
       <button class="tab-btn" onclick="openPanel('certs',this)">Certifications <span class="tab-arrow">›</span></button>
     </div>
 
-    <!-- NEW: scroll / click hint -->
     <div class="scroll-hint">
       <span></span>
-
-      </svg>
     </div>
   </div>
 </section>
 
 
-<!-- ════════════ PANEL: ABOUT ════════════ -->
+<!-- PANEL: ABOUT -->
 <div class="folder-panel" id="panel-about">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
@@ -968,7 +908,7 @@ box-shadow:
 </div>
 
 
-<!-- ════════════ PANEL: EXPERIENCE ════════════ -->
+<!-- PANEL: EXPERIENCE -->
 <div class="folder-panel" id="panel-experience">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
@@ -1035,7 +975,7 @@ box-shadow:
 </div>
 
 
-<!-- ════════════ PANEL: PROJECTS ════════════ -->
+<!-- PANEL: PROJECTS -->
 <div class="folder-panel" id="panel-projects">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
@@ -1064,6 +1004,30 @@ box-shadow:
           <div class="fi-title">Active Directory Lab</div>
           <div class="fi-preview">WinServer · GPO · PS</div>
         </div>
+        <div class="file-item" onclick="showProject('forensics',this)">
+          <div class="fi-badge forensics">FORENSICS</div>
+          <div class="fi-date">2024-08</div>
+          <div class="fi-title">Digital Forensics</div>
+          <div class="fi-preview">D431 · WGU · Evidence</div>
+        </div>
+        <div class="file-item" onclick="showProject('legal',this)">
+          <div class="fi-badge legal">LEGAL</div>
+          <div class="fi-date">2024-06</div>
+          <div class="fi-title">Legal Issues in InfoSec</div>
+          <div class="fi-preview">C841 · WGU · Policy</div>
+        </div>
+        <div class="file-item" onclick="showProject('capstone',this)">
+          <div class="fi-badge capstone">CAPSTONE</div>
+          <div class="fi-date">2025-12</div>
+          <div class="fi-title">IT Capstone</div>
+          <div class="fi-preview">C769 · WGU · Research</div>
+        </div>
+        <div class="file-item" onclick="showProject('emerging',this)">
+          <div class="fi-badge emerging">EMERGING TECH</div>
+          <div class="fi-date">2024-10</div>
+          <div class="fi-title">Emerging Technologies</div>
+          <div class="fi-preview">C844 · WGU · AI/Cloud</div>
+        </div>
       </div>
       <div class="file-detail" id="file-detail-pane"></div>
     </div>
@@ -1071,7 +1035,7 @@ box-shadow:
 </div>
 
 
-<!-- ════════════ PANEL: CERTS ════════════ -->
+<!-- PANEL: CERTS -->
 <div class="folder-panel" id="panel-certs">
   <div class="folder-drag-pill"></div>
   <div class="folder-handle">
@@ -1100,7 +1064,7 @@ box-shadow:
 </div>
 
 
-<!-- ════════════ THREE.JS VOXELS ════════════ -->
+<!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
 <script>
@@ -1186,7 +1150,7 @@ box-shadow:
 </script>
 
 <script>
-/* ══ PROJECTS ══ */
+/* PROJECTS DATA */
 const projects={
   soc:{
     cmd:'cat soc-siem.md',
@@ -1217,6 +1181,46 @@ const projects={
     outcomes:['Domain controller + DNS/DHCP from scratch','Group Policy Objects for security hardening','User provisioning automation via PowerShell','OU structure mirroring enterprise environments'],
     tags:['Active Directory','Windows Server','DNS','DHCP','Group Policy','PowerShell'],
     github:'https://github.com/saragoodie'
+  },
+  forensics:{
+    cmd:'cat digital-forensics.md',
+    title:'Digital Forensics — WGU D431',
+    stats:[],
+    desc:'Completed coursework and practical assessments in digital forensics covering evidence acquisition, chain of custody, file system analysis, and forensic investigation methodology.',
+    desc2:'Applied forensic techniques to analyze disk images, recover deleted artifacts, and document findings in a legally defensible format — building skills directly applicable to incident response and threat hunting roles.',
+    outcomes:['Disk image acquisition and integrity verification','File system analysis and artifact recovery','Chain of custody documentation practices','Forensic report writing for legal admissibility'],
+    tags:['Digital Forensics','FTK','Autopsy','Chain of Custody','WGU','Incident Response'],
+    github:'https://github.com/saradotzip/D431-WGU-Digital-Forensics'
+  },
+  legal:{
+    cmd:'cat legal-issues-infosec.md',
+    title:'Legal Issues in Information Security — WGU C841',
+    stats:[],
+    desc:'In-depth study of the legal and regulatory frameworks governing information security — covering HIPAA, FERPA, GDPR, the Computer Fraud and Abuse Act, and how these laws intersect with security operations.',
+    desc2:'Completed the WGU IHP4 integrated highly performance assessment, applying legal analysis to real-world security scenarios including breach notification requirements, acceptable use policies, and cyber law case studies.',
+    outcomes:['Analysis of HIPAA, GDPR, and CFAA compliance requirements','Breach notification timelines and legal obligations','Acceptable use policy development frameworks','Case study analysis of landmark cybercrime prosecutions'],
+    tags:['Cyber Law','HIPAA','GDPR','CFAA','Compliance','Policy','WGU'],
+    github:'https://github.com/saradotzip/C841-Legal-Issues-in-Information-Security-WGU-IHP4-'
+  },
+  capstone:{
+    cmd:'cat it-capstone.md',
+    title:'IT Capstone — WGU C769',
+    stats:[],
+    desc:'Synthesized knowledge across the full cybersecurity curriculum to complete a research-based capstone project demonstrating mastery of IT security concepts, risk management, and professional communication.',
+    desc2:'Produced a comprehensive written proposal and solution architecture addressing a real-world IT or security problem — integrating technical depth with policy, risk, and implementation considerations.',
+    outcomes:['End-to-end research proposal and solution design','Risk assessment and mitigation strategy documentation','Integration of technical and business requirements','Professional-grade written deliverable for stakeholder review'],
+    tags:['Research','Risk Management','Technical Writing','Solution Architecture','WGU','Capstone'],
+    github:'https://github.com/saradotzip/C769-IT-Capstone-WGU-'
+  },
+  emerging:{
+    cmd:'cat emerging-technologies.md',
+    title:'Emerging Technologies in Cybersecurity — WGU C844',
+    stats:[],
+    desc:'Explored cutting-edge technologies reshaping the cybersecurity landscape — including AI/ML-driven threat detection, cloud security architectures, IoT attack surfaces, blockchain applications, and zero-trust frameworks.',
+    desc2:'Assessed the security implications of emerging tech adoption and produced analysis on how organizations can evaluate, adopt, and harden novel technologies without introducing unacceptable risk.',
+    outcomes:['AI/ML threat detection capabilities and limitations','Cloud-native security architecture patterns','IoT attack surface enumeration and mitigation','Zero-trust model evaluation and implementation roadmap'],
+    tags:['AI Security','Cloud Security','IoT','Zero Trust','Blockchain','WGU','Emerging Tech'],
+    github:'https://github.com/saradotzip/C844-Emerging-Technologies-in-Cybersecurity-WGU-'
   }
 };
 
@@ -1229,9 +1233,7 @@ function showProject(key, el){
   pane.innerHTML=`
     <div class="file-detail-meta">${p.cmd}</div>
     <h2>${p.title}</h2>
-    <div class="proj-stats">
-      ${p.stats.map(s=>`<div class="proj-stat"><div class="proj-stat-val">${s.val}</div><div class="proj-stat-lbl">${s.lbl}</div></div>`).join('')}
-    </div>
+    ${p.stats.length ? `<div class="proj-stats">${p.stats.map(s=>`<div class="proj-stat"><div class="proj-stat-val">${s.val}</div><div class="proj-stat-lbl">${s.lbl}</div></div>`).join('')}</div>` : ''}
     <p>${p.desc}</p>
     <p>${p.desc2}</p>
     <ul class="term-list">
@@ -1244,7 +1246,7 @@ function showProject(key, el){
   el.classList.add('active');
 }
 
-/* ══ PANEL LOGIC + URL HASH ══ */
+/* PANEL LOGIC */
 let activePanel=null, activeBtn=null;
 
 function openPanel(name, btn){
@@ -1288,7 +1290,6 @@ function triggerAboutCounters(){
   });
 }
 
-/* drag pill to close */
 document.querySelectorAll('.folder-drag-pill').forEach(pill=>{
   let sY=0, drag=false;
   pill.addEventListener('mousedown',e=>{sY=e.clientY;drag=true});
@@ -1305,6 +1306,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(hash){const btn=document.querySelector(`.tab-btn[onclick*="${hash}"]`);if(btn)openPanel(hash,btn)}
 });
 </script>
+
+<!-- MATRIX RAIN -->
 <script>
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
@@ -1325,53 +1328,39 @@ for (let i = 0; i < columns; i++) {
 }
 
 function draw() {
-  // clean fade (controls trail length)
   ctx.fillStyle = "rgba(14,15,19,0.18)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
   ctx.font = fontSize + "px monospace";
 
   for (let i = 0; i < drops.length; i++) {
     const text = chars[Math.floor(Math.random() * chars.length)];
-
-    // 🌟 BRIGHT leading character (top of stream)
     ctx.fillStyle = "#baffd9";
     ctx.shadowColor = "#4ade9a";
     ctx.shadowBlur = 6;
-
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    // 🧊 LONG TRAIL
     ctx.shadowBlur = 0;
-
-    for (let j = 1; j < 10; j++) { // <-- change 10 to control length
+    for (let j = 1; j < 10; j++) {
       ctx.fillStyle = `rgba(74,222,154,${0.6 - j * 0.06})`;
-
       ctx.fillText(
         chars[Math.floor(Math.random() * chars.length)],
         i * fontSize,
         (drops[i] - j) * fontSize
       );
     }
-
-    // reset randomly
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
-
     drops[i]++;
   }
 }
 
 setInterval(draw, 50);
 
-// resize fix
 window.addEventListener("resize", () => {
   canvas.width = container.offsetWidth;
   canvas.height = window.innerHeight;
 });
 </script>
 
-  
 </body>
 </html>
