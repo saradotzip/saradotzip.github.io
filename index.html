@@ -1111,53 +1111,6 @@ box-shadow:
 }
 .cmodal-sent-icon{font-size:32px;margin-bottom:12px}
 .cmodal-sent p{font-size:13px;color:rgba(74,222,154,0.7);line-height:1.8}
-
-/* ===== SIDEBAR FIX ===== */
-
-.about-sidebar{
-  border-left:1px solid var(--t-green-border);
-  background:var(--t-bg2);
-  position:relative;
-  overflow:hidden;
-}
-
-.about-sidebar-inner{
-  position:relative;
-  z-index:2;
-  padding:32px 24px;
-  display:flex;
-  flex-direction:column;
-}
-
-.about-sidebar::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,0.07) 3px,
-    rgba(0,0,0,0.07) 6px
-  );
-}
-
-.asb-section{
-  padding:18px 0;
-  border-bottom:1px solid var(--t-green-border);
-}
-
-.asb-section:last-child{
-  border-bottom:none;
-}
-
-
-
-
-
-  
 </style>
 </head>
 <body>
@@ -1291,43 +1244,58 @@ box-shadow:
       <!-- sidebar -->
       <aside class="about-sidebar">
 
-  <div class="about-sidebar-inner">
+        <div class="asb-section">
+          <div class="asb-label">status</div>
+          <div class="asb-status">
+            <span class="asb-status-dot"></span>
+            Open to Opportunities
+          </div>
+        </div>
 
-    <div class="asb-section">
-      <div class="asb-label">status</div>
-      <div class="asb-status">
-        <span class="asb-status-dot"></span>
-        Open to Opportunities
-      </div>
+        <div class="asb-section">
+          <div class="asb-label">targeting</div>
+          <div class="asb-roles">
+            <span class="asb-role-item">IAM Analyst</span>
+            <span class="asb-role-item">SOC Analyst</span>
+            <span class="asb-role-item">Security Operations Analyst</span>
+            <span class="asb-role-item">IAM Engineer</span>
+          </div>
+          <div class="asb-subtext">Remote &amp; Relocation Considered</div>
+        </div>
+
+        <div class="asb-section">
+          <div class="asb-label">education</div>
+          <div class="asb-edu-title">B.S. Cybersecurity &amp; IA</div>
+          <div class="asb-edu-meta">
+            WGU · Jul 2023 – Apr 2026
+          </div>
+        </div>
+
+        <div class="asb-section">
+          <div class="asb-label">award</div>
+          <div class="asb-award">
+            <span class="asb-award-icon">🏆</span>
+            <div class="asb-award-text">
+              <div class="asb-award-name">WGU Systems Thinking Award</div>
+              <div class="asb-award-sub">2024</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="asb-section">
+          <div class="asb-label">links</div>
+          <div class="asb-links">
+            <a class="asb-link" href="https://github.com/saradotzip" target="_blank" rel="noopener">github.com/saradotzip</a>
+            <a class="asb-link" href="https://linkedin.com/in/saragoodie" target="_blank" rel="noopener">linkedin.com/in/saragoodie</a>
+            <a class="asb-link" href="#" onclick="openContact(event)">segoodie12@gmail.com</a>
+          </div>
+        </div>
+
+      </aside>
     </div>
-
-    <div class="asb-section">
-      <div class="asb-label">education</div>
-      <div class="asb-edu-title">B.S. Cybersecurity & IA</div>
-      <div class="asb-edu-meta">WGU · Jul 2023 – Apr 2026</div>
-    </div>
-
-    <div class="asb-section">
-      <div class="asb-label">targeting</div>
-      <div class="asb-roles">
-        <span class="asb-role-item">SOC Analyst</span>
-        <span class="asb-role-item">IAM Analyst</span>
-        <span class="asb-role-item">Help Desk</span>
-      </div>
-    </div>
-
-    <div class="asb-section">
-      <div class="asb-label">links</div>
-      <div class="asb-links">
-        <a class="asb-link" href="https://linkedin.com/in/saragoodie" target="_blank">linkedin.com/in/saragoodie</a>
-        <a class="asb-link" href="mailto:segoodie12@gmail.com">segoodie12@gmail.com</a>
-        <a class="asb-link" href="resume.pdf" download>resume.pdf</a>
-      </div>
-    </div>
-
   </div>
+</div>
 
-</aside>
 
 <!-- PANEL: EXPERIENCE -->
 <div class="folder-panel" id="panel-experience">
