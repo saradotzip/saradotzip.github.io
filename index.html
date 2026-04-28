@@ -1325,8 +1325,8 @@ for (let i = 0; i < columns; i++) {
 }
 
 function draw() {
-  // clean trail fade (no fog)
-  ctx.fillStyle = "rgba(14,15,19,0.35)";
+  // clean fade (controls trail length)
+  ctx.fillStyle = "rgba(14,15,19,0.18)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.font = fontSize + "px monospace";
@@ -1334,22 +1334,25 @@ function draw() {
   for (let i = 0; i < drops.length; i++) {
     const text = chars[Math.floor(Math.random() * chars.length)];
 
-    // 🌟 BRIGHT leading character
+    // 🌟 BRIGHT leading character (top of stream)
     ctx.fillStyle = "#baffd9";
     ctx.shadowColor = "#4ade9a";
     ctx.shadowBlur = 6;
 
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-    // 🧊 trailing characters (dimmer)
-    ctx.fillStyle = "rgba(74,222,154,0.5)";
+    // 🧊 LONG TRAIL
     ctx.shadowBlur = 0;
 
-    ctx.fillText(
-      chars[Math.floor(Math.random() * chars.length)],
-      i * fontSize,
-      (drops[i] - 1) * fontSize
-    );
+    for (let j = 1; j < 10; j++) { // <-- change 10 to control length
+      ctx.fillStyle = `rgba(74,222,154,${0.6 - j * 0.06})`;
+
+      ctx.fillText(
+        chars[Math.floor(Math.random() * chars.length)],
+        i * fontSize,
+        (drops[i] - j) * fontSize
+      );
+    }
 
     // reset randomly
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
