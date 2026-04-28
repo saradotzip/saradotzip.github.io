@@ -365,7 +365,7 @@ html,body{
   position:fixed;
   top:50%;left:50%;
   transform:translate(-50%, -50%) scale(0.95);
-  width:90%;max-width:1100px;height:85vh;
+  width:95%;max-width:1400px;height:92vh;
   background:var(--cream);
   z-index:100;
   opacity:0;pointer-events:none;
@@ -445,19 +445,19 @@ box-shadow:
 #panel-experience .folder-inner::-webkit-scrollbar-thumb,
 #panel-certs .folder-inner::-webkit-scrollbar-thumb{background:var(--t-green-border);border-radius:2px}
 
-.about-body{padding:36px 48px;max-width:900px}
+.about-body{padding:44px 60px;max-width:960px}
 .term-prompt{
-  font-size:9px;letter-spacing:0.18em;text-transform:lowercase;
-  color:rgba(74,222,154,0.5);margin-bottom:6px;
+  font-size:10px;letter-spacing:0.18em;text-transform:lowercase;
+  color:rgba(74,222,154,0.5);margin-bottom:8px;
   display:flex;align-items:center;gap:6px;
 }
 .term-prompt::before{content:'root@sara:~$';color:var(--t-green);margin-right:4px;opacity:0.7}
 .about-body h2{
-  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
-  color:var(--t-green);margin-bottom:20px;line-height:1.2;
+  font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:500;
+  color:var(--t-green);margin-bottom:24px;line-height:1.2;
   text-shadow:0 0 20px rgba(74,222,154,0.3);
 }
-.about-body p{font-size:12px;line-height:1.9;color:rgba(74,222,154,0.65);margin-bottom:14px;max-width:680px}
+.about-body p{font-size:14px;line-height:2;color:rgba(74,222,154,0.75);margin-bottom:18px;max-width:780px}
 .about-body p strong{color:var(--t-green);font-weight:500}
 .about-divider{
   border:none;border-top:1px solid var(--t-green-border);
@@ -481,40 +481,40 @@ box-shadow:
 }
 .cert-chip:hover{background:rgba(74,222,154,0.12);color:var(--t-green)}
 
-.exp-body{padding:36px 48px;max-width:900px}
+.exp-body{padding:44px 60px;max-width:960px}
 .exp-body h2{
-  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
-  color:var(--t-green);margin-bottom:28px;
+  font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:500;
+  color:var(--t-green);margin-bottom:32px;
   text-shadow:0 0 20px rgba(74,222,154,0.3);
 }
 .exp-item{
   border-top:1px solid var(--t-green-border);
-  padding:22px 0;
+  padding:26px 0;
   display:grid;grid-template-columns:1fr auto;gap:16px;
 }
 .exp-item:last-child{border-bottom:1px solid var(--t-green-border)}
-.exp-header-left{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.exp-header-left{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
 .exp-role{
-  font-size:13px;font-weight:500;
+  font-size:16px;font-weight:500;
   color:var(--t-green);letter-spacing:0.02em;
 }
 .exp-company{
-  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
   color:rgba(74,222,154,0.45);
 }
 .exp-date{
-  font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
   color:rgba(74,222,154,0.35);white-space:nowrap;padding-top:4px;
   border:1px solid var(--t-green-border);
-  padding:3px 8px;border-radius:2px;
+  padding:4px 10px;border-radius:2px;
   align-self:start;background:var(--t-green-faint);
   height:fit-content;
 }
 .exp-bullets{list-style:none;padding:0}
 .exp-bullets li{
-  font-size:11px;line-height:1.9;
-  color:rgba(74,222,154,0.6);
-  padding-left:0;position:relative;margin-bottom:3px;
+  font-size:13px;line-height:2;
+  color:rgba(74,222,154,0.7);
+  padding-left:0;position:relative;margin-bottom:4px;
 }
 .exp-bullets li::before{content:'> ';color:var(--t-green);opacity:0.6}
 .exp-edu-label{
@@ -524,26 +524,28 @@ box-shadow:
 }
 .exp-edu-label::before{content:'##';color:var(--t-green);opacity:0.4;margin-right:2px}
 
-.certs-body{padding:36px 48px}
-.certs-body .panel-head{margin-bottom:28px}
+.certs-body{padding:44px 60px}
+.certs-body .panel-head{margin-bottom:32px}
 .certs-body .panel-head .meta{
-  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
-  color:rgba(74,222,154,0.45);margin-bottom:6px;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(74,222,154,0.45);margin-bottom:8px;
   display:flex;align-items:center;gap:6px;
 }
 .certs-body .panel-head .meta::before{content:'root@sara:~$';color:var(--t-green);opacity:0.7;margin-right:4px}
 .certs-body .panel-head h2{
-  font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500;
+  font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:500;
   color:var(--t-green);text-shadow:0 0 20px rgba(74,222,154,0.3);
 }
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .cert-card{
   background:var(--t-bg2);
   border:1px solid var(--t-green-border);
-  padding:18px 16px 16px;
-  position:relative;overflow:hidden;cursor:default;
+  padding:24px 20px 20px;
+  position:relative;overflow:hidden;cursor:pointer;
   transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;
   border-radius:3px;
+  text-decoration:none;
+  display:block;
 }
 .cert-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
@@ -560,12 +562,12 @@ box-shadow:
     0 0 14px rgba(74,222,154,0.15);
   transform:translateY(-5px) scale(1.02);
 }
-.cert-icon{font-size:20px;margin-bottom:10px;display:block}
+.cert-icon{font-size:26px;margin-bottom:12px;display:block}
 .cert-card h3{
-  font-size:11px;font-weight:500;letter-spacing:0.04em;
-  color:rgba(74,222,154,0.9);margin-bottom:4px;line-height:1.4;
+  font-size:13px;font-weight:500;letter-spacing:0.04em;
+  color:rgba(74,222,154,0.9);margin-bottom:6px;line-height:1.4;
 }
-.cert-issuer{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(74,222,154,0.4)}
+.cert-issuer{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(74,222,154,0.4)}
 .cert-badge{
   position:absolute;top:12px;right:12px;
   width:20px;height:20px;border-radius:50%;
@@ -735,25 +737,25 @@ box-shadow:
 .proj-stat-lbl{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(74,222,154,0.45)}
 
 .file-detail p{
-  font-size:12px;line-height:1.85;
-  color:rgba(74,222,154,0.55);
-  margin-bottom:14px;max-width:640px;
+  font-size:14px;line-height:2;
+  color:rgba(74,222,154,0.65);
+  margin-bottom:16px;max-width:720px;
 }
 .file-detail p strong{color:rgba(74,222,154,0.9);font-weight:500}
 
 .term-list{
-  margin:16px 0 20px;
+  margin:18px 0 22px;
   border-left:2px solid var(--t-green-border);
-  padding-left:16px;
+  padding-left:18px;
 }
 .term-list li{
   list-style:none;
-  font-size:11px;line-height:1.9;
-  color:rgba(74,222,154,0.65);
+  font-size:13px;line-height:2;
+  color:rgba(74,222,154,0.75);
   padding-left:0;
   position:relative;
 }
-.term-list li::before{content:'[OK] ';color:var(--t-green);font-size:10px;letter-spacing:0.05em}
+.term-list li::before{content:'[OK] ';color:var(--t-green);font-size:11px;letter-spacing:0.05em}
 
 .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 22px}
 .file-tag{
@@ -837,11 +839,187 @@ box-shadow:
   display: block;
   opacity: 0.6;
 }
+/* ── CERT VIEW LINK ── */
+.cert-view-link{
+  font-size:9px;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(74,222,154,0.4);margin-top:10px;
+  transition:color 0.2s;
+}
+.cert-card:hover .cert-view-link{color:var(--t-green)}
+
+/* ── CONTACT MODAL ── */
+#contact-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(5,6,10,0.85);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s ease;
+}
+#contact-overlay.open{opacity:1;pointer-events:auto}
+
+#contact-modal{
+  background:var(--t-bg);
+  border:1px solid var(--t-green-border);
+  border-radius:8px;
+  width:90%;max-width:560px;
+  padding:0;
+  box-shadow:0 0 60px rgba(74,222,154,0.1),0 30px 80px rgba(0,0,0,0.8);
+  transform:translateY(20px) scale(0.97);
+  transition:transform 0.3s cubic-bezier(0.32,0.72,0,1);
+  position:relative;overflow:hidden;
+}
+#contact-overlay.open #contact-modal{transform:translateY(0) scale(1)}
+
+/* scanlines */
+#contact-modal::after{
+  content:'';pointer-events:none;position:absolute;inset:0;z-index:10;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.1) 2px,rgba(0,0,0,0.1) 4px);
+}
+
+.cmodal-header{
+  background:var(--t-bg2);
+  border-bottom:1px solid var(--t-green-border);
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cmodal-title{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--t-green);
+  display:flex;align-items:center;gap:10px;
+}
+.cmodal-title::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--t-green);box-shadow:0 0 6px var(--t-green);
+  animation:termPulse 2s ease-in-out infinite;
+}
+.cmodal-close{
+  background:none;border:1px solid var(--t-green-border);border-radius:3px;
+  color:var(--t-green-dim);font-size:13px;cursor:pointer;
+  width:22px;height:22px;display:flex;align-items:center;justify-content:center;
+  transition:color 0.15s,border-color 0.15s;
+}
+.cmodal-close:hover{color:var(--t-red);border-color:var(--t-red)}
+
+.cmodal-body{padding:28px 28px 24px;position:relative;z-index:1}
+
+.cmodal-intro{
+  font-size:13px;line-height:1.8;
+  color:rgba(74,222,154,0.6);
+  margin-bottom:24px;max-width:460px;
+}
+
+.cfield{margin-bottom:18px}
+.cfield label{
+  display:block;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(74,222,154,0.5);margin-bottom:6px;
+}
+.cfield input,
+.cfield select,
+.cfield textarea{
+  width:100%;background:var(--t-bg2);
+  border:1px solid var(--t-green-border);
+  border-radius:2px;
+  color:rgba(74,222,154,0.85);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  padding:10px 12px;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  appearance:none;
+  resize:vertical;
+}
+.cfield input::placeholder,
+.cfield textarea::placeholder{color:rgba(74,222,154,0.25)}
+.cfield input:focus,
+.cfield select:focus,
+.cfield textarea:focus{
+  border-color:rgba(74,222,154,0.55);
+  box-shadow:0 0 0 3px rgba(74,222,154,0.07);
+}
+.cfield select option{background:#0c110c;color:#4ade9a}
+.cfield textarea{min-height:110px}
+
+.cfield-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.cmodal-send{
+  width:100%;margin-top:6px;
+  padding:12px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  background:rgba(74,222,154,0.1);
+  border:1px solid var(--t-green-border);
+  border-radius:3px;
+  color:var(--t-green);
+  cursor:pointer;
+  transition:background 0.2s,box-shadow 0.2s;
+}
+.cmodal-send:hover{
+  background:rgba(74,222,154,0.18);
+  box-shadow:0 0 20px rgba(74,222,154,0.12);
+}
+.cmodal-sent{
+  text-align:center;padding:32px 20px;
+  display:none;
+}
+.cmodal-sent-icon{font-size:32px;margin-bottom:12px}
+.cmodal-sent p{font-size:13px;color:rgba(74,222,154,0.7);line-height:1.8}
 </style>
 </head>
 <body>
 
 <div id="grain"></div>
+
+<!-- ════════ CONTACT MODAL ════════ -->
+<div id="contact-overlay" onclick="handleOverlayClick(event)">
+  <div id="contact-modal">
+    <div class="cmodal-header">
+      <span class="cmodal-title">send_message — segoodie12@gmail.com</span>
+      <button class="cmodal-close" onclick="closeContact()">✕</button>
+    </div>
+    <div class="cmodal-body">
+      <div id="cmodal-form-wrap">
+        <p class="cmodal-intro">Whether you have an opportunity, want to connect professionally, or are interested in collaborating — your message reaches me directly.</p>
+        <div class="cfield-row">
+          <div class="cfield">
+            <label>Your Name</label>
+            <input type="text" id="c-name" placeholder="Full name..."/>
+          </div>
+          <div class="cfield">
+            <label>Your Email</label>
+            <input type="email" id="c-email" placeholder="your@email.com"/>
+          </div>
+        </div>
+        <div class="cfield-row">
+          <div class="cfield">
+            <label>Company (Optional)</label>
+            <input type="text" id="c-company" placeholder="Organization..."/>
+          </div>
+          <div class="cfield">
+            <label>Reason</label>
+            <select id="c-reason">
+              <option value="">Select...</option>
+              <option>Job Opportunity</option>
+              <option>Collaboration</option>
+              <option>Professional Connection</option>
+              <option>General Inquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="cfield">
+          <label>Message</label>
+          <textarea id="c-message" placeholder="Your message..."></textarea>
+        </div>
+        <button class="cmodal-send" onclick="sendContactForm()">Send Message →</button>
+      </div>
+      <div class="cmodal-sent" id="cmodal-sent">
+        <div class="cmodal-sent-icon">✓</div>
+        <p>Message sent — opening your email client now.<br/>Your default mail app will open with the message pre-filled.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section id="hero">
   <canvas id="orb-canvas"></canvas>
@@ -852,7 +1030,9 @@ box-shadow:
     <div class="hero-wordmark">Portfolio 2026</div>
     <div class="hero-nav-right">
       <a href="https://linkedin.com/in/saragoodie" target="_blank">LinkedIn</a>
-      <a href="mailto:segoodie12@gmail.com">Email</a>
+      <!-- ▼ PASTE YOUR RESUME FILE PATH/URL BELOW (e.g. href="Sara_Goodie_Resume.pdf") -->
+      <a href="YOUR_RESUME_FILE_HERE.pdf" download class="nav-resume">Resume ↓</a>
+      <a href="#" onclick="openContact(event)">Email</a>
     </div>
   </nav>
 
@@ -1049,15 +1229,16 @@ box-shadow:
         <h2>Certifications</h2>
       </div>
       <div class="cert-grid">
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔴</span><h3>CompTIA Pentest+</h3><div class="cert-issuer">CompTIA · Offensive Security</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🟠</span><h3>CompTIA CySA+</h3><div class="cert-issuer">CompTIA · Threat Analysis</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔵</span><h3>CompTIA Security+</h3><div class="cert-issuer">CompTIA · Core Security</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🟢</span><h3>CompTIA Network+</h3><div class="cert-issuer">CompTIA · Networking</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">⚙️</span><h3>CompTIA A+</h3><div class="cert-issuer">CompTIA · IT Fundamentals</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">📋</span><h3>CompTIA Project+</h3><div class="cert-issuer">CompTIA · Project Management</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🛡️</span><h3>ISC² Associate</h3><div class="cert-issuer">ISC² · (ISC)²</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔧</span><h3>ITIL 4 Foundation</h3><div class="cert-issuer">AXELOS · IT Service Mgmt</div></div>
-        <div class="cert-card"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🐧</span><h3>LPI Linux Essentials</h3><div class="cert-issuer">Linux Professional Institute</div></div>
+        <!-- ▼ PASTE YOUR CREDLY/COMPTIA VERIFY LINKS BELOW — replace each YOUR_LINK_HERE -->
+        <a class="cert-card" href="YOUR_PENTEST_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔴</span><h3>CompTIA Pentest+</h3><div class="cert-issuer">CompTIA · Offensive Security</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_CYSA_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🟠</span><h3>CompTIA CySA+</h3><div class="cert-issuer">CompTIA · Threat Analysis</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_SECURITY_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔵</span><h3>CompTIA Security+</h3><div class="cert-issuer">CompTIA · Core Security</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_NETWORK_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🟢</span><h3>CompTIA Network+</h3><div class="cert-issuer">CompTIA · Networking</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_A_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">⚙️</span><h3>CompTIA A+</h3><div class="cert-issuer">CompTIA · IT Fundamentals</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_PROJECT_PLUS_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">📋</span><h3>CompTIA Project+</h3><div class="cert-issuer">CompTIA · Project Management</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_ISC2_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🛡️</span><h3>ISC² Associate</h3><div class="cert-issuer">ISC² · (ISC)²</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_ITIL_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🔧</span><h3>ITIL 4 Foundation</h3><div class="cert-issuer">AXELOS · IT Service Mgmt</div><div class="cert-view-link">View credential →</div></a>
+        <a class="cert-card" href="YOUR_LPI_LINK_HERE" target="_blank" rel="noopener"><div class="cert-badge"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div><span class="cert-icon">🐧</span><h3>LPI Linux Essentials</h3><div class="cert-issuer">Linux Professional Institute</div><div class="cert-view-link">View credential →</div></a>
       </div>
     </div>
   </div>
@@ -1360,6 +1541,45 @@ window.addEventListener("resize", () => {
   canvas.width = container.offsetWidth;
   canvas.height = window.innerHeight;
 });
+</script>
+
+<!-- CONTACT MODAL JS -->
+<script>
+function openContact(e){
+  if(e) e.preventDefault();
+  document.getElementById('contact-overlay').classList.add('open');
+  document.getElementById('cmodal-form-wrap').style.display='block';
+  document.getElementById('cmodal-sent').style.display='none';
+}
+function closeContact(){
+  document.getElementById('contact-overlay').classList.remove('open');
+}
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('contact-overlay')) closeContact();
+}
+function sendContactForm(){
+  const name    = document.getElementById('c-name').value.trim();
+  const email   = document.getElementById('c-email').value.trim();
+  const company = document.getElementById('c-company').value.trim();
+  const reason  = document.getElementById('c-reason').value;
+  const message = document.getElementById('c-message').value.trim();
+  if(!name || !email || !message){
+    alert('Please fill in your name, email, and message.');
+    return;
+  }
+  const subject = encodeURIComponent((reason ? reason + ' — ' : '') + 'Portfolio Contact from ' + name);
+  const body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    (company ? 'Company: ' + company + '\n' : '') +
+    (reason  ? 'Reason: '  + reason  + '\n' : '') +
+    '\nMessage:\n' + message
+  );
+  window.location.href = 'mailto:segoodie12@gmail.com?subject=' + subject + '&body=' + body;
+  document.getElementById('cmodal-form-wrap').style.display='none';
+  document.getElementById('cmodal-sent').style.display='block';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeContact(); });
 </script>
 
 </body>
